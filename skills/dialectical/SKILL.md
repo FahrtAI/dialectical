@@ -13,6 +13,7 @@ When orientation would help, briefly identify the available operations without e
 
 - Context: RESTATE, SUMMARIZE, DISTILL, TRACE
 - Inquiry: RESEARCH, HYPOTHESIZE, CHALLENGE, VERIFY
+- Diagnosis: ACH, CAUSAL-CHAIN, SOURCE-QUALITY
 - Knowledge: TAG, SAVE, RECALL
 - Lifecycle: START INQUIRY, CHECKPOINT, RESUME, CLOSE
 
@@ -26,6 +27,7 @@ Use the corresponding namespaced standalone skill beside this directory:
 
 - `dialectical-restate`, `dialectical-summarize`, `dialectical-distill`, or `dialectical-trace`
 - `dialectical-research`, `dialectical-hypothesize`, `dialectical-challenge`, or `dialectical-verify`
+- `dialectical-ach`, `dialectical-causal-chain`, or `dialectical-source-quality`
 - `dialectical-tag`, `dialectical-save`, or `dialectical-recall`
 - `dialectical-start-inquiry`, `dialectical-checkpoint`, `dialectical-resume`, or `dialectical-close`
 

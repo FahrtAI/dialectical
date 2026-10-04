@@ -29,7 +29,7 @@ Initialize `manifest.yaml` as:
 
 ```yaml
 schema_version: 1
-created: 2026-10-02
+created: YYYY-MM-DD
 ```
 
 Reject an unsupported future schema version rather than guessing how to mutate it.
@@ -42,6 +42,7 @@ Reject an unsupported future schema version rather than guessing how to mutate i
 - Write or update the canonical record before rebuilding its index.
 - If concurrent or externally modified content is detected, preserve both versions and report the conflict instead of choosing silently.
 - Indexes are rebuildable retrieval aids, never canonical records.
+- When replacing a materially divergent index, keep the old one beside it as `index.md.bak-YYYY-MM-DD`, with a numeric suffix on collision.
 
 ## Conversation records
 
@@ -50,10 +51,10 @@ Reject an unsupported future schema version rather than guessing how to mutate i
 ```yaml
 ---
 schema_version: 1
-id: 2026-10-02-example-topic
+id: YYYY-MM-DD-example-topic
 title: Example topic
-created: 2026-10-02
-updated: 2026-10-02
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
 status: active
 platform:
 thread_id:
@@ -61,7 +62,11 @@ parent_id:
 ---
 ```
 
-Valid statuses are `active`, `paused`, and `closed`. Preserve findings, their epistemic basis, uncertainty, open questions, consequential pivots, and links to saved objects.
+Valid statuses are `active`, `paused`, and `closed`. `active` means open for work, and several inquiries may be active at once. The inquiry a conversation is working on comes from the conversation itself (the inquiry it started or resumed, or a matching `thread_id`), never from status alone.
+
+When the status changes, append a line to a `## Status history` section in the body of `state.md`: the date, the old and new status, and the reason when one was given.
+
+Preserve findings, their epistemic basis, uncertainty, open questions, consequential pivots, and links to saved objects.
 
 `context.md` records selected material carried into the inquiry. Every item links to its source and distinguishes direct source content from later interpretation.
 
@@ -74,14 +79,14 @@ Memory objects contain knowledge intended to outlive one conversation. Store one
 ```yaml
 ---
 schema_version: 1
-id: example-object
+id: YYYY-MM-DD-example-object
 title: Example object
 type: idea
 status: developing
-created: 2026-10-02
-updated: 2026-10-02
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
 source_conversations:
-  - 2026-10-02-example-topic
+  - YYYY-MM-DD-example-topic
 tags: []
 related: []
 confidence:

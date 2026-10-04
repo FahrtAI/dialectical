@@ -49,13 +49,53 @@ cases:
       - "Produces explanations with meaningfully different mechanisms."
       - "Provides discriminating predictions and weakening evidence."
 
-  - id: challenge-ach
+  - id: challenge-strongest-form
     skill: dialectical-challenge
+    prompt: "CHALLENGE our plan: we'll cut churn by offering an annual-billing discount, since annual customers churn less."
+    expect:
+      - "States the plan's strongest reasonable form before testing it."
+      - "Raises the possibility that customers who already intend to stay are the ones who choose annual billing."
+      - "Separates fatal problems from material weaknesses and ordinary uncertainty, and says what evidence would overturn the plan."
+
+  - id: ach-matrix
+    skill: dialectical-ach
     prompt: "Use ACH to compare whether a traffic decline came from seasonality, a tracking failure, or a ranking loss."
     expect:
       - "Uses an evidence-hypothesis matrix and checks source dependence."
       - "Selects the least-inconsistent hypothesis without mechanical vote counting."
       - "Reports sensitivity and the next discriminating evidence."
+
+  - id: ach-surfaces-rivals
+    skill: dialectical-ach
+    prompt: "Use ACH: webinar attendees convert at three times the rate of non-attendees. We think the webinars persuade them."
+    expect:
+      - "Adds rival hypotheses with mechanisms, such as self-selection and differential follow-up, and marks them as added."
+      - "Skips checklist categories that do not apply rather than padding the hypothesis set."
+      - "Marks cells it cannot assess as insufficient information instead of inventing evidence."
+
+  - id: hypothesize-not-ach
+    skill: dialectical-hypothesize
+    prompt: "HYPOTHESIZE why webinar attendees convert at three times the rate of non-attendees."
+    expect:
+      - "Produces explanations with different mechanisms and discriminating predictions."
+      - "Does not build an evidence matrix or select a winner."
+
+  - id: causal-chain-linchpins
+    skill: dialectical-causal-chain
+    prompt: "Test this argument: raising our free tier's limits will grow paid revenue, because more free users means more word of mouth, which brings more signups, a steady share of whom upgrade."
+    expect:
+      - "Maps the chain as stated before evaluating it."
+      - "Reserves linchpin for assumptions with no alternative path to the conclusion rather than labeling most assumptions linchpins."
+      - "States which links rest on evidence and which on assumption alone."
+
+  - id: source-quality-unknown-and-shared-origin
+    skill: dialectical-source-quality
+    prompt: "How much weight should we give these: a government statistics release, two trade-press articles that both quote the same vendor press release, and a figure from a newsletter whose author we can't identify?"
+    expect:
+      - "Rates source reliability and information credibility separately."
+      - "Counts the two trade-press articles as one origin, not independent corroboration."
+      - "Rates the unidentified author F rather than D or E, and does not rank F below E."
+      - "Labels ratings as based on the user's descriptions rather than the sources themselves."
 
   - id: verify-unresolved
     skill: dialectical-verify

@@ -35,14 +35,14 @@ Use the current project or user-selected location as the workspace root. Initial
 
 Create the internal `.gitignore` specified by the storage contract so conversation data is private by default. Use a stable, filesystem-safe conversation ID. If the date and slug already exist, append a small numeric suffix rather than overwriting anything. Record the platform thread identifier when it is available, but do not require one.
 
-`state.md` is the living state of this inquiry, not a transcript. Initialize it with metadata plus only the sections presently useful: focus, current understanding, findings, uncertainties, open questions, and saved objects.
+`state.md` is the living state of this inquiry, not a transcript. Initialize it with metadata, including `status: active`, plus only the sections presently useful: focus, current understanding, findings, uncertainties, open questions, and saved objects.
 
 `context.md` contains curated carryover from existing conversations and memory. Keep provenance links back to every source.
 
 ## Curate what already exists
 
 1. Inventory existing entries in `.dialectical/conversations/` and `.dialectical/memory/objects/`.
-2. Repair or create the two indexes from the files present. Never treat a missing index entry as permission to delete a file. Preserve a backup when replacing a materially divergent index.
+2. Repair or create the two indexes from the files present. Never treat a missing index entry as permission to delete a file. When replacing a materially divergent index, keep the old one as a backup, as the storage contract specifies.
 3. Select prior material for relevance to the new inquiry, including useful disagreement, failed approaches, and unresolved questions.
 4. Add a concise synthesis to the new `context.md` with source links and any important confidence or status markers.
 5. Prefer links and distillation over copying whole records. Do not import unrelated history simply because it exists.

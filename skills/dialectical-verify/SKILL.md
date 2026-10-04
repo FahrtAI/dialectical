@@ -21,6 +21,8 @@ Determine what the best available external evidence warrants about a narrowly st
    - **Residual uncertainty**
 6. Cite the evidence directly and include relevant dates.
 
+When sources of differing quality bear on the proposition, `dialectical-source-quality` can rate them. Say so when you apply it.
+
 If external evidence cannot be accessed, say that verification was not completed. Offer a verification plan or clearly labeled provisional assessment instead.
 
 ## Boundaries

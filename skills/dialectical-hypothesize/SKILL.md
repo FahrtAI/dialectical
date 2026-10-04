@@ -1,6 +1,6 @@
 ---
 name: dialectical-hypothesize
-description: Generate genuinely competing explanations for an observation, pattern, or outcome and expose what would distinguish them. Use when the explanatory space is too narrow; do not use for generic brainstorming or variants of one favored story.
+description: Generate genuinely competing explanations for an observation, pattern, or outcome and expose what would distinguish them. Use when the explanatory space is too narrow; do not use for generic brainstorming, variants of one favored story, or weighing explanations against evidence (ACH).
 ---
 
 # Hypothesize
@@ -29,3 +29,4 @@ The number of hypotheses should reflect the explanatory space, not an arbitrary 
 - Do not confuse possible with probable.
 - Do not optimize only for novelty; retain plausible ordinary explanations.
 - Do not verify or rank hypotheses without evidence sufficient to do so.
+- Do not score hypotheses against an evidence matrix; that is ACH.

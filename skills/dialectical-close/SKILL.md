@@ -11,9 +11,9 @@ Read [`../dialectical/references/memory.md`](../dialectical/references/memory.md
 
 ## Operation
 
-1. Resolve the active inquiry and whether the requested status is `paused` or `closed`.
+1. Resolve the current inquiry as CHECKPOINT does, and whether the requested status is `paused` or `closed`.
 2. Perform a final checkpoint: current conclusion or state, supporting basis, unresolved uncertainty, open questions, and saved-object links.
-3. Update `state.md`, then its index entry, with the new status and timestamp.
+3. Update `state.md` with the new status, timestamp, and a status-history entry, then update its index entry.
 4. Identify any valuable unsaved findings, but do not save them automatically unless the request includes that authorization.
 5. Confirm the inquiry record that was closed or paused and how it can be resumed.
 

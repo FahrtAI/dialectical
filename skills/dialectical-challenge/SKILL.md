@@ -7,13 +7,17 @@ description: Subject a claim, explanation, plan, or emerging consensus to advers
 
 Try to break the current thinking in ways that improve its reliability.
 
-When the user requests ACH or several explanations must be compared against multiple observations, read [`references/ach.md`](references/ach.md) and use that method.
+Structured methods are available when the challenge calls for them. Name the method whenever you apply one:
+
+- `dialectical-ach` when the user requests ACH or several explanations must be compared against multiple observations.
+- `dialectical-causal-chain` when the position rests on a multi-step causal argument.
+- `dialectical-source-quality` when the challenge turns on how much weight particular sources deserve.
 
 ## Operation
 
 1. Identify the exact claim or model under challenge and state its strongest reasonable form.
 2. Test its key assumptions, internal consistency, causal logic, boundary conditions, and fit with available evidence.
-3. Consider credible alternatives and evidence that is inconsistent with the current view. Use an Analysis of Competing Hypotheses matrix when several explanations and diagnostic observations make that rigor useful.
+3. Consider credible alternatives and evidence that is inconsistent with the current view. Use ACH when several explanations and diagnostic observations make that rigor useful.
 4. Describe plausible failure modes and what conditions would produce them.
 5. Distinguish fatal problems, material weaknesses, and ordinary uncertainties.
 6. State what evidence, revision, or test would most strengthen or overturn the position.
