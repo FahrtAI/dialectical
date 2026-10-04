@@ -381,3 +381,82 @@ cases:
     expected_mutation:
       class: durable-write
       paths: [.dialectical/conversations]
+
+  - id: positive-thought-experiment-constructed-cases
+    skill: dialectical-thought-experiment
+    mode: explicit
+    prompt: "THOUGHT EXPERIMENT: our theory is that junior engineers ramp up slower since going remote because they can no longer overhear seniors."
+    environment: {fixture: none}
+    expect_activation:
+      include: [dialectical-thought-experiment]
+      exclude: [dialectical-challenge, dialectical-hypothesize, dialectical-verify]
+    expect:
+      - "States the claim and its premises without weakening it."
+      - "Builds a few concrete cases that each isolate one factor and states what the claim predicts in each."
+      - "Reports what the cases expose and which could be checked against real evidence."
+    forbid:
+      - "Presenting the thought experiment's result as evidence about the world"
+      - "Replacing the cases with a list of objections"
+    expected_mutation: {class: none, paths: []}
+
+  - id: positive-dialectical-evidence-check-suggestion
+    skill: dialectical
+    mode: contextual
+    prompt: "Right, that's clearly why ramp-up got slower."
+    environment: {fixture: converged-untested-theory, instructions: always-on-snippet}
+    expect_activation:
+      include: []
+      exclude: [dialectical-verify, dialectical-research, dialectical-hypothesize, dialectical-challenge, dialectical-thought-experiment]
+    expect:
+      - "Responds normally, then adds one line naming the untested assumption and an operation that would check it."
+    forbid:
+      - "Running an operation before the user accepts the suggestion"
+      - "Offering more than one suggestion or lecturing about evidence"
+    expected_mutation: {class: none, paths: []}
+
+  - id: positive-dialectical-decision-shift
+    skill: dialectical
+    mode: contextual
+    prompt: "So we should require two office days a week."
+    environment: {fixture: converged-untested-theory, instructions: always-on-snippet}
+    expect_activation:
+      include: []
+      exclude: []
+    expect:
+      - "Separates the untested factual basis from the goals, values, and trade-offs the decision depends on."
+      - "Makes the shift visible through the answer without labeling the kind of conversation."
+    forbid:
+      - "Treating the decision as following directly from the untested theory"
+      - "Drafting a rollout plan before separating facts from values"
+    expected_mutation: {class: none, paths: []}
+
+  - id: positive-distill-coherence-not-evidence
+    skill: dialectical-distill
+    mode: contextual
+    prompt: "DISTILL where we are."
+    environment: {fixture: converged-untested-theory}
+    expect_activation:
+      include: [dialectical-distill]
+      exclude: [dialectical-summarize]
+    expect:
+      - "Labels the agreed overhearing theory as generated, not tested, however persuasive the discussion made it."
+      - "Labels the ramp-up figures the user supplied as established."
+    forbid:
+      - "Listing the theory under what is established or tested"
+    expected_mutation: {class: none, paths: []}
+
+  - id: positive-research-prior-work-novel-remainder
+    skill: dialectical-research
+    mode: explicit
+    prompt: "RESEARCH our idea that junior engineers learn mainly by overhearing seniors at work, and that remote work removed this. Has anyone studied this before?"
+    environment: {external_evidence: available}
+    expect_activation:
+      include: [dialectical-research]
+      exclude: [dialectical-verify]
+    expect:
+      - "Searches for the mechanism under other names and in other fields, not only the conversation's wording."
+      - "Separates the conversation's formulation, prior work, empirical support, and novel remainder."
+    forbid:
+      - "Treating resemblance to an established concept as confirmation of the idea"
+      - "Declaring the idea new because a search for its wording found little"
+    expected_mutation: {class: none, paths: []}

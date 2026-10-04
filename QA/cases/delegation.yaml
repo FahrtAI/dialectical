@@ -1,0 +1,251 @@
+schema_version: 1
+suite: dialectical-delegation
+description: Worker-selection, context-isolation, synthesis, and mutation-ownership cases.
+
+cases:
+  - id: delegation-challenge-substantive-isolated
+    skill: dialectical-challenge
+    prompt: >-
+      Challenge our proposed company-wide launch. The conversation has strongly
+      converged on launching, but the only evidence is a two-week pilot with
+      forty self-selected users and no severe reported incidents.
+    environment: {isolated_workers: available}
+    expect_delegation:
+      decision: delegate
+      workers: {minimum: 1, maximum: 1}
+      role: "Independent adversarial analysis"
+      include_context: [strongest-form claim, pilot evidence, scope constraints, output contract]
+      exclude_context: [unrelated conversation, participant identities, consensus rhetoric]
+    expect:
+      - "The worker returns vulnerabilities, mechanisms, failure conditions, and disconfirming evidence."
+      - "The conversational agent removes weak objections and owns the user-facing response."
+    forbid:
+      - "Worker directly owns the final response"
+      - "Treating the worker result as authoritative"
+    expected_mutation: {class: none, paths: []}
+
+  - id: delegation-challenge-short-direct
+    skill: dialectical-challenge
+    prompt: "Challenge this short claim: lowering the price will necessarily increase revenue."
+    environment: {isolated_workers: available}
+    expect_delegation:
+      decision: direct
+      workers: {minimum: 0, maximum: 0}
+    expect:
+      - "The conversational agent challenges the claim directly because the task is short."
+    forbid:
+      - "Spawning a worker without a material independence or coverage benefit"
+    expected_mutation: {class: none, paths: []}
+
+  - id: delegation-research-independent-workstreams
+    skill: dialectical-research
+    prompt: >-
+      Research remote mentoring effectiveness across empirical studies,
+      competing theories, analogous apprenticeship settings, and negative or
+      limiting evidence. Synthesize the areas of agreement and disagreement.
+    environment: {isolated_workers: available, external_evidence: available}
+    expect_delegation:
+      decision: delegate
+      workers: {minimum: 2, maximum: 4}
+      role: "Independent research workstreams"
+      include_context: [research focus, decision context, scope, source requirements]
+      exclude_context: [unrelated conversation]
+    expect:
+      - "Workers divide by substantive workstream rather than arbitrary source count."
+      - "The conversational agent checks source overlap and reconciles contradictions."
+    forbid:
+      - "Concatenating worker reports without synthesis"
+      - "Counting repeated underlying sources as independent"
+    expected_mutation: {class: none, paths: []}
+
+  - id: delegation-research-ordered-direct
+    skill: dialectical-research
+    prompt: "Find the current text of the named policy, then inspect the definition it references in the same document."
+    environment: {isolated_workers: available, external_evidence: available}
+    expect_delegation:
+      decision: direct
+      workers: {minimum: 0, maximum: 0}
+    expect:
+      - "The conversational agent performs the short dependent lookup in order."
+    forbid:
+      - "Splitting dependent steps across workers"
+    expected_mutation: {class: none, paths: []}
+
+  - id: delegation-hypothesize-reduce-anchoring
+    skill: dialectical-hypothesize
+    prompt: >-
+      We have become convinced that the redesign caused churn by confusing
+      customers. Generate genuinely competing explanations without letting our
+      favored story anchor the search.
+    environment: {isolated_workers: available}
+    expect_delegation:
+      decision: delegate
+      workers: {minimum: 1, maximum: 1}
+      role: "Fresh hypothesis generation"
+      include_context: [neutral observation, material constraints, output contract]
+      exclude_context: [favored causal story, consensus rhetoric]
+    expect:
+      - "The worker receives a neutral description of the churn observation."
+      - "The conversational agent combines fresh candidates with the incumbent explanation."
+    forbid:
+      - "Treating independent generation as evidence of likelihood"
+      - "Asking the worker to rank hypotheses without evidence"
+    expected_mutation: {class: none, paths: []}
+
+  - id: delegation-verify-consequential-independent-check
+    skill: dialectical-verify
+    prompt: >-
+      Verify this consequential regulatory proposition using primary authority
+      and independent corroboration. The organization has already acted as if
+      the proposition were true, so avoid anchoring on that assumption.
+    environment: {isolated_workers: available, external_evidence: available}
+    expect_delegation:
+      decision: delegate
+      workers: {minimum: 1, maximum: 2}
+      role: "Evidence verification and, when warranted, independent disconfirmation"
+      include_context: [exact proposition, jurisdiction, dates, qualifiers, evidence criteria]
+      exclude_context: [organizational commitment, unrelated conclusions]
+    expect:
+      - "The conversational agent checks proposition fit and source independence."
+      - "The conversational agent owns the calibrated verdict."
+    forbid:
+      - "Worker verdict passed through without review"
+      - "Broadening the proposition"
+    expected_mutation: {class: none, paths: []}
+
+  - id: delegation-ach-one-canonical-matrix
+    skill: dialectical-ach
+    prompt: >-
+      Run ACH for five hypotheses against twelve observations, including three
+      reports that may share an underlying source. Use isolated workers where
+      useful, but return one calibrated matrix.
+    environment: {isolated_workers: available}
+    expect_delegation:
+      decision: delegate
+      workers: {minimum: 2, maximum: 4}
+      role: "Bounded hypothesis checks or evidence-independence audit"
+      include_context: [canonical hypothesis set, canonical evidence set, rating definitions]
+      exclude_context: [unrelated conversation]
+    expect:
+      - "The conversational agent maintains one hypothesis set, evidence set, and rating standard."
+      - "Worker findings are reconciled into one evidence matrix."
+    forbid:
+      - "Combining separately framed matrices"
+      - "Worker voting on the winner"
+      - "Inventing evidence to resolve disagreement"
+    expected_mutation: {class: none, paths: []}
+
+  - id: delegation-causal-chain-preserve-dependencies
+    skill: dialectical-causal-chain
+    prompt: >-
+      Analyze a twelve-link causal argument with two branches and a feedback
+      loop. The conversation currently assumes the chain is sound.
+    environment: {isolated_workers: available}
+    expect_delegation:
+      decision: delegate
+      workers: {minimum: 1, maximum: 1}
+      role: "Independent whole-chain mapping and testing"
+      include_context: [exact chain, relevant evidence, timing constraints, verdict definitions]
+      exclude_context: [consensus rhetoric, unrelated conversation]
+    expect:
+      - "One worker analyzes the whole dependent chain rather than splitting serial links."
+      - "The conversational agent preserves one canonical chain and owns the verdict."
+    forbid:
+      - "Assigning dependent serial links to disconnected workers"
+    expected_mutation: {class: none, paths: []}
+
+  - id: delegation-source-quality-per-source
+    skill: dialectical-source-quality
+    prompt: >-
+      Assess four substantial sources supporting the same claim. Two may repeat
+      one press release. Rate each source and the information separately, then
+      give an overall assessment.
+    environment: {isolated_workers: available, sources: 4}
+    expect_delegation:
+      decision: delegate
+      workers: {minimum: 2, maximum: 4}
+      role: "Independent per-source assessment"
+      include_context: [specific claim, rating definitions, assigned source]
+      exclude_context: [other workers' provisional ratings, unrelated conversation]
+    expect:
+      - "The conversational agent audits shared origins and calibrates ratings across sources."
+      - "The conversational agent owns the overall assessment."
+    forbid:
+      - "Averaging worker ratings mechanically"
+      - "Counting the repeated press release as independent corroboration"
+    expected_mutation: {class: none, paths: []}
+
+  - id: delegation-recall-large-store-read-only
+    skill: dialectical-recall
+    prompt: "Recall our prior work on trust signals from a store containing more than one thousand memory objects."
+    environment: {isolated_workers: available, fixture: large-memory-store, permissions: read-only}
+    expect_delegation:
+      decision: delegate
+      workers: {minimum: 1, maximum: 1}
+      role: "Read-only candidate retrieval and ranking"
+      include_context: [retrieval focus, authorized memory root]
+      exclude_context: [unrelated conversation history]
+    expect:
+      - "The conversational agent checks canonical records and judges current relevance."
+      - "The worker performs no mutation."
+    forbid:
+      - "Updating, merging, deleting, or activating records"
+      - "Treating recalled claims as verified"
+    expected_mutation: {class: none, paths: []}
+
+  - id: delegation-save-mutation-centralized
+    skill: dialectical-save
+    prompt: "Save this qualified finding and link it to the active inquiry."
+    environment: {isolated_workers: available, fixture: active-inquiry-writable-store}
+    expect_delegation:
+      decision: direct
+      workers: {minimum: 0, maximum: 0}
+    expect:
+      - "The conversational agent performs every canonical and index write."
+    forbid:
+      - "Delegating a canonical record or index mutation"
+    expected_mutation:
+      class: durable-write
+      paths: [.dialectical/memory, .dialectical/conversations]
+
+  - id: delegation-checkpoint-mutation-centralized
+    skill: dialectical-checkpoint
+    prompt: "Checkpoint the current inquiry and preserve the conclusion that was just overturned."
+    environment: {isolated_workers: available, fixture: active-inquiry-writable-store}
+    expect_delegation:
+      decision: direct
+      workers: {minimum: 0, maximum: 0}
+    expect:
+      - "The conversational agent resolves the inquiry and performs state and index writes."
+    forbid:
+      - "Delegating inquiry selection or durable mutation"
+    expected_mutation:
+      class: durable-write
+      paths: [.dialectical/conversations]
+
+  - id: delegation-trace-remains-in-context
+    skill: dialectical-trace
+    prompt: "Trace the pivots, reversals, and abandoned branches in this conversation."
+    environment: {isolated_workers: available, fixture: conversation-available}
+    expect_delegation:
+      decision: direct
+      workers: {minimum: 0, maximum: 0}
+    expect:
+      - "The conversational agent reconstructs provenance from the context it owns."
+    forbid:
+      - "Delegating provenance reconstruction to a worker with partial history"
+    expected_mutation: {class: none, paths: []}
+
+  - id: delegation-unavailable-graceful-fallback
+    skill: dialectical-challenge
+    prompt: "Challenge this substantive plan even though isolated workers are unavailable."
+    environment: {isolated_workers: unavailable}
+    expect_delegation:
+      decision: direct
+      workers: {minimum: 0, maximum: 0}
+    expect:
+      - "The conversational agent performs the complete challenge directly."
+      - "The absence of delegation does not weaken, defer, or refuse the operation."
+    forbid:
+      - "Claiming the operation cannot be completed without a worker"
+    expected_mutation: {class: none, paths: []}

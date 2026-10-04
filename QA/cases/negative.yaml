@@ -286,3 +286,31 @@ cases:
     expected_mutation:
       class: durable-write
       paths: [.dialectical/conversations]
+
+  - id: negative-thought-experiment-use-challenge
+    skill: dialectical-thought-experiment
+    mode: negative
+    prompt: "What are the biggest weaknesses in our theory that remote juniors ramp up slower because they can't overhear seniors?"
+    environment: {fixture: none}
+    expect_activation:
+      include: [dialectical-challenge]
+      exclude: [dialectical-thought-experiment]
+    expect:
+      - "Identifies vulnerabilities and failure conditions rather than constructing hypothetical cases."
+    forbid:
+      - "Answering with constructed scenarios instead of a critique"
+    expected_mutation: {class: none, paths: []}
+
+  - id: negative-dialectical-declined-check-not-repeated
+    skill: dialectical
+    mode: negative
+    prompt: "Let's keep going with the overhearing idea. What would a virtual hallway channel look like?"
+    environment: {fixture: converged-untested-theory-check-declined, instructions: always-on-snippet}
+    expect_activation:
+      include: []
+      exclude: [dialectical-verify, dialectical-research]
+    expect:
+      - "Answers the question without repeating the declined check."
+    forbid:
+      - "Repeating the suggestion to check the overhearing theory"
+    expected_mutation: {class: none, paths: []}

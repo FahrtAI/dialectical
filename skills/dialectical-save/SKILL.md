@@ -1,13 +1,15 @@
 ---
 name: dialectical-save
 description: Persist a conversational object with enough meaning, provenance, and relationships to remain useful later. Use when the user wants to retain an idea, finding, question, connection, or other object; do not claim success unless durable storage actually occurred.
+metadata:
+  version: "0.2.0"
 ---
 
 # Save
 
 Preserve the selected object as durable knowledge rather than an isolated transcript fragment.
 
-When the current workspace uses Dialectical's file-backed store, read [`../dialectical/references/memory.md`](../dialectical/references/memory.md) and persist the object there. Skill instructions and chat history alone are not durable memory.
+Read [`../dialectical/references/memory.md`](../dialectical/references/memory.md) and use its selected durable backend. Skill instructions and chat history alone are not durable memory.
 
 ## Operation
 
@@ -34,3 +36,4 @@ When the current workspace uses Dialectical's file-backed store, read [`../diale
 - Do not silently alter the substance to make the record neater.
 - Do not invent provenance, relationships, or confidence.
 - Do not claim an in-chat rendering is durable storage.
+- Do not delegate canonical or index writes; keep durable mutations in the conversational agent.

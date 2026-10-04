@@ -1,6 +1,8 @@
 ---
 name: dialectical-summarize
 description: Compress the relevant conversation or material into a shorter account of what was discussed. Use for recap and context reduction; do not use to infer what was learned, evaluate claims, or reconstruct detailed provenance.
+metadata:
+  version: "0.1.0"
 ---
 
 # Summarize
@@ -23,3 +25,4 @@ Scale length to the source and the user's purpose. A summary reports what was di
 - Do not turn the recap into a critique or research report.
 - Do not emphasize the path of pivots and influences unless requested; that is TRACE.
 - Do not substitute extracted findings for conversational coverage; that is DISTILL.
+- Perform this in the conversational agent; the selected conversation is the source material, so an isolated worker adds no useful separation.

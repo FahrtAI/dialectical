@@ -2,6 +2,10 @@
 .claude/settings.local.json
 node_modules/
 *.log
+server/dist/
+server/data/
+server/coverage/
+dist/
 
 # Runtime inquiry state may contain private conversation data.
 .dialectical/

@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import re
 import sys
+import textwrap
 from pathlib import Path
 
 
@@ -22,13 +23,19 @@ OBSOLETE = (
     "dialectical-source-quality-admiralty",
     "references/ach.md",
 )
-# Working notes may name obsolete paths while describing a migration.
-UNSCANNED = {"PUNCHLIST.md"}
+# Top-level keys accepted by both the Claude Code and Codex skill validators.
+ALLOWED_KEYS = {"name", "description", "license", "allowed-tools", "metadata"}
+SEMVER = re.compile(r"\d+\.\d+\.\d+")
 
 
 def field(frontmatter: str, name: str) -> str | None:
     match = re.search(rf"(?m)^{re.escape(name)}:\s*(.+?)\s*$", frontmatter)
     return match.group(1).strip().strip('"\'') if match else None
+
+
+def metadata_field(frontmatter: str, name: str) -> str | None:
+    block = re.search(r"(?m)^metadata:[ \t]*\n((?:[ \t]+\S.*(?:\n|\Z))*)", frontmatter)
+    return field(textwrap.dedent(block.group(1)), name) if block else None
 
 
 def section(text: str, heading: str) -> str:
@@ -54,14 +61,26 @@ def main() -> int:
             failures.append(f"Missing YAML frontmatter: {path.relative_to(ROOT)}")
             continue
 
-        name = field(match.group("body"), "name")
-        description = field(match.group("body"), "description")
+        body = match.group("body")
+        name = field(body, "name")
+        description = field(body, "description")
         if name != path.parent.name:
             failures.append(
                 f"Skill name {name!r} does not match directory {path.parent.name!r}"
             )
         if not description:
             failures.append(f"Missing description: {path.relative_to(ROOT)}")
+
+        unexpected = sorted(set(re.findall(r"(?m)^([A-Za-z][\w-]*):", body)) - ALLOWED_KEYS)
+        if unexpected:
+            failures.append(
+                f"Unexpected frontmatter key(s) in {path.relative_to(ROOT)}: {', '.join(unexpected)}"
+            )
+        version = metadata_field(body, "version")
+        if not version or not SEMVER.fullmatch(version):
+            failures.append(
+                f"Missing or non-semver metadata.version in {path.relative_to(ROOT)}: {version!r}"
+            )
 
         for target in LINK.findall(text):
             resolved = (path.parent / target).resolve()
@@ -84,7 +103,7 @@ def main() -> int:
     repository_text = "\n".join(
         path.read_text(encoding="utf-8")
         for path in ROOT.rglob("*.md")
-        if ".dialectical" not in path.parts and path.name not in UNSCANNED
+        if ".dialectical" not in path.parts
     )
     for obsolete in OBSOLETE:
         if obsolete in repository_text:

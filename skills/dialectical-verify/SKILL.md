@@ -1,6 +1,8 @@
 ---
 name: dialectical-verify
 description: Resolve a specific empirical proposition against authoritative external evidence and report a calibrated verdict. Use for targeted factual adjudication; do not use for broad exploration, value judgments, or claims that cannot be empirically settled.
+metadata:
+  version: "0.1.0"
 ---
 
 # Verify
@@ -24,6 +26,10 @@ Determine what the best available external evidence warrants about a narrowly st
 When sources of differing quality bear on the proposition, `dialectical-source-quality` can rate them. Say so when you apply it.
 
 If external evidence cannot be accessed, say that verification was not completed. Offer a verification plan or clearly labeled provisional assessment instead.
+
+## Delegation
+
+For a consequential, disputed, or anchoring-sensitive proposition, default to an isolated evidence worker when the host supports one. Give it the exact proposition, jurisdiction, dates, qualifiers, evidence criteria, and relevant sources or tools; omit unrelated conversational conclusions. When the stakes or source-dependence risk justify it, use a second bounded worker to seek independent corroboration or disconfirmation. The conversational agent checks proposition fit and source independence and owns the verdict. Verify a routine proposition directly when an extra worker would add no meaningful check.
 
 ## Boundaries
 

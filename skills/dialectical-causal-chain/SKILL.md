@@ -1,6 +1,8 @@
 ---
 name: dialectical-causal-chain
 description: Decompose a multi-step causal argument into its links, expose the assumptions each link needs, and identify the linchpins whose failure would collapse the conclusion. Use when the user asks to test a chain of reasoning in which each step depends on the previous one; do not use for a single correlation or for general critique (CHALLENGE).
+metadata:
+  version: "0.1.0"
 ---
 
 # Causal Chain
@@ -32,6 +34,10 @@ Find where a chain of reasoning would break.
 For a loop (A → B → A), find the initial trigger and analyze forward from it; the key question is whether the trigger is strong enough to start the cycle. When several independent chains reach the same outcome, analyze each separately and ask which one is operating. When timing is unstated, check whether the durations are compatible; a step that needs longer than the argument allows weakens that link unless the steps can overlap.
 
 A template and worked example are in [`references/template.md`](references/template.md).
+
+## Delegation
+
+When a chain is long, branching, or difficult to separate from the conversation's preferred conclusion, an isolated worker may map and test it using only the exact chain, relevant evidence, timing constraints, and verdict definitions. The conversational agent preserves one canonical chain and reconciles the worker's analysis with conversational context. Do not split a serial chain across workers whose steps depend on one another; analyze a short chain directly.
 
 ## Boundaries
 

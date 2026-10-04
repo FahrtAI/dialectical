@@ -6,14 +6,18 @@ Its governing principle is:
 
 > Formalize the interventions, not the conversation.
 
-Normal dialogue remains primary. The toolkit does not impose a reasoning sequence.
+And its central warning:
+
+> An LLM's ability to make an idea more coherent is not evidence that the idea is more true.
+
+Normal dialogue remains primary. The toolkit does not impose a reasoning sequence. Use conversation to generate possibilities, and inquiry to find out which survive.
 
 ## Operations
 
 | Category | Operations | Purpose |
 |---|---|---|
 | Context | RESTATE, SUMMARIZE, DISTILL, TRACE | Clarify, compress, extract, and recover provenance |
-| Inquiry | RESEARCH, HYPOTHESIZE, CHALLENGE, VERIFY | Expand or test the epistemic state |
+| Inquiry | RESEARCH, HYPOTHESIZE, THOUGHT EXPERIMENT, CHALLENGE, VERIFY | Expand or test the epistemic state |
 | Diagnosis | ACH, CAUSAL-CHAIN, SOURCE-QUALITY | Weigh competing explanations, test causal chains, rate evidence |
 | Knowledge | TAG, SAVE, RECALL | Organize, persist, and retrieve durable knowledge |
 | Lifecycle | START INQUIRY, CHECKPOINT, RESUME, CLOSE | Maintain optional inquiry state across conversations |
@@ -28,6 +32,7 @@ Talk normally, and name an operation when you want one:
 RESTATE what I just said.
 DISTILL where we are.
 HYPOTHESIZE why churn rose after the redesign.
+THOUGHT EXPERIMENT on that explanation.
 Use ACH on those three explanations.
 CHALLENGE the plan to cut prices.
 SAVE that connection.
@@ -44,8 +49,22 @@ Plain phrasing such as "what have we actually learned?" can reach DISTILL too; t
 - Each operation resolves its own focus and performs one job.
 - Operations are independently composable and are never silently chained.
 - Default proactive behavior is no intervention.
-- DISTILL may be suggested when the inquiry has become difficult to hold; other operations remain user-directed.
+- Two suggestions are allowed: DISTILL when the inquiry has become difficult to hold, and a one-line check when the conversation starts treating an untested claim as settled. Each is offered once and runs only if the user accepts.
+- Coherence, agreement, and repetition within a conversation are not evidence.
 - Uncertainty, disagreement, abandoned branches, and provenance are preserved when material.
+
+## Kinds of conversation
+
+Dialectical recognizes four kinds of serious conversation and keeps them from blurring:
+
+| Kind | Question | Typical failure |
+|---|---|---|
+| Debate | Which position wins? | Binary thinking; evidence used as ammunition |
+| Narrative | What story explains this? | Coherence mistaken for truth |
+| Inquiry | What might be true, and how could we tell? | Testing without end, or stopping at a list of possibilities |
+| Decision | Given what we know and value, what should we do? | Goals and values passed off as facts |
+
+Each is legitimate for its purpose. When the aim is to find out what is true, Dialectical prefers inquiry. When a conversation turns from what is true to what to do, it separates facts from goals, values, and trade-offs. It does not announce or label the kind; the distinction shows in the answers. `skills/dialectical/references/modes.md` covers the operations that fit each kind and the common drifts between them.
 
 ## Diagnosis methods
 
@@ -72,7 +91,58 @@ for d in skills/dialectical skills/dialectical-*; do cp -R "$d" "$DEST/"; done
 | Claude Code | `.claude/skills/` in a project, or `~/.claude/skills/` | `CLAUDE.md` |
 | Codex | `$CODEX_HOME/skills/` | `CODEX.md` |
 | Gemini CLI | `.gemini/skills/` or `.agents/skills/` | `GEMINI.md` |
-| ChatGPT | Requires a plugin, app, or API integration | `CHATGPT.md` |
+| ChatGPT | Portable plugin plus MCP server in this repository | `CHATGPT.md` |
+
+### Always-on instructions
+
+Skills load only when called, so the router's monitoring rules do not run in an ordinary conversation on their own. Add these lines to the instruction file your host always loads, so the checks can fire before anyone names an operation:
+
+```markdown
+## Dialectical
+- Keep the conversation primary; don't intervene by default.
+- Suggest DISTILL when branches and open questions have become hard to hold.
+- When we start treating an untested claim, mechanism, prediction, or "new" idea as settled, offer once, in one line, what would check it.
+- Notice whether we're debating, building a story, inquiring, or deciding. When the question turns from what's true to what to do, separate facts from goals and values.
+- Coherence, agreement, and repetition are not evidence.
+- Run an operation only when asked or when a suggestion is accepted.
+```
+
+| Platform | Always-loaded file |
+|---|---|
+| Claude Code | `CLAUDE.md` in the project, or `~/.claude/CLAUDE.md` for every project |
+| Codex | `AGENTS.md` in the project, or `~/.codex/AGENTS.md` |
+| Gemini CLI | `GEMINI.md` in the project, or `~/.gemini/GEMINI.md` |
+| ChatGPT | Custom instructions, or a project's instructions |
+
+### ChatGPT plugin development
+
+This repository is also the plugin root. It includes a portable `plugin.json`,
+portable `mcp.json`, a Codex compatibility manifest, and a runnable MCP service
+under `server/`. The local manifests target `http://127.0.0.1:8787/mcp` for
+development only.
+
+```sh
+cd server
+npm install
+npm run typecheck
+npm test
+npm run build
+```
+
+See `server/README.md` for authentication and deployment. Public submission
+still requires a stable HTTPS endpoint, verified publisher configuration,
+policy/support URLs, and review assets.
+
+Validate the development package with:
+
+```sh
+python3 scripts/validate_plugin_package.py
+```
+
+After replacing the local endpoint and adding required policy URLs, build the
+submission ZIP with `python3 scripts/package_plugin.py`. Its production
+preflight deliberately refuses localhost, non-HTTPS endpoints, or missing
+privacy and terms URLs.
 
 A pointer in a platform instruction file does not itself install the skills. After installing, confirm that every skill name is discoverable before relying on routing or memory operations.
 
@@ -113,6 +183,7 @@ Important properties:
 ```text
 .
 ├── skills/       # one directory per discoverable skill
+├── server/       # MCP persistence service
 ├── evals/        # behavioral cases and scoring rules
 ├── scripts/      # structural validator
 ├── docs/         # sample flows
@@ -129,13 +200,16 @@ Each discoverable skill is a direct child of `skills/` and uses a namespaced nam
 skills/
 ├── dialectical/
 │   ├── SKILL.md
-│   └── references/memory.md
+│   └── references/
+│       ├── memory.md
+│       └── modes.md
 ├── dialectical-restate/SKILL.md
 ├── dialectical-summarize/SKILL.md
 ├── dialectical-distill/SKILL.md
 ├── dialectical-trace/SKILL.md
 ├── dialectical-research/SKILL.md
 ├── dialectical-hypothesize/SKILL.md
+├── dialectical-thought-experiment/SKILL.md
 ├── dialectical-challenge/SKILL.md
 ├── dialectical-verify/SKILL.md
 ├── dialectical-ach/
@@ -166,7 +240,7 @@ Run the structural validator:
 python3 scripts/validate_skills.py
 ```
 
-It requires no model calls. It checks that each skill's frontmatter name matches its directory, that each skill has a description, that local links resolve, that every skill is listed in the router and has at least one eval case, and that no obsolete skill names remain.
+It requires no model calls. It checks that each skill's frontmatter name matches its directory, that each skill has a description, that local links resolve, that every skill is listed in the router and has at least one eval case, that each skill has a semantic version and uses only frontmatter keys the Claude Code and Codex validators accept, and that no obsolete skill names remain.
 
 Behavioral cases live in `evals/cases.yaml`, and `evals/SCORING.md` defines how to score them. Run each case in a fresh session with the skills installed, and record the model, platform, skill version, output, and scores. There is no automated runner yet.
 
@@ -174,12 +248,36 @@ Behavioral cases live in `evals/cases.yaml`, and `evals/SCORING.md` defines how 
 
 Structural validation checks packaging. Behavioral evaluation checks whether the operations remain distinct, preserve uncertainty, avoid false persistence claims, and maintain the memory trust boundary.
 
+## Versioning
+
+Each skill declares a semantic version in its frontmatter:
+
+```yaml
+metadata:
+  version: "0.1.0"
+```
+
+The version sits under `metadata` because the Claude Code and Codex skill validators reject unknown top-level keys. Bump a skill's version when its contract changes:
+
+- **Patch:** wording or examples change without changing behavior.
+- **Minor:** behavior is added and existing uses still hold, such as a new optional step or delegation rule.
+- **Major:** behavior that existing uses or eval cases depend on changes or is removed.
+
+A change to a shared reference counts as a change to every skill that reads it. `skills/dialectical/references/memory.md` is read by START INQUIRY, CHECKPOINT, RESUME, CLOSE, SAVE, RECALL, and TAG. The storage format has its own `schema_version`, which changes only when stored records change shape.
+
+New skills start at 0.1.0. Move to 1.0.0 when the release gates in `QA/TEST_PLAN.md` pass. Record the skill versions and the commit with every eval run.
+
+The plugin has its own version in `plugin.json` and `.codex-plugin/plugin.json`, and the two must match. Bump it whenever a bundled skill or the MCP server changes, by the largest change among them.
+
 ## Status and limitations
 
 - The primitive contracts are implemented as skills.
 - File-backed lifecycle and memory contracts are specified for tool-capable local agents.
 - Platform installation still requires each host's adapter procedure.
 - ChatGPT requires connected tools for durable storage and retrieval.
+- The plugin package and local MCP server are implemented; production hosting,
+  publisher URLs/assets, and ChatGPT connection registration remain external
+  release tasks.
 - VERIFY and RESEARCH depend on the external evidence capabilities available to the host.
 - Behavioral evaluation is manual until the runner described in `QA/TEST_PLAN.md` exists.
 - The project license has not yet been selected; no unrestricted-use claim is made.

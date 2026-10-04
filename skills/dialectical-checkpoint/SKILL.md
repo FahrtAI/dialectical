@@ -1,6 +1,8 @@
 ---
 name: dialectical-checkpoint
 description: Update the active Dialectical inquiry's living state without ending the conversation. Use when the user wants a durable checkpoint or before context may be lost; do not save the entire transcript by default.
+metadata:
+  version: "0.2.0"
 ---
 
 # Checkpoint
@@ -24,3 +26,4 @@ If the current inquiry cannot be identified, list the active inquiries and ask w
 - Do not turn checkpointing into a mandatory cadence.
 - Do not convert tentative ideas into findings.
 - Do not claim that the platform transcript itself was saved.
+- Do not delegate state or index writes; keep the checkpoint mutation in the conversational agent.

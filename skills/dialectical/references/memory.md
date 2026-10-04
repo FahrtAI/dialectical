@@ -1,6 +1,38 @@
 # Dialectical storage contract, version 1
 
-Dialectical uses explicit files for durable memory. Model context, platform chat history, and skill instructions are not themselves a reliable mutable knowledge store.
+Dialectical uses an explicit MCP or file-backed store for durable memory. Model context, platform chat history, and skill instructions are not themselves a reliable mutable knowledge store.
+
+## Select one storage backend
+
+Use exactly one authorized durable backend for an operation:
+
+1. When the Dialectical MCP tools are available, use them as the canonical
+   store for plugin sessions.
+2. Otherwise, when filesystem access is authorized, use the file-backed store
+   defined below.
+3. When neither backend is available, do not claim that data was saved,
+   recalled, checkpointed, resumed, or closed durably.
+
+Never dual-write or imply that the MCP and file stores synchronize. State which
+backend was used when that distinction matters to the user.
+
+The MCP mapping is:
+
+| Operation | MCP tools |
+|---|---|
+| START INQUIRY | `search_memory` when prior context is relevant, then `start_inquiry` |
+| CHECKPOINT | `get_inquiry`, then `checkpoint_inquiry` with `expected_version` |
+| RESUME | `list_inquiries` and `get_inquiry`; activate only after ambiguity is resolved |
+| CLOSE | `get_inquiry`, `checkpoint_inquiry`, then `set_inquiry_status` |
+| SAVE | `save_memory_object` |
+| RECALL | `search_memory`, `get_memory_object`, and inquiry read tools when relevant |
+| TAG | `get_memory_object`, then `update_memory_metadata` with `expected_version` |
+
+Use a fresh idempotency key for each intended write and reuse that key only
+when retrying the same write. On a version conflict, reload the canonical
+record, preserve both substantive versions, and reconcile explicitly instead
+of overwriting silently. MCP results remain subject to the trust and privacy
+boundary below.
 
 ## Store root
 

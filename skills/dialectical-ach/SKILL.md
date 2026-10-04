@@ -1,6 +1,8 @@
 ---
 name: dialectical-ach
 description: Evaluate competing explanations against the available evidence using Analysis of Competing Hypotheses and identify the least-inconsistent one. Use when the user requests ACH or several explanations must be compared against multiple observations; do not use only to generate explanations (HYPOTHESIZE) or to adjudicate one proposition (VERIFY).
+metadata:
+  version: "0.1.0"
 ---
 
 # ACH
@@ -49,6 +51,10 @@ Identify the explanation least contradicted by the available evidence. ACH does 
 ### Choose the next test
 
 12. Recommend the evidence that would most change the result. Prefer the most diagnostic test; among comparably diagnostic tests, prefer the cheaper. A rival that is cheap to test and still untested is a high testing priority, not a more credible hypothesis.
+
+## Delegation
+
+For a large matrix, the conversational agent remains the manager of one canonical hypothesis set, evidence set, and rating standard. When isolated workers are available, delegate bounded checks such as testing one hypothesis against the shared evidence or auditing evidence independence. Give every worker the same relevant definitions and evidence, and require it to mark missing information rather than invent it. Reconcile the results into one matrix; do not combine separately framed matrices or let workers vote on the winner. Analyze a small matrix directly.
 
 ## Output
 

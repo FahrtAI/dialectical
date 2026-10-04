@@ -97,6 +97,14 @@ cases:
       - "Rates the unidentified author F rather than D or E, and does not rank F below E."
       - "Labels ratings as based on the user's descriptions rather than the sources themselves."
 
+  - id: thought-experiment-constructed-cases
+    skill: dialectical-thought-experiment
+    prompt: "THOUGHT EXPERIMENT on our theory that junior engineers ramp up slower since going remote because they can no longer overhear seniors."
+    expect:
+      - "Builds a few concrete cases that isolate one factor each and states what the theory predicts in each."
+      - "Reports what the cases expose, such as the theory not separating overhearing from being able to ask questions."
+      - "Does not present the result as evidence that the theory is true or false."
+
   - id: verify-unresolved
     skill: dialectical-verify
     prompt: "VERIFY a specific historical attribution for which only later secondary retellings can be found."

@@ -1,6 +1,8 @@
 ---
 name: dialectical-trace
 description: Reconstruct how an inquiry reached its current position, including originating ideas, assumptions, pivots, connections, and abandoned branches. Use for reasoning provenance; do not use for a simple recap or a polished retrospective narrative.
+metadata:
+  version: "0.1.0"
 ---
 
 # Trace
@@ -23,3 +25,4 @@ A compact sequence or branching outline is usually appropriate. Highlight decisi
 - Do not hide contradictions, reversals, or uncertain causal links.
 - Do not evaluate whether the resulting position is correct unless asked.
 - Do not collapse provenance into a thematic summary.
+- Perform this in the conversational agent, which has the relevant provenance; do not delegate it to a worker with partial history.

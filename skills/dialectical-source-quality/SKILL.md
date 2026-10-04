@@ -1,6 +1,8 @@
 ---
 name: dialectical-source-quality
 description: Rate how reliable sources are and how credible the information they provide is, separately, using the Admiralty scale, and identify missing evidence. Use when the user asks how much weight particular sources or pieces of evidence deserve; do not use for broad exploration (RESEARCH) or to settle one proposition (VERIFY).
+metadata:
+  version: "0.1.0"
 ---
 
 # Source Quality
@@ -34,6 +36,10 @@ F and 6 mean there is not enough basis to rate. They are not the bottom of the s
 ## Output
 
 For each source, give its rating (for example `C3`) and a one-line basis. Then give the overall assessment of the claim in words, the conflicts and shared origins found, and the missing evidence. A fuller template is in [`references/template.md`](references/template.md).
+
+## Delegation
+
+When several substantial sources can be assessed independently and the host supports isolated workers, assign one bounded source assessment per worker. Give every worker the same specific claim and rating definitions, and require it to distinguish direct inspection from secondhand knowledge. The conversational agent audits shared origins, calibrates ratings across sources, resolves conflicts, and owns the overall assessment. Do not delegate a single short assessment merely to multiply opinions.
 
 ## Boundaries
 

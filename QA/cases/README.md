@@ -7,6 +7,11 @@ The case corpus is split by polarity:
 - `negative.yaml` checks that each skill stays inactive for a neighboring or
   ordinary request. Most negative cases name the operation that should handle
   the request instead.
+- `delegation.yaml` checks when isolated workers should or should not be used,
+  what context they receive, who synthesizes the answer, and who may mutate
+  durable state.
+- `mcp.yaml` checks backend selection, authorization, isolation, idempotency,
+  optimistic concurrency, write ordering, and the memory trust boundary.
 
 Positive and negative do not mean good and bad user sentiment. They describe
 whether the skill under test should activate.
@@ -23,6 +28,10 @@ whether the skill under test should activate.
 - `expect`: observable requirements for the response or artifacts.
 - `forbid`: behaviors that cause the case to fail.
 - `expected_mutation`: allowed mutation class and paths.
+- `expect_delegation`: expected decision, worker count, role, and context
+  boundaries when the case exercises isolated workers.
+- `expected_mutation.tools`: MCP tools permitted or required by an integration
+  case, in order when sequencing matters.
 
 The activation fields require a structured trace. Until the runner captures
 skill invocation events, they may be scored manually while the output and

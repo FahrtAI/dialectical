@@ -1,6 +1,8 @@
 ---
 name: dialectical-hypothesize
 description: Generate genuinely competing explanations for an observation, pattern, or outcome and expose what would distinguish them. Use when the explanatory space is too narrow; do not use for generic brainstorming, variants of one favored story, or weighing explanations against evidence (ACH).
+metadata:
+  version: "0.1.0"
 ---
 
 # Hypothesize
@@ -22,6 +24,10 @@ Broaden the set of plausible explanations while making the alternatives discrimi
 6. End with the most informative evidence or test for separating the leading alternatives, without declaring a winner prematurely.
 
 The number of hypotheses should reflect the explanatory space, not an arbitrary quota.
+
+## Delegation
+
+When the conversation already favors an explanation and the host supports an isolated worker, use a fresh worker to reduce anchoring. Give it the neutral observation, material constraints, and output contract; omit the favored causal story unless it is necessary to understand the observation. The conversational agent combines its candidates with those already present and does not treat independence as evidence that a hypothesis is more likely. For a simple or unanchored request, generate directly.
 
 ## Boundaries
 

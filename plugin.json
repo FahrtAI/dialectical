@@ -1,0 +1,40 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "dialectical",
+  "version": "0.2.0",
+  "description": "Optional cognitive operations for rigorous, persistent human-AI inquiry.",
+  "author": {
+    "name": "FahrtAI",
+    "url": "https://github.com/FahrtAI"
+  },
+  "homepage": "https://github.com/FahrtAI/dialectical",
+  "repository": "https://github.com/FahrtAI/dialectical",
+  "keywords": [
+    "inquiry",
+    "research",
+    "reasoning",
+    "memory"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Dialectical",
+        "shortDescription": "Rigorous inquiry, diagnosis, and durable memory",
+        "longDescription": "Use optional cognitive operations to clarify, investigate, challenge, verify, diagnose, and carry structured inquiry across conversations.",
+        "developerName": "FahrtAI",
+        "category": "Productivity",
+        "capabilities": [
+          "Read",
+          "Write"
+        ],
+        "websiteURL": "https://github.com/FahrtAI/dialectical",
+        "defaultPrompt": [
+          "Start an inquiry into a difficult question.",
+          "Challenge this argument and identify its strongest failure modes.",
+          "Recall what we previously learned about this topic."
+        ],
+        "brandColor": "#25364A"
+      }
+    }
+  }
+}

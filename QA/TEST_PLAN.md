@@ -62,6 +62,7 @@ Prioritize these confusion sets:
 - RESTATE / SUMMARIZE / DISTILL / TRACE
 - RESEARCH / VERIFY / SOURCE-QUALITY
 - HYPOTHESIZE / ACH / CHALLENGE
+- CHALLENGE / THOUGHT EXPERIMENT / HYPOTHESIZE
 - CHALLENGE / CAUSAL-CHAIN
 - TAG / SAVE
 - RECALL / RESUME
@@ -82,10 +83,11 @@ Minimum operation checks:
 |---|---|---|
 | RESTATE | Preserve scope, qualification, uncertainty, causal direction, and point of view | Critique, improvement, or compression of the broader exchange |
 | SUMMARIZE | Compactly cover the selected conversational span | New conclusions or claims about what was learned |
-| DISTILL | Separate findings, inferences, speculation, uncertainty, and open questions | Transcript recap or manufactured consensus |
+| DISTILL | Label every finding established, tested, generated, or speculative, and keep uncertainty and open questions | Transcript recap, manufactured consensus, or a persuasive idea listed as established |
 | TRACE | Preserve pivots, dependencies, reversals, and abandoned branches | A falsely linear retrospective |
-| RESEARCH | Broaden the evidence space with source limitations and contrary material | Premature verdict on one narrow proposition |
+| RESEARCH | Broaden the evidence space with source limitations and contrary material; for a conversation-generated idea, separate formulation, prior work, empirical support, and novel remainder | Premature verdict on one narrow proposition, or prior work treated as validation |
 | HYPOTHESIZE | Produce genuinely different mechanisms and discriminating observations | Evidence scoring, cosmetic variants, or a premature winner |
+| THOUGHT EXPERIMENT | Build a few concrete cases that each isolate one question and state what the claim predicts in each | A list of objections, or the result presented as evidence about the world |
 | ACH | Compare real alternatives against diagnostic evidence and select the least-inconsistent explanation | Mechanical symbol totals or claims of proof |
 | CHALLENGE | Attack the strongest supported form of the claim and identify consequential failure modes | Reflexive contrarianism or silent empirical adjudication |
 | CAUSAL-CHAIN | Expose links, assumptions, timing, alternative paths, and evidential basis | Treating every assumption as a linchpin or issuing an unsupported verdict |
@@ -174,6 +176,67 @@ Use a small set of stable public propositions to exercise real search,
 retrieval, citations, and source selection. Because external sources change,
 canary failures require review rather than automatically blocking every commit.
 
+### 7. Delegation and context isolation
+
+When the runtime supports isolated workers, verify both the delegation decision
+and the information boundary:
+
+- substantive CHALLENGE and consequential VERIFY work use an isolated worker;
+- independent RESEARCH workstreams may proceed in parallel;
+- HYPOTHESIZE can omit the incumbent explanation to reduce anchoring;
+- ACH maintains one canonical hypothesis and evidence matrix;
+- serial causal steps are not split across disconnected workers;
+- SOURCE-QUALITY workers share one claim and rating standard;
+- RECALL workers remain read-only;
+- SAVE and lifecycle mutations remain in the conversational agent;
+- the conversational agent synthesizes every user-facing answer;
+- unavailable worker support causes a complete single-agent fallback, not a refusal.
+
+The trace must record which context fields were supplied to each worker. Tests
+must fail when unrelated conversation material crosses the boundary or a worker
+mutates durable inquiry state.
+
+### 8. ChatGPT plugin and MCP integration
+
+Run the server unit and protocol tests before installed-plugin evaluation:
+
+```sh
+cd server
+npm run typecheck
+npm test
+npm run build
+```
+
+The deterministic server suite must cover tool discovery, representative tool
+calls, authentication failure, user isolation, session-to-user binding,
+idempotent retries, optimistic concurrency conflicts, status history, and the
+absence of a destructive deletion surface. The installed-plugin suite then
+runs `QA/cases/mcp.yaml` to verify that skills choose the MCP backend, never
+dual-write, order lifecycle mutations correctly, and treat retrieved content
+as untrusted data.
+
+### 9. Monitoring and kinds of conversation
+
+These behaviors run during ordinary conversation, so test them with the
+always-on instructions from the README loaded (`instructions:
+always-on-snippet` in a case's environment). The shared fixture
+`converged-untested-theory` is a conversation of about ten turns in which the
+user and model build and agree on an untested explanation, with one supplied
+data point and no external evidence.
+
+- When the conversation starts treating an untested claim as settled, the model
+  adds one line naming the assumption and an operation that would check it.
+- It does not run the operation unless the user accepts.
+- It does not repeat a declined suggestion for the same claim.
+- Casual exploration gets no suggestion.
+- When the question turns from what is true to what to do, the answer separates
+  the factual basis from goals, values, and trade-offs without labeling the
+  kind of conversation.
+
+Count how often the check is offered, accepted, and declined across runs. The
+check relaxes the earlier default of no intervention, and these counts are the
+evidence for keeping, narrowing, or removing it.
+
 ## Case format
 
 The canonical positive and negative cases live in `QA/cases/`. Extend that
@@ -246,7 +309,8 @@ QA/
 ├── TEST_PLAN.md
 ├── cases/
 │   ├── positive.yaml
-│   └── negative.yaml
+│   ├── negative.yaml
+│   └── delegation.yaml
 ├── fixtures/
 │   ├── conversations/
 │   ├── evidence/
@@ -316,7 +380,7 @@ to grade itself.
 
 ## References
 
-- Canonical QA cases: `QA/cases/positive.yaml` and `QA/cases/negative.yaml`
+- Canonical QA cases: `QA/cases/positive.yaml`, `QA/cases/negative.yaml`, and `QA/cases/delegation.yaml`
 - Existing seed cases: `evals/cases.yaml`
 - Existing scoring rules: `evals/SCORING.md`
 - Structural validator: `scripts/validate_skills.py`

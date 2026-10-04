@@ -19,7 +19,7 @@ flowchart LR
 | 4 | "Use ACH on these." | ACH | An evidence matrix. Export is least inconsistent. Price and promotion are each contradicted by one item. Regression to the mean is skipped because February was typical. Nothing in the evidence bears on the definition change, so its cells are `?`, and ACH names checking it as the next test instead of checking it itself. |
 | 5 | "VERIFY whether the churn definition changed in March." | VERIFY | Refuted: the data dictionary and the dashboard's query history show no change since 2025. |
 | 6 | "We'll restore the export button, and churn will go back to 3%. CHALLENGE that." | CHALLENGE, naming CAUSAL-CHAIN | Chain: restore button → users find export → frustrated users stay → churn returns to 3%. One linchpin: export explains most of the two-point rise. ACH showed export was the least inconsistent explanation, not that it explains the whole rise. Verdict: vulnerable, because the linchpin is unexamined. To settle it, compare the churn rise among users who exported before the redesign with everyone else. |
-| 7 | "DISTILL." | DISTILL | Learned: export is the leading explanation; price and promotion are contradicted by the evidence; a definition change is ruled out by VERIFY. Uncertain: how much of the rise export explains. Next decision: ship the fix and measure. |
+| 7 | "DISTILL." | DISTILL | Established: the churn definition did not change (VERIFY). Tested: export is the least inconsistent explanation, and price and promotion are contradicted (ACH). Uncertain: how much of the rise export explains. Next decision: ship the fix and measure. |
 
 What this shows:
 

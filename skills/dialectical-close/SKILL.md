@@ -1,6 +1,8 @@
 ---
 name: dialectical-close
 description: Close or pause an active Dialectical inquiry by taking a final checkpoint and recording its status. Use only when the user asks to close, pause, finish, or archive the inquiry; do not end or archive the surrounding platform chat implicitly.
+metadata:
+  version: "0.2.0"
 ---
 
 # Close Inquiry
@@ -22,3 +24,4 @@ Read [`../dialectical/references/memory.md`](../dialectical/references/memory.md
 - Do not delete or merge the inquiry.
 - Do not mark unresolved work complete merely because the conversation is ending.
 - Do not archive or close the platform chat unless the user separately requests it and the platform supports it.
+- Do not delegate the final checkpoint or status write; keep durable mutation in the conversational agent.

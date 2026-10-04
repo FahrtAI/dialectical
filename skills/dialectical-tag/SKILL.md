@@ -1,6 +1,8 @@
 ---
 name: dialectical-tag
 description: Attach concise structured metadata to a conversational object so it can be classified, related, and retrieved. Use for organizing an idea, claim, question, hypothesis, finding, or saved object; do not use to persist the object itself.
+metadata:
+  version: "0.2.0"
 ---
 
 # Tag
@@ -32,3 +34,5 @@ When applying metadata to an already saved Dialectical object, read [`../dialect
 - Do not let metadata replace the object's actual content.
 - Do not create a large taxonomy to tag a single object.
 - Do not claim that an unsaved conversational object became durable; that is SAVE.
+- Handle the tagging decision in the conversational agent; an isolated worker adds no useful separation for this small contextual operation.
+- Do not delegate an update to a saved object's metadata; keep durable mutations in the conversational agent.

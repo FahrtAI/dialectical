@@ -1,6 +1,8 @@
 ---
 name: dialectical-challenge
 description: Subject a claim, explanation, plan, or emerging consensus to adversarial quality control. Use to surface assumptions, contradictions, alternatives, disconfirming evidence, and failure conditions; do not use for reflexive contrarianism or stylistic criticism.
+metadata:
+  version: "0.1.0"
 ---
 
 # Challenge
@@ -23,6 +25,10 @@ Structured methods are available when the challenge calls for them. Name the met
 6. State what evidence, revision, or test would most strengthen or overturn the position.
 
 Target the highest-leverage vulnerabilities. A challenge is successful when it reveals how the idea could fail, not when it merely sounds skeptical.
+
+## Delegation
+
+For a substantive challenge, default to an isolated worker when the host supports one. Supply the strongest formulation, relevant evidence, user goal, and material constraints, while omitting unrelated social or rhetorical context that could anchor the critique. Ask for vulnerabilities, mechanisms, failure conditions, and disconfirming evidence—not a polished response to the user. The conversational agent checks that the worker attacked the real position, removes performative objections, and owns the final answer. Challenge a short or context-dependent claim directly when delegation would add no useful independence.
 
 ## Boundaries
 

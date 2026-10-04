@@ -1,6 +1,8 @@
 ---
 name: dialectical-start-inquiry
 description: Start a new Dialectical inquiry by creating its workspace and curating relevant context from prior inquiries and durable memory. Use when the user asks to begin, initialize, or branch an inquiry; do not imply that this creates a new chat in the surrounding platform.
+metadata:
+  version: "0.2.0"
 ---
 
 # Start Inquiry
@@ -60,3 +62,5 @@ Add the new conversation to `.dialectical/conversations/index.md` and report:
 - whether the memory store was newly initialized.
 
 Do not claim that a new platform chat was created, moved, or persisted unless the platform supports that operation and it actually occurred.
+
+Keep inquiry selection, directory creation, canonical writes, and index updates in the conversational agent. A read-only worker may help rank prior material in a large store, but it must not mutate records and the conversational agent must check every carried source.
