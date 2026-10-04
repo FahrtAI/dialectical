@@ -1,0 +1,288 @@
+schema_version: 1
+suite: dialectical-negative
+description: Neighbor and ordinary-language cases in which the skill under test must stay inactive.
+
+cases:
+  - id: negative-dialectical-casual-conversation
+    skill: dialectical
+    mode: negative
+    prompt: "Let's casually explore why some cities feel easier to navigate than others."
+    environment: {fixture: none}
+    expect_activation:
+      include: []
+      exclude: [dialectical]
+    expect:
+      - "Continues ordinary conversation without presenting the operation menu."
+    forbid:
+      - "Imposing a staged inquiry workflow"
+      - "Suggesting an operation without evidence it is needed"
+    expected_mutation: {class: none, paths: []}
+
+  - id: negative-restate-use-summarize
+    skill: dialectical-restate
+    mode: negative
+    prompt: "Summarize the last twenty messages so I can catch up quickly."
+    environment: {fixture: conversation-available}
+    expect_activation:
+      include: [dialectical-summarize]
+      exclude: [dialectical-restate]
+    expect:
+      - "Compresses the selected conversational span."
+    forbid:
+      - "Returning only a reformulation of one claim"
+    expected_mutation: {class: none, paths: []}
+
+  - id: negative-summarize-use-distill
+    skill: dialectical-summarize
+    mode: negative
+    prompt: "What have we actually learned, what remains uncertain, and what decisions now follow?"
+    environment: {fixture: conversation-available}
+    expect_activation:
+      include: [dialectical-distill]
+      exclude: [dialectical-summarize]
+    expect:
+      - "Extracts the present intellectual state by epistemic basis."
+    forbid:
+      - "Retelling the conversation turn by turn"
+    expected_mutation: {class: none, paths: []}
+
+  - id: negative-distill-use-summarize
+    skill: dialectical-distill
+    mode: negative
+    prompt: "Give me a chronological recap of everything each participant said, without drawing conclusions."
+    environment: {fixture: conversation-available}
+    expect_activation:
+      include: [dialectical-summarize]
+      exclude: [dialectical-distill]
+    expect:
+      - "Produces a recap without extracting findings."
+    forbid:
+      - "Announcing what the inquiry established"
+    expected_mutation: {class: none, paths: []}
+
+  - id: negative-trace-use-summarize
+    skill: dialectical-trace
+    mode: negative
+    prompt: "Recap the main topics we discussed; I don't need the pivots or provenance."
+    environment: {fixture: conversation-available}
+    expect_activation:
+      include: [dialectical-summarize]
+      exclude: [dialectical-trace]
+    expect:
+      - "Summarizes topics without constructing a dependency history."
+    forbid:
+      - "Inventing a reasoning lineage"
+    expected_mutation: {class: none, paths: []}
+
+  - id: negative-research-use-verify
+    skill: dialectical-research
+    mode: negative
+    prompt: "Verify only whether City of Rivergate Ordinance 24-17 took effect on January 1, 2025; return a verdict and do not broaden the question."
+    environment: {external_evidence: controlled, fixture: rivergate-ordinance-24-17}
+    expect_activation:
+      include: [dialectical-verify]
+      exclude: [dialectical-research]
+    expect:
+      - "Adjudicates the narrow dated proposition."
+    forbid:
+      - "Turning the response into a broad regulatory landscape review"
+    expected_mutation: {class: none, paths: []}
+
+  - id: negative-hypothesize-use-ach
+    skill: dialectical-hypothesize
+    mode: negative
+    prompt: >-
+      Compare our three existing explanations against these seven observations,
+      identify contradictions, run a sensitivity check, and choose the
+      least-inconsistent explanation.
+    environment: {fixture: evidence-in-prompt}
+    expect_activation:
+      include: [dialectical-ach]
+      exclude: [dialectical-hypothesize]
+    expect:
+      - "Uses ACH rather than merely generating more explanations."
+    forbid:
+      - "Treating generation alone as the requested task"
+    expected_mutation: {class: none, paths: []}
+
+  - id: negative-ach-use-hypothesize
+    skill: dialectical-ach
+    mode: negative
+    prompt: "Brainstorm several genuinely different reasons churn might have increased; we do not have evidence to compare them yet."
+    environment: {fixture: none}
+    expect_activation:
+      include: [dialectical-hypothesize]
+      exclude: [dialectical-ach]
+    expect:
+      - "Generates discriminable hypotheses without scoring them."
+    forbid:
+      - "Creating an evidence matrix with invented observations"
+      - "Selecting a winner"
+    expected_mutation: {class: none, paths: []}
+
+  - id: negative-challenge-use-restate
+    skill: dialectical-challenge
+    mode: negative
+    prompt: "Rewrite my launch plan clearly and faithfully, without criticizing or improving it."
+    environment: {fixture: plan-in-prompt}
+    expect_activation:
+      include: [dialectical-restate]
+      exclude: [dialectical-challenge]
+    expect:
+      - "Restates the plan without adversarial analysis."
+    forbid:
+      - "Adding objections or failure modes"
+    expected_mutation: {class: none, paths: []}
+
+  - id: negative-causal-chain-use-challenge
+    skill: dialectical-causal-chain
+    mode: negative
+    prompt: "Challenge this one-step proposal for hidden assumptions, alternatives, and failure conditions; there is no multi-step causal chain."
+    environment: {fixture: claim-in-prompt}
+    expect_activation:
+      include: [dialectical-challenge]
+      exclude: [dialectical-causal-chain]
+    expect:
+      - "Performs general adversarial quality control."
+    forbid:
+      - "Manufacturing a multi-link chain"
+    expected_mutation: {class: none, paths: []}
+
+  - id: negative-verify-use-research
+    skill: dialectical-verify
+    mode: negative
+    prompt: "Research the landscape of municipal congestion pricing, including prior art, competing approaches, and open questions."
+    environment: {external_evidence: available}
+    expect_activation:
+      include: [dialectical-research]
+      exclude: [dialectical-verify]
+    expect:
+      - "Broadens and synthesizes the evidence space."
+    forbid:
+      - "Forcing the topic into one binary proposition"
+    expected_mutation: {class: none, paths: []}
+
+  - id: negative-source-quality-use-verify
+    skill: dialectical-source-quality
+    mode: negative
+    prompt: "Verify whether the bridge opened to traffic on May 1, using authoritative records and returning one calibrated verdict."
+    environment: {external_evidence: available}
+    expect_activation:
+      include: [dialectical-verify]
+      exclude: [dialectical-source-quality]
+    expect:
+      - "Adjudicates the proposition rather than merely rating sources."
+    forbid:
+      - "Substituting source grades for a verdict"
+    expected_mutation: {class: none, paths: []}
+
+  - id: negative-tag-use-save
+    skill: dialectical-tag
+    mode: negative
+    prompt: "Save this idea durably so I can recall it in a future session, including its provenance and relationships."
+    environment: {fixture: active-inquiry-writable-store}
+    expect_activation:
+      include: [dialectical-save]
+      exclude: [dialectical-tag]
+    expect:
+      - "Persists the object rather than returning metadata alone."
+    forbid:
+      - "Claiming that tags alone provide durability"
+    expected_mutation:
+      class: durable-write
+      paths: [.dialectical/memory, .dialectical/conversations]
+
+  - id: negative-save-use-tag
+    skill: dialectical-save
+    mode: negative
+    prompt: "Suggest a few compact tags for this tentative idea, but do not persist or modify anything."
+    environment: {durable_store: available}
+    expect_activation:
+      include: [dialectical-tag]
+      exclude: [dialectical-save]
+    expect:
+      - "Returns proposed metadata without persistence."
+    forbid:
+      - "Writing to the durable store"
+      - "Claiming the idea was saved"
+    expected_mutation: {class: none, paths: []}
+
+  - id: negative-recall-use-resume
+    skill: dialectical-recall
+    mode: negative
+    prompt: "Resume the paused checkout-pricing inquiry so we can continue working from its current state."
+    environment: {fixture: paused-inquiry-writable-store}
+    expect_activation:
+      include: [dialectical-resume]
+      exclude: [dialectical-recall]
+    expect:
+      - "Loads and activates the selected inquiry."
+    forbid:
+      - "Returning detached memory snippets without restoring inquiry state"
+    expected_mutation:
+      class: status-write
+      paths: [.dialectical/conversations]
+
+  - id: negative-start-use-resume
+    skill: dialectical-start-inquiry
+    mode: negative
+    prompt: "Continue the existing inquiry 2026-10-03-checkout-trust; do not create a new one."
+    environment: {fixture: paused-inquiry-writable-store}
+    expect_activation:
+      include: [dialectical-resume]
+      exclude: [dialectical-start-inquiry]
+    expect:
+      - "Resumes the existing inquiry by identifier."
+    forbid:
+      - "Creating a duplicate conversation directory"
+    expected_mutation:
+      class: status-write
+      paths: [.dialectical/conversations]
+
+  - id: negative-checkpoint-use-close
+    skill: dialectical-checkpoint
+    mode: negative
+    prompt: "Close this inquiry after recording its final state and unresolved questions."
+    environment: {fixture: active-inquiry-writable-store}
+    expect_activation:
+      include: [dialectical-close]
+      exclude: [dialectical-checkpoint]
+    expect:
+      - "Performs a final checkpoint and records closed status."
+    forbid:
+      - "Leaving the inquiry active"
+    expected_mutation:
+      class: durable-write
+      paths: [.dialectical/conversations]
+
+  - id: negative-resume-use-start
+    skill: dialectical-resume
+    mode: negative
+    prompt: "Start a separate inquiry about causal diagrams; do not continue any prior inquiry."
+    environment: {fixture: populated-memory-store, permissions: writable}
+    expect_activation:
+      include: [dialectical-start-inquiry]
+      exclude: [dialectical-resume]
+    expect:
+      - "Creates a distinct inquiry and curates only relevant carryover."
+    forbid:
+      - "Activating an existing inquiry instead"
+    expected_mutation:
+      class: durable-write
+      paths: [.dialectical/conversations]
+
+  - id: negative-close-use-checkpoint
+    skill: dialectical-close
+    mode: negative
+    prompt: "Checkpoint our current state, but keep the inquiry active because we are continuing now."
+    environment: {fixture: active-inquiry-writable-store}
+    expect_activation:
+      include: [dialectical-checkpoint]
+      exclude: [dialectical-close]
+    expect:
+      - "Updates the living state while retaining active status."
+    forbid:
+      - "Pausing or closing the inquiry"
+    expected_mutation:
+      class: durable-write
+      paths: [.dialectical/conversations]

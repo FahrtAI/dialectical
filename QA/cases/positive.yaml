@@ -1,0 +1,383 @@
+schema_version: 1
+suite: dialectical-positive
+description: Intended activation and operation-fidelity cases for every Dialectical skill.
+
+cases:
+  - id: positive-dialectical-orientation
+    skill: dialectical
+    mode: explicit
+    prompt: "What can the Dialectical toolkit help me do, and how do I invoke its operations?"
+    environment: {fixture: none}
+    expect_activation:
+      include: [dialectical]
+      exclude: []
+    expect:
+      - "Briefly groups the available operations without imposing a workflow."
+      - "Explains that operation names are conversational handles rather than rigid syntax."
+    forbid:
+      - "Performing every operation"
+      - "Presenting the toolkit as a mandatory sequence"
+    expected_mutation: {class: none, paths: []}
+
+  - id: positive-restate-qualified-claim
+    skill: dialectical-restate
+    mode: explicit
+    prompt: "RESTATE: I suspect remote work sometimes weakens informal mentoring, but the effect probably depends on team practices."
+    environment: {fixture: none}
+    expect_activation:
+      include: [dialectical-restate]
+      exclude: [dialectical-summarize, dialectical-distill, dialectical-challenge]
+    expect:
+      - "Preserves suspicion, sometimes, probably, and the team-practice qualification."
+      - "Returns a clearer formulation without changing the position."
+    forbid:
+      - "Critiquing the claim"
+      - "Strengthening the claim into a general conclusion"
+    expected_mutation: {class: none, paths: []}
+
+  - id: positive-summarize-unresolved-discussion
+    skill: dialectical-summarize
+    mode: implicit
+    prompt: >-
+      Give me a compact recap of our discussion. We considered seasonality,
+      tracking failure, and ranking loss; raised objections to each; and did
+      not settle on a winner.
+    environment: {fixture: conversation-in-prompt}
+    expect_activation:
+      include: [dialectical-summarize]
+      exclude: [dialectical-distill, dialectical-trace, dialectical-ach]
+    expect:
+      - "Covers all three explanations and the lack of resolution."
+      - "Compresses repetition without announcing a finding."
+    forbid:
+      - "Selecting a winning explanation"
+      - "Inventing evidence"
+    expected_mutation: {class: none, paths: []}
+
+  - id: positive-distill-epistemic-basis
+    skill: dialectical-distill
+    mode: explicit
+    prompt: >-
+      DISTILL where we are: the audited logs confirm requests doubled; we
+      inferred the cache is undersized; and someone speculated that a vendor
+      changed its API, but we have no evidence for that yet.
+    environment: {fixture: conversation-in-prompt}
+    expect_activation:
+      include: [dialectical-distill]
+      exclude: [dialectical-summarize, dialectical-verify]
+    expect:
+      - "Separates the confirmed fact, inference, and speculation."
+      - "Retains the unresolved vendor question without upgrading it."
+    forbid:
+      - "Treating the cache explanation as verified"
+      - "Researching or saving automatically"
+    expected_mutation: {class: none, paths: []}
+
+  - id: positive-trace-pivots-and-return
+    skill: dialectical-trace
+    mode: explicit
+    prompt: >-
+      TRACE how we moved from pricing, to onboarding friction, to reliability,
+      then returned to the abandoned marketplace analogy after the churn data
+      arrived. Mark any connection you have to infer.
+    environment: {fixture: conversation-in-prompt}
+    expect_activation:
+      include: [dialectical-trace]
+      exclude: [dialectical-summarize, dialectical-distill]
+    expect:
+      - "Shows the two pivots and the return to the abandoned analogy."
+      - "Separates explicit transitions from inferred connections."
+    forbid:
+      - "Rewriting the history as a straight progression"
+      - "Evaluating whether the final position is correct"
+    expected_mutation: {class: none, paths: []}
+
+  - id: positive-research-broad-landscape
+    skill: dialectical-research
+    mode: explicit
+    prompt: >-
+      RESEARCH how tactics transfer between unrelated sports. Include prior
+      work, counterexamples, competing views, and limits on transfer.
+    environment: {external_evidence: available}
+    expect_activation:
+      include: [dialectical-research]
+      exclude: [dialectical-verify]
+    expect:
+      - "Uses external sources and cites claims near their support."
+      - "Includes contrary or limiting evidence and source limitations."
+      - "Separates established findings from interpretation."
+    forbid:
+      - "Reducing the inquiry to one binary verdict"
+      - "Presenting remembered facts as newly researched evidence"
+    expected_mutation: {class: none, paths: []}
+
+  - id: positive-hypothesize-distinct-mechanisms
+    skill: dialectical-hypothesize
+    mode: implicit
+    prompt: >-
+      Customer churn rose immediately after our redesign. Generate plausible
+      explanations that work through genuinely different mechanisms and tell
+      me what observation would distinguish them.
+    environment: {fixture: none}
+    expect_activation:
+      include: [dialectical-hypothesize]
+      exclude: [dialectical-ach, dialectical-verify]
+    expect:
+      - "Offers genuinely different mechanisms, including ordinary explanations."
+      - "Gives distinguishing observations and weakening evidence."
+    forbid:
+      - "Evidence-hypothesis matrix"
+      - "Ranking or declaring a winner without evidence"
+      - "Padding to an arbitrary quota"
+    expected_mutation: {class: none, paths: []}
+
+  - id: positive-ach-diagnostic-matrix
+    skill: dialectical-ach
+    mode: explicit
+    prompt: >-
+      Use ACH to compare seasonality, tracking failure, and ranking loss as
+      explanations for a traffic decline. Evidence: impressions fell only on
+      search pages; direct traffic is stable; the analytics release occurred
+      after the decline; and last year's same week also declined slightly.
+    environment: {fixture: evidence-in-prompt}
+    expect_activation:
+      include: [dialectical-ach]
+      exclude: [dialectical-hypothesize, dialectical-verify]
+    expect:
+      - "Builds an evidence-hypothesis matrix."
+      - "Checks diagnosticity and source or mechanism dependence."
+      - "Selects the least-inconsistent hypothesis with sensitivity and residual uncertainty."
+      - "Identifies the next most discriminating evidence."
+    forbid:
+      - "Mechanical totaling of symbols"
+      - "Claiming that the leading hypothesis is proven"
+      - "Inventing missing evidence instead of using a question marker"
+    expected_mutation: {class: none, paths: []}
+
+  - id: positive-challenge-strongest-form
+    skill: dialectical-challenge
+    mode: explicit
+    prompt: >-
+      CHALLENGE this plan in its strongest reasonable form: launch to the full
+      customer base because the pilot improved completion by 12%, support load
+      stayed flat, and no severe incidents occurred during the two-week pilot.
+    environment: {fixture: evidence-in-prompt}
+    expect_activation:
+      include: [dialectical-challenge]
+      exclude: [dialectical-restate]
+    expect:
+      - "States the strongest reasonable form of the plan before testing it."
+      - "Distinguishes fatal issues, material weaknesses, and ordinary uncertainty."
+      - "Identifies evidence or tests that could strengthen or overturn the plan."
+    forbid:
+      - "Attacking a weaker claim"
+      - "Objections without a plausible mechanism or consequence"
+      - "Silently performing external verification"
+    expected_mutation: {class: none, paths: []}
+
+  - id: positive-causal-chain-dependent-links
+    skill: dialectical-causal-chain
+    mode: explicit
+    prompt: >-
+      Analyze this causal chain: higher support backlog causes slower replies;
+      slower replies reduce customer trust; lower trust increases churn; higher
+      churn reduces revenue available for support staffing. Identify assumptions,
+      linchpins, feedback, timing, and which links are evidenced versus assumed.
+    environment: {fixture: evidence-in-prompt}
+    expect_activation:
+      include: [dialectical-causal-chain]
+      exclude: [dialectical-challenge, dialectical-ach]
+    expect:
+      - "Maps each link and recognizes the feedback loop."
+      - "Separates linchpin, load-bearing, and secondary assumptions."
+      - "States the evidential basis for any chain verdict."
+    forbid:
+      - "Treating every assumption as a linchpin"
+      - "Claiming an assumed link is verified"
+    expected_mutation: {class: none, paths: []}
+
+  - id: positive-verify-narrow-proposition
+    skill: dialectical-verify
+    mode: explicit
+    prompt: >-
+      VERIFY the proposition that City of Rivergate Ordinance 24-17 took legal
+      effect on January 1, 2025. Preserve that exact jurisdiction, instrument,
+      and date; consult the controlled evidence collection; and report a
+      supported, refuted, mixed, or unresolved verdict.
+    environment: {external_evidence: controlled, fixture: rivergate-ordinance-24-17}
+    expect_activation:
+      include: [dialectical-verify]
+      exclude: [dialectical-research]
+    expect:
+      - "Preserves the proposition's date and jurisdiction."
+      - "Uses authoritative evidence and checks whether it addresses legal effect rather than enactment."
+      - "Reports source limitations and residual uncertainty."
+    forbid:
+      - "Broad survey unrelated to the proposition"
+      - "Verification based only on dependent secondary retellings"
+    expected_mutation: {class: none, paths: []}
+
+  - id: positive-source-quality-unknown-source
+    skill: dialectical-source-quality
+    mode: explicit
+    prompt: >-
+      SOURCE-QUALITY: Rate an anonymous first-time source whose access and
+      reporting history are unknown, reporting a claim that has no independent
+      confirmation. Explain the two ratings separately.
+    environment: {fixture: evidence-in-prompt}
+    expect_activation:
+      include: [dialectical-source-quality]
+      exclude: [dialectical-verify, dialectical-research]
+    expect:
+      - "Assigns F for reliability cannot be judged."
+      - "Assigns 6 for truth cannot be judged."
+      - "Explains that F and 6 express insufficient basis rather than maximum falsity."
+    forbid:
+      - "Treating unknown as unreliable"
+      - "Claiming that the proposition is false"
+    expected_mutation: {class: none, paths: []}
+
+  - id: positive-tag-minimal-metadata
+    skill: dialectical-tag
+    mode: explicit
+    prompt: >-
+      TAG this unsaved idea for later classification, but do not save it:
+      "Latency may be acting as a trust signal during checkout." The idea is
+      tentative; no source or confidence level has been established.
+    environment: {durable_store: absent}
+    expect_activation:
+      include: [dialectical-tag]
+      exclude: [dialectical-save]
+    expect:
+      - "Returns a compact proposed metadata record."
+      - "Marks supplied versus inferred metadata and omits invented provenance or confidence."
+    forbid:
+      - "Creating durable storage"
+      - "Claiming the idea was saved"
+      - "Building a large taxonomy"
+    expected_mutation: {class: none, paths: []}
+
+  - id: positive-save-qualified-object
+    skill: dialectical-save
+    mode: explicit
+    prompt: >-
+      SAVE this finding: "In the current pilot, shorter forms correlated with
+      higher completion, but selection effects have not been ruled out." Keep
+      that qualification and link it to the active inquiry.
+    environment: {fixture: active-inquiry-writable-store}
+    expect_activation:
+      include: [dialectical-save]
+      exclude: [dialectical-tag, dialectical-checkpoint]
+    expect:
+      - "Persists one memory object with content, status, provenance, and uncertainty."
+      - "Writes the object before updating the memory index."
+      - "Links the object from the active inquiry and reports its identifier."
+    forbid:
+      - "Removing the selection-effect qualification"
+      - "Saving the whole transcript"
+    expected_mutation:
+      class: durable-write
+      paths: [.dialectical/memory/objects, .dialectical/memory/index.md, .dialectical/conversations]
+
+  - id: positive-recall-with-provenance
+    skill: dialectical-recall
+    mode: explicit
+    prompt: "RECALL what we previously saved about checkout latency and trust, including provenance and anything that may now be stale."
+    environment: {fixture: populated-memory-store, permissions: read-only}
+    expect_activation:
+      include: [dialectical-recall]
+      exclude: [dialectical-resume]
+    expect:
+      - "Searches canonical records after locating candidates through indexes."
+      - "Returns identifiers or links and preserves recorded confidence and status."
+      - "Separates stored content from present interpretation."
+    forbid:
+      - "Updating, merging, or deleting recalled records"
+      - "Treating stored claims as automatically current or verified"
+    expected_mutation: {class: none, paths: []}
+
+  - id: positive-start-inquiry-with-carryover
+    skill: dialectical-start-inquiry
+    mode: explicit
+    prompt: >-
+      START INQUIRY about whether checkout latency affects customer trust. Carry
+      forward only relevant prior findings and unresolved disagreements.
+    environment: {fixture: populated-memory-store, permissions: writable}
+    expect_activation:
+      include: [dialectical-start-inquiry]
+      exclude: [dialectical-resume]
+    expect:
+      - "Creates a collision-safe conversation directory with state and context files."
+      - "Uses the current date in the manifest or preserves the existing supported manifest."
+      - "Links every carried item to its source and reports what was carried forward."
+    forbid:
+      - "Copying unrelated history"
+      - "Claiming that a new platform chat was created"
+      - "Overwriting an existing conversation on collision"
+    expected_mutation:
+      class: durable-write
+      paths: [.dialectical/manifest.yaml, .dialectical/conversations, .dialectical/memory/index.md]
+
+  - id: positive-checkpoint-preserves-reversal
+    skill: dialectical-checkpoint
+    mode: explicit
+    prompt: >-
+      CHECKPOINT this inquiry. The earlier leading explanation was onboarding
+      friction, but audited logs now contradict it and make a tracking defect
+      the leading explanation. Keep the reversal and its basis.
+    environment: {fixture: active-inquiry-writable-store}
+    expect_activation:
+      include: [dialectical-checkpoint]
+      exclude: [dialectical-close, dialectical-save]
+    expect:
+      - "Updates the living state and preserves the earlier explanation as superseded."
+      - "Writes state before updating the conversations index."
+      - "Reports the material change without claiming to save the platform transcript."
+    forbid:
+      - "Silently erasing the earlier explanation"
+      - "Closing the inquiry"
+    expected_mutation:
+      class: durable-write
+      paths: [.dialectical/conversations]
+
+  - id: positive-resume-selected-inquiry
+    skill: dialectical-resume
+    mode: explicit
+    prompt: "RESUME inquiry 2026-10-03-checkout-trust."
+    environment: {fixture: paused-inquiry-writable-store}
+    expect_activation:
+      include: [dialectical-resume]
+      exclude: [dialectical-start-inquiry, dialectical-recall]
+    expect:
+      - "Loads state, context, and directly linked memory objects."
+      - "Orients to focus, findings, uncertainties, and open questions."
+      - "Activates only the explicitly selected inquiry while preserving its prior status in history."
+    forbid:
+      - "Creating a duplicate inquiry"
+      - "Claiming that the platform reopened an old chat"
+      - "Loading unrelated keyword matches"
+    expected_mutation:
+      class: status-write
+      paths: [.dialectical/conversations]
+
+  - id: positive-close-with-open-questions
+    skill: dialectical-close
+    mode: explicit
+    prompt: >-
+      CLOSE this inquiry. Two questions remain unanswered: whether the result
+      generalizes to mobile users and whether seasonality affected the pilot.
+    environment: {fixture: active-inquiry-writable-store}
+    expect_activation:
+      include: [dialectical-close]
+      exclude: [dialectical-checkpoint]
+    expect:
+      - "Takes a final checkpoint and records closed status."
+      - "Preserves both unanswered questions."
+      - "Explains how the inquiry can be resumed."
+    forbid:
+      - "Marking unanswered questions resolved"
+      - "Saving additional memory objects without authorization"
+      - "Claiming to close the platform chat"
+    expected_mutation:
+      class: durable-write
+      paths: [.dialectical/conversations]
