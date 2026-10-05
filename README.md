@@ -139,10 +139,12 @@ Validate the development package with:
 python3 scripts/validate_plugin_package.py
 ```
 
-After replacing the local endpoint and adding required policy URLs, build the
-submission ZIP with `python3 scripts/package_plugin.py`. Its production
+Build a local development ZIP with
+`python3 scripts/package_plugin.py --development`. After replacing the local
+endpoint and adding required policy URLs, build the submission ZIP with
+`python3 scripts/package_plugin.py`. Its production
 preflight deliberately refuses localhost, non-HTTPS endpoints, or missing
-privacy and terms URLs.
+website, privacy, terms, and support URLs.
 
 A pointer in a platform instruction file does not itself install the skills. After installing, confirm that every skill name is discoverable before relying on routing or memory operations.
 

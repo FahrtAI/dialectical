@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Build the public plugin ZIP after production preflight passes."""
+"""Build a development or public plugin ZIP after the appropriate preflight."""
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 import zipfile
@@ -12,15 +13,25 @@ from validate_plugin_package import ROOT, validate
 
 
 def main() -> int:
-    failures = validate(production=True)
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--development",
+        action="store_true",
+        help="Allow the local MCP URL and omit production-only URL requirements.",
+    )
+    args = parser.parse_args()
+    production = not args.development
+    failures = validate(production=production)
     if failures:
-        print("Production package not created:")
+        mode = "Production" if production else "Development"
+        print(f"{mode} package not created:")
         for failure in failures:
             print(f"- {failure}")
         return 1
 
     version = json.loads((ROOT / "plugin.json").read_text(encoding="utf-8"))["version"]
-    destination = ROOT / "dist" / f"dialectical-{version}.zip"
+    suffix = "" if production else "-dev"
+    destination = ROOT / "dist" / f"dialectical-{version}{suffix}.zip"
     destination.parent.mkdir(parents=True, exist_ok=True)
     roots = [
         ROOT / "plugin.json",

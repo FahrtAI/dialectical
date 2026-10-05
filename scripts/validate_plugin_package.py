@@ -12,6 +12,21 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 SEMVER = re.compile(r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$")
+SUBMISSION_CATEGORIES = {
+    "Productivity",
+    "Creativity",
+    "Developer Tools",
+    "Business & Operations",
+    "Data & Analytics",
+    "Communication",
+    "Education & Research",
+    "Security",
+    "Finance",
+    "Healthcare",
+    "Travel",
+    "Entertainment",
+    "Other",
+}
 
 
 def load(path: Path, failures: list[str]) -> dict:
@@ -76,8 +91,35 @@ def validate(production: bool = False) -> list[str]:
         if isinstance(portable.get("extensions"), dict)
         else {}
     )
+    compatibility_interface = compatibility.get("interface", {})
+    if compatibility_interface != interface:
+        failures.append("Portable and compatibility interface metadata must match")
+    text_limits = {
+        "displayName": 30,
+        "shortDescription": 30,
+        "longDescription": 4000,
+        "developerName": 80,
+    }
+    for field, limit in text_limits.items():
+        value = interface.get(field)
+        if not isinstance(value, str) or not value.strip():
+            failures.append(f"Plugin requires non-empty interface.{field}")
+        elif len(value) > limit:
+            failures.append(f"interface.{field} exceeds the {limit}-character submission limit")
+    if interface.get("category") not in SUBMISSION_CATEGORIES:
+        failures.append("interface.category is not a supported submission category")
+    capabilities = interface.get("capabilities")
+    if not isinstance(capabilities, list) or not capabilities or len(capabilities) > 20:
+        failures.append("interface.capabilities must contain 1 to 20 entries")
+    elif any(not isinstance(item, str) or not item.strip() or len(item) > 120 for item in capabilities):
+        failures.append("Each interface capability must be non-empty and at most 120 characters")
+    prompts = interface.get("defaultPrompt")
+    if not isinstance(prompts, list) or not prompts or len(prompts) > 3:
+        failures.append("interface.defaultPrompt must contain 1 to 3 entries")
+    elif any(not isinstance(item, str) or not item.strip() or len(item) > 128 for item in prompts):
+        failures.append("Each starter prompt must be non-empty and at most 128 characters")
     if production:
-        for field in ("privacyPolicyURL", "termsOfServiceURL"):
+        for field in ("websiteURL", "privacyPolicyURL", "termsOfServiceURL", "supportURL"):
             value = interface.get(field)
             parsed = urlparse(value) if isinstance(value, str) else None
             if parsed is None or parsed.scheme != "https" or not parsed.netloc:
