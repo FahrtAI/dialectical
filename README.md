@@ -1,7 +1,7 @@
 <h1 align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/images/wordmark-dark.png">
-    <img src="docs/images/wordmark.png" alt="Dialectical" width="480">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/dialectical-logo-dark.png">
+    <img src="assets/dialectical-logo.png" alt="Dialectical" width="480">
   </picture>
 </h1>
 
@@ -193,8 +193,8 @@ Important properties:
 ├── server/       # MCP persistence service
 ├── evals/        # behavioral cases and scoring rules
 ├── scripts/      # structural validator
-├── assets/       # plugin logo, dark logo, and icon (shipped in the plugin)
-├── docs/         # sample flows; images/ holds the README wordmark
+├── assets/       # README logo, plus the plugin's logo, dark logo, and icon
+├── docs/         # sample flows
 ├── QA/           # test plan
 ├── CLAUDE.md     # platform adapters
 ├── CODEX.md
