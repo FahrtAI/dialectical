@@ -118,6 +118,14 @@ def validate(production: bool = False) -> list[str]:
         failures.append("interface.defaultPrompt must contain 1 to 3 entries")
     elif any(not isinstance(item, str) or not item.strip() or len(item) > 128 for item in prompts):
         failures.append("Each starter prompt must be non-empty and at most 128 characters")
+    assets = (ROOT / "assets").resolve()
+    for field in ("logo", "logoDark", "composerIcon"):
+        value = interface.get(field)
+        if value is None:
+            continue
+        path = (ROOT / value).resolve() if isinstance(value, str) else None
+        if path is None or assets not in path.parents or not path.is_file():
+            failures.append(f"interface.{field} must point to an existing file under assets/")
     if production:
         for field in ("websiteURL", "privacyPolicyURL", "termsOfServiceURL", "supportURL"):
             value = interface.get(field)

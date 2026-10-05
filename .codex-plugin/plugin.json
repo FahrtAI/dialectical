@@ -34,6 +34,9 @@
       "Use ACH to compare these explanations.",
       "Run a thought experiment on this claim."
     ],
-    "brandColor": "#25364A"
+    "brandColor": "#0C274E",
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/logo.png",
+    "logoDark": "./assets/logo-dark.png"
   }
 }

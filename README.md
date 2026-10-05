@@ -1,4 +1,9 @@
-# Dialectical
+<h1 align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/images/wordmark-dark.png">
+    <img src="docs/images/wordmark.png" alt="Dialectical" width="480">
+  </picture>
+</h1>
 
 Dialectical is a platform-agnostic specification for optional cognitive operations in open-ended human–LLM inquiry, packaged as installable agent skills where the host supports them.
 
@@ -188,7 +193,8 @@ Important properties:
 ├── server/       # MCP persistence service
 ├── evals/        # behavioral cases and scoring rules
 ├── scripts/      # structural validator
-├── docs/         # sample flows
+├── assets/       # plugin logo, dark logo, and icon (shipped in the plugin)
+├── docs/         # sample flows; images/ holds the README wordmark
 ├── QA/           # test plan
 ├── CLAUDE.md     # platform adapters
 ├── CODEX.md
