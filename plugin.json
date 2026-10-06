@@ -2,7 +2,7 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "dialectical",
   "version": "0.2.1",
-  "description": "Ordinary conversations with intellectual discipline.",
+  "description": "Ordinary conversation with intellectual discipline.",
   "author": {
     "name": "FahrtAI",
     "url": "https://github.com/FahrtAI"
@@ -20,7 +20,7 @@
       "interface": {
         "displayName": "Dialectical",
         "shortDescription": "Think freely. Test rigorously.",
-        "longDescription": "Ordinary conversations with intellectual discipline. Dialectical harnesses an LLM's ability to surface prior art, find unexpected connections, and bring relevant ideas into the path of a discussion. It also adds deliberate checks for the places LLMs are weak: lost provenance, exaggerated confidence, confirmation bias, and plausible stories that have not been tested. Use focused operations to trace sources, research claims, generate and compare competing explanations, run thought experiments, seek disconfirming evidence, and preserve useful inquiry across conversations. The operations are optional; conversation remains primary.",
+        "longDescription": "Ordinary conversation with intellectual discipline. Dialectical harnesses an LLM's ability to surface prior art, find unexpected connections, and bring relevant ideas into the path of a discussion. It also adds deliberate checks for the places LLMs are weak: lost provenance, exaggerated confidence, confirmation bias, and plausible stories that have not been tested. Use focused operations to trace sources, research claims, generate and compare competing explanations, run thought experiments, seek disconfirming evidence, and preserve useful inquiry across conversations. The operations are optional; conversation remains primary.",
         "developerName": "FahrtAI",
         "category": "Education & Research",
         "capabilities": [
