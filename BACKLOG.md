@@ -24,32 +24,31 @@ BACKLOG.md entries into Issues without losing context, verify links and
 categorization, and retire this file as the active backlog once the Project is
 usable.
 
-### Optional GUIDE behavior
+### On-demand GUIDE operation
 
-Help users learn which operation fits their conversation. When explicitly
-enabled, review the inquiry's current state, recommend at most one useful
-operation with a short explanation, and ask before performing it. Ordinary
-conversation remains primary; no suggestion is a valid outcome. Respect
-declines and allow the user to turn guidance off. Do not impose a fixed path.
+Create GUIDE as an explicitly invoked operation for moments when a free-form
+conversation would benefit from a little more structure. GUIDE reviews the
+current inquiry and recommends at most one Dialectical operation or thinking
+technique that could sharpen the discussion, with a short explanation of why it
+fits. It may also conclude that no structured intervention is useful right now.
 
-Acceptance criteria when scheduled: enabled/disabled behavior, useful timing,
-consent before execution, no repetitive advice, and no automatic chains.
-GUIDE is not implemented in 0.5.0.
+GUIDE does not monitor the conversation, impose a workflow, or automatically
+execute the recommended operation. The user remains in ordinary conversation
+unless they deliberately call GUIDE and choose to act on its recommendation.
 
-### Independent observer and inexpensive model evaluation
+### Optional OBSERVER subagent
 
-Explore implementing GUIDE with a separate observer so its instructions and
-intermediate analysis do not occupy the main conversational thread. Supply a
-compact inquiry summary, relevant recent turns, an operation catalog, and prior
-recommendations or declines. Return no suggestion or one reasoned recommendation;
-the conversational agent presents it and waits for agreement.
+Explore OBSERVER as a separate, opt-in capability that runs alongside the main
+conversation and watches for moments when a structured-thinking intervention
+might be useful. OBSERVER may surface a suggestion using the same recommendation
+logic as GUIDE, but it should not execute an operation or turn the conversation
+into a prescribed process.
 
-Test the cheapest suitable model first, comparing recommendation usefulness,
-routing accuracy, restraint, consent boundaries, latency, and total cost against
-guidance performed by the main model. Do not assume that a small task needs no
-reasoning or that duplicating context reduces total cost. Host delegation,
-model selection, and turn-trigger support must be established before committing
-to an independent observer or persistent background behavior.
+Evaluate whether the intended ChatGPT host can support an isolated subagent,
+appropriate review timing, compact context handoff, and inexpensive model
+selection. Compare usefulness, restraint, latency, and total cost against the
+explicit GUIDE operation. GUIDE should remain independently useful even if
+OBSERVER is never implemented.
 
 ### Cookbook and operation checklists
 
@@ -82,9 +81,9 @@ Static validation must remain distinct from behavior and installed-host results.
   confirm supported packaging/install behavior before declaring it resolved.
   Desktop and iPhone acceptance tests remain required; rebuilding is not proof
   of successful installation.
-- **GUIDE review timing:** which conversational checkpoints justify a review,
+- **OBSERVER review timing:** which conversational checkpoints justify a review,
   and how can suggestions stay useful without interrupting exploration?
-- **Observer support:** can the intended ChatGPT host invoke an isolated worker
+- **OBSERVER support:** can the intended ChatGPT host invoke an isolated worker
   with a selected inexpensive model? What fallback is appropriate if it cannot?
 - **License:** the repository does not yet declare one. The owner must choose
   the intended reuse and distribution terms.
