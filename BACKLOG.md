@@ -51,28 +51,20 @@ reasoning or that duplicating context reduces total cost. Host delegation,
 model selection, and turn-trigger support must be established before committing
 to an independent observer or persistent background behavior.
 
-### Cookbook for specific kinds of analysis
+### Cookbook and operation checklists
 
-Create adaptable recipes for explaining unexpected outcomes, comparing
-explanations, evaluating decisions, testing causal claims, and exploring ideas.
-Each should include a concrete question, useful operations and why they fit,
-a sample conversation, and common pitfalls. Show where to skip an operation
-or return to ordinary discussion; recipes are not mandatory sequences.
-Build on the existing examples in [docs/flows.md](docs/flows.md).
+Create adaptable checklists for recurring kinds of analysis such as explaining
+unexpected outcomes, comparing explanations, evaluating decisions, testing
+causal claims, and exploring ideas. Each should begin with a concrete question
+and identify useful Dialectical operations, why they fit, and combinations that
+often work well together.
 
-### Pro forma operation sequences
-
-Develop a small set of reusable, pro forma approaches for combining Dialectical
-operations in common situations. Examples might include moving from an initial
-claim through prior-art research and challenge, comparing competing explanations
-before identifying collection gaps, or distilling a long inquiry before defining
-reassessment indicators.
-
-Treat these as suggested compositions, not mandatory workflows. Document why
-each operation follows the previous one, where a sequence can branch or stop,
-and when ordinary conversation is preferable. Evaluate overlap with the analysis
-cookbook before deciding whether these should be separate artifacts or a layer
-within the cookbook.
+These are prompts for thinking, not prescribed processes. A user or model may
+start in the middle, skip an operation, branch, stop, double back, or return to
+ordinary conversation. Document useful ordering where it matters, but explain
+the reasoning rather than implying that one operation must mechanically follow
+another. Include sample conversations and common pitfalls. Build on the existing
+examples in [docs/flows.md](docs/flows.md).
 
 ### Behavioral evaluation runner
 
