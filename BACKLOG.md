@@ -60,6 +60,20 @@ a sample conversation, and common pitfalls. Show where to skip an operation
 or return to ordinary discussion; recipes are not mandatory sequences.
 Build on the existing examples in [docs/flows.md](docs/flows.md).
 
+### Pro forma operation sequences
+
+Develop a small set of reusable, pro forma approaches for combining Dialectical
+operations in common situations. Examples might include moving from an initial
+claim through prior-art research and challenge, comparing competing explanations
+before identifying collection gaps, or distilling a long inquiry before defining
+reassessment indicators.
+
+Treat these as suggested compositions, not mandatory workflows. Document why
+each operation follows the previous one, where a sequence can branch or stop,
+and when ordinary conversation is preferable. Evaluate overlap with the analysis
+cookbook before deciding whether these should be separate artifacts or a layer
+within the cookbook.
+
 ### Behavioral evaluation runner
 
 The repository has YAML cases and a scoring rubric but no executable runner
