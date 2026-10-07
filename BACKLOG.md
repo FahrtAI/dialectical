@@ -11,6 +11,19 @@ No additional implementation is committed beyond the 0.5.0 work.
 
 ## Ideas
 
+### Migrate backlog to GitHub Issues and Projects
+
+Replace the Markdown backlog with GitHub Issues as the individual backlog items
+and a GitHub Project as the planning layer. Preserve the useful structure of the
+current backlog while adding issue history, discussion, labels, links to commits
+and pull requests, and board/roadmap views. Avoid maintaining both systems as
+parallel sources of truth.
+
+When scheduled, define the Project fields and workflow, migrate existing
+BACKLOG.md entries into Issues without losing context, verify links and
+categorization, and retire this file as the active backlog once the Project is
+usable.
+
 ### Optional GUIDE behavior
 
 Help users learn which operation fits their conversation. When explicitly
