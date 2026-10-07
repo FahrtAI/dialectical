@@ -2,7 +2,7 @@
 name: dialectical-ach
 description: Evaluate competing explanations against the available evidence using Analysis of Competing Hypotheses and identify the least-inconsistent one. Use when the user requests ACH or several explanations must be compared against multiple observations; do not use only to generate explanations (HYPOTHESIZE) or to adjudicate one proposition (VERIFY).
 metadata:
-  version: "0.4.0"
+  version: "0.5.0"
 ---
 
 # ACH

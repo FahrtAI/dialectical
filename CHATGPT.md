@@ -1,6 +1,6 @@
 # Install and test Dialectical in ChatGPT
 
-Dialectical 0.4.0 is a skills-only plugin. Its entry point is
+Dialectical 0.5.0 is a skills-only plugin. Its entry point is
 `skills/dialectical/SKILL.md`, and its display name is **Dialectical**.
 The package requires no server, OAuth, API key, developer mode, or app connection.
 
@@ -13,9 +13,9 @@ availability on your phone.
 1. Open ChatGPT on the web in the intended account/workspace.
 2. Open **Plugins** and find the existing **Dialectical** plugin under
    **Personal / Created by me** (or the workspace where it was created).
-3. Select **Edit Plugin**. Attach `dist/dialectical-0.4.0.zip` and send:
+3. Select **Edit Plugin**. Attach `dist/dialectical-0.5.0.zip` and send:
 
-   > Replace Dialectical's package with this skills-only version 0.4.0.
+   > Replace Dialectical's package with this skills-only version 0.5.0.
    > Preserve its name and ownership. Remove the old MCP/app dependency.
    > Use the supplied skill and reference files, including the startup
    > instructions for “@Dialectical start a conversation.”
@@ -52,6 +52,10 @@ package cannot enable a feature the account lacks.
 7. Ask `@Dialectical help`. Expect the ASCII command card.
 8. Ask `SAVE this finding` with no storage available. Expect a copyable record
    and an honest statement that it was not saved elsewhere.
+9. In separate requests, test RELEVANCE, COLLECTION GAPS, and INDICATORS using
+   `QA/cases/chatgpt.yaml`. Expect purpose clarification, proposed evidence
+   collection, and conditional signals respectively, without automatic chaining,
+   browsing, monitoring, or setup. Confirm all three appear in the help card.
 
 ## iPhone acceptance test
 
@@ -59,6 +63,7 @@ package cannot enable a feature the account lacks.
 2. Start a new Chat or Work conversation.
 3. Select **Dialectical** from the `@` menu and repeat the startup test.
 4. Repeat HYPOTHESIZE, CHALLENGE, DISTILL, and the no-storage SAVE test.
+   Also repeat the three independent 0.5.0 operation cases from `QA/cases/chatgpt.yaml`.
 5. Keep the Mac and any former localhost server off during this test.
 6. In another new chat, paste a checkpoint and ask Dialectical to RESUME it.
    It should use that supplied context without claiming unseen chat access.

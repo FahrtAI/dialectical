@@ -3,6 +3,227 @@ suite: dialectical-positive
 description: Intended activation and operation-fidelity cases for every Dialectical skill.
 
 cases:
+  - id: "positive-relevance-exploration"
+    skill: "dialectical-relevance"
+    mode: "explicit"
+    prompt: "RELEVANCE: I'm curious about how cities develop distinct identities. I'm not choosing a policy or making a decision."
+    environment: {"fixture":"conversation-in-prompt","external_evidence":"absent","isolated_workers":"unavailable"}
+    expect_activation: {"include":["dialectical-relevance"],"exclude":["dialectical-start-inquiry","dialectical-research"]}
+    expect:
+      - "Preserves curiosity and understanding as the purpose."
+      - "Frames the question and a material distinction without inventing an audience or deadline."
+    forbid:
+      - "Forcing a decision or business objective"
+      - "Requiring START INQUIRY"
+      - "Researching the topic"
+    expected_mutation: {"class":"none","paths":[]}
+
+  - id: "positive-relevance-decision-context"
+    skill: "dialectical-relevance"
+    mode: "contextual"
+    prompt: "Our lease expires December 31. The operations team must choose renewal or a smaller office by October 15, weighing cost and mentoring. RELEVANCE for this inquiry. The building also has a new paint color."
+    environment: {"fixture":"conversation-in-prompt","external_evidence":"absent","isolated_workers":"unavailable"}
+    expect_activation: {"include":["dialectical-relevance"],"exclude":[]}
+    expect:
+      - "Uses the supplied decision, audience, deadline, and criteria without asking for them again."
+      - "Distinguishes the lease choice from the empirical question about mentoring."
+    forbid:
+      - "Treating paint color as material without justification"
+      - "Asking an intake questionnaire"
+      - "Recommending a lease choice"
+    expected_mutation: {"class":"none","paths":[]}
+
+  - id: "positive-relevance-conversational"
+    skill: "dialectical-relevance"
+    mode: "implicit"
+    prompt: "We've talked about junior staff overhearing seniors. What are we actually trying to understand here? I'm interested in how learning happens, not in deciding office attendance."
+    environment: {"fixture":"conversation-in-prompt","external_evidence":"absent","isolated_workers":"unavailable"}
+    expect_activation: {"include":["dialectical-relevance"],"exclude":["dialectical-hypothesize"]}
+    expect:
+      - "Clarifies the learning question using the stated exploratory purpose."
+      - "Keeps possible mechanisms distinct from established findings."
+    forbid:
+      - "Converting the inquiry to an attendance policy"
+      - "Redundant clarification"
+      - "Automatic hypothesis generation"
+    expected_mutation: {"class":"none","paths":[]}
+
+  - id: "positive-relevance-ambiguous-purpose"
+    skill: "dialectical-relevance"
+    mode: "explicit"
+    prompt: "RELEVANCE: remote work. We have not discussed what I want to get out of this."
+    environment: {"fixture":"conversation-in-prompt","external_evidence":"absent","isolated_workers":"unavailable"}
+    expect_activation: {"include":["dialectical-relevance"],"exclude":[]}
+    expect:
+      - "Asks one brief question to clarify the intended purpose before choosing a framing."
+    forbid:
+      - "Inventing a decision, audience, or objective"
+      - "Multi-question intake"
+      - "Research or workspace creation"
+    expected_mutation: {"class":"none","paths":[]}
+
+  - id: "positive-gaps-diagnostic-priority"
+    skill: "dialectical-collection-gaps"
+    mode: "explicit"
+    prompt: "COLLECTION GAPS: churn rose after a redesign and a simultaneous price increase. Some plans had no price increase. We haven't compared churn by plan or asked customers why they left. What evidence would distinguish the causes before we decide whether to roll back pricing?"
+    environment: {"fixture":"conversation-in-prompt","external_evidence":"absent","isolated_workers":"unavailable"}
+    expect_activation: {"include":["dialectical-collection-gaps"],"exclude":["dialectical-research","dialectical-verify","dialectical-indicators"]}
+    expect:
+      - "Prioritizes a comparison bearing on the competing causes, such as cohorts with differing exposure, with limitations."
+      - "For each material gap explains what is missing, why it matters, and a feasible method."
+      - "Separates proposed sources from evidence already collected."
+    forbid:
+      - "Exhaustive research wish list"
+      - "Ranking only by ease of collection"
+      - "Fetching sources or running RESEARCH/VERIFY"
+      - "Declaring either cause proven"
+    expected_mutation: {"class":"none","paths":[]}
+
+  - id: "positive-gaps-unavailable-versus-uncollected"
+    skill: "dialectical-collection-gaps"
+    mode: "contextual"
+    prompt: "COLLECTION GAPS on whether the redesign hid export and caused churn. We requested the old click logs, but they were permanently deleted. We have not examined existing support tickets. The dashboard colors changed too."
+    environment: {"fixture":"conversation-in-prompt","external_evidence":"absent","isolated_workers":"unavailable"}
+    expect_activation: {"include":["dialectical-collection-gaps"],"exclude":["dialectical-research","dialectical-verify"]}
+    expect:
+      - "Distinguishes unavailable click logs from unexamined tickets."
+      - "Suggests a feasible alternative with proxy limits and preserves uncertainty about causation."
+      - "Does not tell us to recover permanently deleted logs as if available."
+    forbid:
+      - "Inventing recovered logs or search results"
+      - "Treating missing logs as proof against the explanation"
+      - "Fetching tickets"
+    expected_mutation: {"class":"none","paths":[]}
+
+  - id: "positive-gaps-conversational-exploration"
+    skill: "dialectical-collection-gaps"
+    mode: "implicit"
+    prompt: "I'm exploring how neighborhoods get their identities, just out of curiosity. What evidence is missing that would help separate the influence of physical layout from shared traditions? We haven't collected anything yet."
+    environment: {"fixture":"conversation-in-prompt","external_evidence":"absent","isolated_workers":"unavailable"}
+    expect_activation: {"include":["dialectical-collection-gaps"],"exclude":["dialectical-relevance","dialectical-research"]}
+    expect:
+      - "Identifies evidence that would distinguish the influences, explaining what, why, and how."
+      - "Retains the exploratory purpose without needing a policy decision."
+    forbid:
+      - "Invented studies or findings"
+      - "Automatic browsing"
+      - "Requiring RELEVANCE first"
+    expected_mutation: {"class":"none","paths":[]}
+
+  - id: "positive-gaps-unknown-history"
+    skill: "dialectical-collection-gaps"
+    mode: "explicit"
+    prompt: "COLLECTION GAPS: a newsletter claims the pricing change improved retention, but gives neither cohort data nor a method. I don't know what evidence anyone has tried to obtain."
+    environment: {"fixture":"conversation-in-prompt","external_evidence":"absent","isolated_workers":"unavailable"}
+    expect_activation: {"include":["dialectical-collection-gaps"],"exclude":["dialectical-verify"]}
+    expect:
+      - "Identifies missing cohort/method evidence and a feasible request or comparison."
+      - "Labels collection history unknown rather than uncollected or unavailable with certainty."
+    forbid:
+      - "Claiming searches or requests failed"
+      - "Treating missing disclosure as proof the claim is false"
+    expected_mutation: {"class":"none","paths":[]}
+
+  - id: "positive-gaps-no-material-gap"
+    skill: "dialectical-collection-gaps"
+    mode: "explicit"
+    prompt: "COLLECTION GAPS for this narrow question: did our two supplied tables use the same denominator? Both supplied methods define the denominator as all 200 accounts active January 1, exclude no accounts, and use that exact same account list. I am not asking about validity or generalizability of the study."
+    environment: {"fixture":"conversation-in-prompt","external_evidence":"absent","isolated_workers":"unavailable"}
+    expect_activation: {"include":["dialectical-collection-gaps"],"exclude":["dialectical-research","dialectical-verify"]}
+    expect:
+      - "Says no material gap is apparent for the specified denominator question from supplied context."
+      - "Does not broaden into unrelated research needs."
+    forbid:
+      - "Manufacturing a fixed quota of gaps"
+      - "Claiming independent verification of supplied data"
+    expected_mutation: {"class":"none","paths":[]}
+
+  - id: "positive-gaps-ambiguous-object"
+    skill: "dialectical-collection-gaps"
+    mode: "explicit"
+    prompt: "COLLECTION GAPS. We've discussed an office lease and a pricing change; neither is the current focus."
+    environment: {"fixture":"conversation-in-prompt","external_evidence":"absent","isolated_workers":"unavailable"}
+    expect_activation: {"include":["dialectical-collection-gaps"],"exclude":[]}
+    expect:
+      - "Asks one brief question identifying which inquiry the user means."
+    forbid:
+      - "Arbitrarily choosing an inquiry"
+      - "Producing separate research plans for both"
+    expected_mutation: {"class":"none","paths":[]}
+
+  - id: "positive-indicators-mechanism-and-outcome"
+    skill: "dialectical-indicators"
+    mode: "explicit"
+    prompt: "INDICATORS: we think restoring export will improve retention among customers who used it. Export events are logged and subscriptions renew monthly. No baseline or effect size has been supplied."
+    environment: {"fixture":"conversation-in-prompt","external_evidence":"absent","isolated_workers":"unavailable"}
+    expect_activation: {"include":["dialectical-indicators"],"exclude":["dialectical-research","dialectical-verify","dialectical-save"]}
+    expect:
+      - "Connects observable signals to the assessment and explains their significance."
+      - "Distinguishes restored export usage from later retention and notes neither alone proves causation."
+      - "Uses the renewal cycle to discuss timing without inventing exact effect thresholds."
+    forbid:
+      - "Invented percentage thresholds"
+      - "Claims of observed improvement"
+      - "Monitoring, scheduling, research, or persistence"
+    expected_mutation: {"class":"none","paths":[]}
+
+  - id: "positive-indicators-conversational-rivals"
+    skill: "dialectical-indicators"
+    mode: "implicit"
+    prompt: "Our traffic drop could reflect tracking failure or loss of search ranking. What developments should we watch for that would make us reconsider either explanation? We can observe server requests, analytics visits, and search impressions."
+    environment: {"fixture":"conversation-in-prompt","external_evidence":"absent","isolated_workers":"unavailable"}
+    expect_activation: {"include":["dialectical-indicators"],"exclude":["dialectical-ach","dialectical-verify"]}
+    expect:
+      - "Maps patterns across these observations to the competing explanations."
+      - "Explains which patterns discriminate and which could fit both."
+    forbid:
+      - "Treating all traffic measures as independent confirmation"
+      - "Claiming to monitor dashboards"
+      - "Automatically launching ACH or VERIFY"
+    expected_mutation: {"class":"none","paths":[]}
+
+  - id: "positive-indicators-absence-not-informative"
+    skill: "dialectical-indicators"
+    mode: "contextual"
+    prompt: "INDICATORS for our view that the mentoring rollout is working. Nobody has complained, but the feedback form was broken throughout the rollout and no one asked staff directly. The team meeting was on Tuesday."
+    environment: {"fixture":"conversation-in-prompt","external_evidence":"absent","isolated_workers":"unavailable"}
+    expect_activation: {"include":["dialectical-indicators"],"exclude":[]}
+    expect:
+      - "Explains why the absence of complaints is not informative given the broken channel."
+      - "Proposes observable learning outcomes or accessible feedback as signals without claiming collection."
+    forbid:
+      - "Treating silence as success"
+      - "Inventing a monitoring arrangement"
+    expected_mutation: {"class":"none","paths":[]}
+
+  - id: "positive-indicators-justified-trigger"
+    skill: "dialectical-indicators"
+    mode: "explicit"
+    prompt: "INDICATORS for whether our support plan needs revision. The agreed service target is 90% of tickets resolved within 48 hours, reviewed weekly. We have not supplied any measured results."
+    environment: {"fixture":"conversation-in-prompt","external_evidence":"absent","isolated_workers":"unavailable"}
+    expect_activation: {"include":["dialectical-indicators"],"exclude":[]}
+    expect:
+      - "Uses the supplied target and weekly review context as a justified reassessment trigger."
+      - "Distinguishes a service outcome from proof about why performance changed."
+    forbid:
+      - "Inventing measured results"
+      - "Creating a weekly reminder"
+      - "Replacing the target with an arbitrary threshold"
+    expected_mutation: {"class":"none","paths":[]}
+
+  - id: "positive-indicators-ambiguous-assessment"
+    skill: "dialectical-indicators"
+    mode: "explicit"
+    prompt: "INDICATORS please. We discussed both employee retention and search traffic, but I haven't selected which assessment to revisit."
+    environment: {"fixture":"conversation-in-prompt","external_evidence":"absent","isolated_workers":"unavailable"}
+    expect_activation: {"include":["dialectical-indicators"],"exclude":[]}
+    expect:
+      - "Asks one brief question to identify the assessment."
+    forbid:
+      - "Assuming a target"
+      - "Monitoring either topic"
+    expected_mutation: {"class":"none","paths":[]}
+
   - id: positive-dialectical-orientation
     skill: dialectical
     mode: explicit

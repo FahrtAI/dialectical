@@ -7,7 +7,7 @@
 
 > Ordinary conversation with intellectual discipline.
 
-**Current version:** 0.4.0 (skills-only)
+**Current version:** 0.5.0 (skills-only)
 
 LLMs can be thought of as lossy, natural-language search engines for the material they ingested during training—which, for a frontier model, can include an awful lot of the material on the internet.
 
@@ -69,12 +69,21 @@ Dialectical-specific help uses a compact, stable [command card](skills/dialectic
 | Purpose | Operations | What they help you do |
 |---|---|---|
 | Understand the conversation | RESTATE, SUMMARIZE, DISTILL, TRACE | Clarify an idea, compress context, extract what was learned, and recover provenance |
+| Frame an inquiry | RELEVANCE, COLLECTION GAPS, INDICATORS | Clarify purpose, prioritize missing evidence, and define developments worth watching |
 | Explore | RESEARCH, HYPOTHESIZE, THOUGHT EXPERIMENT | Find relevant prior art, generate explanations, and examine implications |
 | Test | CHALLENGE, VERIFY, ACH, CAUSAL-CHAIN, SOURCE-QUALITY | Seek counterarguments and disconfirming evidence, test causal logic, and assess sources |
 | Remember | TAG, SAVE, RECALL | Organize, preserve, and retrieve useful knowledge |
 | Continue over time | START INQUIRY, CHECKPOINT, RESUME, CLOSE | Maintain an optional line of inquiry across conversations |
 
 ACH is Analysis of Competing Hypotheses: it compares rival explanations against the evidence instead of asking only whether a favored explanation fits. CAUSAL-CHAIN exposes the assumptions in each link of a causal argument. SOURCE-QUALITY rates the reliability of a source separately from the credibility of the information it provides.
+
+Ask “What are we trying to understand?” for RELEVANCE, “What evidence would
+distinguish these explanations?” for COLLECTION GAPS, or “What should we watch
+for that would change our assessment?” for INDICATORS. Each is independently
+callable. Exploration does not require a decision or a formal inquiry setup.
+COLLECTION GAPS proposes collection; RESEARCH seeks evidence; VERIFY checks a
+specific empirical claim. INDICATORS defines signals without creating monitoring
+or scheduled tasks.
 
 ## How it behaves
 
@@ -93,7 +102,7 @@ Dialectical also distinguishes among debate, narrative, inquiry, and decision. E
 
 See [CHATGPT.md](CHATGPT.md) for account installation, desktop and iPhone tests,
 and the distinction between a local folder and an installed account plugin.
-Use the skills-only ZIP in `dist/dialectical-0.4.0.zip`.
+Use the skills-only ZIP in `dist/dialectical-0.5.0.zip`.
 Installing this source does not automatically update an older account plugin.
 
 The portable package contains `plugin.json`, `skills/`, and referenced artwork.
@@ -141,11 +150,15 @@ CHATGPT.md    installation and device testing
 installed-host tests. See the [architecture audit](docs/architecture-audit.md)
 for the removal of the old service dependency and official specification links.
 
-All bundled skills use release version 0.4.0. Storage schema versions are
+All 23 bundled skills use release version 0.5.0. Storage schema versions are
 separate and have not changed. Other optional host guides remain in
 [CLAUDE.md](CLAUDE.md), [CODEX.md](CODEX.md), and [GEMINI.md](GEMINI.md).
 
 ## Status
+
+Future work is tracked in [BACKLOG.md](BACKLOG.md), including optional GUIDE
+behavior, an independent observer, and an analysis cookbook. These are ideas
+for later development, not features of this release.
 
 The skills-only package can be built locally. Successful local validation does
 not establish account installation, public directory approval, or desktop/iPhone

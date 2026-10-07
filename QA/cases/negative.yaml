@@ -3,6 +3,116 @@ suite: dialectical-negative
 description: Neighbor and ordinary-language cases in which the skill under test must stay inactive.
 
 cases:
+  - id: "negative-relevance-use-restate"
+    skill: "dialectical-relevance"
+    mode: "negative"
+    prompt: "Restate this argument more clearly without changing it: mentoring depends partly on informal contact."
+    environment: {"fixture":"conversation-in-prompt"}
+    expect_activation: {"include":["dialectical-restate"],"exclude":["dialectical-relevance"]}
+    expect:
+      - "Rephrases the claim faithfully."
+    forbid:
+      - "Reframing the purpose of an inquiry"
+    expected_mutation: {"class":"none","paths":[]}
+
+  - id: "negative-relevance-keyword-only"
+    skill: "dialectical-relevance"
+    mode: "negative"
+    prompt: "Is this paragraph relevant to the introduction? The introduction is about garden irrigation; the paragraph describes drip hoses."
+    environment: {"fixture":"conversation-in-prompt"}
+    expect_activation: {"include":[],"exclude":["dialectical-relevance"]}
+    expect:
+      - "Answers the ordinary relevance question directly."
+    forbid:
+      - "Launching purpose-and-scope analysis from the keyword alone"
+    expected_mutation: {"class":"none","paths":[]}
+
+  - id: "negative-gaps-use-research"
+    skill: "dialectical-collection-gaps"
+    mode: "negative"
+    prompt: "RESEARCH published evidence on whether remote work affects mentoring. Find sources, not a plan for finding them."
+    environment: {"fixture":"conversation-in-prompt"}
+    expect_activation: {"include":["dialectical-research"],"exclude":["dialectical-collection-gaps"]}
+    expect:
+      - "Seeks evidence using available evidence tools or states the access limit."
+    forbid:
+      - "Substituting a collection proposal for the requested research"
+    expected_mutation: {"class":"none","paths":[]}
+
+  - id: "negative-gaps-use-indicators"
+    skill: "dialectical-collection-gaps"
+    mode: "negative"
+    prompt: "Define future developments we should watch for that would weaken our assessment that mentoring has improved."
+    environment: {"fixture":"conversation-in-prompt"}
+    expect_activation: {"include":["dialectical-indicators"],"exclude":["dialectical-collection-gaps"]}
+    expect:
+      - "Defines signals and their bearing on the assessment."
+    forbid:
+      - "Turning this into a research plan"
+      - "Creating monitoring"
+    expected_mutation: {"class":"none","paths":[]}
+
+  - id: "negative-indicators-use-gaps"
+    skill: "dialectical-indicators"
+    mode: "negative"
+    prompt: "What evidence is missing to decide between a tracking error and actual traffic loss, and how could we obtain it? We haven't looked at server logs."
+    environment: {"fixture":"conversation-in-prompt"}
+    expect_activation: {"include":["dialectical-collection-gaps"],"exclude":["dialectical-indicators"]}
+    expect:
+      - "Identifies diagnostic gaps and ways to resolve them."
+    forbid:
+      - "Substituting a schedule of future signals"
+      - "Fetching logs"
+    expected_mutation: {"class":"none","paths":[]}
+
+  - id: "negative-indicators-use-verify"
+    skill: "dialectical-indicators"
+    mode: "negative"
+    prompt: "VERIFY whether our mentoring score increased from April to May. April's supplied report says 3.0/5 and May's says 3.2/5, using the same question and respondents."
+    environment: {"fixture":"conversation-in-prompt"}
+    expect_activation: {"include":["dialectical-verify"],"exclude":["dialectical-indicators"]}
+    expect:
+      - "Evaluates the dated empirical claim against the supplied records and their limits."
+    forbid:
+      - "Replacing evaluation with future indicators"
+    expected_mutation: {"class":"none","paths":[]}
+
+  - id: "negative-gaps-hypothesize-predictions"
+    skill: "dialectical-collection-gaps"
+    mode: "negative"
+    prompt: "HYPOTHESIZE why churn rose after the redesign. For each explanation give a distinctive prediction."
+    environment: {"fixture":"conversation-in-prompt"}
+    expect_activation: {"include":["dialectical-hypothesize"],"exclude":["dialectical-collection-gaps","dialectical-indicators"]}
+    expect:
+      - "Generates distinct explanations with predictions within HYPOTHESIZE's own contract."
+    forbid:
+      - "Automatically invoking a second skill for predictions"
+    expected_mutation: {"class":"none","paths":[]}
+
+  - id: "negative-indicators-ordinary-conversation"
+    skill: "dialectical-indicators"
+    mode: "negative"
+    prompt: "It's interesting how neighborhoods seem to develop a personality over time. Let's just talk about that."
+    environment: {"fixture":"conversation-in-prompt"}
+    expect_activation: {"include":[],"exclude":["dialectical-indicators","dialectical-collection-gaps","dialectical-relevance"]}
+    expect:
+      - "Continues ordinary exploration."
+    forbid:
+      - "Imposing operations or a staged inquiry"
+    expected_mutation: {"class":"none","paths":[]}
+
+  - id: "negative-gaps-ach-next-evidence"
+    skill: "dialectical-collection-gaps"
+    mode: "negative"
+    prompt: "Use ACH on two explanations of a traffic decline. H1: tracking failure; H2: real traffic loss. Analytics visits fell, but server logs are unavailable. Compare these hypotheses and name the next discriminating evidence without fetching it."
+    environment: {"fixture":"conversation-in-prompt"}
+    expect_activation: {"include":["dialectical-ach"],"exclude":["dialectical-collection-gaps","dialectical-indicators","dialectical-research","dialectical-verify"]}
+    expect:
+      - "ACH weighs the supplied evidence, preserves the missing-data uncertainty, and names discriminating evidence within its own operation."
+    forbid:
+      - "Automatically invoking another skill to identify the next evidence"
+    expected_mutation: {"class":"none","paths":[]}
+
   - id: negative-dialectical-casual-conversation
     skill: dialectical
     mode: negative

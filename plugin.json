@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "dialectical",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Ordinary conversation with intellectual discipline.",
   "author": {
     "name": "FahrtAI",
@@ -20,14 +20,17 @@
       "interface": {
         "displayName": "Dialectical",
         "shortDescription": "Think freely. Test rigorously.",
-        "longDescription": "Ordinary conversation with intellectual discipline. Start with an idea, question, or decision. Dialectical helps clarify claims, surface prior art and connections, compare competing explanations, test assumptions, and seek disconfirming evidence. Its focused operations are optional; conversation remains primary. This skills-only plugin requires no external service. Research uses available evidence tools; continuity uses the current chat or notes you supply, with optional file storage when authorized.",
+        "longDescription": "Ordinary conversation with intellectual discipline. Start with an idea, question, or decision. Dialectical helps clarify inquiry purpose and scope, surface prior art and connections, compare competing explanations, test assumptions, and seek disconfirming evidence. COLLECTION GAPS prioritizes missing evidence to seek; INDICATORS defines observable developments that warrant reassessment. These operations do not automatically collect evidence or create monitoring. All operations are optional; conversation remains primary. This skills-only plugin requires no external service. Research uses available evidence tools; continuity uses the current chat or notes you supply, with optional file storage when authorized.",
         "developerName": "FahrtAI",
         "category": "Education & Research",
         "capabilities": [
           "Structured conversation",
           "Competing-hypothesis analysis",
           "Source assessment",
-          "Thought experiments"
+          "Thought experiments",
+          "Inquiry purpose and scope",
+          "Evidence gap prioritization",
+          "Reassessment indicators"
         ],
         "websiteURL": "https://github.com/FahrtAI/dialectical",
         "defaultPrompt": [

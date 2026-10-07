@@ -18,6 +18,10 @@ SUMMARIZE           Compress the conversation without interpretation.
 DISTILL             Extract insights, tensions, and questions.
 TRACE               Recover where an idea originated.
 
+RELEVANCE           Clarify inquiry purpose and scope.
+COLLECTION GAPS     Identify missing evidence worth seeking.
+INDICATORS          Define observable signals worth watching.
+
 RESEARCH            Find relevant evidence and precedents.
 HYPOTHESIZE         Generate plausible competing explanations deliberately.
 THOUGHT EXPERIMENT  Explore implications through imagined conditions.

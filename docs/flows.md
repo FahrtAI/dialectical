@@ -1,6 +1,16 @@
 # Sample flows
 
-Two illustrative sessions. They are examples, not workflows. Each operation happens because the user asked for it, and any of them could be skipped or reordered. The data is invented.
+Two illustrative sessions and independent operation examples. They are examples, not workflows. Each operation happens because the user asked for it, and any of them could be skipped or reordered. The data is invented.
+
+## Independent examples: purpose, gaps, and indicators
+
+These are separate requests, not steps in one process.
+
+| User says | Operation | Result |
+|---|---|---|
+| “RELEVANCE: I'm curious about why cities develop distinct identities. I'm not planning a policy.” | RELEVANCE | Frames an exploratory question about how shared practices and physical form contribute to identity, preserving curiosity as the purpose. Suggests that residents' experience and visitors' impressions may differ, without requiring a decision or audience. |
+| “Churn rose after a redesign and a simultaneous price increase. We haven't compared cohorts; we asked for click logs, but they were deleted. What evidence is worth seeking?” | COLLECTION GAPS | Prioritizes churn comparisons by exposure to each change. Distinguishes the unexamined cohorts from unavailable logs; proposes support tickets as a limited proxy for usability problems without claiming to retrieve them. |
+| “We think restoring export will help retention. What should we watch for?” | INDICATORS | Separates recovered export usage from later retention among affected customers, explaining that either alone is insufficient to establish causation. Leaves the observation window conditional on the retention cycle. No alerts or monitoring are created. |
 
 ## Flow 1: Diagnosing an observation in one session
 

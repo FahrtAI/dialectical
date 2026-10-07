@@ -19,6 +19,12 @@ Serious conversations usually do one of four kinds of work. Each is legitimate f
 
 ## Recognizing the kind
 
+RELEVANCE can clarify purpose in any of these conversations without converting
+exploration into a decision. COLLECTION GAPS can identify evidence that would
+change understanding or distinguish explanations. INDICATORS can define what
+developments would warrant reassessment. Use these only when requested; none
+is a stage, and their outputs do not automatically launch another operation.
+
 Infer the kind from the question and from what the user plans to do with the answer. Do not ask the user to classify the conversation. Ask only when the difference would change the response materially, for example: "Do you want the strongest case for this, or to find out whether it's true?"
 
 Do not announce or label the kind of conversation. Show it through the work: separate facts from values in a decision, mark which parts of a story are established, and keep a debate's case distinct from the evidence.

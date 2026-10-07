@@ -2,7 +2,7 @@
 name: dialectical-recall
 description: Retrieve relevant saved Dialectical memory objects and prior inquiry state with provenance. Use when the user asks what was previously learned, saved, decided, or connected; do not treat retrieved content as automatically current or true.
 metadata:
-  version: "0.4.0"
+  version: "0.5.0"
 ---
 
 # Recall

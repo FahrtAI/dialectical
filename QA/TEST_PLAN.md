@@ -36,6 +36,8 @@ Run static validation on every commit. It should verify:
 - each description states what the skill does and when it should be used;
 - local links resolve;
 - every installed skill appears in the Dialectical router;
+- every operation appears once in the help card with a five-word description;
+- skill, manifest, current documentation, and ChatGPT QA release versions agree;
 - every skill has at least one behavioral evaluation case;
 - obsolete skill names and paths are absent;
 - storage examples conform to the current schema;
@@ -61,6 +63,8 @@ Prioritize these confusion sets:
 
 - RESTATE / SUMMARIZE / DISTILL / TRACE
 - RESEARCH / VERIFY / SOURCE-QUALITY
+- RELEVANCE / RESTATE / START INQUIRY
+- COLLECTION GAPS / RESEARCH / INDICATORS / VERIFY
 - HYPOTHESIZE / ACH / CHALLENGE
 - CHALLENGE / THOUGHT EXPERIMENT / HYPOTHESIZE
 - CHALLENGE / CAUSAL-CHAIN
@@ -85,6 +89,9 @@ Minimum operation checks:
 | SUMMARIZE | Compactly cover the selected conversational span | New conclusions or claims about what was learned |
 | DISTILL | Label every finding established, tested, generated, or speculative, and keep uncertainty and open questions | Transcript recap, manufactured consensus, or a persuasive idea listed as established |
 | TRACE | Preserve pivots, dependencies, reversals, and abandoned branches | A falsely linear retrospective |
+| RELEVANCE | Clarify purpose, scope, and consequential distinctions using context; ask one brief question only for material ambiguity | Forced decisions, invented audiences, intake questionnaires, or inquiry setup |
+| COLLECTION GAPS | Prioritize diagnostic and consequential missing evidence; explain what, why, and a feasible way to obtain it; distinguish uncollected, unavailable, and unknown status | Research wish lists, invented collection history, or automatic collection/verification |
+| INDICATORS | Link observable developments to assessments; justify timing and thresholds; assess whether absent signals could be detected | Invented precision, claimed observations, automatic monitoring, or scheduled tasks |
 | RESEARCH | Broaden the evidence space with source limitations and contrary material; for a conversation-generated idea, separate formulation, prior work, empirical support, and novel remainder | Premature verdict on one narrow proposition, or prior work treated as validation |
 | HYPOTHESIZE | Produce genuinely different mechanisms and discriminating observations | Evidence scoring, cosmetic variants, or a premature winner |
 | THOUGHT EXPERIMENT | Build a few concrete cases that each isolate one question and state what the claim predicts in each | A list of objections, or the result presented as evidence about the world |
@@ -100,6 +107,19 @@ Minimum operation checks:
 | CHECKPOINT | Update living inquiry state while preserving reversals | Replacing tentative or superseded states silently |
 | RESUME | Load the selected inquiry and relevant linked context | Activating an ambiguous inquiry before selection |
 | CLOSE | Take a final checkpoint and record paused or closed status | Marking unresolved work complete or closing the platform chat |
+
+The 0.5.0 additions have explicit, implicit, contextual, ambiguous, and negative
+cases in `cases/positive.yaml` and `cases/negative.yaml`, plus core regressions
+in `evals/cases.yaml`. Exercise each skill independently with no preceding
+operation. Check exploration and decision contexts, known versus missing
+context, unavailable evidence, diagnostic value, and absence of automatic
+chaining, tool calls, monitoring, or durable writes. Neighboring skills may
+still mention purpose, gaps, and predictions within their existing contracts.
+
+Parsing YAML or validating case coverage does not execute these cases. Capture
+actual responses and invocation/tool traces before assigning behavior scores;
+use `evals/SCORING.md`, and report unrun host tests separately. No automated
+behavioral runner is currently implemented.
 
 ### 4. Optional file-memory integration
 

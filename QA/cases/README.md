@@ -19,6 +19,13 @@ not create prerequisites for ordinary ChatGPT conversation.
 Positive and negative do not mean good and bad user sentiment. They describe
 whether the skill under test should activate.
 
+The 0.5.0 cases cover RELEVANCE, COLLECTION GAPS, and INDICATORS individually,
+including ordinary phrasing, exploratory and decision purposes, ambiguity,
+collection history, absent signals, justified thresholds, and neighboring-skill
+boundaries. Their positive cases need only the supplied conversation, without
+tools, prior operations, or storage. Negative cases also check that existing
+HYPOTHESIZE and ACH behavior does not trigger an additional skill.
+
 ## Case fields
 
 - `id`: stable case identifier.

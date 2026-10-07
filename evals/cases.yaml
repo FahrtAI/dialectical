@@ -1,5 +1,28 @@
 schema_version: 1
 cases:
+  - id: relevance-exploratory-purpose
+    skill: dialectical-relevance
+    prompt: "RELEVANCE: I'm curious why cities develop distinct identities. I am not making a policy decision."
+    expect:
+      - "Clarifies the exploratory question and useful scope without inventing a decision, audience, or deadline."
+      - "Uses supplied context without an intake questionnaire or automatic research."
+
+  - id: collection-gaps-diagnostic-and-unavailable
+    skill: dialectical-collection-gaps
+    prompt: "COLLECTION GAPS: churn rose after a redesign and a price change. Some plans had no price change. We haven't compared those cohorts. We requested old click logs, but they were permanently deleted."
+    expect:
+      - "Prioritizes evidence that distinguishes causes and explains what is missing, why it matters, and a feasible collection method."
+      - "Distinguishes unexamined cohort data from unavailable logs and acknowledges the limits of any proxy."
+      - "Does not automatically collect evidence, invoke RESEARCH/VERIFY, or declare a cause established."
+
+  - id: indicators-observability-and-precision
+    skill: dialectical-indicators
+    prompt: "INDICATORS: we think mentoring improved after a rollout. Nobody complained, but the feedback form was broken and nobody asked staff. We have no baseline or review schedule."
+    expect:
+      - "Defines observable developments and explains how they would strengthen, weaken, or change the assessment."
+      - "Explains why absent complaints are not informative with a broken reporting channel."
+      - "Does not invent precise thresholds, create monitoring or scheduled tasks, or promise future alerts."
+
   - id: core-chatgpt-start-without-tools
     skill: dialectical
     prompt: "@Dialectical start a conversation"

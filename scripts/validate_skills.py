@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SKILLS = ROOT / "skills"
 ROUTER = SKILLS / "dialectical" / "SKILL.md"
 CASES = ROOT / "evals" / "cases.yaml"
+HELP = SKILLS / "dialectical" / "references" / "help.md"
 FRONTMATTER = re.compile(r"\A---\n(?P<body>.*?)\n---\n", re.DOTALL)
 LINK = re.compile(r"\[[^\]]+\]\((?!https?://|#)([^)]+)\)")
 OBSOLETE = (
@@ -44,6 +45,35 @@ def section(text: str, heading: str) -> str:
     return match.group(1) if match else ""
 
 
+def validate_help(text: str, skill_names: set[str]) -> list[str]:
+    """Check public help coverage and the five-word description contract."""
+    failures = []
+    card = re.search(r"(?ms)^```text\n(.*?)^```", text)
+    if not card:
+        return ["Missing canonical text help card"]
+    labels = []
+    for line in card.group(1).splitlines():
+        match = re.fullmatch(r"([A-Z][A-Z -]*?) {2,}(\S.*)", line)
+        if not match:
+            continue
+        label, description = match.groups()
+        labels.append(label)
+        if len(description.split()) != 5:
+            failures.append(f"Help description must have five words: {label}")
+    expected = {
+        name.removeprefix("dialectical-").replace("-", " ").upper()
+        for name in skill_names if name != "dialectical"
+    }
+    normalized = [label.replace("-", " ") for label in labels]
+    if len(normalized) != len(set(normalized)):
+        failures.append("Duplicate operation in help card")
+    for label in sorted(expected - set(normalized)):
+        failures.append(f"Operation missing from help card: {label}")
+    for label in sorted(set(normalized) - expected):
+        failures.append(f"Unknown operation in help card: {label}")
+    return failures
+
+
 def main() -> int:
     failures: list[str] = []
     skill_files = sorted(SKILLS.glob("*/SKILL.md"))
@@ -51,6 +81,10 @@ def main() -> int:
 
     if not skill_files:
         failures.append("No direct child skills found under skills/")
+
+    for directory in SKILLS.iterdir():
+        if directory.is_dir() and not (directory / "SKILL.md").is_file():
+            failures.append(f"Skill directory has no SKILL.md: {directory.name}")
 
     nested = [path for path in SKILLS.glob("*/*/SKILL.md")]
     if nested:
@@ -108,6 +142,24 @@ def main() -> int:
             failures.append(f"Skill missing from router Route section: {name}")
         if not re.search(rf"(?m)^\s*(?:skill:|-)\s*{re.escape(name)}\s*$", cases):
             failures.append(f"Skill has no eval case in evals/cases.yaml: {name}")
+
+    if HELP.is_file():
+        failures.extend(validate_help(HELP.read_text(), {p.parent.name for p in skill_files}))
+    else:
+        failures.append("Missing canonical help card")
+
+    for relative in ("README.md", "CHATGPT.md"):
+        text = (ROOT / relative).read_text()
+        current = re.search(r"(?:\*\*Current version:\*\* |Dialectical )(\d+\.\d+\.\d+)", text)
+        if not current or current.group(1) != release:
+            failures.append(f"Current version differs from plugin: {relative}")
+        archives = re.findall(r"dist/dialectical-(\d+\.\d+\.\d+)\.zip", text)
+        if not archives or any(version != release for version in archives):
+            failures.append(f"Distribution reference differs from plugin: {relative}")
+    chatgpt_cases = (ROOT / "QA/cases/chatgpt.yaml").read_text()
+    version = re.search(r'(?m)^  version: "([^"]+)"$', chatgpt_cases)
+    if not version or version.group(1) != release:
+        failures.append("ChatGPT QA version differs from plugin")
 
     repository_text = "\n".join(
         path.read_text(encoding="utf-8")

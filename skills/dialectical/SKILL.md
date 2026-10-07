@@ -2,7 +2,7 @@
 name: dialectical
 description: Start and guide a Dialectical conversation when the user invokes @Dialectical, asks to start a conversation with Dialectical, or requests its methodology or help. Explore ideas, examine assumptions, and seek disconfirming evidence while preserving ordinary conversation.
 metadata:
-  version: "0.4.0"
+  version: "0.5.0"
 ---
 
 # Dialectical
@@ -42,6 +42,7 @@ For lighter orientation during an existing conversation, briefly identify the
 relevant operations without explaining all of them:
 
 - Context: RESTATE, SUMMARIZE, DISTILL, TRACE
+- Inquiry framing: RELEVANCE, COLLECTION GAPS, INDICATORS
 - Inquiry: RESEARCH, HYPOTHESIZE, THOUGHT EXPERIMENT, CHALLENGE, VERIFY
 - Diagnosis: ACH, CAUSAL-CHAIN, SOURCE-QUALITY
 - Knowledge: TAG, SAVE, RECALL
@@ -56,12 +57,26 @@ Treat the capitalized words as conversational handles, not rigid syntax. Resolve
 Use the corresponding namespaced standalone skill beside this directory:
 
 - `dialectical-restate`, `dialectical-summarize`, `dialectical-distill`, or `dialectical-trace`
+- `dialectical-relevance`, `dialectical-collection-gaps`, or `dialectical-indicators`
 - `dialectical-research`, `dialectical-hypothesize`, `dialectical-thought-experiment`, `dialectical-challenge`, or `dialectical-verify`
 - `dialectical-ach`, `dialectical-causal-chain`, or `dialectical-source-quality`
 - `dialectical-tag`, `dialectical-save`, or `dialectical-recall`
 - `dialectical-start-inquiry`, `dialectical-checkpoint`, `dialectical-resume`, or `dialectical-close`
 
 Lifecycle operations are not cognitive primitives. They maintain optional inquiry state and must not become a required workflow.
+
+Route by the requested job, not a keyword alone:
+
+- “What are we trying to understand or inform?” → RELEVANCE: purpose and scope.
+- “What missing evidence would separate these explanations?” → COLLECTION GAPS: evidence to seek, without collecting it.
+- “Find evidence about these explanations” → RESEARCH: seek evidence.
+- “What should we watch for, and when should we reconsider?” → INDICATORS: observable developments, without monitoring them.
+- “Check whether this specific claim is true” → VERIFY: evaluate an empirical proposition.
+
+These are independent choices, not a sequence. Existing operations may discuss
+purpose, gaps, or predictions within their own work without invoking another
+skill. Keep ordinary conversation ordinary; the presence of an uncertainty or
+the word “relevant” alone is not a request for an operation.
 
 If the operation's object is genuinely ambiguous and choosing incorrectly would materially change the result, ask one brief question. Otherwise infer the focus and proceed.
 
@@ -73,6 +88,7 @@ Keep the conversational agent responsible for the final response. When the host 
 - Split substantive RESEARCH into independent, bounded workstreams when they can proceed without depending on one another.
 - Use workers conditionally for HYPOTHESIZE, THOUGHT EXPERIMENT, ACH, CAUSAL-CHAIN, SOURCE-QUALITY, or large-store RECALL as their standalone skills specify.
 - Keep context operations and all durable mutations in the main agent.
+- Keep RELEVANCE, COLLECTION GAPS, and INDICATORS in the main agent, using the current inquiry context.
 
 Give a worker the exact object, relevant evidence, user goal, scope constraints, and output contract. Omit unrelated conversation history and do not privilege the conversation's current conclusion unless it is itself part of the object under analysis. Treat worker results as inputs to reconcile, not as authoritative or user-facing answers.
 
