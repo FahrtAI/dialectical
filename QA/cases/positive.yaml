@@ -12,11 +12,13 @@ cases:
       include: [dialectical]
       exclude: []
     expect:
-      - "Briefly groups the available operations without imposing a workflow."
-      - "Explains that operation names are conversational handles rather than rigid syntax."
+      - "Returns the canonical ASCII help card from references/help.md."
+      - "Includes every operation with its five-word description."
+      - "Uses the tagline: Ordinary conversation with intellectual discipline."
     forbid:
       - "Performing every operation"
       - "Presenting the toolkit as a mandatory sequence"
+      - "Replacing the canonical card with a newly generated introduction"
     expected_mutation: {class: none, paths: []}
 
   - id: positive-restate-qualified-claim

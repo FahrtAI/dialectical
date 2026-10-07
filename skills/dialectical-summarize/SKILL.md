@@ -2,7 +2,7 @@
 name: dialectical-summarize
 description: Compress the relevant conversation or material into a shorter account of what was discussed. Use for recap and context reduction; do not use to infer what was learned, evaluate claims, or reconstruct detailed provenance.
 metadata:
-  version: "0.1.0"
+  version: "0.3.0"
 ---
 
 # Summarize

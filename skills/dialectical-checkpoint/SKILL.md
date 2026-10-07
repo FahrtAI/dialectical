@@ -2,7 +2,7 @@
 name: dialectical-checkpoint
 description: Update the active Dialectical inquiry's living state without ending the conversation. Use when the user wants a durable checkpoint or before context may be lost; do not save the entire transcript by default.
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Checkpoint

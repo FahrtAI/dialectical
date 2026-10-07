@@ -2,7 +2,7 @@
 name: dialectical
 description: Support open-ended human–LLM inquiry with optional Dialectical cognitive and lifecycle operations while preserving organic conversation. Use to orient users to the toolkit or govern how its independently discoverable skills interact.
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Dialectical
@@ -11,7 +11,13 @@ Keep the conversation primary. Do not impose stages, require a workflow, or turn
 
 ## Orient
 
-When orientation would help, briefly identify the available operations without explaining all of them:
+When the user asks for help with Dialectical, what the toolkit does, how to use
+it, or to see its operations, read
+[`references/help.md`](references/help.md) and return its canonical help card.
+Do not use the card for a generic request for help with the user's subject.
+
+For lighter orientation during an existing conversation, briefly identify the
+relevant operations without explaining all of them:
 
 - Context: RESTATE, SUMMARIZE, DISTILL, TRACE
 - Inquiry: RESEARCH, HYPOTHESIZE, THOUGHT EXPERIMENT, CHALLENGE, VERIFY

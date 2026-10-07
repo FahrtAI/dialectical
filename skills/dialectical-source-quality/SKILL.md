@@ -2,7 +2,7 @@
 name: dialectical-source-quality
 description: Rate how reliable sources are and how credible the information they provide is, separately, using the Admiralty scale, and identify missing evidence. Use when the user asks how much weight particular sources or pieces of evidence deserve; do not use for broad exploration (RESEARCH) or to settle one proposition (VERIFY).
 metadata:
-  version: "0.1.0"
+  version: "0.3.0"
 ---
 
 # Source Quality

@@ -2,7 +2,7 @@
 name: dialectical-start-inquiry
 description: Start a new Dialectical inquiry by creating its workspace and curating relevant context from prior inquiries and durable memory. Use when the user asks to begin, initialize, or branch an inquiry; do not imply that this creates a new chat in the surrounding platform.
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Start Inquiry

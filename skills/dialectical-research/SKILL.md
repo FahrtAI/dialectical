@@ -2,7 +2,7 @@
 name: dialectical-research
 description: Broaden the evidence and information space around a focused inquiry using relevant external sources, prior art, analogous cases, and facts. Use for exploratory investigation; do not use merely to adjudicate one narrowly specified proposition.
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Research

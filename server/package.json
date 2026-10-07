@@ -1,6 +1,6 @@
 {
   "name": "@fahrtai/dialectical-mcp",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "description": "MCP persistence service for the Dialectical plugin",

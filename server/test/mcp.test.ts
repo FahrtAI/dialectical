@@ -18,7 +18,7 @@ test("MCP endpoint advertises and executes the persistence tools", async () => {
     new URL(`http://127.0.0.1:${port}/mcp`),
     { requestInit: { headers: { "x-dialectical-user-id": "integration-user" } } },
   );
-  const client = new Client({ name: "dialectical-test", version: "0.1.0" });
+  const client = new Client({ name: "dialectical-test", version: "0.3.0" });
 
   try {
     await client.connect(transport);
@@ -109,7 +109,7 @@ test("OAuth metadata is discoverable and unauthenticated initialization is chall
         params: {
           protocolVersion: "2025-06-18",
           capabilities: {},
-          clientInfo: { name: "unauthenticated-test", version: "0.1.0" },
+          clientInfo: { name: "unauthenticated-test", version: "0.3.0" },
         },
       }),
     });

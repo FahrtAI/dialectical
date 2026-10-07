@@ -7,6 +7,8 @@
 
 > Ordinary conversation with intellectual discipline.
 
+**Current version:** 0.3.0 (development)
+
 LLMs can be thought of as lossy, natural-language search engines for the material they ingested during training—which, for a frontier model, can include an awful lot of the material on the internet.
 
 That lossiness is part of what makes them useful. By bringing similar or related concepts into view across many contexts at once, an LLM can surface prior art, reveal unexpected associations, reframe an idea, and help refine a line of thought.
@@ -55,6 +57,8 @@ SAVE that connection.
 ```
 
 The capitalized names are conversational handles, not command syntax. See [sample conversations](docs/flows.md) for complete examples.
+
+Dialectical-specific help uses a compact, stable [command card](skills/dialectical/references/help.md) rather than generating a new introduction each time.
 
 ## Operations
 

@@ -2,7 +2,7 @@
 name: dialectical-restate
 description: Rearticulate the current claim, idea, question, or position clearly without materially changing it. Use when the user asks what they or the conversation are actually saying; do not use for compression, conclusions, critique, or reframing.
 metadata:
-  version: "0.1.0"
+  version: "0.3.0"
 ---
 
 # Restate

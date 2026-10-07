@@ -46,7 +46,7 @@ export function createApp(options: AppOptions) {
   const metadataUrl = resourceMetadataUrl(options.auth);
 
   app.get("/health", (_request, response) => {
-    response.json({ status: "ok", service: "dialectical-memory", version: "0.1.0" });
+    response.json({ status: "ok", service: "dialectical-memory", version: "0.3.0" });
   });
 
   app.get("/.well-known/oauth-protected-resource", (_request, response) => {
