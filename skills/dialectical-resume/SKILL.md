@@ -2,7 +2,7 @@
 name: dialectical-resume
 description: Resume a prior Dialectical inquiry by loading its current state, relevant context, and saved-object links. Use when the user wants to continue an existing inquiry rather than create a new one.
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # Resume
@@ -12,6 +12,11 @@ Restore enough context to continue an inquiry without replaying its transcript.
 Read [`../dialectical/references/memory.md`](../dialectical/references/memory.md) before accessing the store.
 
 ## Operation
+
+Without an authorized readable file store, use an inquiry or checkpoint
+visible in the current chat or supplied by the user. Briefly restore its focus
+and uncertainties, then continue. If the prior material is absent, ask the user
+to paste or attach it; do not claim cross-chat recall. Skip file/status writes.
 
 1. Identify the inquiry by explicit ID, platform thread identifier, title, or a relevance search over the conversations index.
 2. If several plausible inquiries remain, present the smallest useful distinction and ask which one to resume.

@@ -30,7 +30,10 @@ What this shows:
 
 ## Flow 2: Carrying an inquiry across sessions
 
-The same churn investigation, run as a Dialectical inquiry so it survives between sessions. The workspace already has a `.dialectical/` store from an earlier pricing inquiry.
+This optional example requires a host with authorized file access. The same
+churn investigation is saved in a `.dialectical/` store from an earlier pricing
+inquiry. Ordinary ChatGPT conversation does not require this store: use a
+copyable CHECKPOINT and paste it into a later chat to RESUME instead.
 
 ```mermaid
 sequenceDiagram

@@ -405,7 +405,7 @@ cases:
     skill: dialectical
     mode: contextual
     prompt: "Right, that's clearly why ramp-up got slower."
-    environment: {fixture: converged-untested-theory, instructions: always-on-snippet}
+    environment: {fixture: converged-untested-theory, instructions: dialectical-invoked}
     expect_activation:
       include: []
       exclude: [dialectical-verify, dialectical-research, dialectical-hypothesize, dialectical-challenge, dialectical-thought-experiment]
@@ -420,7 +420,7 @@ cases:
     skill: dialectical
     mode: contextual
     prompt: "So we should require two office days a week."
-    environment: {fixture: converged-untested-theory, instructions: always-on-snippet}
+    environment: {fixture: converged-untested-theory, instructions: dialectical-invoked}
     expect_activation:
       include: []
       exclude: []

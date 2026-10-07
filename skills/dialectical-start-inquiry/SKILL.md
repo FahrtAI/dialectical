@@ -1,8 +1,8 @@
 ---
 name: dialectical-start-inquiry
-description: Start a new Dialectical inquiry by creating its workspace and curating relevant context from prior inquiries and durable memory. Use when the user asks to begin, initialize, or branch an inquiry; do not imply that this creates a new chat in the surrounding platform.
+description: Begin or branch a focused Dialectical inquiry in the current conversation, carrying forward relevant available context. A file workspace is optional when authorized; do not imply that this creates a new platform chat.
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # Start Inquiry
@@ -18,6 +18,15 @@ Infer a short working title and the new inquiry's initial focus from the request
 Treat “new” as a fresh inquiry context, not necessarily a wholly unrelated topic. Do not force the user to classify it before starting.
 
 ## Create the workspace
+
+By default, establish the focus in the current chat and begin discussing it.
+If the topic is missing, ask what the user wants to explore. Use supplied or
+visible prior context only; do not claim access to other conversations.
+Without authorized filesystem storage, skip the file operations below and
+continue normally. A request to start a conversation never requires a store.
+
+The following file procedure applies only when the user requests a persistent
+workspace or is already working in an authorized Dialectical file store.
 
 Use the current project or user-selected location as the workspace root. Initialize `.dialectical/` there when absent, then create:
 
@@ -53,6 +62,10 @@ Create the internal `.gitignore` specified by the storage contract so conversati
 Do not silently rewrite old conversation records during curation. Index repair and new cross-links are allowed; substantive changes to an old record require an explicit reason.
 
 ## Complete
+
+For a conversation-only inquiry, state its focus briefly and ask the next
+useful question. Do not invent an identifier or claim it was saved. The
+following completion report applies only when files were actually written.
 
 Add the new conversation to `.dialectical/conversations/index.md` and report:
 

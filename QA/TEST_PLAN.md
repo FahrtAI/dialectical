@@ -101,9 +101,10 @@ Minimum operation checks:
 | RESUME | Load the selected inquiry and relevant linked context | Activating an ambiguous inquiry before selection |
 | CLOSE | Take a final checkpoint and record paused or closed status | Marking unresolved work complete or closing the platform chat |
 
-### 4. Durable-memory integration
+### 4. Optional file-memory integration
 
-Run lifecycle and memory tests inside a fresh temporary workspace. Inspect the
+This suite applies only to hosts with an authorized filesystem. It is not a
+ChatGPT conversation prerequisite. Run lifecycle and memory tests inside a fresh temporary workspace. Inspect the
 filesystem after every operation.
 
 Primary end-to-end scenario:
@@ -196,30 +197,28 @@ The trace must record which context fields were supplied to each worker. Tests
 must fail when unrelated conversation material crosses the boundary or a worker
 mutates durable inquiry state.
 
-### 8. ChatGPT plugin and MCP integration
+### 8. Skills-only ChatGPT acceptance
 
-Run the server unit and protocol tests before installed-plugin evaluation:
+Run `scripts/validate_skills.py` and `scripts/validate_plugin_package.py`,
+then build with `scripts/package_plugin.py`. Inspect the archive: it must
+contain no MCP/app configuration, server, hooks, dependencies, or runtime code.
 
-```sh
-cd server
-npm run typecheck
-npm test
-npm run build
-```
+Run `QA/cases/chatgpt.yaml` in new desktop and iPhone chats with no Dialectical
+server or app connection. Follow [installation and device tests](../CHATGPT.md).
+The startup prompt is `@Dialectical start a conversation`, selected through
+the actual plugin mention menu. It must ask for a topic and continue normally.
 
-The deterministic server suite must cover tool discovery, representative tool
-calls, authentication failure, user isolation, session-to-user binding,
-idempotent retries, optimistic concurrency conflicts, status history, and the
-absence of a destructive deletion surface. The installed-plugin suite then
-runs `QA/cases/mcp.yaml` to verify that skills choose the MCP backend, never
-dual-write, order lifecycle mutations correctly, and treat retrieved content
-as untrusted data.
+Test conversation-only SAVE, CHECKPOINT, CLOSE, RECALL, and RESUME separately from
+the optional file-store cases. Record account/workspace, app version, installed
+plugin version, mention selection, prompt, response, and tools invoked.
+Static checks do not prove skill activation or mobile availability.
+No external service or database may be required for the core acceptance test.
 
 ### 9. Monitoring and kinds of conversation
 
 These behaviors run during ordinary conversation, so test them with the
-always-on instructions from the README loaded (`instructions:
-always-on-snippet` in a case's environment). The shared fixture
+Dialectical entry skill loaded by explicit invocation (`instructions:
+dialectical-invoked` in a case's environment). The shared fixture
 `converged-untested-theory` is a conversation of about ten turns in which the
 user and model build and agree on an untested explanation, with one supplied
 data point and no external evidence.

@@ -1,153 +1,138 @@
 #!/usr/bin/env python3
-"""Validate Dialectical's portable and compatibility plugin manifests."""
+"""Check this skills-only package against documented portable/OpenAI constraints.
+
+Source: https://developers.openai.com/plugins/build/plugins
+Metadata: https://developers.openai.com/plugins/deploy/submission
+These local checks do not replace OpenAI's upload scans or installed-host tests.
+"""
 
 from __future__ import annotations
 
-import argparse
 import json
 import re
+import struct
 from pathlib import Path
 from urllib.parse import urlparse
 
-
 ROOT = Path(__file__).resolve().parents[1]
-SEMVER = re.compile(r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$")
-SUBMISSION_CATEGORIES = {
-    "Productivity",
-    "Creativity",
-    "Developer Tools",
-    "Business & Operations",
-    "Data & Analytics",
-    "Communication",
-    "Education & Research",
-    "Security",
-    "Finance",
-    "Healthcare",
-    "Travel",
-    "Entertainment",
-    "Other",
-}
+SCHEMA = "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
 
 
-def load(path: Path, failures: list[str]) -> dict:
+def package_files() -> list[Path]:
+    manifest = json.loads((ROOT / "plugin.json").read_text())
+    interface = manifest["extensions"]["com.openai"]["interface"]
+    files = [ROOT / "plugin.json"]
+    files.extend(sorted((ROOT / "skills").rglob("*.md")))
+    for key in ("logo", "logoDark", "composerIcon", "composerIconDark"):
+        if key in interface:
+            files.append(ROOT / interface[key])
+    return sorted(set(files))
+
+
+def validate() -> list[str]:
+    failures = []
     try:
-        value = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as error:
-        failures.append(f"Cannot load {path.relative_to(ROOT)}: {error}")
-        return {}
-    if not isinstance(value, dict):
-        failures.append(f"{path.relative_to(ROOT)} must contain an object")
-        return {}
-    return value
-
-
-def validate(production: bool = False) -> list[str]:
-    failures: list[str] = []
-    portable = load(ROOT / "plugin.json", failures)
-    mcp = load(ROOT / "mcp.json", failures)
-    compatibility = load(ROOT / ".codex-plugin" / "plugin.json", failures)
-    compatibility_mcp = load(ROOT / ".mcp.json", failures)
-
-    for field in ("name", "version", "description"):
-        if not isinstance(portable.get(field), str) or not portable[field].strip():
-            failures.append(f"plugin.json requires non-empty {field}")
-    if portable.get("name") != "dialectical":
-        failures.append("plugin.json name must be dialectical")
-    if not SEMVER.fullmatch(str(portable.get("version", ""))):
-        failures.append("plugin.json version must be strict semver")
-    for field in ("name", "version", "description"):
-        if compatibility.get(field) != portable.get(field):
-            failures.append(f"Compatibility manifest {field} must match plugin.json")
-
-    servers = mcp.get("mcpServers")
-    if not isinstance(servers, dict) or not servers:
-        failures.append("mcp.json requires at least one MCP server")
-    else:
-        for name, config in servers.items():
-            if not isinstance(config, dict):
-                failures.append(f"MCP server {name} must be an object")
-                continue
-            if config.get("type") != "streamable-http":
-                failures.append(f"Portable MCP server {name} must use streamable-http")
-            url = config.get("url")
-            parsed = urlparse(url) if isinstance(url, str) else None
-            if parsed is None or not parsed.scheme or not parsed.netloc:
-                failures.append(f"MCP server {name} requires an absolute URL")
-            elif production and parsed.scheme != "https":
-                failures.append(f"Production MCP server {name} must use HTTPS")
-            elif production and parsed.hostname in {"localhost", "127.0.0.1", "::1"}:
-                failures.append(f"Production MCP server {name} cannot use localhost")
-
-    compat_servers = compatibility_mcp.get("mcpServers")
-    if not isinstance(compat_servers, dict) or set(compat_servers) != set(servers or {}):
-        failures.append("Portable and compatibility MCP server names must match")
-
-    skill_files = sorted((ROOT / "skills").glob("*/SKILL.md"))
-    if len(skill_files) != 20:
-        failures.append(f"Expected 20 bundled skills, found {len(skill_files)}")
-
-    interface = (
-        portable.get("extensions", {}).get("com.openai", {}).get("interface", {})
-        if isinstance(portable.get("extensions"), dict)
-        else {}
-    )
-    compatibility_interface = compatibility.get("interface", {})
-    if compatibility_interface != interface:
-        failures.append("Portable and compatibility interface metadata must match")
-    text_limits = {
-        "displayName": 30,
-        "shortDescription": 30,
-        "longDescription": 4000,
-        "developerName": 80,
-    }
-    for field, limit in text_limits.items():
-        value = interface.get(field)
-        if not isinstance(value, str) or not value.strip():
-            failures.append(f"Plugin requires non-empty interface.{field}")
-        elif len(value) > limit:
-            failures.append(f"interface.{field} exceeds the {limit}-character submission limit")
-    if interface.get("category") not in SUBMISSION_CATEGORIES:
-        failures.append("interface.category is not a supported submission category")
-    capabilities = interface.get("capabilities")
-    if not isinstance(capabilities, list) or not capabilities or len(capabilities) > 20:
-        failures.append("interface.capabilities must contain 1 to 20 entries")
-    elif any(not isinstance(item, str) or not item.strip() or len(item) > 120 for item in capabilities):
-        failures.append("Each interface capability must be non-empty and at most 120 characters")
-    prompts = interface.get("defaultPrompt")
-    if not isinstance(prompts, list) or not prompts or len(prompts) > 3:
-        failures.append("interface.defaultPrompt must contain 1 to 3 entries")
-    elif any(not isinstance(item, str) or not item.strip() or len(item) > 128 for item in prompts):
-        failures.append("Each starter prompt must be non-empty and at most 128 characters")
-    assets = (ROOT / "assets").resolve()
-    for field in ("logo", "logoDark", "composerIcon"):
-        value = interface.get(field)
+        manifest = json.loads((ROOT / "plugin.json").read_text())
+        if not isinstance(manifest, dict):
+            return ["plugin.json must contain an object"]
+    except (OSError, ValueError) as error:
+        return [f"Cannot read plugin.json: {error}"]
+    allowed = {"$schema", "name", "version", "description", "author",
+               "homepage", "repository", "license", "keywords", "extensions"}
+    if set(manifest) - allowed:
+        failures.append("Unsupported portable manifest fields")
+    if manifest.get("$schema") != SCHEMA:
+        failures.append("Missing portable Agent Plugins 1.0 schema")
+    if manifest.get("name") != "dialectical":
+        failures.append("Plugin identity must remain dialectical")
+    if not re.fullmatch(r"(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)",
+                        str(manifest.get("version", ""))):
+        failures.append("Release version must be semver")
+    if not isinstance(manifest.get("description"), str) or not 1 <= len(manifest["description"]) <= 4000:
+        failures.append("Description must contain 1–4000 characters")
+    for path in ("mcp.json", ".mcp.json", ".app.json", "hooks", "server",
+                 ".codex-plugin/plugin.json"):
+        if (ROOT / path).exists():
+            failures.append(f"Unnecessary infrastructure remains: {path}")
+    extension = manifest.get("extensions", {}).get("com.openai", {})
+    if not isinstance(extension, dict) or set(extension) - {"interface"}:
+        return failures + ["This package needs only the OpenAI interface extension"]
+    interface = extension.get("interface", {})
+    if not isinstance(interface, dict):
+        return failures + ["interface must be an object"]
+    limits = {"displayName": 30, "shortDescription": 30,
+              "longDescription": 4000, "developerName": 80}
+    for key, limit in limits.items():
+        value = interface.get(key)
+        if not isinstance(value, str) or not value.strip() or len(value) > limit:
+            failures.append(f"Invalid interface.{key}")
+    if interface.get("displayName") != "Dialectical":
+        failures.append("Display name must be Dialectical")
+    if interface.get("category") != "Education & Research":
+        failures.append("Unexpected listing category")
+    capabilities = interface.get("capabilities", [])
+    if not isinstance(capabilities, list) or len(capabilities) > 20 or any(
+        not isinstance(item, str) or not item.strip() or len(item) > 120
+        for item in capabilities
+    ):
+        failures.append("Invalid capabilities")
+    prompts = interface.get("defaultPrompt", [])
+    if isinstance(prompts, str):
+        prompts = [prompts]
+    if not isinstance(prompts, list) or len(prompts) > 3 or any(
+        not isinstance(p, str) or not p.strip() or len(p) > 128 or "@" in p
+        for p in prompts
+    ):
+        failures.append("Invalid starter prompts")
+    elif len(set(prompts)) != len(prompts):
+        failures.append("Starter prompts must be unique")
+    for key in ("websiteURL", "supportURL", "privacyPolicyURL", "termsOfServiceURL"):
+        if key in interface:
+            url = urlparse(interface[key])
+            if url.scheme != "https" or not url.netloc or url.username or url.password or len(interface[key]) > 1024:
+                failures.append(f"Invalid interface.{key}")
+    for key in ("logo", "logoDark", "composerIcon", "composerIconDark"):
+        value = interface.get(key)
         if value is None:
             continue
-        path = (ROOT / value).resolve() if isinstance(value, str) else None
-        if path is None or assets not in path.parents or not path.is_file():
-            failures.append(f"interface.{field} must point to an existing file under assets/")
-    if production:
-        for field in ("websiteURL", "privacyPolicyURL", "termsOfServiceURL", "supportURL"):
-            value = interface.get(field)
-            parsed = urlparse(value) if isinstance(value, str) else None
-            if parsed is None or parsed.scheme != "https" or not parsed.netloc:
-                failures.append(f"Production plugin requires interface.{field}")
-
+        if not isinstance(value, str) or not value.startswith("./"):
+            failures.append(f"Invalid asset path: {key}")
+            continue
+        path = ROOT / value
+        if not path.resolve().is_relative_to(ROOT.resolve()) or path.is_symlink() or not path.is_file():
+            failures.append(f"Missing or unsafe asset: {value}")
+            continue
+        data = path.read_bytes()
+        if len(data) > 5 * 1024 * 1024 or data[:8] != b"\x89PNG\r\n\x1a\n":
+            failures.append(f"Expected a PNG no larger than 5 MiB: {value}")
+            continue
+        width, height = struct.unpack(">II", data[16:24])
+        if width != height or not 48 <= width <= 4096:
+            failures.append(f"Icon must be square, 48–4096 pixels: {value}")
+    color = interface.get("brandColor")
+    if color:
+        if not re.fullmatch(r"#[0-9A-Fa-f]{6}", color):
+            failures.append("Invalid brandColor")
+        else:
+            rgb = [int(color[i:i+2], 16) / 255 for i in (1, 3, 5)]
+            linear = [c / 12.92 if c <= .04045 else ((c + .055) / 1.055) ** 2.4 for c in rgb]
+            luminance = sum(c * w for c, w in zip(linear, (.2126, .7152, .0722)))
+            if 1.05 / (luminance + .05) < 2:
+                failures.append("brandColor needs at least 2:1 contrast with white")
+    for path in (ROOT / "skills").rglob("*"):
+        if path.is_symlink():
+            failures.append(f"Symlink in skills: {path.relative_to(ROOT)}")
+    if not (ROOT / "skills/dialectical/SKILL.md").is_file():
+        failures.append("Missing entry skill")
     return failures
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--production", action="store_true")
-    args = parser.parse_args()
-    failures = validate(production=args.production)
+    failures = validate()
     if failures:
-        print("Plugin package validation failed:")
-        for failure in failures:
-            print(f"- {failure}")
+        print("\n".join(failures))
         return 1
-    mode = "production" if args.production else "development"
-    print(f"Plugin package validation passed ({mode}).")
+    print("Skills-only plugin package validation passed.")
     return 0
 
 

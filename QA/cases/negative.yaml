@@ -305,7 +305,7 @@ cases:
     skill: dialectical
     mode: negative
     prompt: "Let's keep going with the overhearing idea. What would a virtual hallway channel look like?"
-    environment: {fixture: converged-untested-theory-check-declined, instructions: always-on-snippet}
+    environment: {fixture: converged-untested-theory-check-declined, instructions: dialectical-invoked}
     expect_activation:
       include: []
       exclude: [dialectical-verify, dialectical-research]

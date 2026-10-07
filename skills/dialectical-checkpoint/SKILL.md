@@ -2,7 +2,7 @@
 name: dialectical-checkpoint
 description: Update the active Dialectical inquiry's living state without ending the conversation. Use when the user wants a durable checkpoint or before context may be lost; do not save the entire transcript by default.
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # Checkpoint
@@ -12,6 +12,11 @@ Preserve the current intellectual state while leaving the inquiry open.
 Read [`../dialectical/references/memory.md`](../dialectical/references/memory.md) before writing.
 
 ## Operation
+
+Without an authorized writable file store, return a compact checkpoint in
+chat: focus, findings and their basis, uncertainty, reversals, and next questions.
+Say it is a copyable note, not a separately saved record, and leave the inquiry
+open. The file procedure below applies only when storage is available.
 
 1. Resolve the current inquiry: the one this conversation started or resumed, or the one whose `thread_id` matches. Status alone does not identify it, because several inquiries may be active.
 2. Distill the present focus, established findings, inferences, uncertainties, open questions, consequential pivots, and saved-object links.

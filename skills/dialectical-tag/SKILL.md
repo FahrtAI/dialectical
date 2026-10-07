@@ -2,14 +2,14 @@
 name: dialectical-tag
 description: Attach concise structured metadata to a conversational object so it can be classified, related, and retrieved. Use for organizing an idea, claim, question, hypothesis, finding, or saved object; do not use to persist the object itself.
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # Tag
 
 Describe a conversational object with the smallest useful set of structured metadata.
 
-When applying metadata to an already saved Dialectical object, read [`../dialectical/references/memory.md`](../dialectical/references/memory.md), preserve its identifier and provenance, and confirm the durable update.
+When applying metadata to an already saved Dialectical object, read [`../dialectical/references/memory.md`](../dialectical/references/memory.md) and preserve its identifier and provenance. Confirm an update only when it was actually written; otherwise return proposed metadata in chat.
 
 ## Operation
 

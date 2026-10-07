@@ -1,5 +1,12 @@
 schema_version: 1
 cases:
+  - id: core-chatgpt-start-without-tools
+    skill: dialectical
+    prompt: "@Dialectical start a conversation"
+    expect:
+      - "Asks which idea, question, or decision the user wants to explore."
+      - "Does not request a server, credentials, storage, or a required workflow."
+
   - id: core-default-do-nothing
     skill: dialectical
     prompt: "Let's casually explore why some cities feel easier to navigate than others."
@@ -137,7 +144,8 @@ cases:
     skill: dialectical-start-inquiry
     prompt: "Start a new inquiry about causal diagrams."
     expect:
-      - "Creates or proposes a collision-safe inquiry workspace and curated context."
+      - "Begins in the current conversation, using only relevant available context."
+      - "Creates a file workspace only when persistent storage is requested and authorized."
       - "Does not claim to create a platform chat."
 
   - id: checkpoint-preserves-reversal

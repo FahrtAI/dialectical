@@ -7,7 +7,7 @@
 
 > Ordinary conversation with intellectual discipline.
 
-**Current version:** 0.3.0 (development)
+**Current version:** 0.4.0 (skills-only)
 
 LLMs can be thought of as lossy, natural-language search engines for the material they ingested during training—which, for a frontier model, can include an awful lot of the material on the internet.
 
@@ -32,6 +32,10 @@ The system is built around one warning:
 > An LLM's ability to make an idea more coherent is not evidence that the idea is more true.
 
 ## Using it
+
+Install the plugin, select **Dialectical** from ChatGPT's `@` menu, and send
+`@Dialectical start a conversation`. It asks what you want to explore and begins
+in the current chat. No external server, account connection, or database is required.
 
 Talk normally. Ask for a particular kind of help when you want it:
 
@@ -85,106 +89,65 @@ ACH is Analysis of Competing Hypotheses: it compares rival explanations against 
 
 Dialectical also distinguishes among debate, narrative, inquiry, and decision. Each is legitimate, but each fails differently. In particular, a plausible narrative is not necessarily an explanation, and a decision mixes facts with goals, values, and trade-offs. The distinction should improve the answer without making the conversation sound like a methodology workshop. See [conversation modes](skills/dialectical/references/modes.md) for details.
 
-## Installation
+## Install in ChatGPT
 
-Install `skills/dialectical` and every `skills/dialectical-*` directory as siblings in the skill discovery directory used by your host:
+See [CHATGPT.md](CHATGPT.md) for account installation, desktop and iPhone tests,
+and the distinction between a local folder and an installed account plugin.
+Use the skills-only ZIP in `dist/dialectical-0.4.0.zip`.
+Installing this source does not automatically update an older account plugin.
 
-```sh
-DEST=~/.claude/skills   # replace with your host's discovery directory
-mkdir -p "$DEST"
-for d in skills/dialectical skills/dialectical-*; do cp -R "$d" "$DEST/"; done
-```
+The portable package contains `plugin.json`, `skills/`, and referenced artwork.
+Its OpenAI display name is **Dialectical**. The plugin includes no MCP
+configuration, app dependency, executable runtime, or service.
 
-| Platform | Discovery directory or integration | Guide |
-|---|---|---|
-| Claude Code | `.claude/skills/` or `~/.claude/skills/` | [CLAUDE.md](CLAUDE.md) |
-| Codex | `$CODEX_HOME/skills/` | [CODEX.md](CODEX.md) |
-| Gemini CLI | `.gemini/skills/` or `.agents/skills/` | [GEMINI.md](GEMINI.md) |
-| ChatGPT | Plugin and MCP server included in this repository | [CHATGPT.md](CHATGPT.md) |
+## Continuity
 
-A reference to this repository in a platform instruction file does not install the skills. Confirm that all operations are discoverable after installation.
+Conversation works without storage. SAVE returns a copyable record; CHECKPOINT
+returns a state note; RESUME can use a checkpoint you paste or attach.
+The plugin does not promise automatic recall across chats.
 
-### Optional monitoring
-
-Skills normally load only when invoked. To enable Dialectical's two restrained, proactive checks, add the following to the instruction file your host always loads:
-
-```markdown
-## Dialectical
-- Keep the conversation primary; don't intervene by default.
-- Suggest DISTILL when branches and open questions have become hard to hold.
-- When we start treating an untested claim, mechanism, prediction, or "new" idea as settled, offer once, in one line, what would check it.
-- When the question turns from what's true to what to do, separate facts from goals and values.
-- Coherence, agreement, and repetition are not evidence.
-- Run an operation only when asked or when a suggestion is accepted.
-```
-
-Use `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, or ChatGPT project/custom instructions, depending on the host.
-
-## ChatGPT plugin
-
-This repository is also the plugin root. It contains the portable manifests, all bundled skills, and an MCP service under `server/` for durable inquiries and saved knowledge. The development manifests use `http://127.0.0.1:8787/mcp`; a public release requires a stable HTTPS endpoint and real publisher, privacy, terms, and support URLs.
-
-```sh
-cd server
-npm install
-npm run typecheck
-npm test
-npm run build
-```
-
-See the [ChatGPT integration guide](CHATGPT.md) and [server documentation](server/README.md) for local setup, authentication, and deployment.
-
-Build and validate a local development package from the repository root:
-
-```sh
-python3 scripts/package_plugin.py --development
-python3 scripts/validate_plugin_package.py
-```
-
-For a production package, replace the local endpoint, add the required public URLs, and run `python3 scripts/package_plugin.py`. The production preflight rejects localhost, non-HTTPS endpoints, and missing release metadata.
-
-## Memory
-
-Dialectical records inquiry state rather than full transcripts. A local skill host can use the file-backed `.dialectical/` store; the ChatGPT plugin uses the MCP service. An integration should use one backend as the source of truth and must not claim to remember information that is neither in the current context nor retrieved from that backend.
-
-```text
-.dialectical/
-├── manifest.yaml
-├── conversations/
-│   ├── index.md
-│   └── <conversation-id>/
-│       ├── state.md
-│       └── context.md
-└── memory/
-    ├── index.md
-    └── objects/<object-id>.md
-```
-
-Records preserve provenance, uncertainty, and superseded states. `.dialectical/` is ignored by Git by default because it may contain private conversation data. The complete format and mutation rules are in the [memory specification](skills/dialectical/references/memory.md).
+For hosts with an authorized filesystem, the existing optional `.dialectical/`
+format remains supported. It is private and Git-ignored by default. See the
+[memory reference](skills/dialectical/references/memory.md).
+RESEARCH and VERIFY use available evidence tools or sources you supply; without
+them they state the limitation instead of inventing citations.
 
 ## Development
 
-```text
-skills/       independently discoverable operations
-server/       MCP persistence service
-evals/        behavioral cases and scoring rules
-QA/           test plan and test cases
-scripts/      validators and packaging tools
-docs/         sample conversation flows
-assets/       project and plugin artwork
-```
-
-Run the structural and package checks with:
+These existing maintainer utilities validate and package files; users do not
+run them to conduct a conversation:
 
 ```sh
 python3 scripts/validate_skills.py
 python3 scripts/validate_plugin_package.py
+python3 scripts/package_plugin.py
 ```
 
-Behavioral cases live in `evals/cases.yaml`, with scoring rules in `evals/SCORING.md`. The broader [QA test plan](QA/TEST_PLAN.md) covers positive and negative routing cases, memory integration, adversarial boundaries, evidence-access modes, and release gates.
+The ZIP includes only the manifest, skill Markdown files, and referenced plugin
+icons. Repository documentation, tests, and build utilities stay outside it.
 
-Each skill declares its own semantic version because operations can evolve independently. The plugin version in `plugin.json` and `.codex-plugin/plugin.json` must match and should be bumped whenever a bundled skill or the MCP server changes.
+```text
+plugin.json   portable plugin manifest
+skills/       entry skill, focused operations, and supporting references
+assets/       project and plugin artwork
+QA/           acceptance tests and optional host-capability tests
+evals/        methodology cases and scoring
+scripts/      static checks and ZIP packaging
+docs/         examples and architecture audit
+CHATGPT.md    installation and device testing
+```
+
+[QA/TEST_PLAN.md](QA/TEST_PLAN.md) distinguishes structural checks from actual
+installed-host tests. See the [architecture audit](docs/architecture-audit.md)
+for the removal of the old service dependency and official specification links.
+
+All bundled skills use release version 0.4.0. Storage schema versions are
+separate and have not changed. Other optional host guides remain in
+[CLAUDE.md](CLAUDE.md), [CODEX.md](CODEX.md), and [GEMINI.md](GEMINI.md).
 
 ## Status
 
-The skills, local memory contract, plugin package, and MCP server are implemented. Behavioral evaluation is currently manual. RESEARCH and VERIFY depend on the evidence-access capabilities of the host. A public ChatGPT release still requires production hosting, publisher verification, policy and support URLs, and submission assets. The project does not yet declare a license.
+The skills-only package can be built locally. Successful local validation does
+not establish account installation, public directory approval, or desktop/iPhone
+behavior. Record those tests after installing the updated plugin.
+The project does not yet declare a license.

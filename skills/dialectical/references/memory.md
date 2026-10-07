@@ -1,38 +1,28 @@
-# Dialectical storage contract, version 1
+# Dialectical continuity and optional file storage
 
-Dialectical uses an explicit MCP or file-backed store for durable memory. Model context, platform chat history, and skill instructions are not themselves a reliable mutable knowledge store.
+The plugin needs no external service or database. Ordinary conversation runs
+in the current chat. Chat history is not a plugin-owned, searchable memory store.
 
-## Select one storage backend
+## Without file storage (default in ChatGPT)
 
-Use exactly one authorized durable backend for an operation:
+- START INQUIRY establishes a focus in the current conversation.
+- CHECKPOINT and CLOSE return a copyable state note with findings, their basis,
+  uncertainty, reversals, and open questions. Closing does not close the chat.
+- SAVE returns a copyable Markdown record and says it was not persisted elsewhere.
+- RECALL and RESUME use visible or user-supplied notes. Ask for missing prior
+  material; never claim access to other chats or records that were not retrieved.
+- TAG proposes metadata without claiming a durable update.
 
-1. When the Dialectical MCP tools are available, use them as the canonical
-   store for plugin sessions.
-2. Otherwise, when filesystem access is authorized, use the file-backed store
-   defined below.
-3. When neither backend is available, do not claim that data was saved,
-   recalled, checkpointed, resumed, or closed durably.
+The user can copy a note and paste or attach it in another chat. Do not promise
+automatic synchronization or cross-chat memory. Do not request a server,
+credentials, an app connection, or storage setup merely to continue conversation.
 
-Never dual-write or imply that the MCP and file stores synchronize. State which
-backend was used when that distinction matters to the user.
+## Optional file storage, schema version 1
 
-The MCP mapping is:
-
-| Operation | MCP tools |
-|---|---|
-| START INQUIRY | `search_memory` when prior context is relevant, then `start_inquiry` |
-| CHECKPOINT | `get_inquiry`, then `checkpoint_inquiry` with `expected_version` |
-| RESUME | `list_inquiries` and `get_inquiry`; activate only after ambiguity is resolved |
-| CLOSE | `get_inquiry`, `checkpoint_inquiry`, then `set_inquiry_status` |
-| SAVE | `save_memory_object` |
-| RECALL | `search_memory`, `get_memory_object`, and inquiry read tools when relevant |
-| TAG | `get_memory_object`, then `update_memory_metadata` with `expected_version` |
-
-Use a fresh idempotency key for each intended write and reuse that key only
-when retrying the same write. On a version conflict, reload the canonical
-record, preserve both substantive versions, and reconcile explicitly instead
-of overwriting silently. MCP results remain subject to the trust and privacy
-boundary below.
+Only when an authorized filesystem is available and the user requests durable
+notes or is working in an existing Dialectical store, use the format below.
+These instructions preserve compatibility with existing user records; this is
+not an installation requirement. Never write to the installed skill directory.
 
 ## Store root
 

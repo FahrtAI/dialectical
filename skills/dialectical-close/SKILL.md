@@ -2,7 +2,7 @@
 name: dialectical-close
 description: Close or pause an active Dialectical inquiry by taking a final checkpoint and recording its status. Use only when the user asks to close, pause, finish, or archive the inquiry; do not end or archive the surrounding platform chat implicitly.
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # Close Inquiry
@@ -12,6 +12,11 @@ Leave the inquiry recoverable and intellectually legible.
 Read [`../dialectical/references/memory.md`](../dialectical/references/memory.md) before writing.
 
 ## Operation
+
+Without an authorized writable file store, give a final checkpoint in chat,
+retain unresolved questions, and mark the inquiry paused or closed within this
+conversation. Tell the user they can paste that checkpoint into a later chat
+to resume. Do not claim a durable write. The file procedure below is optional.
 
 1. Resolve the current inquiry as CHECKPOINT does, and whether the requested status is `paused` or `closed`.
 2. Perform a final checkpoint: current conclusion or state, supporting basis, unresolved uncertainty, open questions, and saved-object links.

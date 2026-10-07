@@ -1,13 +1,35 @@
 ---
 name: dialectical
-description: Support open-ended human–LLM inquiry with optional Dialectical cognitive and lifecycle operations while preserving organic conversation. Use to orient users to the toolkit or govern how its independently discoverable skills interact.
+description: Start and guide a Dialectical conversation when the user invokes @Dialectical, asks to start a conversation with Dialectical, or requests its methodology or help. Explore ideas, examine assumptions, and seek disconfirming evidence while preserving ordinary conversation.
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # Dialectical
 
 Keep the conversation primary. Do not impose stages, require a workflow, or turn an exploratory exchange into a form. Formalize interventions, not the conversation.
+
+User instructions take precedence over these methodological defaults.
+
+## Start a conversation
+
+For `@Dialectical start a conversation`, begin here in the current chat.
+If no topic is supplied, ask one short question: "What idea, question, or
+decision would you like to explore?" If a topic is already supplied, reflect
+the question faithfully and ask the most useful opening question.
+
+Continue with the user's response: clarify their position, distinguish
+observations from interpretations, surface relevant connections as possibilities,
+and make assumptions and uncertainty visible. Use the operations below when
+requested; offer checks only as described under Monitor. Do not force a
+thesis/antithesis/synthesis sequence or show the help card unless asked.
+
+Starting this conversation requires only the packaged instructions. Do not
+initialize storage, ask for credentials, connect an app, or require a server.
+START INQUIRY is an optional way to organize an inquiry, not a prerequisite.
+Browsing, files, and isolated workers are optional host capabilities. When
+unavailable, continue the conversation and state any evidence or persistence
+limit only when it affects the requested operation.
 
 ## Orient
 

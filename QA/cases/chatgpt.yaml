@@ -1,0 +1,71 @@
+schema_version: 1
+suite: dialectical-chatgpt
+description: Run on desktop and iPhone with no external service, store, or workers.
+environment:
+  plugin: dialectical
+  version: "0.4.0"
+  mcp: absent
+  filesystem: absent
+  isolated_workers: unavailable
+  invocation: select Dialectical under Plugins in the @ menu
+cases:
+  - id: chatgpt-start-no-topic
+    skill: dialectical
+    prompt: "@Dialectical start a conversation"
+    expect:
+      - "Asks one short question about the idea, question, or decision to explore."
+      - "Begins in the current chat."
+    forbid: ["Connection or credential request", "Storage initialization", "Mandatory operation sequence"]
+  - id: chatgpt-start-topic
+    skill: dialectical
+    prompt: "@Dialectical start a conversation about whether remote work weakens mentoring."
+    expect:
+      - "Uses the supplied topic and asks a relevant opening question."
+      - "Preserves uncertainty rather than accepting the causal claim."
+    forbid: ["Asking for a topic already supplied", "Starting a service"]
+  - id: chatgpt-help
+    skill: dialectical
+    prompt: "@Dialectical help"
+    expect: ["Returns the canonical ASCII card and five-word command descriptions."]
+    forbid: ["Executing the listed operations"]
+  - id: chatgpt-save-without-store
+    skill: dialectical-save
+    prompt: "SAVE: overhearing may affect mentoring, but we have not tested the explanation."
+    expect: ["Returns a copyable qualified record.", "Says it was not persisted elsewhere."]
+    forbid: ["Claiming a successful durable save", "Requiring server setup"]
+  - id: chatgpt-checkpoint-without-store
+    skill: dialectical-checkpoint
+    prompt: "CHECKPOINT this discussion. Overhearing is one untested explanation; availability of mentors is another."
+    expect: ["Returns a copyable state note with both hypotheses and their untested status."]
+    forbid: ["Claiming a file write", "Refusing without a database"]
+  - id: chatgpt-start-inquiry-without-store
+    skill: dialectical-start-inquiry
+    prompt: "START INQUIRY about how juniors learn from seniors."
+    expect: ["Establishes the focus in this chat and continues with a useful question."]
+    forbid: ["Requesting storage setup", "Claiming a workspace was created"]
+  - id: chatgpt-close-without-store
+    skill: dialectical-close
+    prompt: "CLOSE this inquiry. The contribution of overhearing remains unknown."
+    expect: ["Returns a final note retaining uncertainty and explains how to reuse it."]
+    forbid: ["Claiming the platform chat was closed", "Claiming a durable status write"]
+  - id: chatgpt-resume-supplied-note
+    skill: dialectical-resume
+    prompt: "RESUME this checkpoint: Mentoring inquiry, paused. Two untested explanations: overhearing and mentor availability. Next question: how would we distinguish them?"
+    expect: ["Continues from the supplied checkpoint with its uncertainty intact."]
+    forbid: ["Claiming it retrieved an unseen chat", "Requiring an external tool"]
+  - id: chatgpt-recall-missing
+    skill: dialectical-recall
+    prompt: "RECALL my saved mentoring findings from another chat."
+    expect: ["States that the material is unavailable and asks the user to supply it."]
+    forbid: ["Inventing a finding", "Pretending to search a store"]
+  - id: chatgpt-challenge-no-workers
+    skill: dialectical-challenge
+    prompt: "CHALLENGE: annual subscribers churn less, so making everyone pay annually will solve churn."
+    expect: ["Challenges the causal inference directly, including selection effects."]
+    forbid: ["Requiring a worker or server", "Treating correlation as proof"]
+  - id: chatgpt-verify-no-evidence
+    skill: dialectical-verify
+    environment: {external_evidence: absent}
+    prompt: "VERIFY that our company's mentoring scores fell this month. I have supplied no records."
+    expect: ["Returns unresolved and identifies the evidence needed."]
+    forbid: ["Invented sources or verification", "Requiring a Dialectical server"]

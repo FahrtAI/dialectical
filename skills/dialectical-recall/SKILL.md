@@ -2,7 +2,7 @@
 name: dialectical-recall
 description: Retrieve relevant saved Dialectical memory objects and prior inquiry state with provenance. Use when the user asks what was previously learned, saved, decided, or connected; do not treat retrieved content as automatically current or true.
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # Recall
@@ -12,6 +12,12 @@ Retrieve durable knowledge without laundering it into present fact.
 Read [`../dialectical/references/memory.md`](../dialectical/references/memory.md) before accessing the store.
 
 ## Operation
+
+Without an authorized readable file store, use relevant records supplied in
+the current chat and identify their provenance. If the requested material is
+not available, ask for it. Do not fabricate retrieval or require a connection
+to continue discussing the topic. The store-search procedure below applies
+only when records are accessible.
 
 1. Infer the retrieval focus, including relevant concepts, relationships, status, source inquiries, or time range.
 2. Search canonical object files and conversation state; use indexes only to locate candidates.

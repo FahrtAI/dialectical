@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import re
+import json
 import sys
 import textwrap
 from pathlib import Path
@@ -46,6 +47,7 @@ def section(text: str, heading: str) -> str:
 def main() -> int:
     failures: list[str] = []
     skill_files = sorted(SKILLS.glob("*/SKILL.md"))
+    release = json.loads((ROOT / "plugin.json").read_text())["version"]
 
     if not skill_files:
         failures.append("No direct child skills found under skills/")
@@ -70,6 +72,10 @@ def main() -> int:
             )
         if not description:
             failures.append(f"Missing description: {path.relative_to(ROOT)}")
+        if not name or len(name) > 64 or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", name):
+            failures.append(f"Invalid skill name: {name!r}")
+        if description and len(description) > 1024:
+            failures.append(f"Description too long: {path.relative_to(ROOT)}")
 
         unexpected = sorted(set(re.findall(r"(?m)^([A-Za-z][\w-]*):", body)) - ALLOWED_KEYS)
         if unexpected:
@@ -77,16 +83,19 @@ def main() -> int:
                 f"Unexpected frontmatter key(s) in {path.relative_to(ROOT)}: {', '.join(unexpected)}"
             )
         version = metadata_field(body, "version")
+        if version != release:
+            failures.append(f"Skill release differs from plugin: {path.relative_to(ROOT)}")
         if not version or not SEMVER.fullmatch(version):
             failures.append(
                 f"Missing or non-semver metadata.version in {path.relative_to(ROOT)}: {version!r}"
             )
 
-        for target in LINK.findall(text):
-            resolved = (path.parent / target).resolve()
-            if not resolved.exists():
+    for path in SKILLS.rglob("*.md"):
+        for target in LINK.findall(path.read_text(encoding="utf-8")):
+            resolved = (path.parent / target.split("#", 1)[0]).resolve()
+            if not resolved.is_relative_to(SKILLS.resolve()) or not resolved.is_file():
                 failures.append(
-                    f"Broken local link in {path.relative_to(ROOT)}: {target}"
+                    f"Missing or escaping skill link in {path.relative_to(ROOT)}: {target}"
                 )
 
     route = section(ROUTER.read_text(encoding="utf-8"), "Route an invocation") if ROUTER.exists() else ""

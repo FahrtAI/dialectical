@@ -2,7 +2,7 @@
 name: dialectical-verify
 description: Resolve a specific empirical proposition against authoritative external evidence and report a calibrated verdict. Use for targeted factual adjudication; do not use for broad exploration, value judgments, or claims that cannot be empirically settled.
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # Verify

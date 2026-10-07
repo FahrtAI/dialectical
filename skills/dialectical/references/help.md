@@ -29,10 +29,10 @@ CAUSAL-CHAIN        Test each link in causation.
 SOURCE-QUALITY      Rate source reliability and credibility.
 
 TAG                 Attach useful labels for retrieval.
-SAVE                Preserve knowledge beyond this conversation.
+SAVE                Prepare knowledge for later reuse.
 RECALL              Retrieve previously saved relevant knowledge.
 
-START INQUIRY       Begin a persistent focused inquiry.
+START INQUIRY       Begin exploring a focused question.
 CHECKPOINT          Capture current state for continuation.
 RESUME              Continue a previously saved inquiry.
 CLOSE               Close while preserving the inquiry.

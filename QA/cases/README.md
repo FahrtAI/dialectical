@@ -10,8 +10,11 @@ The case corpus is split by polarity:
 - `delegation.yaml` checks when isolated workers should or should not be used,
   what context they receive, who synthesizes the answer, and who may mutate
   durable state.
-- `mcp.yaml` checks backend selection, authorization, isolation, idempotency,
-  optimistic concurrency, write ordering, and the memory trust boundary.
+- `chatgpt.yaml` checks startup through @Dialectical and conversation-only
+  continuity on desktop and iPhone without a service or app connection.
+
+Filesystem and isolated-worker cases are optional capability suites. They do
+not create prerequisites for ordinary ChatGPT conversation.
 
 Positive and negative do not mean good and bad user sentiment. They describe
 whether the skill under test should activate.
@@ -30,8 +33,6 @@ whether the skill under test should activate.
 - `expected_mutation`: allowed mutation class and paths.
 - `expect_delegation`: expected decision, worker count, role, and context
   boundaries when the case exercises isolated workers.
-- `expected_mutation.tools`: MCP tools permitted or required by an integration
-  case, in order when sequencing matters.
 
 The activation fields require a structured trace. Until the runner captures
 skill invocation events, they may be scored manually while the output and

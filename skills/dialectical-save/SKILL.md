@@ -2,14 +2,14 @@
 name: dialectical-save
 description: Persist a conversational object with enough meaning, provenance, and relationships to remain useful later. Use when the user wants to retain an idea, finding, question, connection, or other object; do not claim success unless durable storage actually occurred.
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # Save
 
 Preserve the selected object as durable knowledge rather than an isolated transcript fragment.
 
-Read [`../dialectical/references/memory.md`](../dialectical/references/memory.md) and use its selected durable backend. Skill instructions and chat history alone are not durable memory.
+Read [`../dialectical/references/memory.md`](../dialectical/references/memory.md). Without an authorized writable file store, return the selected content as a copyable Markdown record with provenance and uncertainty, and state that it has not been saved outside this chat. Skip storage operations; do not ask the user to deploy or connect a service. Skill instructions and chat history alone are not a plugin-owned durable store.
 
 ## Operation
 
