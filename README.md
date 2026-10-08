@@ -167,9 +167,8 @@ SPDX identifier: `CC-BY-NC-SA-4.0`.
 
 ## Status
 
-Future work is tracked in [BACKLOG.md](BACKLOG.md), including optional GUIDE
-behavior, an independent observer, and an analysis cookbook. These are ideas
-for later development, not features of this release.
+Future work, design questions, and ideas are tracked in the
+[Dialectical GitHub Project](https://github.com/orgs/FahrtAI/projects/1).
 
 The skills-only package can be built locally. Successful local validation does
 not establish account installation, public directory approval, or desktop/iPhone
