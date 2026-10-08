@@ -2,7 +2,7 @@
 name: dialectical-save
 description: Persist a conversational object with enough meaning, provenance, and relationships to remain useful later. Use when the user wants to retain an idea, finding, question, connection, or other object; do not claim success unless durable storage actually occurred.
 metadata:
-  version: "0.5.0"
+  version: "0.5.1"
 ---
 
 # Save

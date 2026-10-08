@@ -2,7 +2,7 @@
 name: dialectical-resume
 description: Resume a prior Dialectical inquiry by loading its current state, relevant context, and saved-object links. Use when the user wants to continue an existing inquiry rather than create a new one.
 metadata:
-  version: "0.5.0"
+  version: "0.5.1"
 ---
 
 # Resume

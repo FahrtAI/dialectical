@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "dialectical",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Ordinary conversation with intellectual discipline.",
   "author": {
     "name": "FahrtAI",
@@ -9,6 +9,7 @@
   },
   "homepage": "https://github.com/FahrtAI/dialectical",
   "repository": "https://github.com/FahrtAI/dialectical",
+  "license": "CC-BY-NC-SA-4.0",
   "keywords": [
     "inquiry",
     "research",

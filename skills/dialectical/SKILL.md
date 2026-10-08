@@ -2,7 +2,7 @@
 name: dialectical
 description: Start and guide a Dialectical conversation when the user invokes @Dialectical, asks to start a conversation with Dialectical, or requests its methodology or help. Explore ideas, examine assumptions, and seek disconfirming evidence while preserving ordinary conversation.
 metadata:
-  version: "0.5.0"
+  version: "0.5.1"
 ---
 
 # Dialectical

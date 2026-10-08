@@ -2,7 +2,7 @@
 name: dialectical-trace
 description: Reconstruct how an inquiry reached its current position, including originating ideas, assumptions, pivots, connections, and abandoned branches. Use for reasoning provenance; do not use for a simple recap or a polished retrospective narrative.
 metadata:
-  version: "0.5.0"
+  version: "0.5.1"
 ---
 
 # Trace

@@ -2,7 +2,7 @@
 name: dialectical-tag
 description: Attach concise structured metadata to a conversational object so it can be classified, related, and retrieved. Use for organizing an idea, claim, question, hypothesis, finding, or saved object; do not use to persist the object itself.
 metadata:
-  version: "0.5.0"
+  version: "0.5.1"
 ---
 
 # Tag

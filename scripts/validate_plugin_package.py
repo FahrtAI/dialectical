@@ -21,7 +21,7 @@ SCHEMA = "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
 def package_files() -> list[Path]:
     manifest = json.loads((ROOT / "plugin.json").read_text())
     interface = manifest["extensions"]["com.openai"]["interface"]
-    files = [ROOT / "plugin.json"]
+    files = [ROOT / "plugin.json", ROOT / "LICENSE"]
     files.extend(sorted((ROOT / "skills").rglob("*.md")))
     for key in ("logo", "logoDark", "composerIcon", "composerIconDark"):
         if key in interface:
@@ -45,6 +45,15 @@ def validate() -> list[str]:
         failures.append("Missing portable Agent Plugins 1.0 schema")
     if manifest.get("name") != "dialectical":
         failures.append("Plugin identity must remain dialectical")
+    if manifest.get("license") != "CC-BY-NC-SA-4.0":
+        failures.append("Plugin license must be CC-BY-NC-SA-4.0")
+    license_path = ROOT / "LICENSE"
+    if not license_path.is_file():
+        failures.append("Missing LICENSE file")
+    else:
+        license_text = license_path.read_text(encoding="utf-8")
+        if "Attribution-NonCommercial-ShareAlike 4.0 International" not in license_text:
+            failures.append("LICENSE does not contain the selected CC legal text")
     if not re.fullmatch(r"(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)",
                         str(manifest.get("version", ""))):
         failures.append("Release version must be semver")

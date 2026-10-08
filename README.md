@@ -7,7 +7,7 @@
 
 > Ordinary conversation with intellectual discipline.
 
-**Current version:** 0.5.0 (skills-only)
+**Current version:** 0.5.1 (skills-only)
 
 LLMs can be thought of as lossy, natural-language search engines for the material they ingested during training—which, for a frontier model, can include an awful lot of the material on the internet.
 
@@ -102,10 +102,10 @@ Dialectical also distinguishes among debate, narrative, inquiry, and decision. E
 
 See [CHATGPT.md](CHATGPT.md) for account installation, desktop and iPhone tests,
 and the distinction between a local folder and an installed account plugin.
-Use the skills-only ZIP in `dist/dialectical-0.5.0.zip`.
+Use the skills-only ZIP in `dist/dialectical-0.5.1.zip`.
 Installing this source does not automatically update an older account plugin.
 
-The portable package contains `plugin.json`, `skills/`, and referenced artwork.
+The portable package contains `plugin.json`, `LICENSE`, `skills/`, and referenced artwork.
 Its OpenAI display name is **Dialectical**. The plugin includes no MCP
 configuration, app dependency, executable runtime, or service.
 
@@ -132,8 +132,8 @@ python3 scripts/validate_plugin_package.py
 python3 scripts/package_plugin.py
 ```
 
-The ZIP includes only the manifest, skill Markdown files, and referenced plugin
-icons. Repository documentation, tests, and build utilities stay outside it.
+The ZIP includes only the manifest, license, skill Markdown files, and referenced
+plugin icons. Repository documentation, tests, and build utilities stay outside it.
 
 ```text
 plugin.json   portable plugin manifest
@@ -144,15 +144,26 @@ evals/        methodology cases and scoring
 scripts/      static checks and ZIP packaging
 docs/         examples and architecture audit
 CHATGPT.md    installation and device testing
+LICENSE       CC BY-NC-SA 4.0 legal terms
 ```
 
 [QA/TEST_PLAN.md](QA/TEST_PLAN.md) distinguishes structural checks from actual
 installed-host tests. See the [architecture audit](docs/architecture-audit.md)
 for the removal of the old service dependency and official specification links.
 
-All 23 bundled skills use release version 0.5.0. Storage schema versions are
+All 23 bundled skills use release version 0.5.1. Storage schema versions are
 separate and have not changed. Other optional host guides remain in
 [CLAUDE.md](CLAUDE.md), [CODEX.md](CODEX.md), and [GEMINI.md](GEMINI.md).
+
+## License
+
+Dialectical—including its methodology, skills, documentation, assets, and
+utility code—is licensed by FahrtAI under the
+[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+License](LICENSE), unless a file states otherwise. Reuse requires attribution,
+is limited to noncommercial purposes, and adaptations must use the same license.
+
+SPDX identifier: `CC-BY-NC-SA-4.0`.
 
 ## Status
 
@@ -163,4 +174,3 @@ for later development, not features of this release.
 The skills-only package can be built locally. Successful local validation does
 not establish account installation, public directory approval, or desktop/iPhone
 behavior. Record those tests after installing the updated plugin.
-The project does not yet declare a license.

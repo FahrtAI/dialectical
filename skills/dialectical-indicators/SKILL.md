@@ -2,7 +2,7 @@
 name: dialectical-indicators
 description: Define observable developments that would strengthen, weaken, or change an assessment or distinguish explanations. Use for INDICATORS or asking what to watch for or when to reassess; does not check whether events occurred, gather missing evidence, or set up monitoring.
 metadata:
-  version: "0.5.0"
+  version: "0.5.1"
 ---
 
 # Indicators

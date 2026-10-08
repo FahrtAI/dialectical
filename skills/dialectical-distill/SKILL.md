@@ -2,7 +2,7 @@
 name: dialectical-distill
 description: Extract the important findings, conclusions, uncertainties, and open questions produced by an inquiry, marking which rest on evidence and which the conversation only generated. Use when the user asks what has actually been learned or when the intellectual state has become difficult to hold; do not use for a general recap.
 metadata:
-  version: "0.5.0"
+  version: "0.5.1"
 ---
 
 # Distill

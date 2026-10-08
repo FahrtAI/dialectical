@@ -2,7 +2,7 @@
 name: dialectical-thought-experiment
 description: Construct hypothetical cases that expose a claim's implications, counterexamples, hidden variables, or boundary conditions. Use when the user asks for a thought experiment or Gedankenexperiment, or wants to see what an idea implies in a constructed case; do not use to list objections (CHALLENGE), generate rival explanations (HYPOTHESIZE), or establish facts (VERIFY).
 metadata:
-  version: "0.5.0"
+  version: "0.5.1"
 ---
 
 # Thought Experiment

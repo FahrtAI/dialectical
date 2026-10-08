@@ -23,4 +23,3 @@ the Project is not authorization to implement or publish it.
 - [Cookbook and operation checklists](https://github.com/FahrtAI/dialectical/issues/3)
 - [Behavioral evaluation runner](https://github.com/FahrtAI/dialectical/issues/4)
 - [ChatGPT plugin import failure](https://github.com/FahrtAI/dialectical/issues/5)
-- [Repository license](https://github.com/FahrtAI/dialectical/issues/6)

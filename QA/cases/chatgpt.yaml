@@ -3,7 +3,7 @@ suite: dialectical-chatgpt
 description: Run on desktop and iPhone with no external service, store, or workers.
 environment:
   plugin: dialectical
-  version: "0.5.0"
+  version: "0.5.1"
   mcp: absent
   filesystem: absent
   isolated_workers: unavailable
