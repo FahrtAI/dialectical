@@ -65,6 +65,7 @@ Prioritize these confusion sets:
 - RESEARCH / VERIFY / SOURCE-QUALITY
 - RELEVANCE / RESTATE / START INQUIRY
 - COLLECTION GAPS / RESEARCH / INDICATORS / VERIFY
+- GUIDE / help orientation / direct operation invocation / ordinary conversation
 - HYPOTHESIZE / ACH / CHALLENGE
 - CHALLENGE / THOUGHT EXPERIMENT / HYPOTHESIZE
 - CHALLENGE / CAUSAL-CHAIN
@@ -89,6 +90,7 @@ Minimum operation checks:
 | SUMMARIZE | Compactly cover the selected conversational span | New conclusions or claims about what was learned |
 | DISTILL | Label every finding established, tested, generated, or speculative, and keep uncertainty and open questions | Transcript recap, manufactured consensus, or a persuasive idea listed as established |
 | TRACE | Preserve pivots, dependencies, reversals, and abandoned branches | A falsely linear retrospective |
+| GUIDE | Recommend no operation or one operation tied to a concrete present need, explain why, and ask before execution | Monitoring, multiple recommendations, automatic execution, sequences, or replacing the help card |
 | RELEVANCE | Clarify purpose, scope, and consequential distinctions using context; ask one brief question only for material ambiguity | Forced decisions, invented audiences, intake questionnaires, or inquiry setup |
 | COLLECTION GAPS | Prioritize diagnostic and consequential missing evidence; explain what, why, and a feasible way to obtain it; distinguish uncollected, unavailable, and unknown status | Research wish lists, invented collection history, or automatic collection/verification |
 | INDICATORS | Link observable developments to assessments; justify timing and thresholds; assess whether absent signals could be detected | Invented precision, claimed observations, automatic monitoring, or scheduled tasks |
@@ -108,7 +110,7 @@ Minimum operation checks:
 | RESUME | Load the selected inquiry and relevant linked context | Activating an ambiguous inquiry before selection |
 | CLOSE | Take a final checkpoint and record paused or closed status | Marking unresolved work complete or closing the platform chat |
 
-The 0.5.0 additions have explicit, implicit, contextual, ambiguous, and negative
+The 0.6.0 additions have explicit, implicit, contextual, ambiguous, and negative
 cases in `cases/positive.yaml` and `cases/negative.yaml`, plus core regressions
 in `evals/cases.yaml`. Exercise each skill independently with no preceding
 operation. Check exploration and decision contexts, known versus missing
@@ -120,6 +122,12 @@ Parsing YAML or validating case coverage does not execute these cases. Capture
 actual responses and invocation/tool traces before assigning behavior scores;
 use `evals/SCORING.md`, and report unrun host tests separately. No automated
 behavioral runner is currently implemented.
+
+GUIDE cases must include a useful recommendation, no-intervention judgment,
+insufficient context, an ordinary conversation where GUIDE stays inactive,
+help orientation, direct operation invocation, consent on a later turn, and an
+OBSERVER request. Verify that GUIDE performs no tools, delegation, persistence,
+or recommended operation and does not remain active across turns.
 
 ### 4. Optional file-memory integration
 

@@ -2,7 +2,7 @@
 name: dialectical-challenge
 description: Subject a claim, explanation, plan, or emerging consensus to adversarial quality control. Use to surface assumptions, contradictions, alternatives, disconfirming evidence, and failure conditions; do not use for reflexive contrarianism or stylistic criticism.
 metadata:
-  version: "0.5.1"
+  version: "0.6.0"
 ---
 
 # Challenge

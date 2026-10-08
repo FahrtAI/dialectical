@@ -1,5 +1,23 @@
 schema_version: 1
 cases:
+  - id: guide-one-move-and-consent
+    skill: dialectical-guide
+    prompt: >-
+      We have three explanations and observations that bear differently on
+      them, but keep choosing by which story sounds best. GUIDE.
+    expect:
+      - "Recommends ACH as one operation, explains why it fits the present state, and asks before executing it."
+      - "Does not run ACH, recommend a sequence, use tools, or remain active after the response."
+
+  - id: guide-no-operation-needed
+    skill: dialectical-guide
+    prompt: >-
+      We just started exploring a new idea, nothing feels stuck, and I want to
+      keep talking freely. GUIDE.
+    expect:
+      - "Says that no formal operation is needed and recommends continuing the conversation."
+      - "Does not manufacture a need, display the help card, or propose a workflow."
+
   - id: relevance-exploratory-purpose
     skill: dialectical-relevance
     prompt: "RELEVANCE: I'm curious why cities develop distinct identities. I am not making a policy decision."

@@ -3,12 +3,17 @@ suite: dialectical-chatgpt
 description: Run on desktop and iPhone with no external service, store, or workers.
 environment:
   plugin: dialectical
-  version: "0.5.1"
+  version: "0.6.0"
   mcp: absent
   filesystem: absent
   isolated_workers: unavailable
   invocation: select Dialectical under Plugins in the @ menu
 cases:
+  - id: chatgpt-guide-on-demand
+    skill: dialectical-guide
+    prompt: "We have competing explanations and evidence for each, but no structured comparison. GUIDE."
+    expect: ["Recommends one fitting operation, explains why, and asks before performing it."]
+    forbid: ["Executing the operation", "Multiple recommendations", "Tools, persistence, monitoring, or a worker"]
   - id: chatgpt-relevance-no-tools
     skill: dialectical-relevance
     prompt: "RELEVANCE: I'm exploring how neighborhoods develop identities out of curiosity, not to make a decision."

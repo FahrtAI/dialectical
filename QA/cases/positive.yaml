@@ -3,6 +3,79 @@ suite: dialectical-positive
 description: Intended activation and operation-fidelity cases for every Dialectical skill.
 
 cases:
+  - id: positive-guide-one-contextual-recommendation
+    skill: dialectical-guide
+    mode: explicit
+    prompt: >-
+      We have three explanations for the traffic decline—seasonality, tracking
+      failure, and ranking loss—and six observations that bear differently on
+      them. We keep arguing about which story sounds best. GUIDE.
+    environment: {fixture: conversation-in-prompt, isolated_workers: unavailable}
+    expect_activation:
+      include: [dialectical-guide]
+      exclude: [dialectical-ach]
+    expect:
+      - "Recommends ACH as the single operation because alternatives and diagnostic evidence are ready to compare."
+      - "Briefly explains the contribution and asks whether the user wants to try it."
+    forbid:
+      - "Running an ACH matrix"
+      - "Recommending a sequence or second operation"
+      - "Using tools, workers, persistence, or monitoring"
+    expected_mutation: {class: none, paths: []}
+
+  - id: positive-guide-conversational-invocation
+    skill: dialectical-guide
+    mode: implicit
+    prompt: >-
+      We have assumed the redesign caused churn because the dates line up, but
+      we have not considered another explanation. Which Dialectical operation
+      would help us most right now?
+    environment: {fixture: conversation-in-prompt, isolated_workers: unavailable}
+    expect_activation:
+      include: [dialectical-guide]
+      exclude: [dialectical-hypothesize, dialectical-challenge]
+    expect:
+      - "Recommends HYPOTHESIZE as one useful move and ties it to the narrow explanatory space."
+      - "Asks before performing HYPOTHESIZE."
+    forbid:
+      - "Generating hypotheses in the same response"
+      - "Offering a menu of operations"
+    expected_mutation: {class: none, paths: []}
+
+  - id: positive-guide-no-intervention
+    skill: dialectical-guide
+    mode: explicit
+    prompt: >-
+      We have just begun freely exploring why neighborhoods feel distinctive.
+      Nothing feels stuck and I want to keep developing the idea. GUIDE.
+    environment: {fixture: conversation-in-prompt}
+    expect_activation:
+      include: [dialectical-guide]
+      exclude: []
+    expect:
+      - "Says no formal operation is needed now and recommends continuing the ordinary conversation."
+      - "Keeps the response brief and connected to the current state."
+    forbid:
+      - "Inventing a problem so it can recommend an operation"
+      - "Presenting the help card or a workflow"
+    expected_mutation: {class: none, paths: []}
+
+  - id: positive-guide-insufficient-context
+    skill: dialectical-guide
+    mode: explicit
+    prompt: "GUIDE. There is no earlier conversation or supplied inquiry."
+    environment: {fixture: none}
+    expect_activation:
+      include: [dialectical-guide]
+      exclude: [dialectical-relevance]
+    expect:
+      - "Asks one brief question about what the user wants from the conversation or what feels stuck."
+    forbid:
+      - "Guessing an inquiry"
+      - "Displaying the full operation catalog"
+      - "Recommending RELEVANCE merely to compensate for absent context"
+    expected_mutation: {class: none, paths: []}
+
   - id: "positive-relevance-exploration"
     skill: "dialectical-relevance"
     mode: "explicit"

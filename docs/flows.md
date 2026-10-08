@@ -12,6 +12,17 @@ These are separate requests, not steps in one process.
 | “Churn rose after a redesign and a simultaneous price increase. We haven't compared cohorts; we asked for click logs, but they were deleted. What evidence is worth seeking?” | COLLECTION GAPS | Prioritizes churn comparisons by exposure to each change. Distinguishes the unexamined cohorts from unavailable logs; proposes support tickets as a limited proxy for usability problems without claiming to retrieve them. |
 | “We think restoring export will help retention. What should we watch for?” | INDICATORS | Separates recovered export usage from later retention among affected customers, explaining that either alone is insufficient to establish causation. Leaves the observation window conditional on the retention cycle. No alerts or monitoring are created. |
 
+## Choosing one move with GUIDE
+
+GUIDE is requested when the user wants methodological advice. It does not stay
+active after responding.
+
+| User says | Result |
+|---|---|
+| “We have three explanations and a handful of observations, but we're just arguing about which story sounds best. GUIDE.” | Recommends ACH because real alternatives and evidence are ready to compare, explains that ACH tests inconsistency rather than narrative appeal, and asks whether to try it. It does not run ACH. |
+| “We're still freely exploring what makes a neighborhood feel distinctive. Nothing feels stuck. GUIDE.” | Says no formal operation is needed yet and recommends continuing the ordinary conversation. |
+| “Yes, use ACH.” | Runs ACH only. GUIDE does not add a second recommendation afterward unless invoked again. |
+
 ## Flow 1: Diagnosing an observation in one session
 
 A product team's monthly churn rose from 3% to 5% after a March redesign. This flow uses one conversation and no memory store.

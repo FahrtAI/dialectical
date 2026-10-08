@@ -7,7 +7,7 @@
 
 > Ordinary conversation with intellectual discipline.
 
-**Current version:** 0.5.1 (skills-only)
+**Current version:** 0.6.0 (skills-only)
 
 LLMs can be thought of as lossy, natural-language search engines for the material they ingested during training—which, for a frontier model, can include an awful lot of the material on the internet.
 
@@ -52,6 +52,7 @@ Save that connection for later.
 Every operation also has a short, explicit handle:
 
 ```text
+GUIDE: which operation would help now?
 DISTILL where we are.
 RESEARCH prior art for this approach.
 HYPOTHESIZE why churn rose after the redesign.
@@ -68,6 +69,7 @@ Dialectical-specific help uses a compact, stable [command card](skills/dialectic
 
 | Purpose | Operations | What they help you do |
 |---|---|---|
+| Choose a move | GUIDE | Recommend one useful operation for the current conversational state, or continue without one |
 | Understand the conversation | RESTATE, SUMMARIZE, DISTILL, TRACE | Clarify an idea, compress context, extract what was learned, and recover provenance |
 | Frame an inquiry | RELEVANCE, COLLECTION GAPS, INDICATORS | Clarify purpose, prioritize missing evidence, and define developments worth watching |
 | Explore | RESEARCH, HYPOTHESIZE, THOUGHT EXPERIMENT | Find relevant prior art, generate explanations, and examine implications |
@@ -76,6 +78,12 @@ Dialectical-specific help uses a compact, stable [command card](skills/dialectic
 | Continue over time | START INQUIRY, CHECKPOINT, RESUME, CLOSE | Maintain an optional line of inquiry across conversations |
 
 ACH is Analysis of Competing Hypotheses: it compares rival explanations against the evidence instead of asking only whether a favored explanation fits. CAUSAL-CHAIN exposes the assumptions in each link of a causal argument. SOURCE-QUALITY rates the reliability of a source separately from the credibility of the information it provides.
+
+GUIDE is an on-demand recommendation, not a mode. It considers the current
+conversation, suggests at most one operation when that would materially help,
+explains why, and waits for consent. It may instead recommend continuing the
+ordinary conversation. GUIDE does not monitor later turns or perform the
+suggested operation; invoke it again whenever you want another recommendation.
 
 Ask “What are we trying to understand?” for RELEVANCE, “What evidence would
 distinguish these explanations?” for COLLECTION GAPS, or “What should we watch
@@ -89,6 +97,7 @@ or scheduled tasks.
 
 - Normal conversation remains primary. The default is not to intervene.
 - Operations are optional, independently composable, and never silently chained.
+- GUIDE is invoked explicitly and recommends without executing or monitoring.
 - Claims, inferences, and speculation remain distinguishable.
 - Uncertainty, disagreement, abandoned branches, and provenance are preserved when they matter.
 - A thought experiment can expose implications; it cannot supply empirical evidence.
@@ -102,7 +111,7 @@ Dialectical also distinguishes among debate, narrative, inquiry, and decision. E
 
 See [CHATGPT.md](CHATGPT.md) for account installation, desktop and iPhone tests,
 and the distinction between a local folder and an installed account plugin.
-Use the skills-only ZIP in `dist/dialectical-0.5.1.zip`.
+Use the skills-only ZIP in `dist/dialectical-0.6.0.zip`.
 Installing this source does not automatically update an older account plugin.
 
 The portable package contains `plugin.json`, `LICENSE`, `skills/`, and referenced artwork.
@@ -151,7 +160,7 @@ LICENSE       CC BY-NC-SA 4.0 legal terms
 installed-host tests. See the [architecture audit](docs/architecture-audit.md)
 for the removal of the old service dependency and official specification links.
 
-All 23 bundled skills use release version 0.5.1. Storage schema versions are
+All 24 bundled skills use release version 0.6.0. Storage schema versions are
 separate and have not changed. Other optional host guides remain in
 [CLAUDE.md](CLAUDE.md), [CODEX.md](CODEX.md), and [GEMINI.md](GEMINI.md).
 

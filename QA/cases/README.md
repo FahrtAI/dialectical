@@ -19,12 +19,19 @@ not create prerequisites for ordinary ChatGPT conversation.
 Positive and negative do not mean good and bad user sentiment. They describe
 whether the skill under test should activate.
 
-The 0.5.0 cases cover RELEVANCE, COLLECTION GAPS, and INDICATORS individually,
+The 0.6.0 cases add GUIDE coverage for explicit and conversational invocation,
+one contextual recommendation, no-intervention and insufficient-context
+judgments, consent routing, and separation from orientation, direct operations,
+ordinary conversation, and the future OBSERVER idea. They verify that GUIDE
+does not execute its recommendation, offer a sequence, monitor later turns, or
+create tools or workers.
+
+The corpus also covers RELEVANCE, COLLECTION GAPS, and INDICATORS individually,
 including ordinary phrasing, exploratory and decision purposes, ambiguity,
 collection history, absent signals, justified thresholds, and neighboring-skill
-boundaries. Their positive cases need only the supplied conversation, without
-tools, prior operations, or storage. Negative cases also check that existing
-HYPOTHESIZE and ACH behavior does not trigger an additional skill.
+boundaries. Positive cases need only the supplied conversation, without tools,
+prior operations, or storage. Negative cases also check that HYPOTHESIZE and
+ACH behavior does not trigger an additional skill.
 
 ## Case fields
 

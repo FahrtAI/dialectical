@@ -13,6 +13,8 @@ five words.
 
 Ordinary conversation with intellectual discipline.
 
+GUIDE               Recommend one useful conversational operation.
+
 RESTATE             Rephrase an idea without judgment.
 SUMMARIZE           Compress the conversation without interpretation.
 DISTILL             Extract insights, tensions, and questions.

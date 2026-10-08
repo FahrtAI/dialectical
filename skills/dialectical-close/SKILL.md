@@ -2,7 +2,7 @@
 name: dialectical-close
 description: Close or pause an active Dialectical inquiry by taking a final checkpoint and recording its status. Use only when the user asks to close, pause, finish, or archive the inquiry; do not end or archive the surrounding platform chat implicitly.
 metadata:
-  version: "0.5.1"
+  version: "0.6.0"
 ---
 
 # Close Inquiry

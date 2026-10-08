@@ -3,6 +3,85 @@ suite: dialectical-negative
 description: Neighbor and ordinary-language cases in which the skill under test must stay inactive.
 
 cases:
+  - id: negative-guide-ordinary-conversation
+    skill: dialectical-guide
+    mode: negative
+    prompt: >-
+      I think the redesign caused churn because the dates line up. Let's keep
+      talking through what happened.
+    environment: {fixture: conversation-in-prompt}
+    expect_activation:
+      include: []
+      exclude: [dialectical-guide]
+    expect:
+      - "Continues the substantive conversation without a GUIDE recommendation."
+    forbid:
+      - "Treating a potentially useful intervention as an invocation"
+      - "Appending an operation recommendation"
+    expected_mutation: {class: none, paths: []}
+
+  - id: negative-guide-use-help
+    skill: dialectical-guide
+    mode: negative
+    prompt: "Show me every Dialectical operation and its description."
+    environment: {fixture: none}
+    expect_activation:
+      include: [dialectical]
+      exclude: [dialectical-guide]
+    expect:
+      - "Returns the canonical help card rather than choosing one operation."
+    forbid:
+      - "Replacing orientation with a contextual GUIDE recommendation"
+    expected_mutation: {class: none, paths: []}
+
+  - id: negative-guide-direct-operation
+    skill: dialectical-guide
+    mode: negative
+    prompt: "HYPOTHESIZE why churn rose after the redesign."
+    environment: {fixture: none}
+    expect_activation:
+      include: [dialectical-hypothesize]
+      exclude: [dialectical-guide]
+    expect:
+      - "Performs HYPOTHESIZE directly because the user already chose the operation."
+    forbid:
+      - "Asking whether to perform HYPOTHESIZE"
+    expected_mutation: {class: none, paths: []}
+
+  - id: negative-guide-consent-routes-operation
+    skill: dialectical-guide
+    mode: negative
+    prompt: >-
+      In the previous turn GUIDE recommended ACH and asked whether to try it.
+      Yes, use ACH on the three explanations and supplied evidence.
+    environment: {fixture: conversation-in-prompt}
+    expect_activation:
+      include: [dialectical-ach]
+      exclude: [dialectical-guide]
+    expect:
+      - "Performs only the accepted ACH operation."
+    forbid:
+      - "Adding another GUIDE recommendation after ACH"
+      - "Treating consent as permission for an operation sequence"
+    expected_mutation: {class: none, paths: []}
+
+  - id: negative-guide-observer-request
+    skill: dialectical-guide
+    mode: negative
+    prompt: >-
+      Turn on an independent background observer that watches every later turn
+      and automatically recommends methods when it thinks they would help.
+    environment: {isolated_workers: available}
+    expect_activation:
+      include: []
+      exclude: [dialectical-guide]
+    expect:
+      - "Explains that on-demand GUIDE does not create a persistent observer."
+    forbid:
+      - "Claiming that GUIDE will monitor later turns"
+      - "Spawning a worker or enabling background behavior"
+    expected_mutation: {class: none, paths: []}
+
   - id: "negative-relevance-use-restate"
     skill: "dialectical-relevance"
     mode: "negative"

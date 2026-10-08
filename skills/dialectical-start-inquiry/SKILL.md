@@ -2,7 +2,7 @@
 name: dialectical-start-inquiry
 description: Begin or branch a focused Dialectical inquiry in the current conversation, carrying forward relevant available context. A file workspace is optional when authorized; do not imply that this creates a new platform chat.
 metadata:
-  version: "0.5.1"
+  version: "0.6.0"
 ---
 
 # Start Inquiry
