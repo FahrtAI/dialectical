@@ -2,7 +2,7 @@
 name: dialectical-causal-chain
 description: Decompose a multi-step causal argument into its links, expose the assumptions each link needs, and identify the linchpins whose failure would collapse the conclusion. Use when the user asks to test a chain of reasoning in which each step depends on the previous one; do not use for a single correlation or for general critique (CHALLENGE).
 metadata:
-  version: "0.6.0"
+  version: "0.6.1"
 ---
 
 # Causal Chain
@@ -27,9 +27,15 @@ Find where a chain of reasoning would break.
    Most assumptions are not linchpins. Reserve the label for those whose failure leaves no route to the conclusion.
 4. Test each link: whether its mechanism is stated or only asserted, whether causation is shown or assumed, whether the next step could happen without this one, whether a confounder could produce both, and what observation would show the link is false.
 5. Identify the weakest link and the linchpins, and give a verdict with its basis, stating which links were checked against evidence and which rest on assumption alone:
-   - **Solid:** every linchpin is supported by evidence.
-   - **Vulnerable:** a linchpin is unexamined, or several load-bearing assumptions are doubtful.
-   - **Brittle:** a linchpin is doubtful or contradicted by evidence.
+   - **Brittle:** evidence contradicts a necessary link with no supported alternative path, or a doubtful linchpin leaves the claimed outcome dependent on an implausible path.
+   - **Solid:** all material links needed for the claimed outcome, magnitude, and timing have relevant support, with no unresolved material contradiction. Having no unique linchpin is not sufficient.
+   - **Vulnerable:** otherwise, material support is missing, conflicting, or uncertain. An unexamined link is not thereby false.
+
+   Apply these in order: a demonstrated critical failure takes precedence;
+   otherwise use Solid only when its full support condition holds. With
+   parallel paths, assess whether supported paths actually suffice for the
+   claimed result; weak alternatives do not invalidate an adequate supported
+   path, and multiple untested paths do not establish one.
 
 For a loop (A → B → A), find the initial trigger and analyze forward from it; the key question is whether the trigger is strong enough to start the cycle. When several independent chains reach the same outcome, analyze each separately and ask which one is operating. When timing is unstated, check whether the durations are compatible; a step that needs longer than the argument allows weakens that link unless the steps can overlap.
 

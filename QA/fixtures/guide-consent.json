@@ -1,0 +1,6 @@
+{
+  "messages": [
+    {"role": "user", "content": "Monthly churn rose from 3% to 5% after a redesign. Our three candidate main causes are export discoverability, a price increase, and measurement change. Export tickets doubled. Churn rose equally on unchanged-price plans. The dashboard query is unchanged but tracking instrumentation has not been audited. These are supplied observations, not independently verified. Which operation would help now?"},
+    {"role": "assistant", "content": "ACH would help compare how those observations bear on the three explanations, while retaining the tracking uncertainty. Would you like to try it?"}
+  ]
+}

@@ -7,7 +7,7 @@
 
 > Ordinary conversation with intellectual discipline.
 
-**Current version:** 0.6.0 (skills-only)
+**Current version:** 0.6.1 (skills-only)
 
 LLMs can be thought of as lossy, natural-language search engines for the material they ingested during training—which, for a frontier model, can include an awful lot of the material on the internet.
 
@@ -38,6 +38,10 @@ Install the plugin, select **Dialectical** from ChatGPT's `@` menu, and send
 in the current chat. No external server, account connection, or database is required.
 
 Talk normally. Ask for a particular kind of help when you want it:
+
+Start with a familiar need: explore an idea, test an explanation, check a claim,
+or recover what you learned. You do not need to learn the operation catalog.
+The [cookbook](docs/cookbook.md) gives short examples for these and other situations.
 
 ```text
 What have we actually learned so far?
@@ -111,7 +115,7 @@ Dialectical also distinguishes among debate, narrative, inquiry, and decision. E
 
 See [CHATGPT.md](CHATGPT.md) for account installation, desktop and iPhone tests,
 and the distinction between a local folder and an installed account plugin.
-Use the skills-only ZIP in `dist/dialectical-0.6.0.zip`.
+Use the skills-only ZIP in `dist/dialectical-0.6.1.zip`.
 Installing this source does not automatically update an older account plugin.
 
 The portable package contains `plugin.json`, `LICENSE`, `skills/`, and referenced artwork.
@@ -141,6 +145,10 @@ python3 scripts/validate_plugin_package.py
 python3 scripts/package_plugin.py
 ```
 
+Behavioral evaluation is separate: see [QA/RUNNING.md](QA/RUNNING.md) for the
+complete smoke fixtures, canonical rubric, adapter protocol, and comparison
+conditions. The runner is a maintainer utility and is excluded from the plugin.
+
 The ZIP includes only the manifest, license, skill Markdown files, and referenced
 plugin icons. Repository documentation, tests, and build utilities stay outside it.
 
@@ -160,7 +168,7 @@ LICENSE       CC BY-NC-SA 4.0 legal terms
 installed-host tests. See the [architecture audit](docs/architecture-audit.md)
 for the removal of the old service dependency and official specification links.
 
-All 24 bundled skills use release version 0.6.0. Storage schema versions are
+All 24 bundled skills use release version 0.6.1. Storage schema versions are
 separate and have not changed. Other optional host guides remain in
 [CLAUDE.md](CLAUDE.md), [CODEX.md](CODEX.md), and [GEMINI.md](GEMINI.md).
 

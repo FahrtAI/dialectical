@@ -2,7 +2,7 @@
 name: dialectical-challenge
 description: Subject a claim, explanation, plan, or emerging consensus to adversarial quality control. Use to surface assumptions, contradictions, alternatives, disconfirming evidence, and failure conditions; do not use for reflexive contrarianism or stylistic criticism.
 metadata:
-  version: "0.6.0"
+  version: "0.6.1"
 ---
 
 # Challenge
@@ -14,6 +14,11 @@ Structured methods are available when the challenge calls for them. Name the met
 - `dialectical-ach` when the user requests ACH or several explanations must be compared against multiple observations.
 - `dialectical-causal-chain` when the position rests on a multi-step causal argument.
 - `dialectical-source-quality` when the challenge turns on how much weight particular sources deserve.
+
+These can be internal techniques for completing this challenge with available
+evidence. Do not ask permission for each reasoning technique. A new objective,
+external research project, or side effect needs authorization already present
+in the request or separate acceptance; announcing the method is not consent.
 
 ## Operation
 
@@ -35,4 +40,4 @@ For a substantive challenge, default to an isolated worker when the host support
 - Do not attack a weaker version of the position than the conversation supports.
 - Do not manufacture objections with no plausible mechanism or consequence.
 - Do not treat missing evidence as evidence of absence without justification.
-- Do not silently resolve empirical disputes; invoke VERIFY or RESEARCH when external evidence is required.
+- Do not silently resolve empirical disputes. Identify the needed VERIFY or RESEARCH work and ask before starting it unless the user's request already includes that evidence gathering.

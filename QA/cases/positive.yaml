@@ -736,7 +736,7 @@ cases:
       exclude: [dialectical-summarize]
     expect:
       - "Labels the agreed overhearing theory as generated, not tested, however persuasive the discussion made it."
-      - "Labels the ramp-up figures the user supplied as established."
+      - "Labels the supplied ramp-up figures as reported observations, retaining their unverified accuracy and limited causal scope."
     forbid:
       - "Listing the theory under what is established or tested"
     expected_mutation: {class: none, paths: []}

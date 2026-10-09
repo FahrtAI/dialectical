@@ -2,31 +2,19 @@
 name: dialectical-close
 description: Close or pause an active Dialectical inquiry by taking a final checkpoint and recording its status. Use only when the user asks to close, pause, finish, or archive the inquiry; do not end or archive the surrounding platform chat implicitly.
 metadata:
-  version: "0.6.0"
+  version: "0.6.1"
 ---
 
 # Close Inquiry
 
-Leave the inquiry recoverable and intellectually legible.
+Leave the inquiry recoverable without closing the platform chat.
 
-Read [`../dialectical/references/memory.md`](../dialectical/references/memory.md) before writing.
+Return a final checkpoint with the current assessment, evidence and its limits,
+uncertainty, reversals, and open questions. Mark the inquiry paused or closed as
+requested within the conversation; explain that the copyable note can be pasted
+into another chat. Unresolved work stays unresolved. Do not claim a durable save.
 
-## Operation
-
-Without an authorized writable file store, give a final checkpoint in chat,
-retain unresolved questions, and mark the inquiry paused or closed within this
-conversation. Tell the user they can paste that checkpoint into a later chat
-to resume. Do not claim a durable write. The file procedure below is optional.
-
-1. Resolve the current inquiry as CHECKPOINT does, and whether the requested status is `paused` or `closed`.
-2. Perform a final checkpoint: current conclusion or state, supporting basis, unresolved uncertainty, open questions, and saved-object links.
-3. Update `state.md` with the new status, timestamp, and a status-history entry, then update its index entry.
-4. Identify any valuable unsaved findings, but do not save them automatically unless the request includes that authorization.
-5. Confirm the inquiry record that was closed or paused and how it can be resumed.
-
-## Boundaries
-
-- Do not delete or merge the inquiry.
-- Do not mark unresolved work complete merely because the conversation is ending.
-- Do not archive or close the platform chat unless the user separately requests it and the platform supports it.
-- Do not delegate the final checkpoint or status write; keep durable mutation in the conversational agent.
+For a user-authorized file store, read
+[the file procedure](references/file-storage.md) and its shared storage contract
+before taking the final checkpoint and changing status. Keep mutations in the
+conversational agent. Never automatically delete, merge, or save other objects.

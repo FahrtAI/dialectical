@@ -2,6 +2,10 @@
 
 The case corpus is split by polarity:
 
+- `smoke.yaml` is the complete multi-turn execution subset for contract regressions
+  and comparison. See [running evaluations](../RUNNING.md). Legacy suites remain
+  specifications where required fixtures or host capabilities are unavailable.
+
 - `positive.yaml` checks that each skill activates for an intended request and
   performs its own operation.
 - `negative.yaml` checks that each skill stays inactive for a neighboring or
@@ -19,7 +23,7 @@ not create prerequisites for ordinary ChatGPT conversation.
 Positive and negative do not mean good and bad user sentiment. They describe
 whether the skill under test should activate.
 
-The 0.6.0 cases add GUIDE coverage for explicit and conversational invocation,
+The 0.6.1 cases add GUIDE coverage for explicit and conversational invocation,
 one contextual recommendation, no-intervention and insufficient-context
 judgments, consent routing, and separation from orientation, direct operations,
 ordinary conversation, and the future OBSERVER idea. They verify that GUIDE

@@ -2,7 +2,7 @@
 name: dialectical-guide
 description: Recommend at most one useful Dialectical operation for the current conversational state. Use when the user explicitly invokes GUIDE or directly asks which Dialectical operation would help now; do not activate merely because an operation might be useful, monitor later turns, or perform the recommendation.
 metadata:
-  version: "0.6.0"
+  version: "0.6.1"
 ---
 
 # Guide
@@ -21,7 +21,10 @@ GUIDE is invoked on demand; it is not a background mode or observer.
    the concrete feature of the conversation that makes it fit, state briefly
    what the operation would contribute, and preserve the boundary of its job.
 4. End by asking whether the user wants to try it. Do not perform it in the same
-   response. Agreement on a later turn authorizes that operation only.
+   response. Agreement on a later turn authorizes that operation's objective
+   only, including internal techniques needed to complete it. It does not
+   authorize a follow-on objective or side effect. An explicit combined request
+   may authorize more work; follow its scope rather than forcing extra approvals.
 5. If no operation would materially help, say so briefly and suggest continuing
    the conversation. If context is too thin to judge, ask one brief question
    about what feels stuck or what the user wants from the conversation.

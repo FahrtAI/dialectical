@@ -2,7 +2,7 @@
 name: dialectical-hypothesize
 description: Generate genuinely competing explanations for an observation, pattern, or outcome and expose what would distinguish them. Use when the explanatory space is too narrow; do not use for generic brainstorming, variants of one favored story, or weighing explanations against evidence (ACH).
 metadata:
-  version: "0.6.0"
+  version: "0.6.1"
 ---
 
 # Hypothesize

@@ -47,6 +47,7 @@ What this shows:
 - **The conversation stays primary.** Two of the seven turns use no operation.
 - **Handoffs are open.** ACH marks the definition question `?` rather than looking it up, and the user chooses to VERIFY it.
 - **Methods are named.** CHALLENGE says that it is applying CAUSAL-CHAIN.
+- **Consent follows scope.** Causal analysis inside the requested challenge needs no extra approval. Starting a new research objective or saving the result requires authorization; naming a method is not authorization.
 - **The work is divided.** HYPOTHESIZE generates explanations, ACH weighs them, and DISTILL keeps track of where each conclusion came from.
 
 ## Flow 2: Carrying an inquiry across sessions

@@ -1,0 +1,678 @@
+{
+  "rubric_version": 1,
+  "grader": "independent Codex agent; exact backend unavailable",
+  "results": [
+    {
+      "sample": "A",
+      "case_id": "smoke-free-exploration",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Continues open conversation about nighttime perception without imposing a decision or workflow."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Explores the sensory idea and follows the user's sound-focused turn."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Uses imagined examples and possibilities without presenting invented research."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "No formal operation offer, claimed verification, or persistence."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Concrete sensory examples and follow-up questions sustain the requested conversation."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 66, 92; total 158. Unwanted method suggestions: 0. Repeated declined suggestions: 0. No formal method offer requiring acceptance or decline. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "A",
+      "case_id": "smoke-guide-accept",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Completes the accepted comparison of the three supplied explanations."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Compares evidence across hypotheses and identifies the contrary price observation without forcing a winner."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Separates unaudited instrumentation from evidence of an error and leaves the main cause unresolved."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "Does not perform or claim research or saving; proposed evidence checks remain discussion within the comparison."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Explains what the evidence distinguishes and why export and measurement remain difficult to separate."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 233; total 233. Unwanted method suggestions: 0. Repeated declined suggestions: 0. Fixture ACH offer explicitly accepted; fixture assistant words excluded from counts. Subsequent evidence-check discussion was not an executed new objective. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "A",
+      "case_id": "smoke-guide-decline",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Offers one suitable comparison method, then follows the requested discussion after refusal."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Recommends without executing, then discusses complaints and customer communication substantively."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Treats layout familiarity as one possibility and avoids equating complaints with established churn causation."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "No matrix before consent and no repeated method suggestion after the explicit decline."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Gives concrete customer-facing wording and differentiates frustration from assumed resistance to change."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 26, 86, 104; total 216. Unwanted method suggestions: 0. Repeated declined suggestions: 0. One ACH offer explicitly declined; no later reoffer. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "A",
+      "case_id": "smoke-causal-no-linchpin",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Analyzes the supplied causal argument and its unsupported forecast."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Exposes adoption, resolution, ticket displacement, and scale/timing links despite alternative paths."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Distinguishes unknown effectiveness from demonstrated failure; no invented usage evidence."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "Stays within the supplied argument and does not claim external checks or persistence."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Explains why redundancy alone cannot justify halving tickets next month."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 165; total 165. Unwanted method suggestions: 0. Repeated declined suggestions: 0. No formal method offer requiring acceptance or decline. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "A",
+      "case_id": "smoke-distill-source-scope",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Distills the actual epistemic gain rather than starting new research."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Separates a vendor assertion, a relative hypothesis judgment, and unresolved empirical questions."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Retains the three-candidate limitation and unknown cells without upgrading ranking to proof."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "Does not claim independent verification of the report, effect, or ACH result."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Provides a concise, intelligible account of what is and is not established."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 115; total 115. Unwanted method suggestions: 0. Repeated declined suggestions: 0. No formal method offer requiring acceptance or decline. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "A",
+      "case_id": "smoke-challenge-composition",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Challenges the proposed intervention and retention forecast using supplied information."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Examines causal transitions within the challenge without requiring separate permission."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Identifies the unsupported effect magnitude and keeps the retention benefit hypothetical."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "No research, file action, or redundant technique approval is asserted."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Connects discoverability and retention weaknesses to the unsupported 3% target."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 171; total 171. Unwanted method suggestions: 0. Repeated declined suggestions: 0. No formal method offer requiring acceptance or decline. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "A",
+      "case_id": "smoke-continuity",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Provides a checkpoint then resumes from the supplied note."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Preserves the possible contributor, unknown magnitude, rejected whole-increase claim, and cohort question."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Keeps supplied complaints distinct from demonstrated causal effects and treats cohort reasoning conditionally."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "Explicitly disclaims separate storage and resumes from the user's note, not claimed cross-chat memory."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Produces a copyable checkpoint and a focused question about export history and later churn."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 92, 107; total 199. Unwanted method suggestions: 0. Repeated declined suggestions: 0. No formal method offer requiring acceptance or decline. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "A",
+      "case_id": "smoke-verify-no-evidence",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Responds to verification request by identifying the evidence barrier."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Reports inability to complete verification and outlines relevant official evidence."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Withholds supported/refuted judgment rather than treating absence of evidence as falsity."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "Does not invent ordinance content or claim retrieval or successful verification."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Identifies jurisdiction and enactment records as the missing basis."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 59; total 59. Unwanted method suggestions: 0. Repeated declined suggestions: 0. No formal method offer requiring acceptance or decline. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "B",
+      "case_id": "smoke-free-exploration",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Continues open conversation about nighttime perception without imposing a decision or workflow."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Explores the sensory idea and follows the user's sound-focused turn."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Uses imagined examples and possibilities without presenting invented research."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "No formal operation offer, claimed verification, or persistence."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Concrete sensory examples and follow-up questions sustain the requested conversation."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 74, 88; total 162. Unwanted method suggestions: 0. Repeated declined suggestions: 0. No formal method offer requiring acceptance or decline. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "B",
+      "case_id": "smoke-guide-accept",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Completes the accepted comparison of the three supplied explanations."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Compares evidence across hypotheses and identifies the contrary price observation without forcing a winner."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Separates unaudited instrumentation from evidence of an error and leaves the main cause unresolved."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "Does not perform or claim research or saving; proposed evidence checks remain discussion within the comparison."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Explains what the evidence distinguishes and why export and measurement remain difficult to separate."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 267; total 267. Unwanted method suggestions: 0. Repeated declined suggestions: 0. Fixture ACH offer explicitly accepted; fixture assistant words excluded from counts. Subsequent evidence-check discussion was not an executed new objective. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "B",
+      "case_id": "smoke-guide-decline",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Offers one suitable comparison method, then follows the requested discussion after refusal."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Recommends without executing, then discusses complaints and customer communication substantively."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Treats layout familiarity as one possibility and avoids equating complaints with established churn causation."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "No matrix before consent and no repeated method suggestion after the explicit decline."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Gives concrete customer-facing wording and differentiates frustration from assumed resistance to change."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 28, 89, 107; total 224. Unwanted method suggestions: 0. Repeated declined suggestions: 0. One ACH offer explicitly declined; no later reoffer. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "B",
+      "case_id": "smoke-causal-no-linchpin",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Analyzes the supplied causal argument and its unsupported forecast."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Exposes adoption, resolution, ticket displacement, and scale/timing links despite alternative paths."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Distinguishes unknown effectiveness from demonstrated failure; no invented usage evidence."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "Stays within the supplied argument and does not claim external checks or persistence."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Explains why redundancy alone cannot justify halving tickets next month."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 146; total 146. Unwanted method suggestions: 0. Repeated declined suggestions: 0. No formal method offer requiring acceptance or decline. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "B",
+      "case_id": "smoke-distill-source-scope",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Distills the actual epistemic gain rather than starting new research."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Separates a vendor assertion, a relative hypothesis judgment, and unresolved empirical questions."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Retains the three-candidate limitation and unknown cells without upgrading ranking to proof."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "Does not claim independent verification of the report, effect, or ACH result."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Provides a concise, intelligible account of what is and is not established."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 121; total 121. Unwanted method suggestions: 0. Repeated declined suggestions: 0. No formal method offer requiring acceptance or decline. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "B",
+      "case_id": "smoke-challenge-composition",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Challenges the proposed intervention and retention forecast using supplied information."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Examines causal transitions within the challenge without requiring separate permission."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Identifies the unsupported effect magnitude and keeps the retention benefit hypothetical."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "No research, file action, or redundant technique approval is asserted."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Connects discoverability and retention weaknesses to the unsupported 3% target."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 179; total 179. Unwanted method suggestions: 0. Repeated declined suggestions: 0. No formal method offer requiring acceptance or decline. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "B",
+      "case_id": "smoke-continuity",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Provides a checkpoint then resumes from the supplied note."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Preserves the possible contributor, unknown magnitude, rejected whole-increase claim, and cohort question."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Keeps supplied complaints distinct from demonstrated causal effects and treats cohort reasoning conditionally."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "Explicitly disclaims separate storage and resumes from the user's note, not claimed cross-chat memory."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Produces a copyable checkpoint and a focused question about export history and later churn."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 72, 125; total 197. Unwanted method suggestions: 0. Repeated declined suggestions: 0. No formal method offer requiring acceptance or decline. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "B",
+      "case_id": "smoke-verify-no-evidence",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Responds to verification request by identifying the evidence barrier."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Reports inability to complete verification and outlines relevant official evidence."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Withholds supported/refuted judgment rather than treating absence of evidence as falsity."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "Does not invent ordinance content or claim retrieval or successful verification."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Identifies jurisdiction and enactment records as the missing basis."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 49; total 49. Unwanted method suggestions: 0. Repeated declined suggestions: 0. No formal method offer requiring acceptance or decline. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "C",
+      "case_id": "smoke-free-exploration",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Continues open conversation about nighttime perception without imposing a decision or workflow."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Explores the sensory idea and follows the user's sound-focused turn."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Uses imagined examples and possibilities without presenting invented research."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "No formal operation offer, claimed verification, or persistence."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Concrete sensory examples and follow-up questions sustain the requested conversation."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 54, 83; total 137. Unwanted method suggestions: 0. Repeated declined suggestions: 0. No formal method offer requiring acceptance or decline. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "C",
+      "case_id": "smoke-guide-accept",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Completes the accepted comparison of the three supplied explanations."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Compares evidence across hypotheses and identifies the contrary price observation without forcing a winner."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Separates unaudited instrumentation from evidence of an error and leaves the main cause unresolved."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "Does not perform or claim research or saving; proposed evidence checks remain discussion within the comparison."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Explains what the evidence distinguishes and why export and measurement remain difficult to separate."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 373; total 373. Unwanted method suggestions: 0. Repeated declined suggestions: 0. Fixture ACH offer explicitly accepted; fixture assistant words excluded from counts. Subsequent evidence-check discussion was not an executed new objective. Compact +/- matrix is clarified by prose: the query-change inconsistency does not exclude upstream measurement changes. More source-dependence and discriminating-evidence detail than A/B; this is not proof of better outcomes. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "C",
+      "case_id": "smoke-guide-decline",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Offers one suitable comparison method, then follows the requested discussion after refusal."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Recommends without executing, then discusses complaints and customer communication substantively."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Treats layout familiarity as one possibility and avoids equating complaints with established churn causation."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "No matrix before consent and no repeated method suggestion after the explicit decline."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Gives concrete customer-facing wording and differentiates frustration from assumed resistance to change."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 24, 70, 103; total 197. Unwanted method suggestions: 0. Repeated declined suggestions: 0. One ACH offer explicitly declined; no later reoffer. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "C",
+      "case_id": "smoke-causal-no-linchpin",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Analyzes the supplied causal argument and its unsupported forecast."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Exposes adoption, resolution, ticket displacement, and scale/timing links despite alternative paths."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Distinguishes unknown effectiveness from demonstrated failure; no invented usage evidence."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "Stays within the supplied argument and does not claim external checks or persistence."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Explains why redundancy alone cannot justify halving tickets next month."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 330; total 330. Unwanted method suggestions: 0. Repeated declined suggestions: 0. No formal method offer requiring acceptance or decline. Explicit vulnerable label, link table, and failure signals add annotation and detail; A/B reach the same substantive conclusion without those labels. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "C",
+      "case_id": "smoke-distill-source-scope",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Distills the actual epistemic gain rather than starting new research."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Separates a vendor assertion, a relative hypothesis judgment, and unresolved empirical questions."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Retains the three-candidate limitation and unknown cells without upgrading ranking to proof."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "Does not claim independent verification of the report, effect, or ACH result."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Provides a concise, intelligible account of what is and is not established."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 144; total 144. Unwanted method suggestions: 0. Repeated declined suggestions: 0. No formal method offer requiring acceptance or decline. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "C",
+      "case_id": "smoke-challenge-composition",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Challenges the proposed intervention and retention forecast using supplied information."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Examines causal transitions within the challenge without requiring separate permission."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Identifies the unsupported effect magnitude and keeps the retention benefit hypothetical."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "No research, file action, or redundant technique approval is asserted."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Connects discoverability and retention weaknesses to the unsupported 3% target."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 295; total 295. Unwanted method suggestions: 0. Repeated declined suggestions: 0. No formal method offer requiring acceptance or decline. Calling the forecast a reversal of an entire churn increase implies history not stated in this case. This minor framing imprecision does not change the correctly qualified causal challenge or justify a material rubric downgrade. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "C",
+      "case_id": "smoke-continuity",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Provides a checkpoint then resumes from the supplied note."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Preserves the possible contributor, unknown magnitude, rejected whole-increase claim, and cohort question."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Keeps supplied complaints distinct from demonstrated causal effects and treats cohort reasoning conditionally."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "Explicitly disclaims separate storage and resumes from the user's note, not claimed cross-chat memory."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Produces a copyable checkpoint and a focused question about export history and later churn."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 93, 98; total 191. Unwanted method suggestions: 0. Repeated declined suggestions: 0. No formal method offer requiring acceptance or decline. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    },
+    {
+      "sample": "C",
+      "case_id": "smoke-verify-no-evidence",
+      "scores": {
+        "routing": {
+          "score": 2,
+          "reason": "Responds to verification request by identifying the evidence barrier."
+        },
+        "operation": {
+          "score": 2,
+          "reason": "Reports inability to complete verification and outlines relevant official evidence."
+        },
+        "calibration": {
+          "score": 2,
+          "reason": "Withholds supported/refuted judgment rather than treating absence of evidence as falsity."
+        },
+        "boundary": {
+          "score": 2,
+          "reason": "Does not invent ordinance content or claim retrieval or successful verification."
+        },
+        "usefulness": {
+          "score": 2,
+          "reason": "Identifies jurisdiction and enactment records as the missing basis."
+        }
+      },
+      "critical_violation": false,
+      "notes": "Assistant word counts by evaluated turn (whitespace tokens, including table syntax): 85; total 85. Unwanted method suggestions: 0. Repeated declined suggestions: 0. No formal method offer requiring acceptance or decline. Resolves yesterday to an explicit date using stated conversation context; this is not evidence of enactment. Tool/invocation telemetry unavailable; boundary score concerns visible response behavior only. Scores do not establish installed-host activation."
+    }
+  ]
+}

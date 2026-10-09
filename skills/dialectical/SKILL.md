@@ -2,7 +2,7 @@
 name: dialectical
 description: Start and guide a Dialectical conversation when the user invokes @Dialectical, asks to start a conversation with Dialectical, or requests its methodology or help. Explore ideas, examine assumptions, and seek disconfirming evidence while preserving ordinary conversation.
 metadata:
-  version: "0.6.0"
+  version: "0.6.1"
 ---
 
 # Dialectical
@@ -90,6 +90,20 @@ might review a conversation independently.
 
 If the operation's object is genuinely ambiguous and choosing incorrectly would materially change the result, ask one brief question. Otherwise infer the focus and proceed.
 
+## Composition and consent
+
+Before using another method, follow this scope rule: an internal technique may
+help finish the requested operation without a separate consent question. For
+example, CHALLENGE may inspect causal links and VERIFY may assess source quality.
+Name a substantial structured method when used, but do not treat naming it as
+authorization. A new objective, optional follow-on operation, or side effect
+requires authorization from the user's request or a later acceptance. Explicit
+requests for combined work authorize that combination, not an ongoing sequence.
+Evidence access needed for requested RESEARCH or VERIFY is within their scope;
+an analytical challenge alone does not authorize an additional research project.
+Host tool permissions still apply. Reading another skill for a technique is not
+proof that a separate user-facing operation ran.
+
 ## Delegate selectively
 
 Keep the conversational agent responsible for the final response. When the host supports isolated workers, use them only when separation or parallelism materially improves the operation:
@@ -128,6 +142,14 @@ Two suggestions are allowed:
 - **A check**, when the conversation starts treating an untested general claim, causal mechanism, empirical prediction, or apparently new idea as settled. Ask yourself: "We are beginning to believe this. What would we need to check?" Then, in one line, name what is being assumed and the operation that would test it: HYPOTHESIZE for rivals, THOUGHT EXPERIMENT for implications, RESEARCH for prior work and evidence, VERIFY for a specific fact, or CHALLENGE for the whole position.
 
 Offer each suggestion once for a given claim or state; if the user declines or moves on, do not repeat it. A suggestion is optional; do not perform it unless the user accepts or the request already authorizes it. Keep all other operations user-directed.
+
+These limited core suggestions are distinct from invoking GUIDE. They apply only
+while the entry skill governs the conversation; GUIDE itself never remains on.
+After a decline, ordinary paraphrasing or another mention of the same claim does
+not reset consent. Material new evidence or a changed claim may warrant a new
+suggestion: explain briefly what changed. If earlier context is unavailable, do
+not invent a history of suggestions or claim to remember a decline. An explicit
+request to stop suggestions remains in force until the user changes it.
 
 ## Boundaries
 

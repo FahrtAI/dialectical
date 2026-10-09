@@ -25,6 +25,8 @@ A → B → C → outcome
 - **Solid / Vulnerable / Brittle**
 - **Basis:** [which links were checked against evidence; which rest on assumption]
 - **Weakest link:**
+- **Scope:** [outcome, magnitude, and timing actually supported]
+- **Alternative paths:** [whether any supported path suffices; no unique linchpin does not imply Solid]
 - **Evidence that would settle it:**
 ```
 

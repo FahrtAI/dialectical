@@ -2,7 +2,7 @@
 name: dialectical-verify
 description: Resolve a specific empirical proposition against authoritative external evidence and report a calibrated verdict. Use for targeted factual adjudication; do not use for broad exploration, value judgments, or claims that cannot be empirically settled.
 metadata:
-  version: "0.6.0"
+  version: "0.6.1"
 ---
 
 # Verify
@@ -24,6 +24,11 @@ Determine what the best available external evidence warrants about a narrowly st
 6. Cite the evidence directly and include relevant dates.
 
 When sources of differing quality bear on the proposition, `dialectical-source-quality` can rate them. Say so when you apply it.
+
+Source assessment is an internal technique for this verification, not a new
+objective requiring another consent question. Relevant evidence retrieval is
+part of the requested verification. A broader research question or persistence
+still needs authorization; naming an additional method does not grant it.
 
 If external evidence cannot be accessed, say that verification was not completed. Offer a verification plan or clearly labeled provisional assessment instead.
 

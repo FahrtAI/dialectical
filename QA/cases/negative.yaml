@@ -17,7 +17,7 @@ cases:
       - "Continues the substantive conversation without a GUIDE recommendation."
     forbid:
       - "Treating a potentially useful intervention as an invocation"
-      - "Appending an operation recommendation"
+      - "Invoking GUIDE without a request; if the entry skill is loaded, distinguish its narrowly permitted core suggestions from GUIDE"
     expected_mutation: {class: none, paths: []}
 
   - id: negative-guide-use-help
@@ -51,10 +51,8 @@ cases:
   - id: negative-guide-consent-routes-operation
     skill: dialectical-guide
     mode: negative
-    prompt: >-
-      In the previous turn GUIDE recommended ACH and asked whether to try it.
-      Yes, use ACH on the three explanations and supplied evidence.
-    environment: {fixture: conversation-in-prompt}
+    prompt: "Yes, use ACH on these explanations and evidence."
+    environment: {fixture: guide-consent}
     expect_activation:
       include: [dialectical-ach]
       exclude: [dialectical-guide]

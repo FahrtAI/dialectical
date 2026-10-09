@@ -110,7 +110,7 @@ Minimum operation checks:
 | RESUME | Load the selected inquiry and relevant linked context | Activating an ambiguous inquiry before selection |
 | CLOSE | Take a final checkpoint and record paused or closed status | Marking unresolved work complete or closing the platform chat |
 
-The 0.6.0 additions have explicit, implicit, contextual, ambiguous, and negative
+The 0.6.1 additions have explicit, implicit, contextual, ambiguous, and negative
 cases in `cases/positive.yaml` and `cases/negative.yaml`, plus core regressions
 in `evals/cases.yaml`. Exercise each skill independently with no preceding
 operation. Check exploration and decision contexts, known versus missing
@@ -120,8 +120,10 @@ still mention purpose, gaps, and predictions within their existing contracts.
 
 Parsing YAML or validating case coverage does not execute these cases. Capture
 actual responses and invocation/tool traces before assigning behavior scores;
-use `evals/SCORING.md`, and report unrun host tests separately. No automated
-behavioral runner is currently implemented.
+use `evals/SCORING.md`, and report unrun host tests separately. The incremental
+runner is `scripts/run_evals.py`; see `QA/RUNNING.md` for adapter and recorded-run
+workflows. Complete smoke fixtures live in `cases/smoke.yaml`. Legacy cases with
+missing fixture definitions are deferred, never counted as behavioral passes.
 
 GUIDE cases must include a useful recommendation, no-intervention judgment,
 insufficient context, an ordinary conversation where GUIDE stays inactive,
@@ -294,6 +296,9 @@ Mutation cases should also declare the allowed paths and expected filesystem
 state.
 
 ## Scoring
+
+The canonical definitions and pass rule are in [evals/SCORING.md](../evals/SCORING.md).
+The dimensions below mirror that contract; update the canonical rubric first.
 
 Score qualitative cases from 0 to 2 on:
 

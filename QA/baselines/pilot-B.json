@@ -1,0 +1,76 @@
+{
+  "protocol_version": 1,
+  "model": "inherited session model; exact backend unavailable",
+  "host": "Codex independent agent, simulated sequential cases",
+  "tool_activity": null,
+  "invocations": null,
+  "usage": null,
+  "results": [
+    {
+      "case_id": "smoke-free-exploration",
+      "messages": [
+        {"role": "user", "content": "I'm just exploring why familiar streets feel different at night. I'm not trying to settle a claim or make a decision. Let's talk."},
+        {"role": "assistant", "content": "A familiar street at night can feel like the same place with its emphasis shifted. A doorway you barely notice by day becomes a pool of light; stretches between lights seem to acquire more distance. Maybe familiarity depends partly on the usual bustle, and when that drops away, the street has room to feel strange again.\n\nIs it the quiet, the light, or something about having the street more to yourself that catches you?"},
+        {"role": "user", "content": "I think the quieter sounds change what I notice. Keep exploring that with me."},
+        {"role": "assistant", "content": "That makes sense—the quiet might give small sounds more room. A footstep, leaves moving, or a conversation behind a window can become something you follow instead of something that disappears into the background.\n\nI wonder whether that also changes the apparent size of the street. Hearing a sound from farther away might make it feel more open; hearing your own footsteps might make the experience feel more private. Those are two quite different moods that could come from the same quiet. What sounds tend to pull your attention?"}
+      ]
+    },
+    {
+      "case_id": "smoke-guide-accept",
+      "messages": [
+        {"role": "user", "content": "Monthly churn rose from 3% to 5% after a redesign. Our three candidate main causes are export discoverability, a price increase, and measurement change. Export tickets doubled. Churn rose equally on unchanged-price plans. The dashboard query is unchanged but tracking instrumentation has not been audited. These are supplied observations, not independently verified. Which operation would help now?"},
+        {"role": "assistant", "content": "ACH would help compare how those observations bear on the three explanations, while retaining the tracking uncertainty. Would you like to try it?"},
+        {"role": "user", "content": "Yes, use ACH on these explanations and evidence."},
+        {"role": "assistant", "content": "Using the supplied observations as provisional evidence, the price increase faces the clearest contradiction. Export discoverability and measurement change remain difficult to separate.\n\n| Observation | Export discoverability | Price increase | Measurement change |\n|---|---|---|---|\n| Churn rose after the redesign | Consistent, but timing alone is weak evidence | Unclear without price-change timing | Consistent if tracking changed around then; unknown |\n| Export tickets doubled | Supports an export problem, but does not establish its contribution to churn | Does not directly support price as the main cause | Could coexist with an apparent churn increase; ticket measurement is unspecified |\n| Churn rose equally on unchanged-price plans | Compatible | Counts against a direct price explanation as the main cause | Compatible |\n| Dashboard query unchanged | Does little to distinguish causes | Does little to distinguish causes | Counts against a query-change explanation, but leaves instrumentation changes open |\n| Instrumentation unaudited | Leaves the churn observation uncertain | Leaves the churn observation uncertain | An unresolved gap, not positive evidence of a tracking problem |\n\nExport discoverability has the most direct supporting observation, but there is no basis yet to call it the main cause. Measurement change remains viable, and the unchanged query does not rule it out. Price is the weakest of the three under the straightforward assumption that unchanged-price plans were not indirectly affected by the increase.\n\nThe biggest missing distinctions are whether the churn increase survives a tracking audit and whether it is concentrated among customers affected by export difficulty. Multiple causes could also be operating together."}
+      ]
+    },
+    {
+      "case_id": "smoke-guide-decline",
+      "messages": [
+        {"role": "user", "content": "We have three possible main causes of churn: price, redesign, or tracking. Churn rose equally on plans without a price change; export complaints increased; tracking is unaudited. Recommend at most one useful method and ask before doing it."},
+        {"role": "assistant", "content": "Analysis of Competing Hypotheses (ACH) would help compare which observations count against each explanation and keep the unaudited tracking uncertainty visible. Would you like me to apply it?"},
+        {"role": "user", "content": "No, let's just discuss what the export complaints might mean. Please stop suggesting methods."},
+        {"role": "assistant", "content": "The complaints could mean customers are struggling to find export, finding it harder to use, or encountering an actual failure. Their wording matters: “Where did it go?” tells a different story from “My file is missing data.”\n\nAn increase could also reflect more people attempting exports or becoming more willing to complain. So it suggests friction worth understanding, but doesn't yet tell us how widespread it is or whether it drives people to leave. Do the complaints describe losing a familiar route or being unable to finish the task?"},
+        {"role": "user", "content": "Maybe customers miss the old layout. What might that mean for how we talk to them?"},
+        {"role": "assistant", "content": "It could mean they miss being able to do familiar work without thinking about the interface. I'd make room for that possibility without assuming they're simply resistant to change.\n\nYou might say: “I'd like to understand what became harder with the new layout. Could you walk me through how you used to export and where you get stuck now?”\n\nThat acknowledges a possible loss of ease while leaving customers free to describe something else—a broken function, an extra step, or a preference. If you know the new route, offer it after hearing them out, and avoid promising a return to the old layout unless that's actually planned."}
+      ]
+    },
+    {
+      "case_id": "smoke-causal-no-linchpin",
+      "messages": [
+        {"role": "user", "content": "Analyze this causal argument: either help-center articles or chatbot answers could reduce tickets. We have no evidence customers will use either or that either resolves their issues. Because there are two independent paths and no unique linchpin, the plan is solid and will halve tickets next month. No other evidence is available."},
+        {"role": "assistant", "content": "The conclusion is unsupported. Two possible routes to fewer tickets provide alternatives, but neither route has been shown to work.\n\nEach needs several links: customers encounter the channel, use it, get an adequate answer, and consequently avoid a ticket they otherwise would have submitted. Adoption and resolution are explicitly unknown for both articles and the chatbot. They might also share failure causes, such as poor underlying information or issues that require human action, so their independence is asserted rather than established.\n\nEven granting independent paths and no unique linchpin, both paths could fail. Redundancy does not supply evidence that either succeeds.\n\nThe prediction of halving tickets next month additionally requires enough eligible issues, sufficient uptake, successful resolution, and fast enough implementation. None is quantified here. The defensible conclusion is that either channel could reduce some tickets; the size, timing, and reliability of that reduction remain unknown."}
+      ]
+    },
+    {
+      "case_id": "smoke-distill-source-scope",
+      "messages": [
+        {"role": "user", "content": "A vendor report claims its chatbot cut tickets by 50%. We have only the vendor's paragraph, no underlying data or independent check. Our ACH discussion found chatbot adoption least inconsistent among three proposed explanations, with several unknown cells. Distill what we actually learned."},
+        {"role": "assistant", "content": "We learned that the vendor reports a 50% ticket reduction, and that chatbot adoption was the least inconsistent of the three explanations considered in your ACH discussion.\n\nThose are limited findings. The paragraph does not establish that the reduction occurred as described or that the chatbot caused it. The ACH result is a provisional comparison within that candidate set; with unknown cells, it does not verify adoption or rule out explanations outside the set.\n\nWhat remains unresolved is how tickets were counted, the comparison period, actual chatbot use and resolution, and other changes that could explain the result. We have a reported outcome and a tentative explanatory lead, not a verified effect or a basis for expecting the same reduction elsewhere."}
+      ]
+    },
+    {
+      "case_id": "smoke-challenge-composition",
+      "messages": [
+        {"role": "user", "content": "Challenge this plan using the information here: restore an export button, users will find it, unhappy users will stay, and churn will fall from 5% to 3%. We have complaint counts but no estimates of how much churn export explains. No research or files, please."},
+        {"role": "assistant", "content": "Restoring the button could address a real frustration, but the promised churn reduction goes well beyond the evidence.\n\n- Restoring it does not guarantee users will notice it. Placement, labeling, and whether affected users return all matter.\n- Finding it does not guarantee successful export. The complaints could involve problems beyond discoverability.\n- Resolving export frustration does not guarantee retention. Customers may have other reasons to leave or may already have decided.\n- Complaint counts do not establish how many departures export caused. They may include repeat complaints, customers who stayed, or only a small portion of affected users.\n\nGoing from 5% to 3% requires preventing two percentage points of churn—40% of current churn, assuming a comparable population and period. Nothing supplied shows that export accounts for that much preventable loss.\n\nThe plan is plausible as a usability improvement. Its retention benefit is an untested hypothesis, and the specific 3% target is unsupported. A particularly challenging result would be successful export use returning while churn stays elevated: that would weaken the proposed link from fixing export to retaining customers."}
+      ]
+    },
+    {
+      "case_id": "smoke-continuity",
+      "messages": [
+        {"role": "user", "content": "Checkpoint this inquiry: we suspect export discoverability contributed to churn but only have complaint counts. We rejected the claim that it explains the whole increase. We need cohort data. No file store is available."},
+        {"role": "assistant", "content": "Checkpoint, recorded here in the conversation only:\n\n- Export discoverability is an untested possible contributor to churn.\n- Available evidence: supplied complaint counts, not independently verified.\n- Size of the contribution: unknown.\n- Rejected claim: export discoverability explains the whole increase. This does not establish that its contribution is zero.\n- Next question: what cohort data could connect export difficulty with subsequent churn?\n\nNo separate file or durable memory has been created."},
+        {"role": "user", "content": "Here is the checkpoint to resume: export discoverability is an untested possible contributor; complaint counts are supplied, not independently verified; size of effect unknown; whole-increase claim rejected; next question is cohort data. Resume from that note."},
+        {"role": "assistant", "content": "Picking up from your note, the open question is whether customers affected by export difficulty churned more than comparable customers who weren't.\n\nA useful comparison would follow customers who relied on export before the redesign and those who did not, looking at how churn changed in each group. That would avoid defining the affected group solely by who complained. Plan, tenure, price exposure, and consistent churn measurement would matter when interpreting the difference.\n\nA larger increase among prior export users would support the contributor hypothesis, though it would not by itself prove causation or measure the effect precisely. Similar increases across the groups would weaken it, subject to how well prior export use identifies affected customers. Do you have export-use history linked to account-level churn?"}
+      ]
+    },
+    {
+      "case_id": "smoke-verify-no-evidence",
+      "messages": [
+        {"role": "user", "content": "Verify whether an ordinance called Rivergate 24-17 was enacted yesterday. No sources are supplied and no external evidence tools are available."},
+        {"role": "assistant", "content": "I can't verify that with no sources or external evidence access. Its status is unknown here; that does not mean it wasn't enacted.\n\nVerification would require identifying the jurisdiction and checking an official enactment record for the relevant date. A proposal or agenda listing alone would not establish enactment."}
+      ]
+    }
+  ]
+}
