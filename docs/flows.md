@@ -16,11 +16,32 @@ possible moves, not stages to complete.
 | **Decide** | A choice with goals, constraints, and uncertainty | Clarify what the decision is for, distinguish values from empirical claims, prioritize consequential COLLECTION GAPS, and define INDICATORS for reconsideration | A decision with stated trade-offs and conditions for revisiting it |
 | **Evaluate** | A claim, source, plan, or causal argument | RESTATE the object, assess SOURCE-QUALITY, inspect a CAUSAL-CHAIN, CHALLENGE assumptions, and VERIFY an empirical proposition | A scoped judgment that keeps evidence, inference, and uncertainty distinct |
 | **Preserve** | A long inquiry whose state is becoming difficult to hold | DISTILL what was learned, TRACE how the position changed, CHECKPOINT a copyable state, and use SAVE or RECALL only when authorized and available | A usable handoff that preserves provenance, uncertainty, and open questions |
+| **Random question** | A curiosity whose purpose is still open | Talk normally first; use RELEVANCE only if the purpose matters, RESEARCH for prior art or facts, HYPOTHESIZE for possible explanations, THOUGHT EXPERIMENT for implications, and VERIFY for a specific factual claim | A satisfying answer, a sharper question, or a deliberate choice about what to investigate next |
 
 The pathway can change as the conversation changes. An exploratory question can
 become a decision; an explanation can reveal a need for research; a conclusion
 can be reopened when an indicator changes. GUIDE can recommend one useful move
 when the user asks, but it does not choose or run a pathway automatically.
+
+## Flow 0: Following a random question
+
+Random questions do not need to become formal inquiries. The conversation can
+start with a plausible answer, then use an operation when the user wants a
+specific kind of help. This example shows several independent tasks entering
+one conversation; each handoff is requested by the user.
+
+| # | User says | Operation | Result |
+|---|---|---|---|
+| 1 | “Why can a smell bring back a memory so suddenly?” | none | Ordinary conversation offers a few possible mechanisms, labels them as possibilities, and asks what the user is curious about: the biology, the personal experience, or something else. |
+| 2 | “What explanations could account for that?” | HYPOTHESIZE | Generates competing explanations, such as associative learning, emotional salience, and attention, with observations that would distinguish them. It does not rank them or present the list as established fact. |
+| 3 | “Find prior work that connects smell and memory, including disagreements.” | RESEARCH | Looks for relevant sources and prior art, reports what was actually found, and preserves source scope and uncertainty. Research is limited to this requested question. |
+| 4 | “The answer said smell has a uniquely direct route to memory. Is that actually true?” | VERIFY | Checks that specific empirical proposition. If no evidence is available, it says verification is incomplete rather than treating the conversational claim as evidence. |
+| 5 | “Suppose smell recognition were no better than recognition through another sense. What would that change?” | THOUGHT EXPERIMENT | Explores the implications of the counterfactual without claiming that the condition is true. |
+| 6 | “What did we really learn?” | DISTILL | Separates findings supported by the retrieved evidence, explanations generated in conversation, unresolved disagreements, and the next open question. |
+
+The user could stop after any row, return to ordinary conversation, or ask for a
+different task. GUIDE is useful when the user wants help choosing the next move;
+it does not activate because the question happens to be broad or interesting.
 
 ## Independent examples: purpose, gaps, and indicators
 
