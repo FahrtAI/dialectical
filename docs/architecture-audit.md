@@ -1,67 +1,106 @@
-# Skills-only architecture audit — 0.4.0
+# Skills-only architecture audit — current at 0.6.1
 
-## Finding
+This document records the architectural decision that made Dialectical a
+skills-only ChatGPT plugin and describes the state of the repository at release
+0.6.1. The original audit was performed during the 0.4.0 cleanup. It remains a
+historical record of the removed service, but the inventory and acceptance
+notes below are kept current so that this document is useful to maintainers.
 
-The previous package bundled a conversation methodology with an optional
-persistence service, then incorrectly required that service for installation.
-No method in the core conversation needs proprietary computation, an external
-database, credentials, or a continuously running process.
+## Current finding
 
-The audit covered all first-party source, manifests, skill instructions and
-references, QA/eval cases, packaging scripts, adapters, artwork metadata, and
-the server dependency/build layout before modification. Installed dependency
-code and generated server output are build artifacts, not methodology.
+Dialectical's product is a conversational methodology. Its core behavior needs
+no proprietary computation, external API, database, credentials, background
+process, or continuously running service. The portable package therefore
+contains a root manifest, the entry skill, focused skills, their references,
+the license, and referenced plugin artwork.
+
+Optional continuity can use a record supplied in the conversation or an
+authorized filesystem. That optional file format is a host capability; it is
+not a required plugin service and it does not turn the ChatGPT package into a
+database-backed application.
 
 ## Inventory and disposition
 
-| Component before cleanup | Purpose | Disposition |
+| Component | Current purpose | Status |
 |---|---|---|
-| Root plugin.json | Portable identity and OpenAI listing | Retained; version 0.4.0; honest skills-only capabilities |
-| .codex-plugin/plugin.json | Duplicate compatibility manifest | Removed; inline OpenAI extension already exists |
-| mcp.json and .mcp.json | Localhost connection declarations | Removed |
-| server/src/app.ts and index.ts | HTTP/MCP listener, sessions, startup | Removed |
-| server/src/auth.ts | OAuth/JWT verification and development identity | Removed |
-| server/src/store.ts | SQLite inquiry/memory database, history, versioning | Removed |
-| server/src/tools.ts | Ten persistence/profile MCP tools | Removed |
-| server/test/ | Protocol, authentication and storage tests | Removed with the service |
-| Server package/lock, TypeScript, Docker and environment files | Service dependencies, build and deployment | Removed |
-| 20 skills and supporting Markdown | Actual operations, router, examples, trust boundaries | Retained; startup and no-storage continuity made explicit |
-| Memory reference | MCP mapping plus file format | MCP mapping removed; optional existing file format preserved |
-| ASCII help card | Stable orientation text | Retained; persistence promises corrected |
-| QA/cases/mcp.yaml | Service integration expectations | Replaced by server-free ChatGPT cases |
-| Other QA and evals | Methodology, routing and optional host tests | Retained; capability requirements distinguished |
-| Package scripts | ZIP assembly and validation | Simplified; no compulsory MCP or hosting checks |
-| README, CHATGPT.md and other adapters | Product and installation instructions | Corrected; other hosts remain optional |
-| assets/ | README banners and plugin icons | Retained; only referenced plugin icons are shipped |
-| dist/ | Built ZIP with localhost connection | Rebuilt as a skills-only distribution |
+| `plugin.json` | Portable identity, metadata, and OpenAI interface listing | Retained; version 0.6.1 |
+| `skills/dialectical/SKILL.md` | Entry behavior, ordinary-conversation boundary, routing, and help behavior | Retained |
+| 23 focused skills and supporting Markdown | Independent operations, boundaries, examples, and optional continuity procedures | Retained; skill frontmatter is version 0.6.1 |
+| `skills/dialectical/references/memory.md` | Optional file-storage contract and no-storage behavior | Retained; storage schema remains separate from release version |
+| `assets/` artwork referenced by the manifest | Plugin icon, logos, and project artwork | Retained; only referenced plugin artwork is packaged |
+| `LICENSE` | CC BY-NC-SA 4.0 legal terms | Retained |
+| `QA/`, `evals/`, and `scripts/` | Maintainer validation, behavioral fixtures, scoring, and ZIP assembly | Retained in the repository; excluded from the plugin ZIP |
+| `README.md`, `CHATGPT.md`, and host guides | Product explanation, installation, and host-testing instructions | Retained and aligned to skills-only behavior |
+| `docs/cookbook.md` and `docs/flows.md` | Repository documentation and illustrative usage | Retained outside the package |
+| `docs/architecture-audit.md` | This architectural record | Retained and updated for 0.6.1 |
+| `.codex-plugin/plugin.json` | Duplicate compatibility manifest | Removed during the 0.4.0 cleanup |
+| `mcp.json`, `.mcp.json`, and `.app.json` | Localhost or app connection declarations | Removed during the 0.4.0 cleanup |
+| `server/src/` | HTTP/MCP listener, auth, SQLite store, and persistence tools | Removed during the 0.4.0 cleanup |
+| `server/test/` | Protocol, authentication, and storage tests | Removed with the service |
+| Server package files, TypeScript, Docker, and environment files | Service dependencies, build, and deployment | Removed with the service |
 
-Tracked removals remain recoverable from Git history. Ignored generated server
-files and the superseded ZIP were moved outside the repository during cleanup.
-No user inquiry store was removed.
+The removed service was an implementation path that had been mistaken for a
+requirement of the conversational product. Its tracked history remains
+recoverable in Git. No user inquiry store was removed as part of the cleanup.
 
-## Minimum package versus preserved methodology
+## What changed after the original audit
 
-OpenAI's portable package example needs a root manifest and a
-skills/<name>/SKILL.md entry. Skills use name and description YAML frontmatter.
-The OpenAI interface extension gives this package the display name Dialectical.
-An MCP declaration is optional and is absent here.
+The skills-only conversion landed in 0.4.0. Release 0.5.0 added the inquiry
+framing operations RELEVANCE, COLLECTION GAPS, and INDICATORS. Release 0.6.0
+added GUIDE as an on-demand recommendation. Release 0.6.1 tightened consent
+and composition boundaries, improved causal and evidence calibration, reduced
+duplication in continuity instructions, and added executable QA and onboarding
+documentation.
 
-The existing focused operations have distinct triggers and success criteria;
-retaining them avoids rewriting the methodology as one large prompt. References
-are loaded only when needed. No compatibility overlay or runtime wrapper is
-required for the current portable format.
+The current catalog has 24 `SKILL.md` files, including the entry skill. The
+operations remain independently callable. Ordinary conversation is primary;
+there is no mandatory intelligence cycle, automatic operation chain,
+background observer, or scheduled monitoring behavior. GUIDE recommends at
+most one useful operation and waits for consent. COLLECTION GAPS proposes
+evidence to seek, RESEARCH seeks available evidence, VERIFY evaluates a
+specific empirical claim, and INDICATORS defines developments to watch without
+creating monitoring tasks.
 
-## Acceptance boundary
+## Minimum package
 
-The entry skill explicitly handles “@Dialectical start a conversation” in the
-current chat. Without a supplied topic it asks what to explore. Storage and
-worker capabilities are optional. Research still needs actual evidence to make
-research claims; without access it reports the limit.
+The current package is intentionally small:
 
-Local structural validation is separate from OpenAI upload checks, account
-installation, and observed desktop/iPhone behavior. See [CHATGPT.md](../CHATGPT.md)
-and [the device cases](../QA/cases/chatgpt.yaml). Do not report those device tests
-as passed merely because the ZIP is valid.
+```text
+plugin.json
+LICENSE
+skills/
+  <skill-name>/SKILL.md
+  <skill-name>/references/*.md
+assets/<manifest-referenced PNG files>
+```
+
+`plugin.json` uses the portable Agent Plugins 1.0 schema and the
+`extensions.com.openai.interface` metadata needed for the Dialectical display
+identity. The package has no MCP declaration, app dependency, executable
+runtime, wrapper application, hosting target, or required account connection.
+Repository documentation, QA fixtures, evaluation adapters, and packaging
+utilities remain useful to maintainers but are deliberately outside the ZIP.
+
+The entry skill handles `@Dialectical start a conversation` in the current
+chat. It can begin with only the packaged instructions. SAVE, CHECKPOINT,
+RESUME, and related continuity operations explain their limits when no
+authorized storage is available; they do not invent persistence or request a
+service merely to continue the conversation.
+
+## Validation boundary
+
+The repository's local checks validate the manifest, paths, artwork, skill
+frontmatter, package contents, QA definitions, and evaluation harness. The
+package builder runs the package and skill validators before creating the
+skills-only ZIP. These checks do not establish that an account accepts an
+upload, that an installed plugin invokes correctly, or that artwork renders
+correctly in every desktop and mobile host. Those are installation and device
+acceptance tests documented in [CHATGPT.md](../CHATGPT.md),
+[QA/RUNNING.md](../QA/RUNNING.md), and [QA/RELEASE_ACCEPTANCE.md](../QA/RELEASE_ACCEPTANCE.md).
+
+The current version and archive name are read from `plugin.json`; the current
+distribution is `dist/dialectical-0.6.1.zip`. `dist/` is generated output and
+is not part of the source package definition.
 
 ## Current sources
 
@@ -72,7 +111,6 @@ as passed merely because the ZIP is valid.
 - [Account creation/editing and @ invocation](https://learn.chatgpt.com/docs/build-plugins)
 - [Desktop/mobile support and installation](https://learn.chatgpt.com/docs/plugins)
 
-The build-skills page includes a legacy manifest illustration. For this package
-the dedicated portable packaging specification governs: discover skills/ by
-convention, with presentation under extensions.com.openai, not top-level skills
-or apps fields.
+These links preserve the sources used for the packaging decision. The local
+validators are implementation checks, not a substitute for OpenAI upload
+scans or installed-host behavior.

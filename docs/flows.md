@@ -1,6 +1,26 @@
 # Sample flows
 
-Two illustrative sessions and independent operation examples. They are examples, not workflows. Each operation happens because the user asked for it, and any of them could be skipped or reordered. The data is invented.
+These are examples, not workflows. A pathway names the kind of inquiry taking
+place and the moves that may help; the user can skip, reorder, branch, stop, or
+return to ordinary conversation at any point. The data is invented.
+
+## Generic pathways
+
+The same small set of pathways covers most conversations. They are menus of
+possible moves, not stages to complete.
+
+| Pathway | Start with | Possible moves | Useful ending |
+|---|---|---|---|
+| **Explore** | An idea, question, or connection that is not yet a decision | Clarify purpose with RELEVANCE, connect prior art with RESEARCH, generate alternatives with HYPOTHESIZE, and expose implications with a THOUGHT EXPERIMENT | A clearer question, promising possibilities, and open questions |
+| **Explain** | An observation or outcome that needs an account | Separate observation from interpretation, generate competing explanations, compare them with ACH, identify missing evidence with COLLECTION GAPS, and check a specific link with VERIFY | A calibrated explanation, unresolved alternatives, and the next useful check |
+| **Decide** | A choice with goals, constraints, and uncertainty | Clarify what the decision is for, distinguish values from empirical claims, prioritize consequential COLLECTION GAPS, and define INDICATORS for reconsideration | A decision with stated trade-offs and conditions for revisiting it |
+| **Evaluate** | A claim, source, plan, or causal argument | RESTATE the object, assess SOURCE-QUALITY, inspect a CAUSAL-CHAIN, CHALLENGE assumptions, and VERIFY an empirical proposition | A scoped judgment that keeps evidence, inference, and uncertainty distinct |
+| **Preserve** | A long inquiry whose state is becoming difficult to hold | DISTILL what was learned, TRACE how the position changed, CHECKPOINT a copyable state, and use SAVE or RECALL only when authorized and available | A usable handoff that preserves provenance, uncertainty, and open questions |
+
+The pathway can change as the conversation changes. An exploratory question can
+become a decision; an explanation can reveal a need for research; a conclusion
+can be reopened when an indicator changes. GUIDE can recommend one useful move
+when the user asks, but it does not choose or run a pathway automatically.
 
 ## Independent examples: purpose, gaps, and indicators
 
