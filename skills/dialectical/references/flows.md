@@ -1,9 +1,10 @@
 # In-chat flow guide
 
 Use this reference when the user asks to see examples, the cookbook, sample
-flows, or how Dialectical operations can be used together. Showing a flow does
-not start any operation. Present the relevant pathway, then offer to apply a
-specific move if the user asks.
+flows, or how Dialectical operations can be used together. It is also the source
+for `/MAN` and `/?` menu choices for cookbook and flow material. Showing a flow
+does not start any operation. Present the relevant pathway, then offer to apply
+a specific move if the user asks.
 
 ## Pathways
 

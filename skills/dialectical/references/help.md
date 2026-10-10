@@ -49,4 +49,19 @@ It is for requests to explain Dialectical, show its operations, or explain how
 to use the toolkit.
 
 For examples by situation, ask to see the cookbook or sample flows. The flow
-guide can be shown without starting any operation.
+guide can be shown without starting any operation. You can also type `/MAN` or
+`/?` for a compact menu of the operation card, cookbook, and sample flows.
+
+For `/MAN`, `/?`, or `/HELP`, use this compact menu before showing a selected
+reference:
+
+```text
+Dialectical orientation:
+
+[1] Operation card
+[2] Cookbook and pathways
+[3] Sample flow
+```
+
+Wait for the user's choice. A menu choice only retrieves orientation material;
+it does not authorize an operation.
