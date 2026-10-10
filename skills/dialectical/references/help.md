@@ -47,3 +47,6 @@ CLOSE               Close while preserving the inquiry.
 Do not use this card for a generic request such as “help me with this problem.”
 It is for requests to explain Dialectical, show its operations, or explain how
 to use the toolkit.
+
+For examples by situation, ask to see the cookbook or sample flows. The flow
+guide can be shown without starting any operation.

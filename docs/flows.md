@@ -23,6 +23,32 @@ become a decision; an explanation can reveal a need for research; a conclusion
 can be reopened when an indicator changes. GUIDE can recommend one useful move
 when the user asks, but it does not choose or run a pathway automatically.
 
+The diagram shows the relationship between ordinary conversation and the
+pathways. It is a map of choices, not a process to complete.
+
+```mermaid
+flowchart TD
+    C([Ordinary conversation]) --> Q{What kind of help is wanted?}
+    Q --> E[Explore]
+    Q --> X[Explain]
+    Q --> D[Decide]
+    Q --> V[Evaluate]
+    Q --> P[Preserve]
+    Q --> R[Random question]
+    E -. optional moves .-> E1[RELEVANCE · RESEARCH · HYPOTHESIZE]
+    X -. optional moves .-> X1[HYPOTHESIZE · ACH · VERIFY]
+    D -. optional moves .-> D1[RELEVANCE · COLLECTION GAPS · INDICATORS]
+    V -. optional moves .-> V1[CHALLENGE · CAUSAL-CHAIN · SOURCE-QUALITY]
+    P -. optional moves .-> P1[DISTILL · CHECKPOINT · RESUME]
+    R -. user-directed tasks .-> R1[RESEARCH · VERIFY · THOUGHT EXPERIMENT]
+    E1 --> C
+    X1 --> C
+    D1 --> C
+    V1 --> C
+    P1 --> C
+    R1 --> C
+```
+
 ## Flow 0: Following a random question
 
 Random questions do not need to become formal inquiries. The conversation can

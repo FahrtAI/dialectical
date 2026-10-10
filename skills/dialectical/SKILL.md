@@ -38,6 +38,11 @@ it, or to see its operations, read
 [`references/help.md`](references/help.md) and return its canonical help card.
 Do not use the card for a generic request for help with the user's subject.
 
+When the user asks for examples, the cookbook, sample flows, or how operations
+can be used together, read [`references/flows.md`](references/flows.md). Show
+the relevant pathway or example in the chat and offer to apply a named
+operation only if the user asks. Viewing a flow does not invoke its operations.
+
 For lighter orientation during an existing conversation, briefly identify the
 relevant operations without explaining all of them:
 
