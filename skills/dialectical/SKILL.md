@@ -38,11 +38,11 @@ it, or to see its operations, read
 [`references/help.md`](references/help.md) and return its canonical help card.
 Do not use the card for a generic request for help with the user's subject.
 
-Treat `/MAN`, `/?`, and `/HELP` as explicit orientation handles. Return a
-compact menu offering the operation card, the cookbook/pathways, or a sample
-flow. If the user chooses cookbook or flows, read
-[`references/flows.md`](references/flows.md) and show the relevant material.
-Showing orientation material does not invoke an operation.
+Treat `help`, `?`, `/MAN`, `/?`, and `/HELP` as explicit orientation handles.
+Read [`references/help.md`](references/help.md) and return the canonical ASCII
+operation card. If the user then asks for the cookbook, flows, or a specific
+situation, read [`references/flows.md`](references/flows.md) and show the
+relevant material. Showing orientation material does not invoke an operation.
 
 When the user asks for examples, the cookbook, sample flows, or how operations
 can be used together, read [`references/flows.md`](references/flows.md). Show
