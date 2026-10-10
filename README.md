@@ -145,6 +145,11 @@ python3 scripts/validate_plugin_package.py
 python3 scripts/package_plugin.py
 ```
 
+Every CI build retains a ZIP, checksum, and source record. Version-tag builds
+prepare a draft GitHub release from the tested artifacts. See
+[building and releasing](docs/releases.md) for reproducible builds, tag/version
+checks, and the post-install smoke test.
+
 Behavioral evaluation is separate: see [QA/RUNNING.md](QA/RUNNING.md) for the
 complete smoke fixtures, canonical rubric, adapter protocol, and comparison
 conditions. The runner is a maintainer utility and is excluded from the plugin.

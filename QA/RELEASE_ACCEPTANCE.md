@@ -3,6 +3,33 @@
 Use one record per candidate package. Keep source, packaging, account update,
 and installed-host evidence separate. A Git push does not update an account plugin.
 
+## Short post-install smoke test
+
+Run this on desktop and iPhone separately after updating the account plugin.
+Use a fresh chat on each device and record the actual responses.
+
+1. Take the expected version, commit, and ZIP checksum from the release's
+   `.build.json` attachment. Check the downloaded ZIP against `.zip.sha256` and
+   record which package was used for the account update.
+2. If the host exposes installed version metadata, compare it with the release.
+   Otherwise record version verification as unconfirmed. You may ask Dialectical
+   to read its loaded entry skill's `metadata.version`; record that as a reported
+   version only. Model self-report alone does not prove the installed package.
+3. Select the actual Dialectical entry from the `@` menu and send
+   `@Dialectical start a conversation`. Expect a short opening question, with no
+   server or storage setup. Supply a topic and confirm it continues normally.
+4. Ask `@Dialectical help`. Expect the canonical ASCII card. For a candidate
+   containing in-chat flow support, ask `flows` and confirm a reference is shown
+   without research, saving, or other operations starting automatically.
+5. Ask `SAVE this idea as a copyable note; no file storage is available`.
+   Expect the note and an honest statement that it was not persisted elsewhere.
+
+Record pass/fail/untested and version-confirmation limitations below. This short
+test does not replace the GUIDE/continuity or light/dark checks in the full matrix.
+Copy this template into a separate candidate record; leave this template reusable.
+
+## Candidate record
+
 | Field | Value |
 |---|---|
 | Candidate version | |

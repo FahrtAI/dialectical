@@ -1,12 +1,23 @@
-name: Validate source and evaluation harness
-on: [push, pull_request]
+name: Validate, build, and prepare releases
+on:
+  push:
+    branches: ['**']
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: build-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
 jobs:
   static:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -16,4 +27,50 @@ jobs:
       - run: python scripts/run_evals.py validate
       - run: python scripts/validate_qa.py
       - run: python -m unittest discover -s QA/tests
-      - run: python scripts/package_plugin.py
+      - name: Build and verify reproducibility
+        shell: bash
+        run: |
+          args=()
+          if [[ "$GITHUB_REF_TYPE" == "tag" ]]; then
+            args=(--release --tag "$GITHUB_REF_NAME")
+          fi
+          python scripts/package_plugin.py "${args[@]}"
+          python scripts/package_plugin.py "${args[@]}" --output-dir "$RUNNER_TEMP/rebuild"
+          for archive in dist/*.zip; do
+            cmp "$archive" "$RUNNER_TEMP/rebuild/$(basename "$archive")"
+            python scripts/package_plugin.py --verify "$archive"
+          done
+          (cd dist && sha256sum --check *.zip.sha256)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dialectical-${{ github.sha }}
+          path: |
+            dist/*.zip
+            dist/*.zip.sha256
+            dist/*.build.json
+            dist/*.release.md
+          if-no-files-found: error
+          retention-days: 30
+  release:
+    needs: static
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dialectical-${{ github.sha }}
+          path: dist
+      - name: Create draft release from the tested artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        shell: bash
+        run: |
+          (cd dist && sha256sum --check *.zip.sha256)
+          gh release create "$RELEASE_TAG" dist/* \
+            --verify-tag --draft --title "Dialectical $RELEASE_TAG" \
+            --notes-file "dist/dialectical-${RELEASE_TAG#v}.release.md"
