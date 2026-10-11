@@ -1,6 +1,6 @@
 # Install and test Dialectical in ChatGPT
 
-Dialectical 0.6.1 is a skills-only plugin. Its entry point is
+Dialectical 0.7.0 is a skills-only plugin. Its entry point is
 `skills/dialectical/SKILL.md`, and its display name is **Dialectical**.
 The package requires no server, OAuth, API key, developer mode, or app connection.
 
@@ -13,9 +13,9 @@ availability on your phone.
 1. Open ChatGPT on the web in the intended account/workspace.
 2. Open **Plugins** and find the existing **Dialectical** plugin under
    **Personal / Created by me** (or the workspace where it was created).
-3. Select **Edit Plugin**. Attach `dist/dialectical-0.6.1.zip` and send:
+3. Select **Edit Plugin**. Attach `dist/dialectical-0.7.0.zip` and send:
 
-   > Replace Dialectical's package with this skills-only version 0.6.1.
+   > Replace Dialectical's package with this skills-only version 0.7.0.
    > Preserve its name and ownership. Remove the old MCP/app dependency.
    > Use the supplied skill and reference files, including the startup
    > instructions for “@Dialectical start a conversation.”
@@ -49,25 +49,37 @@ package cannot enable a feature the account lacks.
    acceptance of the explanation.
 6. Ask `HYPOTHESIZE`, then `CHALLENGE`, then `DISTILL`. Check that the operations
    differ, alternatives are meaningful, and speculation remains qualified.
-7. Ask `@Dialectical help`. Expect the ASCII command card.
-8. Ask `SAVE this finding` with no storage available. Expect a copyable record
-   and an honest statement that it was not saved elsewhere.
-9. In separate requests, test RELEVANCE, COLLECTION GAPS, and INDICATORS using
+7. Ask `@Dialectical help`. Expect the ASCII command card. Ask for `flows` and
+   `cookbook` separately and confirm each displays orientation without running
+   an operation.
+8. Ask `Catch me up on what we discussed`. Expect one short `RECAP` learning cue
+   followed by a faithful recap, without an extra confirmation step.
+9. Ask `SAVE this conversation so I can continue it in a new thread`. Expect a
+   downloadable Markdown handoff when supported, otherwise complete copyable
+   Markdown with a filename. It must preserve uncertainty and must not claim
+   automatic cross-thread memory.
+10. In separate requests, test RELEVANCE, COLLECTION GAPS, and INDICATORS using
    `QA/cases/chatgpt.yaml`. Expect purpose clarification, proposed evidence
    collection, and conditional signals respectively, without automatic chaining,
    browsing, monitoring, or setup. Confirm all three appear in the help card.
-10. Give the conversation two competing explanations with evidence, then ask
-    `GUIDE`. Expect one contextual recommendation and a consent question, with
-    no execution. In a fresh ordinary exchange, do not invoke GUIDE and confirm
-    that it does not monitor or volunteer GUIDE behavior.
+11. Give the conversation two competing explanations with evidence, then ask
+    `GUIDE`. Expect three commands in ranked order plus MORE, with no execution.
+    Select one number and confirm that only that command runs. Invoke GUIDE
+    again, choose MORE, and confirm that every command appears. In a fresh
+    ordinary exchange, do not invoke GUIDE and confirm that it does not monitor
+    or volunteer GUIDE behavior.
+12. In a conversation with meaningful prior discussion, invoke
+    `@Dialectical JOIN`. Expect RECAP, DISTILL, TRACE, and CONTINUE; confirm that
+    no retrospective operation runs until selected. Test an empty or partial
+    conversation separately and confirm that unavailable context is not invented.
 
 ## iPhone acceptance test
 
 1. Open ChatGPT on the iPhone with the same account and workspace.
 2. Start a new Chat or Work conversation.
 3. Select **Dialectical** from the `@` menu and repeat the startup test.
-4. Repeat HYPOTHESIZE, CHALLENGE, DISTILL, and the no-storage SAVE test.
-   Also repeat the independent 0.6.1 operation cases from `QA/cases/chatgpt.yaml`.
+4. Repeat HYPOTHESIZE, CHALLENGE, DISTILL, JOIN, and the portable SAVE test.
+   Also repeat the independent 0.7.0 operation cases from `QA/cases/chatgpt.yaml`.
 5. Keep the Mac and any former localhost server off during this test.
 6. In another new chat, paste a checkpoint and ask Dialectical to RESUME it.
    It should use that supplied context without claiming unseen chat access.
@@ -104,4 +116,7 @@ Checked against current official documentation during the 0.4.0 cleanup:
 - [Upload, review, and skills-only metadata requirements](https://developers.openai.com/plugins/deploy/submission)
 
 These are installation and test instructions. A local build is not evidence
-that the account update or either device test has been completed.
+that the account update or either device test has been completed. Copy
+[`QA/releases/TEMPLATE.md`](QA/releases/TEMPLATE.md) for the candidate and keep
+source push, package validation, account update, desktop, iPhone, artwork, and
+publication as separate statuses.

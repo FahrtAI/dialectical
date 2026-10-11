@@ -2,12 +2,19 @@
 name: dialectical-ach
 description: Evaluate competing explanations against the available evidence using Analysis of Competing Hypotheses and identify the least-inconsistent one. Use when the user requests ACH or several explanations must be compared against multiple observations; do not use only to generate explanations (HYPOTHESIZE) or to adjudicate one proposition (VERIFY).
 metadata:
-  version: "0.6.1"
+  version: "0.7.0"
 ---
 
 # ACH
 
 Identify the explanation least contradicted by the available evidence. ACH does not prove a hypothesis true.
+
+Use the shortest complete response that preserves material evidence, source
+dependence, uncertainty, and the limits of the candidate set. For a clear
+ordinary-language invocation that does not name ACH, begin with one line:
+`ACH — <brief context-specific description>.` Omit the cue for explicit ACH,
+mere discussion, or use as an internal technique. Change a claim's scope or
+confidence only when the stated evidence or analysis justifies it.
 
 ## Operation
 

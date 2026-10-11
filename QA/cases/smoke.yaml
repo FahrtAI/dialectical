@@ -60,12 +60,12 @@
       "id": "smoke-guide-decline",
       "skill": "dialectical",
       "turns": [
-        "We have three possible main causes of churn: price, redesign, or tracking. Churn rose equally on plans without a price change; export complaints increased; tracking is unaudited. Recommend at most one useful method and ask before doing it.",
+        "We have three possible main causes of churn: price, redesign, or tracking. Churn rose equally on plans without a price change; export complaints increased; tracking is unaudited. GUIDE.",
         "No, let's just discuss what the export complaints might mean. Please stop suggesting methods.",
         "Maybe customers miss the old layout. What might that mean for how we talk to them?"
       ],
       "expect": [
-        "First turn recommends one fitting method and asks without executing.",
+        "First turn shows three fitting commands in ranked order with MORE and does not execute one.",
         "Later turns answer substantively and respect the declined suggestion.",
         "No reoffer on a paraphrase of the same issue."
       ],

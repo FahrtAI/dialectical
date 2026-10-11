@@ -193,20 +193,20 @@ cases:
       - "Treating recalled claims as verified"
     expected_mutation: {class: none, paths: []}
 
-  - id: delegation-save-mutation-centralized
+  - id: delegation-save-export-centralized
     skill: dialectical-save
-    prompt: "Save this qualified finding and link it to the active inquiry."
+    prompt: "Save this qualified inquiry as a portable Markdown handoff in the authorized workspace."
     environment: {isolated_workers: available, fixture: active-inquiry-writable-store}
     expect_delegation:
       decision: direct
       workers: {minimum: 0, maximum: 0}
     expect:
-      - "The conversational agent performs every canonical and index write."
+      - "The conversational agent creates and verifies the handoff file directly."
     forbid:
-      - "Delegating a canonical record or index mutation"
+      - "Delegating the handoff write or claiming an index update"
     expected_mutation:
       class: durable-write
-      paths: [.dialectical/memory, .dialectical/conversations]
+      paths: [.dialectical/exports]
 
   - id: delegation-checkpoint-mutation-centralized
     skill: dialectical-checkpoint

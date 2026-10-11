@@ -3,7 +3,7 @@ suite: dialectical-chatgpt
 description: Run on desktop and iPhone with no external service, store, or workers.
 environment:
   plugin: dialectical
-  version: "0.6.1"
+  version: "0.7.0"
   mcp: absent
   filesystem: absent
   isolated_workers: unavailable
@@ -12,8 +12,8 @@ cases:
   - id: chatgpt-guide-on-demand
     skill: dialectical-guide
     prompt: "We have competing explanations and evidence for each, but no structured comparison. GUIDE."
-    expect: ["Recommends one fitting operation, explains why, and asks before performing it."]
-    forbid: ["Executing the operation", "Multiple recommendations", "Tools, persistence, monitoring, or a worker"]
+    expect: ["Shows three fitting commands in ranked order with canonical descriptions and MORE."]
+    forbid: ["Executing an operation", "Presenting a mandatory sequence", "Tools, persistence, monitoring, or a worker"]
   - id: chatgpt-relevance-no-tools
     skill: dialectical-relevance
     prompt: "RELEVANCE: I'm exploring how neighborhoods develop identities out of curiosity, not to make a decision."
@@ -48,11 +48,25 @@ cases:
     prompt: "@Dialectical help"
     expect: ["Returns the canonical ASCII card and five-word command descriptions."]
     forbid: ["Executing the listed operations"]
+  - id: chatgpt-natural-recap-cue
+    skill: dialectical-recap
+    prompt: "Catch me up on what we discussed."
+    expect:
+      - "Begins with one brief RECAP cue and then compresses only the visible discussion."
+      - "Preserves material disagreement and uncertainty."
+    forbid: ["A confirmation step", "A method tutorial", "New conclusions"]
+  - id: chatgpt-concise-calibrated-response
+    skill: dialectical-challenge
+    prompt: "Briefly test this: churn rose after price changed, so price caused all of the increase. No other evidence is available."
+    expect:
+      - "Uses one brief CHALLENGE cue and leads with the unsupported causal leap."
+      - "Keeps alternatives possible rather than presenting a replacement cause as proven."
+    forbid: ["A full generic framework", "A generic offer to do more", "Invented evidence"]
   - id: chatgpt-save-without-store
     skill: dialectical-save
-    prompt: "SAVE: overhearing may affect mentoring, but we have not tested the explanation."
-    expect: ["Returns a copyable qualified record.", "Says it was not persisted elsewhere."]
-    forbid: ["Claiming a successful durable save", "Requiring server setup"]
+    prompt: "SAVE this conversation for a new thread: overhearing may affect mentoring, but we have not tested the explanation."
+    expect: ["Returns a descriptive filename and complete copyable Markdown handoff.", "Preserves that the explanation is untested and explains how to reuse the handoff."]
+    forbid: ["Claiming automatic cross-thread memory or a successful durable save", "Requiring server setup"]
   - id: chatgpt-checkpoint-without-store
     skill: dialectical-checkpoint
     prompt: "CHECKPOINT this discussion. Overhearing is one untested explanation; availability of mentors is another."

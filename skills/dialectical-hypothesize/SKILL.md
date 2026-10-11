@@ -2,12 +2,19 @@
 name: dialectical-hypothesize
 description: Generate genuinely competing explanations for an observation, pattern, or outcome and expose what would distinguish them. Use when the explanatory space is too narrow; do not use for generic brainstorming, variants of one favored story, or weighing explanations against evidence (ACH).
 metadata:
-  version: "0.6.1"
+  version: "0.7.0"
 ---
 
 # Hypothesize
 
 Broaden the set of plausible explanations while making the alternatives discriminable.
+
+Use the shortest complete response that preserves material constraints,
+uncertainty, and the difference between possible and probable. For a clear
+ordinary-language invocation that does not name HYPOTHESIZE, begin with one
+line: `HYPOTHESIZE — <brief context-specific description>.` Omit the cue for an
+explicit command, mere discussion, or internal technique. Generating a coherent
+hypothesis does not increase its evidential support.
 
 ## Operation
 

@@ -2,12 +2,19 @@
 name: dialectical-causal-chain
 description: Decompose a multi-step causal argument into its links, expose the assumptions each link needs, and identify the linchpins whose failure would collapse the conclusion. Use when the user asks to test a chain of reasoning in which each step depends on the previous one; do not use for a single correlation or for general critique (CHALLENGE).
 metadata:
-  version: "0.6.1"
+  version: "0.7.0"
 ---
 
 # Causal Chain
 
 Find where a chain of reasoning would break.
+
+Use the shortest complete response that preserves material evidence,
+assumptions, uncertainty, and alternative paths. For a clear ordinary-language
+invocation that does not name CAUSAL-CHAIN, begin with one line:
+`CAUSAL-CHAIN — <brief context-specific description>.` Omit the cue for an
+explicit command, mere discussion, or internal technique. Change a claim's
+scope or confidence only when the stated evidence or analysis justifies it.
 
 ## Operation
 

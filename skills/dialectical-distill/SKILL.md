@@ -2,12 +2,19 @@
 name: dialectical-distill
 description: Extract the important findings, conclusions, uncertainties, and open questions produced by an inquiry, marking which rest on evidence and which the conversation only generated. Use when the user asks what has actually been learned or when the intellectual state has become difficult to hold; do not use for a general recap.
 metadata:
-  version: "0.6.1"
+  version: "0.7.0"
 ---
 
 # Distill
 
 Convert accumulated conversation into a clear account of its present intellectual state.
+
+Use the shortest complete response that preserves material evidence,
+provenance, disagreement, uncertainty, and the exact status of each finding.
+For a clear ordinary-language invocation that does not name DISTILL, begin with
+one line: `DISTILL — <brief context-specific description>.` Omit the cue for an
+explicit command or mere discussion. Change a claim's scope or confidence only
+when the stated evidence or analysis justifies it.
 
 ## Operation
 
@@ -38,7 +45,7 @@ Favor intellectual signal over transcript coverage.
 
 ## Boundaries
 
-- Do not retell the whole conversation; that is SUMMARIZE.
+- Do not retell the whole conversation; that is RECAP.
 - Do not make generated or speculative ideas sound established, however persuasive or often repeated they were.
 - Do not automatically research, verify, challenge, or save the result.
 - Do not force a conclusion when the genuine result is sharper uncertainty.

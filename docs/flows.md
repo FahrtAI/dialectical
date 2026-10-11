@@ -2,7 +2,10 @@
 
 These are examples, not workflows. A pathway names the kind of inquiry taking
 place and the moves that may help; the user can skip, reorder, branch, stop, or
-return to ordinary conversation at any point. The data is invented.
+return to ordinary conversation at any point. Ask Dialectical for `flows` to
+display the generic pathways in chat; ask for `cookbook` when you want practical
+situations instead. Displaying either reference does not run an operation. The
+data in worked examples is invented.
 
 ## Generic pathways
 
@@ -15,12 +18,12 @@ possible moves, not stages to complete.
 | **Explain** | An observation or outcome that needs an account | Separate observation from interpretation, generate competing explanations, compare them with ACH, identify missing evidence with COLLECTION GAPS, and check a specific link with VERIFY | A calibrated explanation, unresolved alternatives, and the next useful check |
 | **Decide** | A choice with goals, constraints, and uncertainty | Clarify what the decision is for, distinguish values from empirical claims, prioritize consequential COLLECTION GAPS, and define INDICATORS for reconsideration | A decision with stated trade-offs and conditions for revisiting it |
 | **Evaluate** | A claim, source, plan, or causal argument | RESTATE the object, assess SOURCE-QUALITY, inspect a CAUSAL-CHAIN, CHALLENGE assumptions, and VERIFY an empirical proposition | A scoped judgment that keeps evidence, inference, and uncertainty distinct |
-| **Preserve** | A long inquiry whose state is becoming difficult to hold | DISTILL what was learned, TRACE how the position changed, CHECKPOINT a copyable state, and use SAVE or RECALL only when authorized and available | A usable handoff that preserves provenance, uncertainty, and open questions |
+| **Preserve** | A long inquiry whose state is becoming difficult to hold | RECAP what was discussed, DISTILL what was learned, TRACE how the position changed, CHECKPOINT the current state, and SAVE a reusable Markdown handoff | A portable record that preserves provenance, uncertainty, and open questions |
 | **Random question** | A curiosity whose purpose is still open | Talk normally first; use RELEVANCE only if the purpose matters, RESEARCH for prior art or facts, HYPOTHESIZE for possible explanations, THOUGHT EXPERIMENT for implications, and VERIFY for a specific factual claim | A satisfying answer, a sharper question, or a deliberate choice about what to investigate next |
 
 The pathway can change as the conversation changes. An exploratory question can
 become a decision; an explanation can reveal a need for research; a conclusion
-can be reopened when an indicator changes. GUIDE can recommend one useful move
+can be reopened when an indicator changes. GUIDE can rank three useful moves
 when the user asks, but it does not choose or run a pathway automatically.
 
 The diagram shows the relationship between ordinary conversation and the
@@ -39,7 +42,7 @@ flowchart TD
     X -. optional moves .-> X1[HYPOTHESIZE · ACH · VERIFY]
     D -. optional moves .-> D1[RELEVANCE · COLLECTION GAPS · INDICATORS]
     V -. optional moves .-> V1[CHALLENGE · CAUSAL-CHAIN · SOURCE-QUALITY]
-    P -. optional moves .-> P1[DISTILL · CHECKPOINT · RESUME]
+    P -. optional moves .-> P1[RECAP · DISTILL · SAVE]
     R -. user-directed tasks .-> R1[RESEARCH · VERIFY · THOUGHT EXPERIMENT]
     E1 --> C
     X1 --> C
@@ -86,8 +89,8 @@ active after responding.
 
 | User says | Result |
 |---|---|
-| “We have three explanations and a handful of observations, but we're just arguing about which story sounds best. GUIDE.” | Recommends ACH because real alternatives and evidence are ready to compare, explains that ACH tests inconsistency rather than narrative appeal, and asks whether to try it. It does not run ACH. |
-| “We're still freely exploring what makes a neighborhood feel distinctive. Nothing feels stuck. GUIDE.” | Says no formal operation is needed yet and recommends continuing the ordinary conversation. |
+| “We have three explanations and a handful of observations, but we're just arguing about which story sounds best. GUIDE.” | Ranks ACH first because real alternatives and evidence are ready to compare, then offers two contextually useful alternatives and `[MORE]` for the full command catalog. It does not run any command. |
+| “We're still freely exploring what makes a neighborhood feel distinctive. GUIDE.” | Ranks three optional commands suited to exploration and leaves the user free to ignore them and keep talking. |
 | “Yes, use ACH.” | Runs ACH only. GUIDE does not add a second recommendation afterward unless invoked again. |
 
 ## Flow 1: Diagnosing an observation in one session
@@ -117,60 +120,51 @@ What this shows:
 - **Consent follows scope.** Causal analysis inside the requested challenge needs no extra approval. Starting a new research objective or saving the result requires authorization; naming a method is not authorization.
 - **The work is divided.** HYPOTHESIZE generates explanations, ACH weighs them, and DISTILL keeps track of where each conclusion came from.
 
-## Flow 2: Carrying an inquiry across sessions
+## Flow 2: Carrying an inquiry into a new thread
 
-This optional example requires a host with authorized file access. The same
-churn investigation is saved in a `.dialectical/` store from an earlier pricing
-inquiry. Ordinary ChatGPT conversation does not require this store: use a
-copyable CHECKPOINT and paste it into a later chat to RESUME instead.
+SAVE produces a portable Markdown handoff. A host may make it downloadable; if
+not, Dialectical returns complete copyable Markdown and a filename. The user
+then attaches or pastes that artifact in the new thread. No external store or
+automatic cross-thread memory is required.
 
 ```mermaid
 sequenceDiagram
     actor U as User
-    participant M as Model
-    participant S as .dialectical/
-    Note over U,S: Session 1
-    U->>M: START INQUIRY on churn after the redesign
-    M->>S: read prior inquiries and memory objects
-    M->>S: write state.md and context.md, then the index
-    Note over U,M: Flow 1 happens here
-    U->>M: SAVE the export finding
-    M->>S: write the object, then the memory index
-    U->>M: Pause this inquiry
-    M->>S: final checkpoint, status paused
-    Note over U,S: Session 2, three weeks later
-    U->>M: What do we know about churn drivers?
-    M->>S: read only
-    M-->>U: two findings, with ids and confidence
-    U->>M: RESUME the churn inquiry
-    M->>S: load state, context, and linked objects
-    M->>S: status active
-    U->>M: The fix shipped and churn only partly recovered
-    U->>M: CHECKPOINT
-    M->>S: update state.md, earlier conclusion marked superseded
-    U->>M: Update the saved export finding
-    M->>S: update the object under the same id, then the index
+    participant A as Original thread
+    participant H as Markdown handoff
+    participant B as New thread
+    Note over U,A: Thread 1
+    U->>A: START INQUIRY on churn after the redesign
+    Note over U,A: Flow 1 happens here
+    U->>A: SAVE this conversation for a new thread
+    A->>H: package context, evidence, uncertainty, and open questions
+    A-->>U: provide downloadable or copyable Markdown
+    Note over U,B: Thread 2, three weeks later
+    U->>B: attach handoff and ask to RESUME
+    B->>H: read user-supplied context
+    B-->>U: orient to the qualified inquiry state
+    U->>B: The fix shipped and churn only partly recovered
+    U->>B: DISTILL what changed
+    B-->>U: preserve the earlier assessment and record the new evidence
 ```
 
-| # | User says | Operation | Store effect |
+| # | User says | Operation | Result |
 |---|---|---|---|
-| 1 | "START INQUIRY on churn after the redesign." | START INQUIRY | Creates `conversations/2026-04-10-churn-after-redesign/` with `state.md` (status `active`) and `context.md`. The context carries forward a January finding, "annual-plan customers churn less, mostly through selection", with a link to its source. Then updates `conversations/index.md`. |
-| | Flow 1 happens. | | None. |
-| 2 | "SAVE the export finding." | SAVE | Writes `memory/objects/2026-04-10-export-discoverability-churn.md` with the finding, its basis (ACH, least inconsistent), and its limit (share of the rise unknown). Then rebuilds `memory/index.md` and links the object from `state.md`. |
-| 3 | "Pause this inquiry." | CLOSE | Writes a final checkpoint to `state.md`, sets status `paused` with a status-history entry, then updates the index. Points out that "definition change ruled out" is unsaved, but does not save it unasked. |
-| | *Three weeks later, in a new session* | | |
-| 4 | "What do we know about churn drivers?" | RECALL | Read-only. Returns both findings with their ids and recorded confidence, and flags that the export finding predates the fix. |
-| 5 | "RESUME the churn inquiry." | RESUME | Loads `state.md`, `context.md`, and the linked object. There is one match, so the request counts as the selection; it sets status `active` and records the change. With two similar titles, it would ask first. |
-| 6 | "The fix shipped two weeks ago. Churn fell to 4.2%, not 3%." | none | None. |
-| 7 | "CHECKPOINT." | CHECKPOINT | Updates `state.md`: export explains part of the rise, not most of it. The earlier conclusion stays, marked superseded along with the evidence that overturned it. New open question: what explains the remaining 1.2 points. |
-| 8 | "Update the saved export finding." | SAVE | Updates the object under the same id, records what changed, then rebuilds the index. |
+| 1 | "START INQUIRY on churn after the redesign." | START INQUIRY | Establishes the focus in the current thread. No storage is required. |
+| | Flow 1 happens. | | The conversation develops evidence, hypotheses, and a qualified assessment. |
+| 2 | "SAVE this conversation so I can continue it in a new thread." | SAVE | Produces `churn-after-redesign-handoff.md` containing the purpose, essential context, inspected evidence and sources, least-inconsistent explanation, unresolved magnitude, alternatives, and next questions. It is not a transcript. |
+| | *Three weeks later, in a new thread* | | The user attaches or pastes the handoff. |
+| 3 | "RESUME from this handoff." | RESUME | Uses only the supplied artifact, preserves its qualifications, and does not claim access to the original thread. |
+| 4 | "The fix shipped two weeks ago. Churn fell to 4.2%, not 3%." | none | Adds new evidence without erasing the earlier assessment. |
+| 5 | "DISTILL what changed." | DISTILL | Reports that export likely explained part rather than all of the rise, identifies the new evidence, retains the earlier scope, and names the remaining question. |
 
 What this shows:
 
-- **Records come before indexes.** Every canonical record is written before the index that points to it.
-- **Retrieval doesn't change anything.** RECALL only reads. RESUME changes status only once the inquiry is selected.
-- **Reversals are recorded, not overwritten.** The earlier conclusion stays recoverable.
-- **Saving is explicit.** CLOSE flags the unsaved finding but leaves the decision to the user.
-- **No chats are created.** Neither session claims to create or reopen a platform chat.
-
-This is close to the end-to-end memory scenario in `QA/TEST_PLAN.md`, which adds a TAG step.
+- **The handoff is sufficient context.** A fresh thread can understand where the
+  inquiry stands without seeing the original transcript.
+- **Qualifications survive.** “Least inconsistent” does not become “proved,”
+  and later evidence can revise the assessment without erasing its history.
+- **Transfer is explicit.** The user carries the artifact into the new thread;
+  SAVE does not claim automatic recall.
+- **No chats are created.** SAVE and RESUME do not create, reopen, or attach a
+  platform conversation.

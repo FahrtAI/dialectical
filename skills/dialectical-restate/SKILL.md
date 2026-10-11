@@ -2,12 +2,19 @@
 name: dialectical-restate
 description: Rearticulate the current claim, idea, question, or position clearly without materially changing it. Use when the user asks what they or the conversation are actually saying; do not use for compression, conclusions, critique, or reframing.
 metadata:
-  version: "0.6.1"
+  version: "0.7.0"
 ---
 
 # Restate
 
 Express the current object of thought more clearly while preserving its meaning.
+
+Use the shortest complete response that preserves the original scope,
+qualifiers, point of view, and expressed certainty. For a clear
+ordinary-language invocation that does not name RESTATE, begin with one line:
+`RESTATE — <brief context-specific description>.` Omit the cue for an explicit
+command or mere discussion. A faithful restatement neither endorses nor
+evidentially upgrades the position.
 
 ## Operation
 
@@ -22,6 +29,6 @@ Prefer a compact paragraph. Use a structured form only when the object itself ha
 
 - Do not strengthen, weaken, improve, critique, or defend the position.
 - Do not replace the user's framing with a more fashionable or convenient one.
-- Do not compress the broader conversation; that is SUMMARIZE.
+- Do not compress the broader conversation; that is RECAP.
 - Do not extract lessons or conclusions; that is DISTILL.
 - Perform this in the conversational agent; the exact local framing is the object, so an isolated worker adds no useful separation.

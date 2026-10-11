@@ -23,6 +23,11 @@ class RunnerTests(unittest.TestCase):
         self.assertEqual(len(self.cases), 12)
         self.assertTrue(all(not runner.prerequisites(c) for c in self.cases))
 
+    def test_release_subset_is_small_and_inputs_ready(self):
+        cases = runner.cases_from(runner.ROOT / "QA/cases/release.yaml")
+        self.assertEqual(len(cases), 8)
+        self.assertTrue(all(not runner.prerequisites(case) for case in cases))
+
     def test_parse_all_legacy_schemas(self):
         for path in [* (runner.ROOT / "QA/cases").glob("*.yaml"), runner.ROOT / "evals/cases.yaml"]:
             self.assertTrue(runner.cases_from(path))
@@ -143,6 +148,17 @@ class RunnerTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             response = runner.call(command, {"messages": [{"content": "literal $() `text`"}]}, Path(directory), 5)
         self.assertEqual(response["response"], "literal $() `text`")
+
+    def test_run_header_embeds_exact_case_definitions_and_commands(self):
+        cases = runner.cases_from(runner.ROOT / "QA/cases/release.yaml")
+        output = runner.run_header(
+            runner.ROOT / "QA/cases/release.yaml", "dialectical",
+            ["adapter", "--mode", "performer"], ["grader"], cases,
+        )
+        self.assertEqual(output["metadata"]["case_definitions"], cases)
+        self.assertEqual(output["metadata"]["adapter_command"],
+                         ["adapter", "--mode", "performer"])
+        self.assertEqual(output["metadata"]["plugin_version"], "0.7.0")
 
 
 if __name__ == "__main__":

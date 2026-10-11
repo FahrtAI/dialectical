@@ -112,7 +112,11 @@ def instructions(condition: str) -> str:
     # Deliberate full entrypoint injection, not a claim of installed-host routing.
     paths = sorted((ROOT / "skills").glob("*/SKILL.md"))
     paths += [ROOT / "skills/dialectical/references/help.md",
-              ROOT / "skills/dialectical/references/modes.md"]
+              ROOT / "skills/dialectical/references/cookbook.md",
+              ROOT / "skills/dialectical/references/flows.md",
+              ROOT / "skills/dialectical/references/join.md",
+              ROOT / "skills/dialectical/references/modes.md",
+              ROOT / "skills/dialectical-save/references/handoff-format.md"]
     return "\n\n".join(f"{p.relative_to(ROOT)}\n{p.read_text()}" for p in paths)
 
 
@@ -150,8 +154,48 @@ def validate_response(data: dict) -> None:
     for field in ("tool_activity", "invocations"):
         if data.get(field) is not None and not isinstance(data[field], list):
             raise ValueError(f"{field} must be a list or null")
+    if data.get("invocations") is not None:
+        invocation_names(data["invocations"])
     if data.get("usage") is not None and not isinstance(data["usage"], dict):
         raise ValueError("usage must be an object or null")
+
+
+def invocation_names(items: list | None) -> set[str] | None:
+    """Normalize skill-invocation telemetry without inferring it from prose."""
+    if items is None:
+        return None
+    names = set()
+    for item in items:
+        if isinstance(item, str) and item.strip():
+            names.add(item.strip())
+        elif (isinstance(item, dict) and isinstance(item.get("skill"), str)
+              and item["skill"].strip()):
+            names.add(item["skill"].strip())
+        else:
+            raise ValueError(
+                "Each invocation must be a skill-name string or object with a nonempty skill field"
+            )
+    return names
+
+
+def activation_result(case: dict, turns: list[dict]) -> dict:
+    expected = case.get("expect_activation")
+    if expected is None:
+        return {"required": False, "pass": True, "observed": []}
+    observed = set()
+    for turn in turns:
+        names = invocation_names(turn.get("invocations"))
+        if names is None:
+            return {"required": True, "pass": None,
+                    "reason": "Invocation telemetry unavailable"}
+        observed.update(names)
+    included = set(expected.get("include", []))
+    excluded = set(expected.get("exclude", []))
+    missing = sorted(included - observed)
+    forbidden = sorted(excluded & observed)
+    return {"required": True, "pass": not missing and not forbidden,
+            "observed": sorted(observed), "missing": missing,
+            "forbidden": forbidden}
 
 
 def grade_valid(grade: dict) -> bool:
@@ -175,11 +219,23 @@ def metadata(suite: Path) -> dict:
         return subprocess.check_output(["git", *args], cwd=ROOT, text=True).strip()
     return {"created": datetime.now(timezone.utc).isoformat(),
             "commit": git("rev-parse", "HEAD"), "dirty_state": git("status", "--porcelain"),
+            "plugin_version": json.loads((ROOT / "plugin.json").read_text())["version"],
             "suite": str(suite), "suite_hash": digest(suite.read_bytes()),
             "skill_hashes": {str(p.relative_to(ROOT)): digest(p.read_bytes())
                              for p in sorted((ROOT / "skills").rglob("*.md"))},
             "rubric_hash": digest((ROOT / "evals/SCORING.md").read_bytes()),
             "host": "adapter, not installed ChatGPT", "protocol_version": 1}
+
+
+def run_header(suite: Path, condition: str, adapter: list[str],
+               grader: list[str] | None, cases: list[dict]) -> dict:
+    return {"metadata": {**metadata(suite),
+                         "adapter_command": adapter,
+                         "grader_command": grader,
+                         "case_definitions": cases},
+            "condition": condition,
+            "instruction_hash": digest(instructions(condition).encode()),
+            "results": []}
 
 
 def evaluate(case: dict, condition: str, adapter: list[str], grader: list[str] | None,
@@ -214,15 +270,28 @@ def evaluate(case: dict, condition: str, adapter: list[str], grader: list[str] |
             record["telemetry_complete"] = all(
                 turn.get("tool_activity") is not None and turn.get("invocations") is not None
                 for turn in record["turns"])
+            record["activation"] = activation_result(case, record["turns"])
             if grader:
                 grading = {"protocol_version": 1, "rubric": (ROOT / "evals/SCORING.md").read_text(),
                            "expect": case["expect"], "forbid": case.get("forbid", []),
+                           "expect_activation": case.get("expect_activation"),
+                           "observed_invocations": record["activation"].get("observed"),
                            "messages": messages}
                 # The grader receives neither condition nor performer self-assessment.
                 record["grade"] = call(grader, grading, cwd, timeout)
-                passed = grade_valid(record["grade"]) and record["deterministic_pass"]
-                record["status"] = "pass" if passed else "fail"
+                semantic_pass = grade_valid(record["grade"])
+                activation_pass = record["activation"]["pass"]
+                passed = semantic_pass and record["deterministic_pass"] and activation_pass is True
+                if passed:
+                    record["status"] = "pass"
+                elif activation_pass is None and semantic_pass and record["deterministic_pass"]:
+                    record["status"] = "ungraded"
+                    record["reasons"] = ["Invocation telemetry required for routing assertion"]
+                else:
+                    record["status"] = "fail"
             elif not record["deterministic_pass"]:
+                record["status"] = "fail"
+            elif record["activation"]["pass"] is False:
                 record["status"] = "fail"
         except (ValueError, OSError, subprocess.TimeoutExpired) as exc:
             record.update(status="error", error=str(exc))
@@ -273,8 +342,7 @@ def main() -> int:
     for command in (args.adapter, args.grader):
         if command:
             command[0] = shutil.which(command[0]) or command[0]
-    output = {"metadata": metadata(args.suite), "condition": args.condition,
-              "instruction_hash": digest(instructions(args.condition).encode()), "results": []}
+    output = run_header(args.suite, args.condition, args.adapter, args.grader, cases)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     for repeat in range(args.repeat):
         for case in cases:

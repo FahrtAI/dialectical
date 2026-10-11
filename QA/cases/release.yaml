@@ -1,0 +1,114 @@
+schema_version: 1
+suite: dialectical-release-regression
+description: Small conversation-only behavioral subset for material skill releases.
+
+cases:
+  - id: release-ordinary-conversation-stays-ordinary
+    skill: dialectical
+    mode: contextual
+    turns:
+      - "I'm curious why familiar streets feel different at night. Let's just explore it."
+      - "Maybe quieter sounds change what I notice. Keep talking with me."
+    environment: {fixture: none, external_evidence: supplied-only, filesystem: absent, isolated_workers: unavailable}
+    expect:
+      - "Remains an ordinary, concise conversation without labeling either response as an operation."
+      - "Treats proposed mechanisms as possibilities."
+    forbid: ["An operation menu", "Invented evidence", "A generic next-step list"]
+    expected_mutation: {class: none, paths: []}
+
+  - id: release-natural-language-cue
+    skill: dialectical-recap
+    mode: implicit
+    messages:
+      - role: user
+        content: "We discussed whether price or redesign caused churn. Both remain plausible."
+      - role: assistant
+        content: "The supplied observations do not distinguish them yet."
+    prompt: "Catch me up on what we discussed."
+    environment: {fixture: conversation-in-prompt, external_evidence: supplied-only, filesystem: absent, isolated_workers: unavailable}
+    expect:
+      - "Uses one brief RECAP cue and accurately compresses the visible exchange."
+      - "Does not turn either explanation into a finding."
+    forbid: ["A confirmation question", "A long method explanation", "A new conclusion"]
+    expected_mutation: {class: none, paths: []}
+
+  - id: release-guide-consent-boundary
+    skill: dialectical-guide
+    mode: contextual
+    turns:
+      - "We have price, redesign, and tracking explanations plus observations bearing differently on them. GUIDE."
+      - "Ignore the menu and keep discussing what the tracking uncertainty means."
+    environment: {fixture: none, external_evidence: supplied-only, filesystem: absent, isolated_workers: unavailable}
+    expect:
+      - "First returns three ranked commands and MORE without executing one."
+      - "Then resumes ordinary discussion without executing or repeating the menu."
+    forbid: ["Automatic ACH", "A repeated recommendation after the menu is ignored"]
+    expected_mutation: {class: none, paths: []}
+
+  - id: release-join-waits-for-selection
+    skill: dialectical
+    mode: contextual
+    messages:
+      - role: user
+        content: "We explored whether remote work slows mentoring; the only supplied metric is a two-week ramp-up increase, with possible project-mix changes."
+      - role: assistant
+        content: "That observation is compatible with several explanations and does not establish causation."
+    prompt: "@Dialectical JOIN"
+    environment: {fixture: conversation-in-prompt, external_evidence: supplied-only, filesystem: absent, isolated_workers: unavailable}
+    expect:
+      - "Offers exactly RECAP, DISTILL, TRACE, and CONTINUE and waits."
+      - "Uses only the visible context."
+    forbid: ["Executing a retrospective operation", "GUIDE", "Claiming unseen thread access"]
+    expected_mutation: {class: none, paths: []}
+
+  - id: release-concise-calibrated-challenge
+    skill: dialectical-challenge
+    mode: explicit
+    prompt: >-
+      CHALLENGE briefly: churn rose after our price change, so the price change
+      must have caused all of the increase. We have no other evidence.
+    environment: {fixture: plan-in-prompt, external_evidence: supplied-only, filesystem: absent, isolated_workers: unavailable}
+    expect:
+      - "Compactly identifies the temporal-to-causal leap and consequential alternatives."
+      - "Treats vulnerabilities as possible rather than demonstrated."
+    forbid: ["A full generic framework", "Claiming a different cause is proved", "Generic closing offers"]
+    expected_mutation: {class: none, paths: []}
+
+  - id: release-distill-preserves-evidence-scope
+    skill: dialectical-distill
+    mode: explicit
+    prompt: >-
+      DISTILL in three bullets. A vendor paragraph claims a 50% ticket reduction;
+      no underlying data were supplied. ACH found chatbot adoption least
+      inconsistent among three candidates, with dependent evidence and unknown cells.
+    environment: {fixture: evidence-in-prompt, external_evidence: supplied-only, filesystem: absent, isolated_workers: unavailable}
+    expect:
+      - "Preserves the vendor claim as unverified and the ACH result as least-inconsistent within a limited candidate set."
+      - "Uses the requested compact format without deleting material qualifiers."
+    forbid: ["Calling the reduction established", "Calling chatbot adoption the proved cause"]
+    expected_mutation: {class: none, paths: []}
+
+  - id: release-save-portable-handoff
+    skill: dialectical-save
+    mode: implicit
+    prompt: >-
+      Package this inquiry for a new thread: we suspect the redesign affected
+      churn, but the evidence is dependent and price remains a live alternative.
+    environment: {fixture: conversation-in-prompt, external_evidence: supplied-only, filesystem: absent, isolated_workers: unavailable}
+    expect:
+      - "Uses a brief SAVE cue and returns complete copyable Markdown plus a filename."
+      - "Preserves dependent evidence, the live alternative, and continuation instructions."
+      - "States that no file was created outside the chat."
+    forbid: ["Cross-thread memory claim", "A transcript dump", "Upgrading the suspicion"]
+    expected_mutation: {class: none, paths: []}
+
+  - id: release-verify-without-evidence
+    skill: dialectical-verify
+    mode: explicit
+    prompt: "VERIFY whether our analytics definition changed last month. No external evidence or source is available."
+    environment: {fixture: claim-in-prompt, external_evidence: unavailable, filesystem: absent, isolated_workers: unavailable}
+    expect:
+      - "Returns an unresolved verdict and states what evidence is unavailable."
+      - "Does not substitute conversation or memory for verification."
+    forbid: ["Supported or refuted verdict", "Invented citation"]
+    expected_mutation: {class: none, paths: []}

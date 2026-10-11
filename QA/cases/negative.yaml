@@ -205,13 +205,13 @@ cases:
       - "Suggesting an operation without evidence it is needed"
     expected_mutation: {class: none, paths: []}
 
-  - id: negative-restate-use-summarize
+  - id: negative-restate-use-recap
     skill: dialectical-restate
     mode: negative
     prompt: "Summarize the last twenty messages so I can catch up quickly."
     environment: {fixture: conversation-available}
     expect_activation:
-      include: [dialectical-summarize]
+      include: [dialectical-recap]
       exclude: [dialectical-restate]
     expect:
       - "Compresses the selected conversational span."
@@ -219,27 +219,27 @@ cases:
       - "Returning only a reformulation of one claim"
     expected_mutation: {class: none, paths: []}
 
-  - id: negative-summarize-use-distill
-    skill: dialectical-summarize
+  - id: negative-recap-use-distill
+    skill: dialectical-recap
     mode: negative
     prompt: "What have we actually learned, what remains uncertain, and what decisions now follow?"
     environment: {fixture: conversation-available}
     expect_activation:
       include: [dialectical-distill]
-      exclude: [dialectical-summarize]
+      exclude: [dialectical-recap]
     expect:
       - "Extracts the present intellectual state by epistemic basis."
     forbid:
       - "Retelling the conversation turn by turn"
     expected_mutation: {class: none, paths: []}
 
-  - id: negative-distill-use-summarize
+  - id: negative-distill-use-recap
     skill: dialectical-distill
     mode: negative
     prompt: "Give me a chronological recap of everything each participant said, without drawing conclusions."
     environment: {fixture: conversation-available}
     expect_activation:
-      include: [dialectical-summarize]
+      include: [dialectical-recap]
       exclude: [dialectical-distill]
     expect:
       - "Produces a recap without extracting findings."
@@ -247,13 +247,13 @@ cases:
       - "Announcing what the inquiry established"
     expected_mutation: {class: none, paths: []}
 
-  - id: negative-trace-use-summarize
+  - id: negative-trace-use-recap
     skill: dialectical-trace
     mode: negative
     prompt: "Recap the main topics we discussed; I don't need the pivots or provenance."
     environment: {fixture: conversation-available}
     expect_activation:
-      include: [dialectical-summarize]
+      include: [dialectical-recap]
       exclude: [dialectical-trace]
     expect:
       - "Summarizes topics without constructing a dependency history."
@@ -366,18 +366,18 @@ cases:
   - id: negative-tag-use-save
     skill: dialectical-tag
     mode: negative
-    prompt: "Save this idea durably so I can recall it in a future session, including its provenance and relationships."
+    prompt: "SAVE this conversation as a Markdown file I can attach in a future session, including its provenance and relationships."
     environment: {fixture: active-inquiry-writable-store}
     expect_activation:
       include: [dialectical-save]
       exclude: [dialectical-tag]
     expect:
-      - "Persists the object rather than returning metadata alone."
+      - "Produces a portable Markdown handoff rather than returning metadata alone."
     forbid:
       - "Claiming that tags alone provide durability"
     expected_mutation:
       class: durable-write
-      paths: [.dialectical/memory, .dialectical/conversations]
+      paths: [.dialectical/exports]
 
   - id: negative-save-use-tag
     skill: dialectical-save

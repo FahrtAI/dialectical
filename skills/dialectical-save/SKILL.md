@@ -1,22 +1,45 @@
 ---
 name: dialectical-save
-description: Persist a conversational object with enough meaning, provenance, and relationships to remain useful later. Use when the user wants to retain an idea, finding, question, connection, or other object; do not claim success unless durable storage actually occurred.
+description: Package the relevant conversation into a portable Markdown handoff that can be saved or imported into a new thread. Use for SAVE or requests to preserve and continue the conversation elsewhere; do not imply cross-chat memory or external storage.
 metadata:
-  version: "0.6.1"
+  version: "0.7.0"
 ---
 
 # Save
 
-Preserve the selected idea or finding with its meaning, provenance, and uncertainty.
+Create a self-contained Markdown handoff that lets a fresh thread understand and
+continue the inquiry.
 
-Without an authorized writable store, return a copyable Markdown record and say
-it has not been saved outside this chat. Include only useful title, content,
-context, source, relationships, and already established confidence. Do not save
-the whole transcript or invent evidence. A prepared record is not a durable write.
+Use the shortest complete surrounding chat response, but make the handoff as complete as
+needed to preserve material evidence, provenance, disagreement, uncertainty,
+and open questions. For a clear ordinary-language invocation that does not name
+SAVE, begin with one line: `SAVE — <brief context-specific description>.` Omit
+the cue for an explicit command or mere discussion. Exporting a claim does not
+change its scope, confidence, or evidence status.
 
-When the user requests durable storage and an authorized filesystem is available,
-read [the file procedure](references/file-storage.md) and the shared storage
-contract linked there before writing. Resolve ambiguous destinations briefly.
-Keep canonical and index writes in the conversational agent; confirm success only
-after the write. Preserve the exact evidential scope, including source limitations,
-of the original finding.
+Save the whole relevant inquiry by default, not a verbatim transcript. If the
+user explicitly names a branch, finding, or narrower span, save only that scope
+with enough surrounding context to remain intelligible. Ask one brief question
+only when the requested scope is materially ambiguous.
+
+Use [the handoff format](references/handoff-format.md). Preserve the original
+scope, provenance, disagreement, and uncertainty of every claim. Separate
+supplied facts and sourced evidence from conversational hypotheses and analysis.
+State important context that is missing or unavailable; do not reconstruct it.
+
+When the host supports user-downloadable files, create a descriptively named
+`.md` file and provide it. Otherwise, provide a filename and the complete,
+copyable Markdown in the response, and say plainly that no file was created
+outside the chat. Tell the user to save the document, then upload or paste it
+into a new thread and ask Dialectical to continue from the handoff. The artifact
+is portable user-owned context, not automatic cross-thread memory. Do not
+require or invent an external service.
+
+If the user explicitly requests a durable workspace copy, use the optional
+[local file procedure](references/file-storage.md). This is secondary to
+producing the portable handoff.
+
+SAVE creates a transferable artifact. CHECKPOINT updates an inquiry's living
+state; RECALL retrieves an existing record; RESUME continues from a supplied or
+accessible record. Do not silently perform those operations or claim that a
+handoff was stored, retrieved, or activated.

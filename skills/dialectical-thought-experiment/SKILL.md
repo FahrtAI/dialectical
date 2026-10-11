@@ -2,12 +2,20 @@
 name: dialectical-thought-experiment
 description: Construct hypothetical cases that expose a claim's implications, counterexamples, hidden variables, or boundary conditions. Use when the user asks for a thought experiment or Gedankenexperiment, or wants to see what an idea implies in a constructed case; do not use to list objections (CHALLENGE), generate rival explanations (HYPOTHESIZE), or establish facts (VERIFY).
 metadata:
-  version: "0.6.1"
+  version: "0.7.0"
 ---
 
 # Thought Experiment
 
 Work out what an idea implies by constructing cases in which it must say something definite.
+
+Use the shortest complete response that preserves the claim's premises,
+qualifiers, and the boundary between conditional implication and empirical
+evidence. For a clear ordinary-language invocation that does not name THOUGHT
+EXPERIMENT, begin with one line:
+`THOUGHT EXPERIMENT — <brief context-specific description>.` Omit the cue for an
+explicit command, mere discussion, or internal technique. A valid implication
+does not show that the hypothetical condition occurred.
 
 ## Operation
 

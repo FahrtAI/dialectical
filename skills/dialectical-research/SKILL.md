@@ -2,12 +2,19 @@
 name: dialectical-research
 description: Broaden the evidence and information space around a focused inquiry using relevant external sources, prior art, analogous cases, and facts. Use for exploratory investigation; do not use merely to adjudicate one narrowly specified proposition.
 metadata:
-  version: "0.6.1"
+  version: "0.7.0"
 ---
 
 # Research
 
 Expand what is known around the current object of thought without prematurely collapsing the inquiry to one answer.
+
+Use the shortest complete response that preserves material source provenance,
+independence, scope, disagreement, and uncertainty; expand when the evidence
+requires it. For a clear ordinary-language invocation that does not name
+RESEARCH, begin with one line: `RESEARCH — <brief context-specific description>.`
+Omit the cue for an explicit command, mere discussion, or internal evidence
+work. Change confidence only when the retrieved evidence justifies it.
 
 ## Operation
 

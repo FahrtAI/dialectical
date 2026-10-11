@@ -13,10 +13,10 @@ five words.
 
 Ordinary conversation with intellectual discipline.
 
-GUIDE               Recommend one useful conversational operation.
+GUIDE               Rank three useful conversational commands.
 
 RESTATE             Rephrase an idea without judgment.
-SUMMARIZE           Compress the conversation without interpretation.
+RECAP               Compress the conversation without interpretation.
 DISTILL             Extract insights, tensions, and questions.
 TRACE               Recover where an idea originated.
 
@@ -35,7 +35,7 @@ CAUSAL-CHAIN        Test each link in causation.
 SOURCE-QUALITY      Rate source reliability and credibility.
 
 TAG                 Attach useful labels for retrieval.
-SAVE                Prepare knowledge for later reuse.
+SAVE                Export conversation as reusable Markdown.
 RECALL              Retrieve previously saved relevant knowledge.
 
 START INQUIRY       Begin exploring a focused question.
@@ -48,6 +48,15 @@ Do not use this card for a generic request such as “help me with this problem.
 It is for requests to explain Dialectical, show its operations, or explain how
 to use the toolkit.
 
-After the card, ask for the cookbook or sample flows to see examples by
-situation. The flow guide can be shown without starting any operation. A request
-for orientation material does not authorize an operation.
+After the card, offer these two distinct forms of orientation:
+
+- `COOKBOOK` — show practical examples by situation from
+  [`cookbook.md`](cookbook.md).
+- `FLOWS` — show generic optional pathways from [`flows.md`](flows.md).
+
+The user can also request either reference directly or describe a situation in
+ordinary language, such as “How could I use this to explain an unexpected
+outcome?” Return the relevant recipe or pathway. Displaying orientation material
+does not invoke an operation, authorize a follow-on operation, or create an
+automatic sequence. Offer to apply a named move only after the material is
+shown; wait for a separate request before applying it.

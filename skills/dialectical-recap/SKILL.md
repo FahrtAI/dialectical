@@ -1,13 +1,23 @@
 ---
-name: dialectical-summarize
-description: Compress the relevant conversation or material into a shorter account of what was discussed. Use for recap and context reduction; do not use to infer what was learned, evaluate claims, or reconstruct detailed provenance.
+name: dialectical-recap
+description: Compress the relevant conversation or material into a shorter account of what was discussed. Use for RECAP, summarize requests, and context reduction; do not use to infer what was learned, evaluate claims, or reconstruct detailed provenance.
 metadata:
-  version: "0.6.1"
+  version: "0.7.0"
 ---
 
-# Summarize
+# Recap
+
+Use the shortest complete response that preserves the speakers' actual scope,
+qualifiers, disagreement, and uncertainty. For a clear ordinary-language
+invocation that does not name RECAP, begin with one line:
+`RECAP — <brief context-specific description>.` Omit the cue for explicit RECAP
+or SUMMARIZE and for mere discussion. Compression does not create new findings
+or change a claim's confidence.
 
 Reduce the selected context while retaining the information needed to understand it.
+
+RECAP is the command name. Accept SUMMARIZE and ordinary requests to summarize
+as aliases for the same operation, not as a separate skill.
 
 ## Operation
 

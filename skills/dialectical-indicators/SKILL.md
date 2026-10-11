@@ -2,12 +2,19 @@
 name: dialectical-indicators
 description: Define observable developments that would strengthen, weaken, or change an assessment or distinguish explanations. Use for INDICATORS or asking what to watch for or when to reassess; does not check whether events occurred, gather missing evidence, or set up monitoring.
 metadata:
-  version: "0.6.1"
+  version: "0.7.0"
 ---
 
 # Indicators
 
 Make explicit what observable developments would warrant reconsidering an assessment.
+
+Use the shortest complete response that preserves the assessment's scope,
+uncertainty, and evidence status. For a clear ordinary-language invocation that
+does not name INDICATORS, begin with one line:
+`INDICATORS — <brief context-specific description>.` Omit the cue for an
+explicit command or mere discussion. Conditional signals are not observations,
+and their absence matters only when detection was reasonably expected.
 
 ## Operation
 

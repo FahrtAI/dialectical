@@ -3,8 +3,12 @@
 Start with what you want to understand. These recipes offer possible moves;
 you can skip, reorder, branch, stop, or return to ordinary conversation at any
 point. Internal reasoning techniques can help finish a requested operation;
-a new objective or side effect needs authorization. If unsure which move fits,
-ask [GUIDE](../skills/dialectical-guide/SKILL.md), which recommends and waits.
+a new objective or side effect needs authorization. This same complete recipe
+set is packaged for display inside ChatGPT. Ask Dialectical for `cookbook`, the
+whole cookbook, or a recipe for your situation. Viewing a recipe does not run
+its operations. If unsure which move fits, ask
+[GUIDE](../skills/dialectical-guide/SKILL.md), which ranks useful options and
+waits for your selection.
 
 ## Explore a new idea
 
@@ -98,13 +102,13 @@ holds. Agreement and rhetorical strength are not evidence. Minimal move: RESTATE
 ## Preserve a long inquiry
 
 Opening: “I'm losing track of what we learned.”
+[RECAP](../skills/dialectical-recap/SKILL.md) compresses what was discussed;
 [DISTILL](../skills/dialectical-distill/SKILL.md) separates findings, generated
-ideas, and uncertainty. To continue another day, request
-[CHECKPOINT](../skills/dialectical-checkpoint/SKILL.md), copy its note, and paste
-it into a new conversation with [RESUME](../skills/dialectical-resume/SKILL.md).
-Example note: “Export discoverability is an untested possible contributor;
-complaints rose, their counts are supplied; effect size unknown; next question:
-compare affected cohorts.” Ask “Resume from this note.” No cross-chat recall or
-file store is assumed. [SAVE](../skills/dialectical-save/SKILL.md) prepares a
-selected object; it confirms durable saving only after a real authorized write.
-Minimal move: CHECKPOINT. Do not make an old conclusion stronger on resumption.
+ideas, and uncertainty; [TRACE](../skills/dialectical-trace/SKILL.md) preserves
+important pivots. [CHECKPOINT](../skills/dialectical-checkpoint/SKILL.md) captures
+the current state. [SAVE](../skills/dialectical-save/SKILL.md) packages the
+relevant conversation as reusable Markdown that can be downloaded where the
+host supports files, copied elsewhere, or imported into a new thread. No
+cross-chat memory or persistence is assumed merely because the handoff was
+produced. Minimal move: RECAP for coverage, DISTILL for takeaways, or SAVE for a
+portable handoff. Do not make an old conclusion stronger when it is reused.

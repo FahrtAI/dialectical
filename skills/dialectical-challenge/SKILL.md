@@ -2,12 +2,19 @@
 name: dialectical-challenge
 description: Subject a claim, explanation, plan, or emerging consensus to adversarial quality control. Use to surface assumptions, contradictions, alternatives, disconfirming evidence, and failure conditions; do not use for reflexive contrarianism or stylistic criticism.
 metadata:
-  version: "0.6.1"
+  version: "0.7.0"
 ---
 
 # Challenge
 
 Try to break the current thinking in ways that improve its reliability.
+
+Use the shortest complete response that preserves material evidence,
+uncertainty, and the difference between possible and demonstrated failures. For
+a clear ordinary-language invocation that does not name CHALLENGE, begin with
+one line: `CHALLENGE — <brief context-specific description>.` Omit the cue for
+an explicit command, mere discussion, or internal technique. Change a claim's
+scope or confidence only when the stated evidence or analysis justifies it.
 
 Structured methods are available when the challenge calls for them. Name the method whenever you apply one:
 
@@ -30,6 +37,9 @@ in the request or separate acceptance; announcing the method is not consent.
 6. State what evidence, revision, or test would most strengthen or overturn the position.
 
 Target the highest-leverage vulnerabilities. A challenge is successful when it reveals how the idea could fail, not when it merely sounds skeptical.
+Possible vulnerabilities remain possibilities until evidence demonstrates them.
+Conversely, an unsuccessful challenge does not verify or validate the position;
+it only means this challenge did not establish a material failure.
 
 ## Delegation
 

@@ -2,12 +2,19 @@
 name: dialectical-collection-gaps
 description: Identify and prioritize missing evidence that could change a judgment or distinguish competing explanations. Use for COLLECTION GAPS or asking what evidence to seek next; proposes collection without conducting RESEARCH, adjudicating a claim with VERIFY, or defining future signals with INDICATORS.
 metadata:
-  version: "0.6.1"
+  version: "0.7.0"
 ---
 
 # Collection gaps
 
 Find the missing evidence worth seeking, not every fact that could be collected.
+
+Use the shortest complete response that preserves the current judgment's scope,
+evidence status, and uncertainty. For a clear ordinary-language invocation that
+does not name COLLECTION GAPS, begin with one line:
+`COLLECTION GAPS — <brief context-specific description>.` Omit the cue for an
+explicit command or mere discussion. A missing item is not disproof, and a
+collection proposal is not evidence already obtained.
 
 ## Operation
 

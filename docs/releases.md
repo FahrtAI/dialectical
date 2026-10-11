@@ -64,10 +64,17 @@ the checksum from the intended repository release or CI run.
    downloads those exact tested artifacts and creates a **draft GitHub release**.
    Normal branch/PR builds cannot create a release. Only the release job has
    repository write permission; no extra credentials or runtime server are needed.
-5. Review the draft's version, commit, assets, and notes. Install the ZIP using
+5. For a material skill-behavior release, run and review the focused
+   `QA/cases/release.yaml` regression against the tagged source as described in
+   [QA/RUNNING.md](../QA/RUNNING.md). Record failures, ungraded cases, missing
+   telemetry, word-count tradeoffs, and the exact model configuration. This
+   optional maintainer run does not establish installed-host acceptance.
+6. Review the draft's version, commit, assets, and notes. Install the ZIP using
    [CHATGPT.md](../CHATGPT.md), perform the short smoke test in
    [QA/RELEASE_ACCEPTANCE.md](../QA/RELEASE_ACCEPTANCE.md), and record desktop and
-   iPhone separately. Publish the draft when ready; state any untested surfaces.
+   iPhone separately using
+   [the reusable record](../QA/releases/TEMPLATE.md). Publish the draft when
+   ready; state any failed, blocked, or untested surfaces.
 
 An existing release is never overwritten by the workflow. If a rerun encounters
 an existing draft, inspect it and its assets before deciding whether any repair

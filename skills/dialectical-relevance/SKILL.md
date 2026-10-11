@@ -2,12 +2,19 @@
 name: dialectical-relevance
 description: Clarify what an inquiry is for and which scope or distinctions matter. Use for RELEVANCE or requests to clarify what we are trying to understand or inform; not merely to restate a claim, collect evidence, or require a decision.
 metadata:
-  version: "0.6.1"
+  version: "0.7.0"
 ---
 
 # Relevance
 
 Make the purpose of the inquiry clear enough to guide useful conversation. Curiosity and understanding are legitimate purposes; an inquiry need not lead to a decision.
+
+Use the shortest complete response that preserves disputed premises and
+uncertainty. For a clear ordinary-language invocation that does not name
+RELEVANCE, begin with one line:
+`RELEVANCE — <brief context-specific description>.` Omit the cue for an
+explicit command or mere discussion. Clarifying purpose does not establish the
+truth of the inquiry's premises.
 
 ## Operation
 

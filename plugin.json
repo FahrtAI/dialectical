@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "dialectical",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "Ordinary conversation with intellectual discipline.",
   "author": {
     "name": "FahrtAI",
@@ -21,7 +21,7 @@
       "interface": {
         "displayName": "Dialectical",
         "shortDescription": "Think freely. Test rigorously.",
-        "longDescription": "Ordinary conversation with intellectual discipline. Start with an idea, question, or decision. Dialectical helps clarify inquiry purpose and scope, surface prior art and connections, compare competing explanations, test assumptions, and seek disconfirming evidence. GUIDE can recommend one useful operation for the current conversation and asks before it acts. COLLECTION GAPS prioritizes missing evidence to seek; INDICATORS defines observable developments that warrant reassessment. These operations do not automatically collect evidence or create monitoring. All operations are optional; conversation remains primary. This skills-only plugin requires no external service. Research uses available evidence tools; continuity uses the current chat or notes you supply, with optional file storage when authorized.",
+        "longDescription": "Ordinary conversation with intellectual discipline. Start or join a conversation, ask naturally for a focused operation, or use GUIDE to choose among three ranked commands and MORE. Brief command cues teach the vocabulary while responses stay concise, preserve evidence scope, and expand when depth is needed. Dialectical can surface prior art, compare explanations, test assumptions, seek disconfirming evidence, show practical recipes and generic flows, and export the conversation as a reusable Markdown handoff. Operations remain optional and never form a mandatory chain. This skills-only plugin requires no external service, database, or background observer. It uses only context and host capabilities actually available.",
         "developerName": "FahrtAI",
         "category": "Education & Research",
         "capabilities": [
@@ -32,7 +32,8 @@
           "Inquiry purpose and scope",
           "Evidence gap prioritization",
           "Reassessment indicators",
-          "Operation guidance"
+          "Operation guidance",
+          "Portable conversation handoffs"
         ],
         "websiteURL": "https://github.com/FahrtAI/dialectical",
         "defaultPrompt": [

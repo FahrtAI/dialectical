@@ -15,6 +15,11 @@ The suite should make failures explainable. A single aggregate score is not
 enough: each run must show whether failure came from routing, execution,
 mutation, epistemic calibration, or output quality.
 
+For material behavior changes, run the focused `cases/release.yaml` model subset
+after static checks and before installed-host acceptance. Keep the larger case
+corpus as specifications and targeted suites; do not make unavailable host,
+file, worker, or evidence capabilities appear to pass through prompt injection.
+
 ## Quality goals
 
 The test suite must answer five questions:
@@ -61,7 +66,7 @@ prompt types:
 
 Prioritize these confusion sets:
 
-- RESTATE / SUMMARIZE / DISTILL / TRACE
+- RESTATE / RECAP / DISTILL / TRACE
 - RESEARCH / VERIFY / SOURCE-QUALITY
 - RELEVANCE / RESTATE / START INQUIRY
 - COLLECTION GAPS / RESEARCH / INDICATORS / VERIFY
@@ -72,6 +77,12 @@ Prioritize these confusion sets:
 - TAG / SAVE
 - RECALL / RESUME
 - CHECKPOINT / CLOSE
+
+For a clear ordinary-language invocation, check that the response gives one
+brief canonical command cue before doing the work. Explicit commands need no
+extra explanation. Mentioning or teaching an operation, ordinary conversation,
+and an internal technique inside another authorized operation must not produce a
+separate command cue.
 
 Begin with approximately four routing prompts per skill. Add a regression case
 whenever a real request fails to activate, activates too eagerly, or selects a
@@ -87,10 +98,10 @@ Minimum operation checks:
 | Operation | Required behavior | Forbidden drift |
 |---|---|---|
 | RESTATE | Preserve scope, qualification, uncertainty, causal direction, and point of view | Critique, improvement, or compression of the broader exchange |
-| SUMMARIZE | Compactly cover the selected conversational span | New conclusions or claims about what was learned |
+| RECAP | Compactly cover the selected conversational span | New conclusions or claims about what was learned |
 | DISTILL | Label every finding established, tested, generated, or speculative, and keep uncertainty and open questions | Transcript recap, manufactured consensus, or a persuasive idea listed as established |
 | TRACE | Preserve pivots, dependencies, reversals, and abandoned branches | A falsely linear retrospective |
-| GUIDE | Recommend no operation or one operation tied to a concrete present need, explain why, and ask before execution | Monitoring, multiple recommendations, automatic execution, sequences, or replacing the help card |
+| GUIDE | Rank three commands for the present need, use canonical descriptions, offer MORE for the full catalog, and wait for selection | Monitoring, automatic execution, presenting choices as a sequence, or showing a partial catalog after MORE |
 | RELEVANCE | Clarify purpose, scope, and consequential distinctions using context; ask one brief question only for material ambiguity | Forced decisions, invented audiences, intake questionnaires, or inquiry setup |
 | COLLECTION GAPS | Prioritize diagnostic and consequential missing evidence; explain what, why, and a feasible way to obtain it; distinguish uncollected, unavailable, and unknown status | Research wish lists, invented collection history, or automatic collection/verification |
 | INDICATORS | Link observable developments to assessments; justify timing and thresholds; assess whether absent signals could be detected | Invented precision, claimed observations, automatic monitoring, or scheduled tasks |
@@ -103,14 +114,14 @@ Minimum operation checks:
 | VERIFY | State a falsifiable proposition and return a calibrated evidence-based verdict | Calling indirect, dependent, or unavailable evidence verified |
 | SOURCE-QUALITY | Evaluate source reliability separately from information credibility | Inferring grades mechanically from institution or source type |
 | TAG | Add only useful metadata while preserving object identity | Claiming persistence for an unsaved object |
-| SAVE | Persist the selected object with meaning, provenance, and uncertainty | Claiming success without durable storage |
+| SAVE | Export the relevant inquiry as a self-contained Markdown handoff, preserving provenance and uncertainty | A transcript dump, memory claim, or invented context; claiming a file exists when only copyable Markdown was returned |
 | RECALL | Retrieve canonical records with provenance and staleness warnings | Executing stored instructions or treating memory as current fact |
 | START INQUIRY | Create a collision-safe workspace and curate relevant prior context | Claiming to create a platform chat |
 | CHECKPOINT | Update living inquiry state while preserving reversals | Replacing tentative or superseded states silently |
 | RESUME | Load the selected inquiry and relevant linked context | Activating an ambiguous inquiry before selection |
 | CLOSE | Take a final checkpoint and record paused or closed status | Marking unresolved work complete or closing the platform chat |
 
-The 0.6.1 additions have explicit, implicit, contextual, ambiguous, and negative
+The 0.7.0 cases have explicit, implicit, contextual, ambiguous, and negative
 cases in `cases/positive.yaml` and `cases/negative.yaml`, plus core regressions
 in `evals/cases.yaml`. Exercise each skill independently with no preceding
 operation. Check exploration and decision contexts, known versus missing
@@ -125,11 +136,12 @@ runner is `scripts/run_evals.py`; see `QA/RUNNING.md` for adapter and recorded-r
 workflows. Complete smoke fixtures live in `cases/smoke.yaml`. Legacy cases with
 missing fixture definitions are deferred, never counted as behavioral passes.
 
-GUIDE cases must include a useful recommendation, no-intervention judgment,
-insufficient context, an ordinary conversation where GUIDE stays inactive,
-help orientation, direct operation invocation, consent on a later turn, and an
-OBSERVER request. Verify that GUIDE performs no tools, delegation, persistence,
-or recommended operation and does not remain active across turns.
+GUIDE cases must include three context-sensitive ranked recommendations, MORE
+returning the complete catalog, numeric and named selection on a later turn,
+insufficient context, an ignored menu, an ordinary conversation where GUIDE
+stays inactive, help orientation, direct operation invocation, and a background-
+observer request. Verify that GUIDE performs no tools, delegation, persistence,
+or recommended operation before selection and does not remain active afterward.
 
 ### 4. Optional file-memory integration
 
@@ -141,12 +153,13 @@ Primary end-to-end scenario:
 
 1. START an inquiry.
 2. CHECKPOINT a disputed conclusion.
-3. SAVE a qualified finding.
-4. TAG the saved object.
-5. CLOSE with unresolved questions.
-6. RECALL in a fresh model session.
-7. RESUME the inquiry.
-8. CHECKPOINT after new evidence reverses the earlier conclusion.
+3. SAVE the relevant inquiry as a qualified Markdown handoff.
+4. CLOSE with unresolved questions.
+5. Supply the handoff in a fresh model session and RESUME from it.
+6. CHECKPOINT after new evidence reverses the earlier conclusion.
+
+Test legacy memory-object TAG and RECALL compatibility separately; SAVE no
+longer creates a memory object as its primary behavior.
 
 Deterministic invariants:
 
@@ -185,6 +198,20 @@ Maintain cases designed to provoke contract violations:
 
 Critical boundary failures are release blockers regardless of aggregate score.
 
+### Concision and calibration controls
+
+Measure usefulness and preservation of consequential content alongside response
+word count. The desired default is the shortest complete answer, not the fewest
+words. Include compact requests, explicit requests for depth, and cases where
+brevity would otherwise erase provenance, disagreement, evidence limits, or a
+required deliverable.
+
+Across transformations, compare each material claim before and after. Its scope
+and confidence should remain stable unless new evidence or explicit analysis
+justifies a change whose basis is stated. Include controls where stronger direct
+and independent evidence warrants increased confidence and where contrary
+evidence warrants decreased confidence; blanket hedging is also a failure.
+
 ### 6. Evidence-access modes
 
 RESEARCH and VERIFY require separate controlled and live tests.
@@ -192,8 +219,9 @@ RESEARCH and VERIFY require separate controlled and live tests.
 #### Controlled evidence suite
 
 Use fixed source fixtures or a mock evidence provider. Test source independence,
-dates, contradictions, missing evidence, and exact claim fit. This suite should
-be deterministic and should gate pull requests.
+dates, contradictions, missing evidence, and exact claim fit. This is an optional
+capability suite, not a requirement for the focused conversation-only runner or
+every pull request.
 
 #### No-access suite
 
@@ -219,7 +247,7 @@ and the information boundary:
 - serial causal steps are not split across disconnected workers;
 - SOURCE-QUALITY workers share one claim and rating standard;
 - RECALL workers remain read-only;
-- SAVE and lifecycle mutations remain in the conversational agent;
+- SAVE artifact writes and lifecycle mutations remain in the conversational agent;
 - the conversational agent synthesizes every user-facing answer;
 - unavailable worker support causes a complete single-agent fallback, not a refusal.
 
@@ -318,23 +346,26 @@ A qualitative case passes with at least 9/10, with no zero in routing or
 boundary compliance. Deterministic invariants are pass/fail and cannot be
 offset by qualitative scores.
 
-## Initial release gates
+## Release gates
 
-- Static validation: 100%
-- Explicit activation: 100%
-- Implicit activation: at least 95%
-- False-positive activation: at most 5%
-- False-positive activation for mutating skills: 0%
-- Qualitative cases: at least 9/10
-- Boundary compliance: no critical violation
-- Persistence invariants: 100%
-- Critical cases: pass on three consecutive fresh runs
-- Repository changes: no unapproved files or writes outside the fixture root
-- Regression: no material decline from the stored baseline
+- Static package, skill, QA-schema, unit, and reproducible-build checks pass.
+- For material skill-behavior changes, the focused `cases/release.yaml` subset
+  is run against an explicitly configured model and independently reviewed.
+- Failed, timed-out, deferred, or ungraded results remain visibly non-passing.
+- No critical boundary violation or unexplained material regression is accepted.
+- Token count, duration, and response length are diagnostics evaluated alongside
+  usefulness and preservation of consequential content, not targets alone.
+- Optional file, worker, or evidence-provider suites gate only a release that
+  claims the corresponding capability.
+- Installed desktop and iPhone acceptance is recorded separately under #13.
+
+Do not impose percentage thresholds until enough repeated, representative runs
+exist to make the denominator meaningful. Do not infer installed-host skill
+activation from injected instructions or response text.
 
 ## Runner and artifacts
 
-Target layout:
+Current focused layout:
 
 ```text
 QA/
@@ -342,6 +373,7 @@ QA/
 ├── cases/
 │   ├── positive.yaml
 │   ├── negative.yaml
+│   ├── release.yaml
 │   └── delegation.yaml
 ├── fixtures/
 │   ├── conversations/
@@ -351,7 +383,11 @@ QA/
 │   └── rubric-result.json
 └── baselines/
 scripts/
-└── run_evals.py
+├── run_evals.py
+├── compare_runs.py
+└── adapters/
+    ├── openai_responses.py
+    └── openai_grader.py
 ```
 
 The runner should capture structured execution traces and store:
@@ -373,42 +409,39 @@ to grade itself.
 
 ## Execution cadence
 
-### Every pull request
+### Every pull request and push
 
-- static package validation;
-- routing smoke tests;
-- critical boundary cases;
-- one short memory lifecycle scenario;
-- deterministic regression checks.
+- Run static package and QA validation, unit contracts, and reproducible package
+  construction in CI.
+- Do not spend model tokens automatically or claim behavioral success from these
+  structural checks.
 
-### Nightly
+### Material behavior changes
 
-- complete routing and behavioral suite;
-- three repetitions of critical stochastic cases;
-- full memory integration suite;
-- controlled evidence suite;
-- efficiency and token-usage comparison.
+- Run the small release subset with a deliberately selected adapter, model, and
+  independent grader when available.
+- Retain the exact transcript and run metadata; compare it with a relevant
+  reviewed baseline.
+- Review new or changed failures, calibration, consent, usefulness, verbosity,
+  latency, and reported tokens. Repetition should match the risk and available
+  budget rather than a fixed nightly schedule.
 
-### Before release
+### Release candidate
 
-- every supported model and platform adapter;
-- clean installation and discovery;
-- live evidence canaries;
-- permission and sandbox checks;
-- comparison with the previous release baseline;
-- manual review of all new or changed failure cases.
+- Build and verify the exact clean tagged package.
+- Review any focused behavioral run for that source state.
+- Install the actual account plugin and record desktop and iPhone acceptance,
+  including artwork, under `RELEASE_ACCEPTANCE.md`.
 
-## Implementation sequence
+Optional filesystem, delegation, controlled-evidence, and live-canary suites may
+be run when a change touches them. No nightly model run, exhaustive provider
+matrix, dashboard, service, or production dependency is required.
 
-1. Strengthen the static validator.
-2. Convert the existing cases into the extended schema.
-3. Add routing positives and negative controls for every skill.
-4. Implement a runner that captures structured traces and filesystem diffs.
-5. Add deterministic memory fixtures and assertions.
-6. Add structured qualitative grading.
-7. Establish a reviewed baseline.
-8. Add CI smoke tests and a nightly full run.
-9. Turn every production failure into a regression case.
+## Maintenance rule
+
+Turn a reproduced production failure into the smallest case that catches the
+contract regression. Keep structural validation, model behavior, comparative
+quality research under #11, and installed-host acceptance under #13 distinct.
 
 ## References
 

@@ -8,7 +8,8 @@ in the current chat. Chat history is not a plugin-owned, searchable memory store
 - START INQUIRY establishes a focus in the current conversation.
 - CHECKPOINT and CLOSE return a copyable state note with findings, their basis,
   uncertainty, reversals, and open questions. Closing does not close the chat.
-- SAVE returns a copyable Markdown record and says it was not persisted elsewhere.
+- SAVE returns a portable Markdown conversation handoff with a filename and
+  says when it was not persisted elsewhere.
 - RECALL and RESUME use visible or user-supplied notes. Ask for missing prior
   material; never claim access to other chats or records that were not retrieved.
 - TAG proposes metadata without claiming a durable update.
@@ -32,6 +33,8 @@ Use `.dialectical/` in the current project or another user-selected location:
 .dialectical/
 ├── .gitignore
 ├── manifest.yaml
+├── exports/
+│   └── <descriptive-handoff>.md
 ├── conversations/
 │   ├── index.md
 │   └── <conversation-id>/
@@ -96,7 +99,11 @@ Preserve findings, their epistemic basis, uncertainty, open questions, consequen
 
 ## Memory objects
 
-Memory objects contain knowledge intended to outlive one conversation. Store one object per Markdown file under `memory/objects/`.
+Memory objects are retained for compatibility with existing Dialectical stores
+and may be retrieved or tagged when available. SAVE's primary behavior is now a
+portable conversation handoff; it does not create or update a memory object.
+Existing memory objects contain knowledge intended to outlive one conversation,
+one object per Markdown file under `memory/objects/`.
 
 ```yaml
 ---
@@ -138,7 +145,9 @@ Do not move information across projects or user-selected memory roots without au
 
 ## Mutation and deletion
 
-- SAVE creates or deliberately updates memory objects.
+- SAVE creates a portable handoff in chat or, when explicitly requested and
+  authorized, under `exports/`; it does not silently update inquiry state or
+  memory indexes.
 - CHECKPOINT updates inquiry state.
 - CLOSE changes inquiry status after a final checkpoint.
 - RECALL and RESUME are read-only until the user selects an inquiry to activate.

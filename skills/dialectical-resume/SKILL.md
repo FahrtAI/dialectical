@@ -2,12 +2,19 @@
 name: dialectical-resume
 description: Resume a prior Dialectical inquiry by loading its current state, relevant context, and saved-object links. Use when the user wants to continue an existing inquiry rather than create a new one.
 metadata:
-  version: "0.6.1"
+  version: "0.7.0"
 ---
 
 # Resume
 
 Restore enough supplied context to continue an inquiry.
+
+Use the shortest complete response that preserves material provenance,
+staleness, disagreement, reversals, and uncertainty. For a clear
+ordinary-language invocation that does not name RESUME, begin with one line:
+`RESUME — <brief context-specific description>.` Omit the cue for an explicit
+command or mere discussion. Continuation does not verify or strengthen inherited
+claims.
 
 Use the checkpoint or inquiry visible in this chat. Briefly restore its focus,
 evidence, uncertainty, and next questions, then continue. Preserve qualifiers;

@@ -1,51 +1,68 @@
 # In-chat flow guide
 
-Use this reference when the user asks to see examples, the cookbook, sample
-flows, or how Dialectical operations can be used together. After the canonical
-help card is shown, this is the reference for requests such as `cookbook`,
-`flows`, or a specific situation. Showing a flow does not start any operation.
-Present the relevant pathway, then offer to apply a specific move if the user
-asks.
+Use this reference when the user asks for `flows`, generic pathways, or a map of
+how Dialectical operations can be used together. Practical, situation-specific
+examples belong in [`cookbook.md`](cookbook.md). Showing a flow does not start
+any operation. Present the relevant pathway, then wait for a separate request
+before applying a move.
 
 ## Pathways
 
-- **Explore:** clarify purpose with RELEVANCE; connect prior art with RESEARCH;
-  generate alternatives with HYPOTHESIZE; examine implications with THOUGHT
-  EXPERIMENT.
-- **Explain:** separate observation from interpretation; generate alternatives;
-  compare them with ACH; identify consequential COLLECTION GAPS; VERIFY a
-  specific link when evidence is available.
-- **Decide:** clarify the choice, values, constraints, and time horizon; identify
-  consequential gaps; define INDICATORS for reconsideration.
-- **Evaluate:** RESTATE the object; assess SOURCE-QUALITY; inspect a
-  CAUSAL-CHAIN; CHALLENGE assumptions; VERIFY a specific empirical proposition.
-- **Preserve:** DISTILL what was learned; TRACE important pivots; CHECKPOINT a
-  copyable state; use SAVE or RECALL only when authorized and available.
-- **Random question:** begin in ordinary conversation. Add one operation when
-  the user asks for a specific task: HYPOTHESIZE explanations, RESEARCH prior
-  work, VERIFY a factual claim, or use a THOUGHT EXPERIMENT to examine an
-  implication.
+- **Explore**
+  - Start: an idea, question, or connection.
+  - Possible moves: RELEVANCE to clarify purpose; RESEARCH to connect prior art;
+    HYPOTHESIZE to generate alternatives; THOUGHT EXPERIMENT to examine
+    implications.
+  - Useful ending: a clearer question, promising possibilities, and open
+    questions.
+- **Explain**
+  - Start: an observation or outcome needing an account.
+  - Possible moves: distinguish observation from interpretation; HYPOTHESIZE
+    alternatives; ACH to compare them; COLLECTION GAPS to identify missing
+    evidence; VERIFY to check one specific link.
+  - Useful ending: a calibrated explanation, unresolved alternatives, and the
+    next useful check.
+- **Decide**
+  - Start: a choice with goals, constraints, and uncertainty.
+  - Possible moves: RELEVANCE to clarify what the choice serves; separate values
+    from empirical claims; COLLECTION GAPS for evidence worth seeking;
+    INDICATORS for reconsideration.
+  - Useful ending: a decision with explicit trade-offs and conditions for
+    revisiting it.
+- **Evaluate**
+  - Start: a claim, source, plan, or causal argument.
+  - Possible moves: RESTATE the object; SOURCE-QUALITY for supplied evidence;
+    CAUSAL-CHAIN for dependent links; CHALLENGE for assumptions; VERIFY for a
+    specific empirical proposition.
+  - Useful ending: a scoped judgment separating evidence, inference, and
+    uncertainty.
+- **Preserve**
+  - Start: an inquiry whose state is becoming difficult to hold.
+  - Possible moves: RECAP what was discussed; DISTILL what was learned; TRACE
+    important pivots; CHECKPOINT the current state; SAVE a reusable Markdown
+    handoff.
+  - Useful ending: a portable record preserving evidence, provenance,
+    uncertainty, and open questions.
+- **Random question**
+  - Start: a curiosity whose purpose remains open.
+  - Possible moves: talk normally first; use RELEVANCE only if purpose matters;
+    HYPOTHESIZE for explanations; RESEARCH for prior art; VERIFY for a specific
+    factual claim; THOUGHT EXPERIMENT for implications.
+  - Useful ending: a satisfying answer, a sharper question, or a deliberate
+    choice about what to investigate next.
 
-These are menus of possible moves, not mandatory sequences. A conversation can
-change pathways, stop after one move, or return to ordinary discussion. GUIDE
-can recommend one move when explicitly requested; it does not run a pathway.
+### Random-question example
 
-## Example: a random question
+Suppose the user asks, “Why can a smell bring back a memory so suddenly?” Begin
+with an ordinary answer and preserve plausible mechanisms as possibilities. The
+user might then request HYPOTHESIZE for competing explanations, RESEARCH for
+prior work, VERIFY for one specific factual claim, or a THOUGHT EXPERIMENT about
+what would change under a counterfactual. Each is a separate user-directed task;
+none starts merely because it appears in the example. The conversation may stop
+or return to ordinary discussion after any move.
 
-User: “Why can a smell bring back a memory so suddenly?”
-
-1. Discuss a few possible mechanisms in ordinary language and label them as
-   possibilities.
-2. User: “What explanations could account for that?” → HYPOTHESIZE generates
-   competing explanations and distinguishing observations.
-3. User: “Find prior work, including disagreements.” → RESEARCH seeks evidence
-   and reports its source scope.
-4. User: “Is the claim that smell has a uniquely direct route to memory true?”
-   → VERIFY checks that specific proposition.
-5. User: “What would change if smell were no better than another sense?” →
-   THOUGHT EXPERIMENT explores the implication without asserting the premise.
-6. User: “What did we really learn?” → DISTILL separates findings, generated
-   possibilities, uncertainty, and open questions.
-
-The user may stop or change direction after any step. The example does not
-authorize automatic research, verification, monitoring, or saving.
+These are readable maps of optional moves, not mandatory sequences. A
+conversation can change pathways, stop after one move, or return to ordinary
+discussion. GUIDE can rank useful moves when explicitly requested; it does not
+run a pathway. This packaged reference deliberately uses text rather than
+Mermaid so it renders reliably in chat.

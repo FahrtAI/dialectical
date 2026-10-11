@@ -1,0 +1,130 @@
+schema_version: 1
+suite: dialectical-help-flows
+description: Help-card, cookbook, and generic-flow routing without operation execution.
+cases:
+  - id: help-flows-canonical-help
+    skill: dialectical
+    mode: explicit
+    prompt: "@Dialectical help"
+    environment: {fixture: none}
+    expect_activation: {include: [dialectical], exclude: []}
+    expect:
+      - "Returns the canonical ASCII card with every operation and its five-word description."
+      - "Offers the distinct COOKBOOK and FLOWS references."
+    forbid:
+      - "Executing any listed operation"
+      - "Presenting operations as a mandatory sequence"
+    expected_mutation: {class: none, paths: []}
+
+  - id: help-flows-question-alias
+    skill: dialectical
+    mode: explicit
+    prompt: "@Dialectical ?"
+    environment: {fixture: none}
+    expect_activation: {include: [dialectical], exclude: []}
+    expect:
+      - "Returns the same canonical ASCII card used for @Dialectical help."
+      - "Offers cookbook and flows after the card."
+    forbid:
+      - "Treating the question mark as an inquiry topic"
+      - "Executing an operation"
+    expected_mutation: {class: none, paths: []}
+
+  - id: help-flows-help-then-cookbook
+    skill: dialectical
+    mode: contextual
+    turns:
+      - "@Dialectical help"
+      - "cookbook"
+    environment: {fixture: none}
+    expect_activation:
+      include: [dialectical]
+      exclude: [dialectical-research, dialectical-verify, dialectical-save]
+    expect:
+      - "First returns the canonical ASCII help card."
+      - "Then shows practical recipes organized by situation, not only generic pathway names."
+      - "Makes clear that viewing a recipe does not run its operations."
+    forbid:
+      - "Automatically applying a recipe"
+      - "Research, verification, saving, monitoring, or persistence"
+    expected_mutation: {class: none, paths: []}
+
+  - id: help-flows-direct-cookbook
+    skill: dialectical
+    mode: implicit
+    prompt: "Show me the Dialectical cookbook."
+    environment: {fixture: none}
+    expect_activation:
+      include: [dialectical]
+      exclude: [dialectical-guide]
+    expect:
+      - "Shows the complete set of practical recipes from the packaged cookbook."
+      - "Keeps recipes optional and distinct from generic flows."
+    forbid:
+      - "Requiring HELP first"
+      - "Running GUIDE or a recipe operation"
+    expected_mutation: {class: none, paths: []}
+
+  - id: help-flows-direct-generic-flows
+    skill: dialectical
+    mode: implicit
+    prompt: "What are the generic Dialectical flows?"
+    environment: {fixture: none}
+    expect_activation:
+      include: [dialectical]
+      exclude: [dialectical-guide]
+    expect:
+      - "Shows Explore, Explain, Decide, Evaluate, Preserve, and Random question as optional pathways."
+      - "Uses readable text rather than requiring Mermaid rendering."
+    forbid:
+      - "Replacing the flows with only situation-specific recipes"
+      - "Running GUIDE or any pathway operation"
+    expected_mutation: {class: none, paths: []}
+
+  - id: help-flows-natural-unexpected-outcome
+    skill: dialectical
+    mode: implicit
+    prompt: "@Dialectical how do I use this to explain an unexpected outcome?"
+    environment: {fixture: none}
+    expect_activation:
+      include: [dialectical]
+      exclude: [dialectical-hypothesize, dialectical-ach, dialectical-collection-gaps]
+    expect:
+      - "Shows the Explain an unexpected outcome recipe with its optional moves and cautions."
+      - "Offers to apply a move only after displaying the recipe."
+    forbid:
+      - "Generating hypotheses or comparing evidence immediately"
+      - "Automatic operation chaining"
+    expected_mutation: {class: none, paths: []}
+
+  - id: help-flows-random-question
+    skill: dialectical
+    mode: implicit
+    prompt: "@Dialectical show me a flow for a random question."
+    environment: {fixture: none}
+    expect_activation:
+      include: [dialectical]
+      exclude: [dialectical-relevance, dialectical-research, dialectical-verify]
+    expect:
+      - "Shows the Random question pathway beginning with ordinary conversation."
+      - "Explains that operations are optional user-directed moves."
+    forbid:
+      - "Forcing the question into a formal inquiry"
+      - "Researching, verifying, or monitoring anything"
+    expected_mutation: {class: none, paths: []}
+
+  - id: help-flows-orientation-not-execution
+    skill: dialectical
+    mode: negative
+    prompt: "Show me the Preserve flow, but do not run anything yet."
+    environment: {fixture: none}
+    expect_activation:
+      include: [dialectical]
+      exclude: [dialectical-recap, dialectical-distill, dialectical-trace, dialectical-checkpoint, dialectical-save]
+    expect:
+      - "Displays the Preserve pathway as orientation only."
+      - "Waits for a separate request before applying a move."
+    forbid:
+      - "Recapping, distilling, tracing, checkpointing, or exporting the conversation"
+      - "Claiming anything was saved"
+    expected_mutation: {class: none, paths: []}

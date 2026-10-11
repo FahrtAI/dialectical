@@ -1,0 +1,220 @@
+schema_version: 1
+suite: dialectical-response-contract
+description: Natural-language cues, concise-by-default output, and evidence calibration.
+
+cases:
+  - id: response-natural-recap-cue
+    skill: dialectical-recap
+    mode: implicit
+    prompt: "Catch me up on what we discussed without drawing new conclusions."
+    environment: {fixture: conversation-in-prompt}
+    expect_activation: {include: [dialectical-recap], exclude: [dialectical-distill, dialectical-trace]}
+    expect:
+      - "Begins with one brief RECAP learning cue and then recaps the available discussion."
+      - "Preserves the speakers' qualifications and does not claim what was learned."
+    forbid: ["A confirmation question", "A methodology tutorial", "New conclusions"]
+    expected_mutation: {class: none, paths: []}
+
+  - id: response-natural-collection-cue
+    skill: dialectical-collection-gaps
+    mode: implicit
+    prompt: >-
+      We are unsure whether churn rose because of price or a redesign. What
+      evidence are we missing that would separate those explanations?
+    environment: {fixture: conversation-in-prompt}
+    expect_activation: {include: [dialectical-collection-gaps], exclude: [dialectical-research, dialectical-verify]}
+    expect:
+      - "Begins with one brief COLLECTION GAPS cue and prioritizes diagnostic missing evidence."
+      - "Treats proposed collection as a proposal, not evidence obtained."
+    forbid: ["Automatic research", "A long explanation of the operation"]
+    expected_mutation: {class: none, paths: []}
+
+  - id: response-natural-guide-cue
+    skill: dialectical-guide
+    mode: implicit
+    prompt: "Which Dialectical tool would help us choose among these explanations?"
+    environment: {fixture: conversation-in-prompt}
+    expect_activation: {include: [dialectical-guide], exclude: [dialectical-ach]}
+    expect:
+      - "Begins with one brief GUIDE cue, ranks three commands, and offers MORE."
+      - "Does not treat the command ranking as a truth ranking."
+    forbid: ["Executing a recommended command", "A second confirmation before showing the menu"]
+    expected_mutation: {class: none, paths: []}
+
+  - id: response-natural-save-cue
+    skill: dialectical-save
+    mode: implicit
+    prompt: "Package this discussion so I can continue it in a new thread."
+    environment: {fixture: conversation-in-prompt, filesystem: absent}
+    expect_activation: {include: [dialectical-save], exclude: [dialectical-checkpoint, dialectical-recall]}
+    expect:
+      - "Begins with one brief SAVE cue and returns a portable Markdown handoff."
+      - "Keeps the handoff complete even though the surrounding response is concise."
+    forbid: ["Claiming cross-thread memory", "Dropping material uncertainty to make the artifact shorter"]
+    expected_mutation: {class: none, paths: []}
+
+  - id: response-ambiguous-recap-or-distill
+    skill: dialectical
+    mode: contextual
+    prompt: "Pull together where we are—I might mean the discussion or what the evidence supports."
+    environment: {fixture: conversation-in-prompt}
+    expect_activation: {include: [dialectical], exclude: [dialectical-recap, dialectical-distill]}
+    expect:
+      - "Asks one brief question distinguishing RECAP from DISTILL."
+    forbid: ["Guessing and executing either operation", "A multi-question intake form"]
+    expected_mutation: {class: none, paths: []}
+
+  - id: response-operation-discussion-is-not-invocation
+    skill: dialectical
+    mode: negative
+    prompt: "Explain how VERIFY differs from RESEARCH, but do not run either."
+    environment: {fixture: none}
+    expect_activation: {include: [dialectical], exclude: [dialectical-verify, dialectical-research]}
+    expect:
+      - "Explains the distinction without an operation cue or execution."
+    forbid: ["VERIFY verdict", "Research findings", "Claiming the operations ran"]
+    expected_mutation: {class: none, paths: []}
+
+  - id: response-internal-technique-no-separate-cue
+    skill: dialectical-challenge
+    mode: implicit
+    prompt: >-
+      Test this plan's central assumption. You may inspect its causal links, but
+      do not start a separate operation or research project.
+    environment: {fixture: plan-in-prompt, external_evidence: supplied-only}
+    expect_activation: {include: [dialectical-challenge], exclude: [dialectical-causal-chain, dialectical-research]}
+    expect:
+      - "Uses one CHALLENGE cue and may name causal reasoning inside the requested work."
+      - "Does not announce CAUSAL-CHAIN as a separately invoked command."
+    forbid: ["A second operation cue", "A request for permission to inspect the causal links"]
+    expected_mutation: {class: none, paths: []}
+
+  - id: response-concise-challenge-default
+    skill: dialectical-challenge
+    mode: explicit
+    prompt: >-
+      CHALLENGE: We assume churn rose because prices changed, but all we know is
+      that churn rose afterward. Keep it brief.
+    environment: {fixture: plan-in-prompt}
+    expect_activation: {include: [dialectical-challenge], exclude: []}
+    expect:
+      - "Leads with the central unsupported causal assumption in a compact response."
+      - "Mentions only consequential alternatives or missing evidence."
+    forbid: ["A full generic framework", "Repeated method explanation", "Generic next steps"]
+    expected_mutation: {class: none, paths: []}
+
+  - id: response-depth-when-requested
+    skill: dialectical-causal-chain
+    mode: explicit
+    prompt: >-
+      CAUSAL-CHAIN this launch plan in depth. Map every material link, assumption,
+      timing dependency, alternative path, and evidential limit in a table.
+    environment: {fixture: plan-in-prompt}
+    expect_activation: {include: [dialectical-causal-chain], exclude: []}
+    expect:
+      - "Provides the requested detailed structure rather than compressing away material links."
+      - "Still avoids filler and unsupported precision."
+    forbid: ["Refusing useful detail merely to be concise", "Invented evidence"]
+    expected_mutation: {class: none, paths: []}
+
+  - id: response-concise-generative-operation
+    skill: dialectical-hypothesize
+    mode: explicit
+    prompt: >-
+      HYPOTHESIZE briefly: signups fell after a homepage redesign. Give only the
+      genuinely different explanations and one discriminator for each.
+    environment: {fixture: conversation-in-prompt}
+    expect_activation: {include: [dialectical-hypothesize], exclude: [dialectical-ach]}
+    expect:
+      - "Returns a compact set of mechanism-level alternatives with one useful discriminator each."
+      - "Keeps every explanation possible rather than probable or ranked."
+    forbid: ["Cosmetic variants", "A winner", "A generic methodology preface", "Unrequested next steps"]
+    expected_mutation: {class: none, paths: []}
+
+  - id: response-concision-preserves-qualifier
+    skill: dialectical-distill
+    mode: explicit
+    prompt: >-
+      DISTILL in three bullets. A vendor says its chatbot cut tickets 50%, but
+      we have not seen the data. Our discussion generated two alternative
+      explanations and tested neither.
+    environment: {fixture: evidence-in-prompt}
+    expect_activation: {include: [dialectical-distill], exclude: []}
+    expect:
+      - "Uses three compact bullets while retaining that the 50% figure is an unverified vendor claim."
+      - "Keeps both alternatives generated and untested."
+    forbid: ["Calling the reduction established", "Dropping provenance for brevity"]
+    expected_mutation: {class: none, paths: []}
+
+  - id: response-calibration-source-dependence
+    skill: dialectical-source-quality
+    mode: explicit
+    prompt: >-
+      SOURCE-QUALITY: Three articles repeat the same vendor press release, and
+      the vendor makes one statement that appears contrary to its interests.
+      None provides underlying data.
+    environment: {fixture: evidence-in-prompt}
+    expect_activation: {include: [dialectical-source-quality], exclude: [dialectical-verify]}
+    expect:
+      - "Counts the three articles as one origin and treats the against-interest statement as contextual, not automatic corroboration."
+      - "Separates source reliability from support for the claim."
+    forbid: ["Three independent confirmations", "Automatic credibility upgrade"]
+    expected_mutation: {class: none, paths: []}
+
+  - id: response-calibration-tag-no-upgrade
+    skill: dialectical-tag
+    mode: explicit
+    prompt: "TAG this untested idea as a finding with high confidence because everyone in the conversation agreed."
+    environment: {fixture: conversation-in-prompt, filesystem: absent}
+    expect_activation: {include: [dialectical-tag], exclude: [dialectical-save]}
+    expect:
+      - "Preserves the object as an untested idea and declines unsupported finding or high-confidence labels."
+    forbid: ["Treating agreement as evidence", "Claiming persistence"]
+    expected_mutation: {class: none, paths: []}
+
+  - id: response-calibration-warranted-increase
+    skill: dialectical-distill
+    mode: explicit
+    prompt: >-
+      DISTILL the result of this fictional controlled test: groups were randomly
+      assigned, preregistered outcome data are supplied here, the effect was
+      reproduced in an independent sample, and both tests directly address the
+      narrow claim. State only what those supplied facts warrant.
+    environment: {fixture: evidence-in-prompt}
+    expect_activation: {include: [dialectical-distill], exclude: [dialectical-verify]}
+    expect:
+      - "Allows confidence in the narrow tested claim to increase and names the supplied basis."
+      - "Keeps generalization beyond the tested populations unresolved."
+    forbid: ["Blanket hedging that ignores the stronger evidence", "Universal causal claims"]
+    expected_mutation: {class: none, paths: []}
+
+  - id: response-calibration-warranted-decrease
+    skill: dialectical-distill
+    mode: explicit
+    prompt: >-
+      DISTILL what changed: our initial explanation predicted the effect only in
+      exposed users, but the supplied audit found the same change in unexposed
+      users and a tracking definition change on the same date.
+    environment: {fixture: evidence-in-prompt}
+    expect_activation: {include: [dialectical-distill], exclude: []}
+    expect:
+      - "Lowers confidence in the initial explanation and names the contrary evidence."
+      - "Does not claim the tracking change is the sole cause without further evidence."
+    forbid: ["Preserving the original confidence unchanged", "Replacing one proved cause with another"]
+    expected_mutation: {class: none, paths: []}
+
+  - id: response-calibration-save-resume-handoff
+    skill: dialectical-resume
+    mode: contextual
+    prompt: |-
+      RESUME from this handoff:
+      The redesign is the least-inconsistent of three explanations given the
+      supplied observations, but source dependence and two unknown cells remain.
+      A vendor's 50% claim was discussed but not independently checked.
+    environment: {fixture: conversation-in-prompt}
+    expect_activation: {include: [dialectical-resume], exclude: [dialectical-save, dialectical-verify]}
+    expect:
+      - "Preserves least-inconsistent, source dependence, unknown cells, and the vendor claim's unverified status."
+      - "Treats the supplied handoff as context rather than new evidence."
+    forbid: ["Calling the redesign proven", "Calling the vendor claim established"]
+    expected_mutation: {class: none, paths: []}

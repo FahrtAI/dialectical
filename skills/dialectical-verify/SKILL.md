@@ -2,12 +2,19 @@
 name: dialectical-verify
 description: Resolve a specific empirical proposition against authoritative external evidence and report a calibrated verdict. Use for targeted factual adjudication; do not use for broad exploration, value judgments, or claims that cannot be empirically settled.
 metadata:
-  version: "0.6.1"
+  version: "0.7.0"
 ---
 
 # Verify
 
 Determine what the best available external evidence warrants about a narrowly stated proposition.
+
+Use the shortest complete response that preserves proposition fit, source
+independence, evidence limits, and residual uncertainty. For a clear
+ordinary-language invocation that does not name VERIFY, begin with one line:
+`VERIFY — <brief context-specific description>.` Omit the cue for an explicit
+command, mere discussion, or internal technique. Raise or lower confidence only
+when the inspected evidence justifies it, and state the basis.
 
 ## Operation
 

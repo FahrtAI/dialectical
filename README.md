@@ -7,7 +7,7 @@
 
 > Ordinary conversation with intellectual discipline.
 
-**Current version:** 0.6.1 (skills-only)
+**Current version:** 0.7.0 (skills-only)
 
 LLMs can be thought of as lossy, natural-language search engines for the material they ingested during training—which, for a frontier model, can include an awful lot of the material on the internet.
 
@@ -51,6 +51,7 @@ Try to disprove my interpretation.
 Trace that claim back to its sources.
 Run a thought experiment on this assumption.
 Save that connection for later.
+JOIN this existing conversation.
 ```
 
 Every operation also has a short, explicit handle:
@@ -67,27 +68,42 @@ SAVE that connection.
 
 The capitalized names are conversational handles, not command syntax. See [sample conversations](docs/flows.md) for complete examples.
 
+When an ordinary-language request clearly selects an operation, Dialectical
+briefly names it before answering—for example, `RECAP — Catching up on the
+discussion.` This is a one-line learning cue, not a confirmation step or method
+lecture. Ordinary conversation and internal reasoning techniques are not labeled
+as separate operations.
+
 Dialectical-specific help uses a compact, stable [command card](skills/dialectical/references/help.md) rather than generating a new introduction each time.
 
 ## Operations
 
 | Purpose | Operations | What they help you do |
 |---|---|---|
-| Choose a move | GUIDE | Recommend one useful operation for the current conversational state, or continue without one |
-| Understand the conversation | RESTATE, SUMMARIZE, DISTILL, TRACE | Clarify an idea, compress context, extract what was learned, and recover provenance |
+| Choose a move | GUIDE | Rank three useful commands for the current conversational state, or show the full catalog |
+| Understand the conversation | RESTATE, RECAP, DISTILL, TRACE | Clarify an idea, compress context, extract what was learned, and recover provenance |
 | Frame an inquiry | RELEVANCE, COLLECTION GAPS, INDICATORS | Clarify purpose, prioritize missing evidence, and define developments worth watching |
 | Explore | RESEARCH, HYPOTHESIZE, THOUGHT EXPERIMENT | Find relevant prior art, generate explanations, and examine implications |
 | Test | CHALLENGE, VERIFY, ACH, CAUSAL-CHAIN, SOURCE-QUALITY | Seek counterarguments and disconfirming evidence, test causal logic, and assess sources |
-| Remember | TAG, SAVE, RECALL | Organize, preserve, and retrieve useful knowledge |
+| Preserve and reuse | TAG, SAVE, RECALL | Organize knowledge, export a Markdown handoff, and retrieve accessible records |
 | Continue over time | START INQUIRY, CHECKPOINT, RESUME, CLOSE | Maintain an optional line of inquiry across conversations |
 
 ACH is Analysis of Competing Hypotheses: it compares rival explanations against the evidence instead of asking only whether a favored explanation fits. CAUSAL-CHAIN exposes the assumptions in each link of a causal argument. SOURCE-QUALITY rates the reliability of a source separately from the credibility of the information it provides.
 
-GUIDE is an on-demand recommendation, not a mode. It considers the current
-conversation, suggests at most one operation when that would materially help,
-explains why, and waits for consent. It may instead recommend continuing the
-ordinary conversation. GUIDE does not monitor later turns or perform the
-suggested operation; invoke it again whenever you want another recommendation.
+GUIDE is an on-demand palette, not a mode. It considers the current conversation,
+ranks three useful commands, and offers MORE for the complete catalog. It waits
+for a numeric or named selection and runs only that command. GUIDE does not
+monitor later turns or perform anything before selection.
+
+Use `@Dialectical JOIN` after invoking Dialectical in an existing conversation.
+When the host provides meaningful prior context, JOIN offers RECAP, DISTILL,
+TRACE, or CONTINUE and waits for a choice. It cannot retrieve unseen messages or
+attach itself retroactively outside the host's normal plugin interface.
+
+SAVE packages the relevant conversation as a self-contained Markdown handoff.
+Upload or paste that handoff into a new thread to continue. A downloadable file
+is used when the host supports it; otherwise SAVE returns complete copyable
+Markdown. It does not imply automatic cross-thread memory.
 
 Ask “What are we trying to understand?” for RELEVANCE, “What evidence would
 distinguish these explanations?” for COLLECTION GAPS, or “What should we watch
@@ -100,9 +116,15 @@ or scheduled tasks.
 ## How it behaves
 
 - Normal conversation remains primary. The default is not to intervene.
+- Responses default to the shortest complete answer; requested depth and
+  consequential evidence, provenance, disagreement, or uncertainty are not
+  sacrificed for brevity.
 - Operations are optional, independently composable, and never silently chained.
-- GUIDE is invoked explicitly and recommends without executing or monitoring.
+- GUIDE is invoked explicitly, ranks three commands, and waits for one selection.
 - Claims, inferences, and speculation remain distinguishable.
+- A transformation preserves a claim's supported scope and confidence unless
+  new evidence or explicit analysis justifies a stated change; calibration is
+  not blanket skepticism.
 - Uncertainty, disagreement, abandoned branches, and provenance are preserved when they matter.
 - A thought experiment can expose implications; it cannot supply empirical evidence.
 - When the discussion becomes difficult to hold, Dialectical may offer to DISTILL it once.
@@ -115,7 +137,7 @@ Dialectical also distinguishes among debate, narrative, inquiry, and decision. E
 
 See [CHATGPT.md](CHATGPT.md) for account installation, desktop and iPhone tests,
 and the distinction between a local folder and an installed account plugin.
-Use the skills-only ZIP in `dist/dialectical-0.6.1.zip`.
+Use the skills-only ZIP in `dist/dialectical-0.7.0.zip`.
 Installing this source does not automatically update an older account plugin.
 
 The portable package contains `plugin.json`, `LICENSE`, `skills/`, and referenced artwork.
@@ -124,7 +146,7 @@ configuration, app dependency, executable runtime, or service.
 
 ## Continuity
 
-Conversation works without storage. SAVE returns a copyable record; CHECKPOINT
+Conversation works without storage. SAVE returns a portable Markdown handoff; CHECKPOINT
 returns a state note; RESUME can use a checkpoint you paste or attach.
 The plugin does not promise automatic recall across chats.
 
@@ -151,8 +173,9 @@ prepare a draft GitHub release from the tested artifacts. See
 checks, and the post-install smoke test.
 
 Behavioral evaluation is separate: see [QA/RUNNING.md](QA/RUNNING.md) for the
-complete smoke fixtures, canonical rubric, adapter protocol, and comparison
-conditions. The runner is a maintainer utility and is excluded from the plugin.
+focused release subset, complete smoke fixtures, optional configured-model
+adapter, canonical rubric, and recorded-run comparison. The runner is a
+maintainer utility and is excluded from the plugin.
 
 The ZIP includes only the manifest, license, skill Markdown files, and referenced
 plugin icons. Repository documentation, tests, and build utilities stay outside it.
@@ -173,7 +196,7 @@ LICENSE       CC BY-NC-SA 4.0 legal terms
 installed-host tests. See the [architecture audit](docs/architecture-audit.md)
 for the removal of the old service dependency and official specification links.
 
-All 24 bundled skills use release version 0.6.1. Storage schema versions are
+All 24 bundled skills use release version 0.7.0. Storage schema versions are
 separate and have not changed. Other optional host guides remain in
 [CLAUDE.md](CLAUDE.md), [CODEX.md](CODEX.md), and [GEMINI.md](GEMINI.md).
 

@@ -2,12 +2,19 @@
 name: dialectical-trace
 description: Reconstruct how an inquiry reached its current position, including originating ideas, assumptions, pivots, connections, and abandoned branches. Use for reasoning provenance; do not use for a simple recap or a polished retrospective narrative.
 metadata:
-  version: "0.6.1"
+  version: "0.7.0"
 ---
 
 # Trace
 
 Recover the path by which the thinking developed.
+
+Use the shortest complete response that preserves material provenance,
+qualifiers, contradictions, abandoned branches, and uncertainty. For a clear
+ordinary-language invocation that does not name TRACE, begin with one line:
+`TRACE — <brief context-specific description>.` Omit the cue for an explicit
+command or mere discussion. Inferred connections remain labeled and do not
+become recorded history through reconstruction.
 
 ## Operation
 
