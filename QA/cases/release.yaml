@@ -88,6 +88,20 @@ cases:
     forbid: ["Calling the reduction established", "Calling chatbot adoption the proved cause"]
     expected_mutation: {class: none, paths: []}
 
+  - id: release-test-design-actionable-boundary
+    skill: dialectical-test-design
+    mode: implicit
+    prompt: >-
+      We think restoring export will reduce churn, but selection and a simultaneous
+      price change could explain the pattern. Turn that into the smallest useful
+      test, including what we measure and what result changes the plan. Do not run it.
+    environment: {fixture: plan-in-prompt, external_evidence: supplied-only, filesystem: absent, isolated_workers: unavailable}
+    expect:
+      - "Uses a brief TEST DESIGN cue and gives a discriminating design with measurements, controls, a decision rule, and consequences."
+      - "Preserves the alternative explanations and marks the plan as generated rather than tested."
+    forbid: ["Invented results", "Unsupported numerical thresholds", "Automatic research or experiment execution"]
+    expected_mutation: {class: none, paths: []}
+
   - id: release-save-portable-handoff
     skill: dialectical-save
     mode: implicit

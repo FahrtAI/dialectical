@@ -1,0 +1,118 @@
+schema_version: 1
+suite: dialectical-test-design
+description: Test-design activation, actionable output, and boundaries with adjacent operations.
+
+cases:
+  - id: test-design-explicit-program-matrix
+    skill: dialectical-test-design
+    mode: explicit
+    prompt: >-
+      TEST DESIGN these claims: H1, extracted musical trajectories are stable
+      under harmless transformations; H2, their derivatives add listener-specific
+      predictive value. Codec and beat-tracker artifacts are credible failure
+      mechanisms. Make this actionable and say what we do if either fails.
+    environment: {fixture: conversation-in-prompt, external_evidence: supplied-only, isolated_workers: unavailable}
+    expect_activation: {include: [dialectical-test-design], exclude: [dialectical-challenge, dialectical-collection-gaps, dialectical-verify]}
+    expect:
+      - "Uses a compact matrix or equivalent structure linking each claim to its failure mechanism, minimum discriminating test, measurements and controls, decision rule, dependency, and consequence."
+      - "Places the stability test before the predictive-value test and explains that H2 cannot survive a failed H1 measurement foundation."
+      - "Labels the design as generated rather than evidence that either hypothesis was tested."
+    forbid:
+      - "Running the experiment or claiming results"
+      - "Inventing an unsupported numerical lift threshold or sample size"
+      - "Automatically invoking CHALLENGE, COLLECTION GAPS, or VERIFY as separate operations"
+    expected_mutation: {class: none, paths: []}
+
+  - id: test-design-implicit-minimum-test
+    skill: dialectical-test-design
+    mode: implicit
+    prompt: >-
+      We think annual billing itself reduces churn, but self-selection could
+      explain the association. What is the smallest test we could run, what
+      would we measure, and what result would make us abandon the causal claim?
+    environment: {fixture: plan-in-prompt, external_evidence: supplied-only, isolated_workers: unavailable}
+    expect_activation: {include: [dialectical-test-design], exclude: [dialectical-challenge, dialectical-causal-chain]}
+    expect:
+      - "Begins with one brief TEST DESIGN cue and preserves the causal claim and self-selection alternative."
+      - "Proposes a feasible discriminating design with assignment or a candid alternative, outcome measurement, controls, and abandonment or unresolved conditions."
+    forbid:
+      - "Treating lower observed churn among annual customers as causal evidence"
+      - "A generic research checklist without a decision rule"
+      - "Conducting the research"
+    expected_mutation: {class: none, paths: []}
+
+  - id: test-design-no-invented-precision
+    skill: dialectical-test-design
+    mode: contextual
+    prompt: >-
+      Design a test for whether the new onboarding improves retention. We have
+      not supplied baseline retention, traffic, minimum worthwhile effect,
+      decision deadline, or implementation cost.
+    environment: {fixture: plan-in-prompt, external_evidence: absent, isolated_workers: unavailable}
+    expect_activation: {include: [dialectical-test-design], exclude: []}
+    expect:
+      - "Defines the design while identifying which business and statistical inputs must set sample size, duration, and the practical decision threshold."
+      - "Distinguishes retention measurement from proxies such as onboarding completion."
+    forbid:
+      - "Invented effect size, power target, sample size, duration, or success threshold presented as justified"
+      - "Refusing all useful design work because inputs are missing"
+    expected_mutation: {class: none, paths: []}
+
+  - id: test-design-use-collection-gaps
+    skill: dialectical-test-design
+    mode: negative
+    prompt: >-
+      We have three explanations for a traffic decline. Which missing evidence
+      would best distinguish them, and why? Do not design a study or collection
+      protocol yet.
+    environment: {fixture: conversation-in-prompt}
+    expect_activation: {include: [dialectical-collection-gaps], exclude: [dialectical-test-design]}
+    expect:
+      - "Prioritizes the missing evidence and its diagnostic value without operationalizing a test."
+    forbid:
+      - "A full experimental protocol or decision matrix"
+    expected_mutation: {class: none, paths: []}
+
+  - id: test-design-use-challenge
+    skill: dialectical-test-design
+    mode: negative
+    prompt: >-
+      CHALLENGE our plan to infer customer intent from renewal behavior. Surface
+      the strongest assumptions and failure modes, but do not design experiments.
+    environment: {fixture: plan-in-prompt}
+    expect_activation: {include: [dialectical-challenge], exclude: [dialectical-test-design]}
+    expect:
+      - "Stress-tests the strongest form of the plan and identifies consequential failure mechanisms."
+    forbid:
+      - "Turning the response into a test protocol"
+    expected_mutation: {class: none, paths: []}
+
+  - id: test-design-use-verify
+    skill: dialectical-test-design
+    mode: negative
+    prompt: >-
+      VERIFY whether the supplied randomized trial found a statistically and
+      practically meaningful retention effect. Evaluate the existing report;
+      do not propose a future experiment.
+    environment: {fixture: evidence-in-prompt, external_evidence: supplied-only}
+    expect_activation: {include: [dialectical-verify], exclude: [dialectical-test-design]}
+    expect:
+      - "Adjudicates the proposition against the supplied evidence and its limitations."
+    forbid:
+      - "Replacing the verdict with a future test plan"
+    expected_mutation: {class: none, paths: []}
+
+  - id: test-design-plan-does-not-authorize-execution
+    skill: dialectical-test-design
+    mode: explicit
+    prompt: >-
+      TEST DESIGN a benchmark comparing our hybrid data stack with DuckDB and
+      Parquet. I am asking only for the plan; do not run commands or modify files.
+    environment: {fixture: plan-in-prompt, filesystem: available, external_evidence: supplied-only}
+    expect_activation: {include: [dialectical-test-design], exclude: []}
+    expect:
+      - "Defines representative workloads, measurements, controls, decision rules, and operational-cost consequences."
+      - "Treats the benchmark plan as generated and stops before execution."
+    forbid:
+      - "Tool use, filesystem mutation, benchmark execution, or claims of measured performance"
+    expected_mutation: {class: none, paths: []}

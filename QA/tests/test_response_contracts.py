@@ -25,6 +25,7 @@ COMMANDS = {
     "dialectical-source-quality": "SOURCE-QUALITY",
     "dialectical-start-inquiry": "START INQUIRY",
     "dialectical-tag": "TAG",
+    "dialectical-test-design": "TEST DESIGN",
     "dialectical-thought-experiment": "THOUGHT EXPERIMENT",
     "dialectical-trace": "TRACE",
     "dialectical-verify": "VERIFY",

@@ -29,6 +29,7 @@ HYPOTHESIZE         Generate plausible competing explanations deliberately.
 THOUGHT EXPERIMENT  Explore implications through imagined conditions.
 
 CHALLENGE           Seek weaknesses and disconfirming evidence.
+TEST DESIGN         Turn claims into decisive tests.
 VERIFY              Check claims against available evidence.
 ACH                 Compare competing hypotheses against evidence.
 CAUSAL-CHAIN        Test each link in causation.

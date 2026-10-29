@@ -1,6 +1,6 @@
 # Install and test Dialectical in ChatGPT
 
-Dialectical 0.7.0 is a skills-only plugin. Its entry point is
+Dialectical 0.8.0 is a skills-only plugin. Its entry point is
 `skills/dialectical/SKILL.md`, and its display name is **Dialectical**.
 The package requires no server, OAuth, API key, developer mode, or app connection.
 
@@ -13,9 +13,9 @@ availability on your phone.
 1. Open ChatGPT on the web in the intended account/workspace.
 2. Open **Plugins** and find the existing **Dialectical** plugin under
    **Personal / Created by me** (or the workspace where it was created).
-3. Select **Edit Plugin**. Attach `dist/dialectical-0.7.0.zip` and send:
+3. Select **Edit Plugin**. Attach `dist/dialectical-0.8.0.zip` and send:
 
-   > Replace Dialectical's package with this skills-only version 0.7.0.
+   > Replace Dialectical's package with this skills-only version 0.8.0.
    > Preserve its name and ownership. Remove the old MCP/app dependency.
    > Use the supplied skill and reference files, including the startup
    > instructions for “@Dialectical start a conversation.”
@@ -58,10 +58,11 @@ package cannot enable a feature the account lacks.
    downloadable Markdown handoff when supported, otherwise complete copyable
    Markdown with a filename. It must preserve uncertainty and must not claim
    automatic cross-thread memory.
-10. In separate requests, test RELEVANCE, COLLECTION GAPS, and INDICATORS using
-   `QA/cases/chatgpt.yaml`. Expect purpose clarification, proposed evidence
-   collection, and conditional signals respectively, without automatic chaining,
-   browsing, monitoring, or setup. Confirm all three appear in the help card.
+10. In separate requests, test RELEVANCE, COLLECTION GAPS, TEST DESIGN, and
+   INDICATORS using `QA/cases/chatgpt.yaml`. Expect purpose clarification,
+   proposed evidence collection, an actionable but unexecuted test plan, and
+   conditional signals respectively, without automatic chaining, browsing,
+   monitoring, or setup. Confirm all four appear in the help card.
 11. Give the conversation two competing explanations with evidence, then ask
     `GUIDE`. Expect three commands in ranked order plus MORE, with no execution.
     Select one number and confirm that only that command runs. Invoke GUIDE
@@ -78,8 +79,9 @@ package cannot enable a feature the account lacks.
 1. Open ChatGPT on the iPhone with the same account and workspace.
 2. Start a new Chat or Work conversation.
 3. Select **Dialectical** from the `@` menu and repeat the startup test.
-4. Repeat HYPOTHESIZE, CHALLENGE, DISTILL, JOIN, and the portable SAVE test.
-   Also repeat the independent 0.7.0 operation cases from `QA/cases/chatgpt.yaml`.
+4. Repeat HYPOTHESIZE, CHALLENGE, TEST DESIGN, DISTILL, JOIN, and the portable
+   SAVE test. Also repeat the independent 0.8.0 operation cases from
+   `QA/cases/chatgpt.yaml`.
 5. Keep the Mac and any former localhost server off during this test.
 6. In another new chat, paste a checkpoint and ask Dialectical to RESUME it.
    It should use that supplied context without claiming unseen chat access.

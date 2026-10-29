@@ -29,6 +29,20 @@ cases:
     forbid: ["Automatic research", "A long explanation of the operation"]
     expected_mutation: {class: none, paths: []}
 
+  - id: response-natural-test-design-cue
+    skill: dialectical-test-design
+    mode: implicit
+    prompt: >-
+      How should we test whether the redesign caused churn rather than the price
+      change? Give the measurements, controls, and result that would change our mind.
+    environment: {fixture: conversation-in-prompt}
+    expect_activation: {include: [dialectical-test-design], exclude: [dialectical-collection-gaps, dialectical-challenge, dialectical-verify]}
+    expect:
+      - "Begins with one brief TEST DESIGN cue and returns an actionable discriminating design."
+      - "Preserves both explanations and states decision consequences without claiming the test ran."
+    forbid: ["A second operation cue", "Invented evidence", "Automatic execution"]
+    expected_mutation: {class: none, paths: []}
+
   - id: response-natural-guide-cue
     skill: dialectical-guide
     mode: implicit

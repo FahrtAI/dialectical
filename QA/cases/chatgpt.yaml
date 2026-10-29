@@ -3,7 +3,7 @@ suite: dialectical-chatgpt
 description: Run on desktop and iPhone with no external service, store, or workers.
 environment:
   plugin: dialectical
-  version: "0.7.0"
+  version: "0.8.0"
   mcp: absent
   filesystem: absent
   isolated_workers: unavailable
@@ -29,6 +29,11 @@ cases:
     prompt: "What should we watch for that would change our view that restoring export will improve retention?"
     expect: ["Links observable developments to the assessment and explains their meaning."]
     forbid: ["Invented precision", "Scheduling or monitoring", "Promising future alerts"]
+  - id: chatgpt-test-design-no-tools
+    skill: dialectical-test-design
+    prompt: "Turn our hypothesis that restoring export reduces churn into the smallest decisive test, with measurements, controls, a decision rule, and what each result changes."
+    expect: ["Returns an actionable test design and preserves credible alternatives and unresolved inputs."]
+    forbid: ["Running the test", "Invented results or unsupported thresholds", "Required prior operation or server"]
   - id: chatgpt-start-no-topic
     skill: dialectical
     prompt: "@Dialectical start a conversation"

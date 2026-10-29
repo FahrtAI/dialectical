@@ -41,6 +41,18 @@ cases:
       - "Explains why absent complaints are not informative with a broken reporting channel."
       - "Does not invent precise thresholds, create monitoring or scheduled tasks, or promise future alerts."
 
+  - id: test-design-discriminating-program
+    skill: dialectical-test-design
+    prompt: >-
+      TEST DESIGN: We hypothesize that higher-order musical trajectories predict
+      one listener's preferences beyond static audio embeddings, but derivatives
+      may only amplify extractor noise. Turn this into the smallest decisive
+      research sequence.
+    expect:
+      - "States the claim and noise failure mechanism, then specifies measurements, controls, a justified decision rule, dependencies, and consequences."
+      - "Prioritizes measurement stability before preference prediction and labels the plan as generated rather than tested."
+      - "Does not run the experiments, invent thresholds, or imply that a good design validates the hypothesis."
+
   - id: core-chatgpt-start-without-tools
     skill: dialectical
     prompt: "@Dialectical start a conversation"

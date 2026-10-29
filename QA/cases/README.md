@@ -8,8 +8,9 @@ The case corpus is split by polarity:
 - `release.yaml` is the smaller release-focused subset for material behavior
   changes; it avoids file, worker, live-evidence, and installed-host prerequisites.
 
-- `positive.yaml` checks that each skill activates for an intended request and
-  performs its own operation.
+- `positive.yaml` checks that the general catalog activates for intended
+  requests and performs the selected operations; newer focused suites may add
+  their own positive cases.
 - `negative.yaml` checks that each skill stays inactive for a neighboring or
   ordinary request. Most negative cases name the operation that should handle
   the request instead.
@@ -28,6 +29,8 @@ The case corpus is split by polarity:
 - `response_contract.yaml` checks natural-language learning cues,
   concise-by-default output, requested depth, and evidence calibration across
   transformations and operation boundaries.
+- `test_design.yaml` checks actionable test matrices, dependencies, decision
+  rules, execution boundaries, and routing against adjacent operations.
 
 Filesystem and isolated-worker cases are optional capability suites. They do
 not create prerequisites for ordinary ChatGPT conversation.
@@ -42,12 +45,14 @@ ordinary conversation, and background-observer requests. GUIDE does not execute
 before selection, offer a sequence, monitor later turns, or create tools or
 workers.
 
-The corpus also covers RELEVANCE, COLLECTION GAPS, and INDICATORS individually,
+The corpus also covers RELEVANCE, COLLECTION GAPS, TEST DESIGN, and INDICATORS individually,
 including ordinary phrasing, exploratory and decision purposes, ambiguity,
 collection history, absent signals, justified thresholds, and neighboring-skill
 boundaries. Positive cases need only the supplied conversation, without tools,
 prior operations, or storage. Negative cases also check that HYPOTHESIZE and
-ACH behavior does not trigger an additional skill.
+ACH behavior does not trigger an additional skill. TEST DESIGN cases distinguish
+designing a discriminating future test from identifying a gap, surfacing a
+failure mode, adjudicating existing evidence, or conducting the research.
 
 ## Case fields
 

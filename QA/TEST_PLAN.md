@@ -70,6 +70,7 @@ Prioritize these confusion sets:
 - RESEARCH / VERIFY / SOURCE-QUALITY
 - RELEVANCE / RESTATE / START INQUIRY
 - COLLECTION GAPS / RESEARCH / INDICATORS / VERIFY
+- TEST DESIGN / COLLECTION GAPS / CHALLENGE / VERIFY
 - GUIDE / help orientation / direct operation invocation / ordinary conversation
 - HYPOTHESIZE / ACH / CHALLENGE
 - CHALLENGE / THOUGHT EXPERIMENT / HYPOTHESIZE
@@ -104,6 +105,7 @@ Minimum operation checks:
 | GUIDE | Rank three commands for the present need, use canonical descriptions, offer MORE for the full catalog, and wait for selection | Monitoring, automatic execution, presenting choices as a sequence, or showing a partial catalog after MORE |
 | RELEVANCE | Clarify purpose, scope, and consequential distinctions using context; ask one brief question only for material ambiguity | Forced decisions, invented audiences, intake questionnaires, or inquiry setup |
 | COLLECTION GAPS | Prioritize diagnostic and consequential missing evidence; explain what, why, and a feasible way to obtain it; distinguish uncollected, unavailable, and unknown status | Research wish lists, invented collection history, or automatic collection/verification |
+| TEST DESIGN | Convert claims or selected gaps into minimum discriminating tests with measurements, controls, decision rules, dependencies, and consequences | Generic research checklists, confirmation-only designs, invented precision, automatic execution, or treating a plan as evidence |
 | INDICATORS | Link observable developments to assessments; justify timing and thresholds; assess whether absent signals could be detected | Invented precision, claimed observations, automatic monitoring, or scheduled tasks |
 | RESEARCH | Broaden the evidence space with source limitations and contrary material; for a conversation-generated idea, separate formulation, prior work, empirical support, and novel remainder | Premature verdict on one narrow proposition, or prior work treated as validation |
 | HYPOTHESIZE | Produce genuinely different mechanisms and discriminating observations | Evidence scoring, cosmetic variants, or a premature winner |
@@ -121,9 +123,9 @@ Minimum operation checks:
 | RESUME | Load the selected inquiry and relevant linked context | Activating an ambiguous inquiry before selection |
 | CLOSE | Take a final checkpoint and record paused or closed status | Marking unresolved work complete or closing the platform chat |
 
-The 0.7.0 cases have explicit, implicit, contextual, ambiguous, and negative
-cases in `cases/positive.yaml` and `cases/negative.yaml`, plus core regressions
-in `evals/cases.yaml`. Exercise each skill independently with no preceding
+The 0.8.0 corpus includes explicit, implicit, contextual, ambiguous, and
+negative cases across the focused files in `cases/`, plus core regressions in
+`evals/cases.yaml`. Exercise each skill independently with no preceding
 operation. Check exploration and decision contexts, known versus missing
 context, unavailable evidence, diagnostic value, and absence of automatic
 chaining, tool calls, monitoring, or durable writes. Neighboring skills may
@@ -241,6 +243,7 @@ When the runtime supports isolated workers, verify both the delegation decision
 and the information boundary:
 
 - substantive CHALLENGE and consequential VERIFY work use an isolated worker;
+- technically complex TEST DESIGN work may use a bounded independent design review;
 - independent RESEARCH workstreams may proceed in parallel;
 - HYPOTHESIZE can omit the incumbent explanation to reduce anchoring;
 - ACH maintains one canonical hypothesis and evidence matrix;

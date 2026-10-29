@@ -25,7 +25,7 @@ class RunnerTests(unittest.TestCase):
 
     def test_release_subset_is_small_and_inputs_ready(self):
         cases = runner.cases_from(runner.ROOT / "QA/cases/release.yaml")
-        self.assertEqual(len(cases), 8)
+        self.assertEqual(len(cases), 9)
         self.assertTrue(all(not runner.prerequisites(case) for case in cases))
 
     def test_parse_all_legacy_schemas(self):
@@ -158,7 +158,7 @@ class RunnerTests(unittest.TestCase):
         self.assertEqual(output["metadata"]["case_definitions"], cases)
         self.assertEqual(output["metadata"]["adapter_command"],
                          ["adapter", "--mode", "performer"])
-        self.assertEqual(output["metadata"]["plugin_version"], "0.7.0")
+        self.assertEqual(output["metadata"]["plugin_version"], "0.8.0")
 
 
 if __name__ == "__main__":

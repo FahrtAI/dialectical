@@ -90,7 +90,7 @@ python3 scripts/run_evals.py run \
   --suite QA/cases/release.yaml \
   --condition dialectical \
   --repeat 3 \
-  --output QA/runs/0.7.0-release.json \
+  --output QA/runs/0.8.0-release.json \
   --adapter python3 scripts/adapters/openai_responses.py \
   --grader python3 scripts/adapters/openai_grader.py
 ```

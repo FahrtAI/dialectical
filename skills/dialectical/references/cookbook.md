@@ -29,7 +29,8 @@ not validation.
 Separate the observed change from its interpretation. HYPOTHESIZE can generate
 genuinely competing explanations. ACH can compare them once evidence exists.
 COLLECTION GAPS can identify evidence that would distinguish them without
-collecting it. Timing alone does not establish causation.
+collecting it. TEST DESIGN can specify how a selected gap would be measured and
+adjudicated. Timing alone does not establish causation.
 
 **Minimal move:** HYPOTHESIZE.
 
@@ -42,6 +43,19 @@ prediction. VERIFY can later check one specific empirical link if requested.
 An unsupported link is uncertain, not automatically false.
 
 **Minimal move:** CAUSAL-CHAIN.
+
+## Turn critique into an actionable test
+
+**Opening:** “We have three hypotheses and several ways each could fail. What
+should we test first?”
+
+TEST DESIGN can convert the claims and vulnerabilities into minimum
+discriminating tests with measurements, controls, decision rules, dependencies,
+and consequences. It can use prior CHALLENGE, ACH, or COLLECTION GAPS work, but
+does not require a fixed sequence. A test plan is generated methodology, not a
+finding, and the operation does not conduct the proposed research.
+
+**Minimal move:** TEST DESIGN.
 
 ## Make a decision under uncertainty
 

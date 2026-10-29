@@ -1,8 +1,8 @@
-# Skills-only architecture audit — current at 0.7.0
+# Skills-only architecture audit — current at 0.8.0
 
 This document records the architectural decision that made Dialectical a
 skills-only ChatGPT plugin and describes the state of the repository at release
-0.7.0. The original audit was performed during the 0.4.0 cleanup. It remains a
+0.8.0. The original audit was performed during the 0.4.0 cleanup. It remains a
 historical record of the removed service, but the inventory and acceptance
 notes below are kept current so that this document is useful to maintainers.
 
@@ -21,8 +21,8 @@ database-backed application.
 
 ## Full review snapshot
 
-This review was run on October 11, 2026 against version 0.7.0 at commit
-`d73a790`. It covers the portable package, all bundled skills and references,
+This review was updated on October 29, 2026 against the version 0.8.0 source
+candidate. It covers the portable package, all bundled skills and references,
 the interaction design, repository documentation, packaging code, and the QA
 architecture.
 
@@ -37,7 +37,7 @@ method.
 
 There is no release-blocking source or package defect in the reviewed tree. The
 largest risk is evidence about behavior: the repository has strong static and
-harness tests, but no recorded 0.7.0 configured-model run and no installed-host
+harness tests, but no recorded 0.8.0 configured-model run and no installed-host
 desktop or iPhone result. The package is well specified; its actual selection
 and conversational behavior are not yet demonstrated to the same standard.
 
@@ -48,7 +48,7 @@ plugin.json
   └─ discovers skills/ at the package root
        ├─ dialectical/                 entry, routing, consent, ordinary chat
        │    └─ references/             help, cookbook, flows, JOIN, modes, memory
-       ├─ 16 reasoning/context skills  independently callable operations
+       ├─ 17 reasoning/context skills  independently callable operations
        └─ 7 continuity skills          optional state and retrieval operations
 
 Repository only; not shipped in the plugin ZIP
@@ -57,7 +57,7 @@ Repository only; not shipped in the plugin ZIP
   └─ docs/ and host guides             explanation and maintainer guidance
 ```
 
-The portable archive has 46 files and contains only `plugin.json`, `LICENSE`,
+The portable archive has 47 files and contains only `plugin.json`, `LICENSE`,
 three referenced PNG assets, skill instructions, and skill references. It has
 no `mcp.json`, app binding, server, hook, executable runtime, dependency tree,
 credential, or database.
@@ -67,7 +67,7 @@ credential, or database.
 | Choice | Advantages | Costs or risks |
 |---|---|---|
 | Skills-only package | Minimal installation surface; no uptime, authentication, data-retention, or hosting burden; works for ordinary conversation | RESEARCH and VERIFY depend on evidence capabilities supplied by the host; continuity cannot promise automatic cross-chat recall |
-| One entry skill plus focused operations | Each operation has a recognizable goal and explicit boundary; users can invoke only the help they want | Twenty-three peer operations create a large discovery surface and several routing confusion sets |
+| One entry skill plus focused operations | Each operation has a recognizable goal and explicit boundary; users can invoke only the help they want | Twenty-four peer operations create a large discovery surface and several routing confusion sets |
 | Ordinary conversation as the default | Preserves the product's central promise and avoids turning every discussion into a framework | The core's monitoring suggestions and command-learning cue can still feel procedural if applied too eagerly |
 | Explicit consent and no automatic chains | Prevents a useful method from becoming an unwanted intelligence cycle | Some operations legitimately use neighboring methods internally, so the composition contract is necessarily subtle |
 | Evidence-scope and confidence preservation | Directly addresses hallucination, confirmation bias, source dependence, and overclaiming | Cross-cutting instructions are repeated in every skill, increasing prompt maintenance and the chance of drift |
@@ -78,14 +78,14 @@ credential, or database.
 
 ### 1. Behavioral proof trails source quality — high priority
 
-The repository defines 207 QA cases, but validation reports that 61 are
+The repository defines 218 QA cases, but validation reports that 62 are
 deferred and explicitly states that no behavior was executed. The 54 unit tests
 verify the runner, package, and textual contracts; they do not show that a model
 routes or follows the skills. No `OPENAI_API_KEY` was available during this
-review, so the focused 0.7.0 model suite could not be run. Desktop and iPhone
+review, so the focused 0.8.0 model suite could not be run. Desktop and iPhone
 acceptance are also still untested.
 
-**Recommendation:** before calling 0.7.0 accepted, run `QA/cases/release.yaml`
+**Recommendation:** before calling 0.8.0 accepted, run `QA/cases/release.yaml`
 against a named model for at least three repetitions, review the transcripts,
 then complete the separate installed-host record on desktop and iPhone. Keep
 model-injected regression, installed-host routing, and qualitative comparison
@@ -93,7 +93,7 @@ as three distinct claims.
 
 ### 2. The evaluation prompt does not emulate skill discovery — high priority
 
-The Dialectical evaluation condition concatenates all 24 `SKILL.md` files plus
+The Dialectical evaluation condition concatenates all 25 `SKILL.md` files plus
 six large references into one instruction block. This is useful as a
 worst-case instruction-following test, but it is not evidence that ChatGPT
 loaded the right skill, and it gives the performer far more context than an
@@ -111,7 +111,7 @@ conditions so the cost of the current catalog is visible.
 
 The operation boundaries are generally strong, particularly RECAP versus
 DISTILL versus TRACE and COLLECTION GAPS versus RESEARCH versus VERIFY.
-Nevertheless, 23 operations at one level are difficult to learn. The help card
+Nevertheless, 24 operations at one level are difficult to learn. The help card
 is complete but reads as a reference manual rather than an entry point. GUIDE,
 the cookbook, and flows mitigate this, but they add three more orientation
 concepts the user must understand.
@@ -237,7 +237,7 @@ from new operations or services.
 
 ## Basic-question test
 
-The following small smoke set was reviewed against the 0.7.0 source contracts
+The following small smoke set was reviewed against the 0.8.0 source contracts
 and matching release cases. “Contract pass” means the required instruction,
 negative boundary, and executable QA case exist. It is not a claim that a model
 or installed ChatGPT host produced the expected response.
@@ -249,6 +249,7 @@ or installed ChatGPT host produced the expected response.
 | `Catch me up on what we discussed.` | Give one brief RECAP cue, then compress visible discussion without adding findings | Pass |
 | `GUIDE` after several live explanations and observations | Rank three context-sensitive commands, show MORE, and execute nothing until selection | Pass |
 | `Show me the cookbook.` | Display the relevant packaged recipes without starting their operations | Pass |
+| `Turn these hypotheses into the smallest decisive tests.` | Return measurements, controls, decision rules, dependencies, and consequences without claiming execution | Pass |
 | `VERIFY whether our analytics definition changed last month. No source is available.` | Return unresolved and identify the missing evidence; invent no citation | Pass |
 | `Package this so I can continue in a new thread.` | Give a SAVE cue and a complete Markdown handoff or real file; claim no storage that did not occur | Pass |
 
@@ -256,13 +257,13 @@ Review commands and observed results:
 
 ```text
 python3 scripts/validate_skills.py
-  PASS — 24 directly discoverable skills
+  PASS — 25 directly discoverable skills
 
 python3 scripts/validate_plugin_package.py
   PASS — skills-only package
 
 python3 scripts/validate_qa.py
-  PASS — 207 definitions; 61 deferred; no behavior executed
+  PASS — 218 definitions; 62 deferred; no behavior executed
 
 python3 -m unittest discover -s QA/tests -v
   PASS — 54 tests
@@ -276,16 +277,16 @@ iPhone. These are the next tests required for behavioral and host confidence.
 
 | Component | Current purpose | Status |
 |---|---|---|
-| `plugin.json` | Portable identity, metadata, and OpenAI interface listing | Retained; version 0.7.0 |
+| `plugin.json` | Portable identity, metadata, and OpenAI interface listing | Retained; version 0.8.0 |
 | `skills/dialectical/SKILL.md` | Entry behavior, ordinary-conversation boundary, routing, and help behavior | Retained |
-| 23 focused skills and supporting Markdown | Independent operations, boundaries, examples, and optional continuity procedures | Retained; skill frontmatter is version 0.7.0 |
+| 24 focused skills and supporting Markdown | Independent operations, boundaries, examples, and optional continuity procedures | Retained; skill frontmatter is version 0.8.0 |
 | `skills/dialectical/references/memory.md` | Optional file-storage contract and no-storage behavior | Retained; storage schema remains separate from release version |
 | `assets/` artwork referenced by the manifest | Plugin icon, logos, and project artwork | Retained; only referenced plugin artwork is packaged |
 | `LICENSE` | CC BY-NC-SA 4.0 legal terms | Retained |
 | `QA/`, `evals/`, and `scripts/` | Maintainer validation, behavioral fixtures, scoring, and ZIP assembly | Retained in the repository; excluded from the plugin ZIP |
 | `README.md`, `CHATGPT.md`, and host guides | Product explanation, installation, and host-testing instructions | Retained and aligned to skills-only behavior |
 | `docs/cookbook.md` and `docs/flows.md` | Repository documentation and illustrative usage | Retained outside the package |
-| `docs/architecture-audit.md` | This architectural record | Retained and updated for 0.7.0 |
+| `docs/architecture-audit.md` | This architectural record | Retained and updated for 0.8.0 |
 | `.codex-plugin/plugin.json` | Duplicate compatibility manifest | Removed during the 0.4.0 cleanup |
 | `mcp.json`, `.mcp.json`, and `.app.json` | Localhost or app connection declarations | Removed during the 0.4.0 cleanup |
 | `server/src/` | HTTP/MCP listener, auth, SQLite store, and persistence tools | Removed during the 0.4.0 cleanup |
@@ -310,16 +311,23 @@ established concise-by-default responses, visible ordinary-language command
 cues, and a toolkit-wide calibration rule that preserves evidence-supported
 scope and confidence through transformations.
 
-The current catalog has 24 `SKILL.md` files, including the entry skill. The
+Release 0.8.0 added TEST DESIGN to convert an empirical claim, hypothesis,
+model, or research program into minimum discriminating tests with explicit
+measurements, controls, decision rules, dependencies, and consequences. It is
+independently callable, can consume CHALLENGE, ACH, or COLLECTION GAPS output,
+and does not treat a generated plan as evidence or authorize execution.
+
+The current catalog has 25 `SKILL.md` files, including the entry skill. The
 operations remain independently callable. Ordinary conversation is primary;
 there is no mandatory intelligence cycle, automatic operation chain,
 background observer, or scheduled monitoring behavior. GUIDE ranks three useful
 commands and waits for one selection; MORE displays the complete catalog. JOIN
 uses only prior context supplied by the host. SAVE exports user-owned Markdown
 without claiming cross-thread memory. COLLECTION GAPS proposes
-evidence to seek, RESEARCH seeks available evidence, VERIFY evaluates a
-specific empirical claim, and INDICATORS defines developments to watch without
-creating monitoring tasks.
+evidence to seek, TEST DESIGN turns selected claims or gaps into actionable
+tests, RESEARCH seeks available evidence, VERIFY evaluates a specific empirical
+claim, and INDICATORS defines developments to watch without creating monitoring
+tasks.
 
 ## Minimum package
 
@@ -359,7 +367,7 @@ acceptance tests documented in [CHATGPT.md](../CHATGPT.md),
 [QA/RUNNING.md](../QA/RUNNING.md), and [QA/RELEASE_ACCEPTANCE.md](../QA/RELEASE_ACCEPTANCE.md).
 
 The current version and archive name are read from `plugin.json`; the current
-distribution is `dist/dialectical-0.7.0.zip`. `dist/` is generated output and
+distribution is `dist/dialectical-0.8.0.zip`. `dist/` is generated output and
 is not part of the source package definition.
 
 ## Current sources

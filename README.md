@@ -7,7 +7,7 @@
 
 > Ordinary conversation with intellectual discipline.
 
-**Current version:** 0.7.0 (skills-only)
+**Current version:** 0.8.0 (skills-only)
 
 LLMs can be thought of as lossy, natural-language search engines for the material they ingested during training—which, for a frontier model, can include an awful lot of the material on the internet.
 
@@ -48,6 +48,7 @@ What have we actually learned so far?
 Find prior art connected to this idea.
 What else could explain the increase in churn?
 Try to disprove my interpretation.
+Turn these hypotheses into decisive tests.
 Trace that claim back to its sources.
 Run a thought experiment on this assumption.
 Save that connection for later.
@@ -62,6 +63,7 @@ DISTILL where we are.
 RESEARCH prior art for this approach.
 HYPOTHESIZE why churn rose after the redesign.
 CHALLENGE the plan to cut prices.
+TEST DESIGN the smallest experiment that could change our minds.
 Use ACH on those three explanations.
 SAVE that connection.
 ```
@@ -84,7 +86,7 @@ Dialectical-specific help uses a compact, stable [command card](skills/dialectic
 | Understand the conversation | RESTATE, RECAP, DISTILL, TRACE | Clarify an idea, compress context, extract what was learned, and recover provenance |
 | Frame an inquiry | RELEVANCE, COLLECTION GAPS, INDICATORS | Clarify purpose, prioritize missing evidence, and define developments worth watching |
 | Explore | RESEARCH, HYPOTHESIZE, THOUGHT EXPERIMENT | Find relevant prior art, generate explanations, and examine implications |
-| Test | CHALLENGE, VERIFY, ACH, CAUSAL-CHAIN, SOURCE-QUALITY | Seek counterarguments and disconfirming evidence, test causal logic, and assess sources |
+| Test | CHALLENGE, TEST DESIGN, VERIFY, ACH, CAUSAL-CHAIN, SOURCE-QUALITY | Seek counterarguments, design discriminating tests, adjudicate claims, test causal logic, and assess sources |
 | Preserve and reuse | TAG, SAVE, RECALL | Organize knowledge, export a Markdown handoff, and retrieve accessible records |
 | Continue over time | START INQUIRY, CHECKPOINT, RESUME, CLOSE | Maintain an optional line of inquiry across conversations |
 
@@ -106,12 +108,14 @@ is used when the host supports it; otherwise SAVE returns complete copyable
 Markdown. It does not imply automatic cross-thread memory.
 
 Ask “What are we trying to understand?” for RELEVANCE, “What evidence would
-distinguish these explanations?” for COLLECTION GAPS, or “What should we watch
+distinguish these explanations?” for COLLECTION GAPS, “How exactly would we
+test these hypotheses?” for TEST DESIGN, or “What should we watch
 for that would change our assessment?” for INDICATORS. Each is independently
 callable. Exploration does not require a decision or a formal inquiry setup.
-COLLECTION GAPS proposes collection; RESEARCH seeks evidence; VERIFY checks a
-specific empirical claim. INDICATORS defines signals without creating monitoring
-or scheduled tasks.
+COLLECTION GAPS identifies missing evidence; TEST DESIGN turns a claim or gap
+into measurements, controls, decision rules, and consequences; RESEARCH seeks
+evidence; VERIFY checks a specific empirical claim. TEST DESIGN does not conduct
+the proposed research, and INDICATORS does not create monitoring or scheduled tasks.
 
 ## How it behaves
 
@@ -137,7 +141,7 @@ Dialectical also distinguishes among debate, narrative, inquiry, and decision. E
 
 See [CHATGPT.md](CHATGPT.md) for account installation, desktop and iPhone tests,
 and the distinction between a local folder and an installed account plugin.
-Use the skills-only ZIP in `dist/dialectical-0.7.0.zip`.
+Use the skills-only ZIP in `dist/dialectical-0.8.0.zip`.
 Installing this source does not automatically update an older account plugin.
 
 The portable package contains `plugin.json`, `LICENSE`, `skills/`, and referenced artwork.
@@ -196,7 +200,7 @@ LICENSE       CC BY-NC-SA 4.0 legal terms
 installed-host tests. See the [architecture audit](docs/architecture-audit.md)
 for the removal of the old service dependency and official specification links.
 
-All 24 bundled skills use release version 0.7.0. Storage schema versions are
+All 25 bundled skills use release version 0.8.0. Storage schema versions are
 separate and have not changed. Other optional host guides remain in
 [CLAUDE.md](CLAUDE.md), [CODEX.md](CODEX.md), and [GEMINI.md](GEMINI.md).
 

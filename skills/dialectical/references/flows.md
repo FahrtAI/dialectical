@@ -19,7 +19,8 @@ before applying a move.
   - Start: an observation or outcome needing an account.
   - Possible moves: distinguish observation from interpretation; HYPOTHESIZE
     alternatives; ACH to compare them; COLLECTION GAPS to identify missing
-    evidence; VERIFY to check one specific link.
+    evidence; TEST DESIGN to make the next check executable; VERIFY to check one
+    specific link.
   - Useful ending: a calibrated explanation, unresolved alternatives, and the
     next useful check.
 - **Decide**
@@ -33,7 +34,8 @@ before applying a move.
   - Start: a claim, source, plan, or causal argument.
   - Possible moves: RESTATE the object; SOURCE-QUALITY for supplied evidence;
     CAUSAL-CHAIN for dependent links; CHALLENGE for assumptions; VERIFY for a
-    specific empirical proposition.
+    specific empirical proposition; TEST DESIGN when the unresolved claim needs
+    a discriminating future test.
   - Useful ending: a scoped judgment separating evidence, inference, and
     uncertainty.
 - **Preserve**

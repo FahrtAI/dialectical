@@ -2,7 +2,7 @@
 name: dialectical
 description: Start and guide a Dialectical conversation when the user invokes @Dialectical, asks to start a conversation with Dialectical, or requests its methodology or help. Explore ideas, examine assumptions, and seek disconfirming evidence while preserving ordinary conversation.
 metadata:
-  version: "0.7.0"
+  version: "0.8.0"
 ---
 
 # Dialectical
@@ -85,7 +85,7 @@ relevant operations without explaining all of them:
 - Guidance: GUIDE
 - Context: RESTATE, RECAP, DISTILL, TRACE
 - Inquiry framing: RELEVANCE, COLLECTION GAPS, INDICATORS
-- Inquiry: RESEARCH, HYPOTHESIZE, THOUGHT EXPERIMENT, CHALLENGE, VERIFY
+- Inquiry: RESEARCH, HYPOTHESIZE, THOUGHT EXPERIMENT, CHALLENGE, TEST DESIGN, VERIFY
 - Diagnosis: ACH, CAUSAL-CHAIN, SOURCE-QUALITY
 - Knowledge: TAG, SAVE, RECALL
 - Lifecycle: START INQUIRY, CHECKPOINT, RESUME, CLOSE
@@ -114,7 +114,7 @@ Use the corresponding namespaced standalone skill beside this directory:
 - `dialectical-guide`
 - `dialectical-restate`, `dialectical-recap`, `dialectical-distill`, or `dialectical-trace`
 - `dialectical-relevance`, `dialectical-collection-gaps`, or `dialectical-indicators`
-- `dialectical-research`, `dialectical-hypothesize`, `dialectical-thought-experiment`, `dialectical-challenge`, or `dialectical-verify`
+- `dialectical-research`, `dialectical-hypothesize`, `dialectical-thought-experiment`, `dialectical-challenge`, `dialectical-test-design`, or `dialectical-verify`
 - `dialectical-ach`, `dialectical-causal-chain`, or `dialectical-source-quality`
 - `dialectical-tag`, `dialectical-save`, or `dialectical-recall`
 - `dialectical-start-inquiry`, `dialectical-checkpoint`, `dialectical-resume`, or `dialectical-close`
@@ -132,6 +132,7 @@ Route by the requested job, not a keyword alone:
   portable Markdown handoff without implying cross-thread memory.
 - “What are we trying to understand or inform?” → RELEVANCE: purpose and scope.
 - “What missing evidence would separate these explanations?” → COLLECTION GAPS: evidence to seek, without collecting it.
+- “Turn these hypotheses into decisive experiments” → TEST DESIGN: measurements, controls, decision rules, dependencies, and consequences, without conducting the research.
 - “Find evidence about these explanations” → RESEARCH: seek evidence.
 - “What should we watch for, and when should we reconsider?” → INDICATORS: observable developments, without monitoring them.
 - “Check whether this specific claim is true” → VERIFY: evaluate an empirical proposition.
@@ -169,7 +170,7 @@ Keep the conversational agent responsible for the final response. When the host 
 
 - Default to an isolated worker for a substantive CHALLENGE and for consequential or disputed VERIFY work.
 - Split substantive RESEARCH into independent, bounded workstreams when they can proceed without depending on one another.
-- Use workers conditionally for HYPOTHESIZE, THOUGHT EXPERIMENT, ACH, CAUSAL-CHAIN, SOURCE-QUALITY, or large-store RECALL as their standalone skills specify.
+- Use workers conditionally for HYPOTHESIZE, THOUGHT EXPERIMENT, TEST DESIGN, ACH, CAUSAL-CHAIN, SOURCE-QUALITY, or large-store RECALL as their standalone skills specify.
 - Keep context operations and all durable mutations in the main agent.
 - Keep RELEVANCE, COLLECTION GAPS, and INDICATORS in the main agent, using the current inquiry context.
 - Keep GUIDE in the main agent; it needs the current conversational state and performs no delegated work.
@@ -198,7 +199,7 @@ Default to no intervention. Let normal dialogue do the work.
 Two suggestions are allowed:
 
 - **DISTILL**, when accumulated branches, assumptions, discoveries, or unresolved questions have become difficult to hold.
-- **A check**, when the conversation starts treating an untested general claim, causal mechanism, empirical prediction, or apparently new idea as settled. Ask yourself: "We are beginning to believe this. What would we need to check?" Then, in one line, name what is being assumed and the operation that would test it: HYPOTHESIZE for rivals, THOUGHT EXPERIMENT for implications, RESEARCH for prior work and evidence, VERIFY for a specific fact, or CHALLENGE for the whole position.
+- **A check**, when the conversation starts treating an untested general claim, causal mechanism, empirical prediction, or apparently new idea as settled. Ask yourself: "We are beginning to believe this. What would we need to check?" Then, in one line, name what is being assumed and the operation that would help: HYPOTHESIZE for rivals, THOUGHT EXPERIMENT for implications, TEST DESIGN for a discriminating empirical test, RESEARCH for prior work and evidence, VERIFY for a specific fact, or CHALLENGE for the whole position.
 
 Offer each suggestion once for a given claim or state; if the user declines or moves on, do not repeat it. A suggestion is optional; do not perform it unless the user accepts or the request already authorizes it. Keep all other operations user-directed.
 

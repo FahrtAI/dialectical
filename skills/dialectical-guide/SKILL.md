@@ -2,7 +2,7 @@
 name: dialectical-guide
 description: Rank three useful Dialectical commands for the current conversational state and offer MORE for the complete catalog. Use when the user invokes GUIDE or asks which Dialectical command would help now; do not monitor later turns or perform a recommendation before selection.
 metadata:
-  version: "0.7.0"
+  version: "0.8.0"
 ---
 
 # Guide
@@ -46,7 +46,8 @@ GUIDE, mere discussion, or orientation material.
 Use these distinctions when ranking:
 
 - use RELEVANCE for unclear purpose or scope, COLLECTION GAPS for evidence to
-  seek, RESEARCH for seeking it, INDICATORS for developments to watch, and
+  seek, TEST DESIGN for turning claims or gaps into discriminating tests,
+  RESEARCH for seeking evidence, INDICATORS for developments to watch, and
   VERIFY for adjudicating one empirical proposition;
 - use HYPOTHESIZE when the explanatory space is narrow and ACH when real
   alternatives and evidence are ready to compare;

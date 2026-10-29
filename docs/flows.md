@@ -15,9 +15,9 @@ possible moves, not stages to complete.
 | Pathway | Start with | Possible moves | Useful ending |
 |---|---|---|---|
 | **Explore** | An idea, question, or connection that is not yet a decision | Clarify purpose with RELEVANCE, connect prior art with RESEARCH, generate alternatives with HYPOTHESIZE, and expose implications with a THOUGHT EXPERIMENT | A clearer question, promising possibilities, and open questions |
-| **Explain** | An observation or outcome that needs an account | Separate observation from interpretation, generate competing explanations, compare them with ACH, identify missing evidence with COLLECTION GAPS, and check a specific link with VERIFY | A calibrated explanation, unresolved alternatives, and the next useful check |
+| **Explain** | An observation or outcome that needs an account | Separate observation from interpretation, generate competing explanations, compare them with ACH, identify missing evidence with COLLECTION GAPS, make the next check executable with TEST DESIGN, and check available evidence with VERIFY | A calibrated explanation, unresolved alternatives, and the next useful check |
 | **Decide** | A choice with goals, constraints, and uncertainty | Clarify what the decision is for, distinguish values from empirical claims, prioritize consequential COLLECTION GAPS, and define INDICATORS for reconsideration | A decision with stated trade-offs and conditions for revisiting it |
-| **Evaluate** | A claim, source, plan, or causal argument | RESTATE the object, assess SOURCE-QUALITY, inspect a CAUSAL-CHAIN, CHALLENGE assumptions, and VERIFY an empirical proposition | A scoped judgment that keeps evidence, inference, and uncertainty distinct |
+| **Evaluate** | A claim, source, plan, or causal argument | RESTATE the object, assess SOURCE-QUALITY, inspect a CAUSAL-CHAIN, CHALLENGE assumptions, use TEST DESIGN for unresolved empirical work, and VERIFY an empirical proposition against available evidence | A scoped judgment that keeps evidence, inference, and uncertainty distinct |
 | **Preserve** | A long inquiry whose state is becoming difficult to hold | RECAP what was discussed, DISTILL what was learned, TRACE how the position changed, CHECKPOINT the current state, and SAVE a reusable Markdown handoff | A portable record that preserves provenance, uncertainty, and open questions |
 | **Random question** | A curiosity whose purpose is still open | Talk normally first; use RELEVANCE only if the purpose matters, RESEARCH for prior art or facts, HYPOTHESIZE for possible explanations, THOUGHT EXPERIMENT for implications, and VERIFY for a specific factual claim | A satisfying answer, a sharper question, or a deliberate choice about what to investigate next |
 
@@ -39,9 +39,9 @@ flowchart TD
     Q --> P[Preserve]
     Q --> R[Random question]
     E -. optional moves .-> E1[RELEVANCE · RESEARCH · HYPOTHESIZE]
-    X -. optional moves .-> X1[HYPOTHESIZE · ACH · VERIFY]
+    X -. optional moves .-> X1[HYPOTHESIZE · ACH · TEST DESIGN · VERIFY]
     D -. optional moves .-> D1[RELEVANCE · COLLECTION GAPS · INDICATORS]
-    V -. optional moves .-> V1[CHALLENGE · CAUSAL-CHAIN · SOURCE-QUALITY]
+    V -. optional moves .-> V1[CHALLENGE · TEST DESIGN · CAUSAL-CHAIN · SOURCE-QUALITY]
     P -. optional moves .-> P1[RECAP · DISTILL · SAVE]
     R -. user-directed tasks .-> R1[RESEARCH · VERIFY · THOUGHT EXPERIMENT]
     E1 --> C

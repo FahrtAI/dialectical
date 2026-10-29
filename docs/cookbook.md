@@ -28,7 +28,10 @@ Separate the observed change from its interpretation in ordinary conversation.
 of explanations. With actual evidence, request
 [ACH](../skills/dialectical-ach/SKILL.md) to compare them. If evidence is missing,
 ask [COLLECTION GAPS](../skills/dialectical-collection-gaps/SKILL.md) what would
-distinguish them; that proposes collection without performing it. Generation
+distinguish them; that proposes collection without performing it. Ask
+[TEST DESIGN](../skills/dialectical-test-design/SKILL.md) when the next need is
+an executable test with measurements, controls, decision rules, and consequences.
+Generation
 often precedes comparison because a matrix cannot repair an omitted rival.
 Avoid inferring causation from timing. Minimal move: HYPOTHESIZE.
 
@@ -42,6 +45,18 @@ A later [VERIFY](../skills/dialectical-verify/SKILL.md) can investigate one
 empirical link if you request it. Mapping first helps target the right claim.
 Unexamined assumptions are uncertain, not false; no unique linchpin does not
 make a chain solid. Minimal move: CAUSAL-CHAIN.
+
+## Turn critique into an actionable test
+
+Opening: “We have three hypotheses and several ways each could fail. What
+should we test first?” Ask
+[TEST DESIGN](../skills/dialectical-test-design/SKILL.md) to translate the
+claims into minimum discriminating tests. For a research program, it can expose
+dependencies, define what each outcome would change, and select the next test
+with the highest information value relative to effort. It may consume prior
+CHALLENGE, ACH, or COLLECTION GAPS output, but no fixed sequence is required.
+The resulting design is generated methodology, not evidence, and the operation
+does not run the experiment or collect the data. Minimal move: TEST DESIGN.
 
 ## Make a decision under uncertainty
 
