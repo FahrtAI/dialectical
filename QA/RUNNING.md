@@ -5,32 +5,15 @@ plugin has no Python or dependency requirement.
 
 ```sh
 python3 scripts/run_evals.py validate
-python3 scripts/validate_qa.py --json
 python3 -m unittest discover -s QA/tests
 ```
 
-The default suite is `QA/cases/smoke.yaml`. It contains complete inputs and
-multi-turn cases; later user turns follow the actual generated assistant output.
-The GUIDE-accept case begins with a fixed ranked menu and supplied evidence;
-the user then names one command. GUIDE-decline tests a ranked menu generated
-during the run and confirms that ignoring it authorizes no operation.
-
-`--suite QA/cases/positive.yaml` or another existing corpus parses its original
-schema. Undefined fixtures and unsupported capabilities are reported as deferred.
-Those cases remain specifications until their fixture/provider is implemented.
-The focused runner supports conversation-only execution. Optional file-memory,
-delegation, live-evidence, and installed-host suites remain separate capability
-work; they are not required by the lightweight regression harness.
-
-For a material behavior release, use the smaller
-`QA/cases/release.yaml` subset first. It covers ordinary conversation,
-natural-language cues, GUIDE consent, JOIN, concision, calibration, SAVE, and
-no-evidence VERIFY without requiring files, workers, live evidence, or an
-installed ChatGPT host. For changes to the hold-or-update principle, also run
-`QA/cases/hold_or_update.yaml` under the ordinary, brief, and dialectical
-conditions. Add a focused regression case when a release changes a
-different critical behavior; do not turn every specification case into a model
-gate.
+The default suite is `QA/cases/hold_or_update.yaml`. Its cases are complete
+multi-turn conversations; later user turns follow the actual generated assistant
+output. Run it under the `ordinary`, `brief`, and `dialectical` conditions with
+the same model and settings, and compare the transcripts, not only the scores.
+Cases that need an installed host, live evidence, workers, or files are reported
+as deferred rather than run.
 
 ## Adapter protocol
 
@@ -89,10 +72,10 @@ export DIALECTICAL_EVAL_MODEL='exact-performer-model-id'
 export DIALECTICAL_GRADER_MODEL='exact-grader-model-id'
 
 python3 scripts/run_evals.py run \
-  --suite QA/cases/release.yaml \
+  --suite QA/cases/hold_or_update.yaml \
   --condition dialectical \
   --repeat 3 \
-  --output QA/runs/0.8.0-release.json \
+  --output QA/runs/0.8.0-hold-or-update.json \
   --adapter python3 scripts/adapters/openai_responses.py \
   --grader python3 scripts/adapters/openai_grader.py
 ```

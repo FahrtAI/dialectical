@@ -14,22 +14,17 @@ import run_evals as runner
 
 class RunnerTests(unittest.TestCase):
     def setUp(self):
-        self.cases = runner.cases_from(runner.ROOT / "QA/cases/smoke.yaml")
+        self.cases = runner.cases_from(runner.ROOT / "QA/cases/hold_or_update.yaml")
         self.case = self.cases[0]
         self.response = {"response": "Synthetic harness response", "model": "test-double",
                          "tool_activity": [], "invocations": [], "usage": None}
 
-    def test_complete_smoke(self):
-        self.assertEqual(len(self.cases), 12)
+    def test_behavioral_suite_is_inputs_ready(self):
+        self.assertTrue(self.cases)
         self.assertTrue(all(not runner.prerequisites(c) for c in self.cases))
 
-    def test_release_subset_is_small_and_inputs_ready(self):
-        cases = runner.cases_from(runner.ROOT / "QA/cases/release.yaml")
-        self.assertEqual(len(cases), 9)
-        self.assertTrue(all(not runner.prerequisites(case) for case in cases))
-
-    def test_parse_all_legacy_schemas(self):
-        for path in [* (runner.ROOT / "QA/cases").glob("*.yaml"), runner.ROOT / "evals/cases.yaml"]:
+    def test_parse_all_suites(self):
+        for path in (runner.ROOT / "QA/cases").glob("*.yaml"):
             self.assertTrue(runner.cases_from(path))
 
     def test_no_expectation_leak(self):
@@ -58,11 +53,6 @@ class RunnerTests(unittest.TestCase):
             result = runner.evaluate(case, "ordinary", ["test"], None, 1)
         self.assertEqual(result["status"], "deferred")
         call.assert_not_called()
-
-    def test_fixture_has_real_evidence(self):
-        fixture = runner.fixture(next(c for c in self.cases if c["id"] == "smoke-guide-accept"))
-        self.assertIn("unchanged-price", fixture[0]["content"])
-        self.assertEqual(fixture[-1]["role"], "assistant")
 
     def test_filesystem_mutation_fails(self):
         def respond(command, payload, cwd, timeout):
@@ -122,9 +112,9 @@ class RunnerTests(unittest.TestCase):
             result = runner.evaluate(self.case, "brief", ["test"], ["grader"], 1)
         self.assertEqual(result["status"], "pass")
 
-    def test_host_suite_cannot_pass_by_injection(self):
-        cases = runner.cases_from(runner.ROOT / "QA/cases/chatgpt.yaml")
-        self.assertTrue(all(any("Installed-host" in r for r in runner.prerequisites(c)) for c in cases))
+    def test_host_case_cannot_pass_by_injection(self):
+        case = {**self.case, "environment": {**self.case["environment"], "invocation": "@Dialectical"}}
+        self.assertTrue(any("Installed-host" in r for r in runner.prerequisites(case)))
 
     def test_grade_requires_rationale_and_five_dimensions(self):
         with self.assertRaises(ValueError):
@@ -138,10 +128,6 @@ class RunnerTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     runner.cases_from(path)
 
-    def test_fixture_path_escape_rejected(self):
-        with self.assertRaises(ValueError):
-            runner.contained(runner.ROOT / "QA/fixtures", "../../README.md")
-
     def test_actual_stdio_protocol(self):
         command = [sys.executable, "-c",
                    'import json,sys; p=json.load(sys.stdin); print(json.dumps({"response":p["messages"][-1]["content"],"model":"test-double"}))']
@@ -150,9 +136,9 @@ class RunnerTests(unittest.TestCase):
         self.assertEqual(response["response"], "literal $() `text`")
 
     def test_run_header_embeds_exact_case_definitions_and_commands(self):
-        cases = runner.cases_from(runner.ROOT / "QA/cases/release.yaml")
+        cases = runner.cases_from(runner.ROOT / "QA/cases/hold_or_update.yaml")
         output = runner.run_header(
-            runner.ROOT / "QA/cases/release.yaml", "dialectical",
+            runner.ROOT / "QA/cases/hold_or_update.yaml", "dialectical",
             ["adapter", "--mode", "performer"], ["grader"], cases,
         )
         self.assertEqual(output["metadata"]["case_definitions"], cases)

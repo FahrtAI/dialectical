@@ -6,4 +6,4 @@ Keep the skills as sibling directories so each namespaced operation is independe
 
 Invoke the Dialectical entry skill to apply its conversational discipline and optional checks. File persistence is optional and requires authorized filesystem access.
 
-Validate the installed skills with the platform's skill validator and run `evals/cases.yaml` before treating the package as production-ready.
+Validate the installed skills with the platform's skill validator and run `QA/cases/hold_or_update.yaml` (see `QA/RUNNING.md`) before treating the package as production-ready.

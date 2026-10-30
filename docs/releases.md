@@ -46,7 +46,7 @@ the checksum from the intended repository release or CI run.
 
 1. Choose a new version for changed plugin content. Update `plugin.json`, every
    skill's `metadata.version`, current version/archive references in `README.md`
-   and `CHATGPT.md`, and `QA/cases/chatgpt.yaml`. Keep historical baseline records
+   and `CHATGPT.md`. Keep historical baseline records
    unchanged. Review other current-version documentation as appropriate.
 2. Run the validation workflow's checks locally, commit the release source, and
    use a clean checkout. The release build rejects untracked changes, mismatched
@@ -65,7 +65,7 @@ the checksum from the intended repository release or CI run.
    Normal branch/PR builds cannot create a release. Only the release job has
    repository write permission; no extra credentials or runtime server are needed.
 5. For a material skill-behavior release, run and review the focused
-   `QA/cases/release.yaml` regression against the tagged source as described in
+   `QA/cases/hold_or_update.yaml` behavioral suite against the tagged source as described in
    [QA/RUNNING.md](../QA/RUNNING.md). Record failures, ungraded cases, missing
    telemetry, word-count tradeoffs, and the exact model configuration. This
    optional maintainer run does not establish installed-host acceptance.

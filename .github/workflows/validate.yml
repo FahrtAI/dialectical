@@ -25,7 +25,6 @@ jobs:
       - run: python scripts/validate_skills.py
       - run: python scripts/validate_plugin_package.py
       - run: python scripts/run_evals.py validate
-      - run: python scripts/validate_qa.py
       - run: python -m unittest discover -s QA/tests
       - name: Build and verify reproducibility
         shell: bash

@@ -59,7 +59,7 @@ package cannot enable a feature the account lacks.
    Markdown with a filename. It must preserve uncertainty and must not claim
    automatic cross-thread memory.
 10. In separate requests, test RELEVANCE, COLLECTION GAPS, TEST DESIGN, and
-   INDICATORS using `QA/cases/chatgpt.yaml`. Expect purpose clarification,
+   INDICATORS. Expect purpose clarification,
    proposed evidence collection, an actionable but unexecuted test plan, and
    conditional signals respectively, without automatic chaining, browsing,
    monitoring, or setup. Confirm all four appear in the help card.
@@ -80,8 +80,8 @@ package cannot enable a feature the account lacks.
 2. Start a new Chat or Work conversation.
 3. Select **Dialectical** from the `@` menu and repeat the startup test.
 4. Repeat HYPOTHESIZE, CHALLENGE, TEST DESIGN, DISTILL, JOIN, and the portable
-   SAVE test. Also repeat the independent 0.8.0 operation cases from
-   `QA/cases/chatgpt.yaml`.
+   SAVE test. Also repeat the RELEVANCE, COLLECTION GAPS, TEST DESIGN, and
+   INDICATORS checks from step 10 of the desktop test.
 5. Keep the Mac and any former localhost server off during this test.
 6. In another new chat, paste a checkpoint and ask Dialectical to RESUME it.
    It should use that supplied context without claiming unseen chat access.
