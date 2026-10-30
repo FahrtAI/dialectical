@@ -12,6 +12,7 @@ five words.
 |____/|___/_/   \_\_____|_____\____| |_| |___\____/_/   \_\_____|
 
 Ordinary conversation with intellectual discipline.
+Before it goes in a deck, an email, or a decision: CHALLENGE it.
 
 GUIDE               Rank three useful conversational commands.
 

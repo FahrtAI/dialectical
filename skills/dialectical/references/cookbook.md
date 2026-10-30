@@ -10,6 +10,17 @@ Showing a recipe does not invoke any operation. Do not conduct research, verify
 a claim, save material, monitor indicators, or apply another move until the user
 separately asks for it.
 
+## Check something before you share it
+
+**Opening:** “This market estimate is going into the board deck tomorrow.”
+
+CHALLENGE the claim before it leaves the conversation: what it assumes, where
+the number came from, and what would make it wrong. The challenge ends with what
+holds up, so you know what you can say with confidence and what to soften or
+source. VERIFY can check a specific figure when evidence is available.
+
+**Minimal move:** CHALLENGE.
+
 ## Explore a new idea
 
 **Opening:** “Could small neighborhood rituals make a place feel more like
