@@ -64,11 +64,10 @@ the checksum from the intended repository release or CI run.
    downloads those exact tested artifacts and creates a **draft GitHub release**.
    Normal branch/PR builds cannot create a release. Only the release job has
    repository write permission; no extra credentials or runtime server are needed.
-5. For a material skill-behavior release, run and review the focused
-   `QA/cases/hold_or_update.yaml` behavioral suite against the tagged source as described in
-   [QA/RUNNING.md](../QA/RUNNING.md). Record failures, ungraded cases, missing
-   telemetry, word-count tradeoffs, and the exact model configuration. This
-   optional maintainer run does not establish installed-host acceptance.
+5. For a release that changes skill behavior, run the manual
+   [behavior check](../QA/BEHAVIOR_CHECK.md) with the installed candidate and
+   record the results and share links in the release record. It compares
+   Dialectical with plain ChatGPT; it does not establish installed-host acceptance.
 6. Review the draft's version, commit, assets, and notes. Install the ZIP using
    [CHATGPT.md](../CHATGPT.md), perform the short smoke test in
    [QA/RELEASE_ACCEPTANCE.md](../QA/RELEASE_ACCEPTANCE.md), and record desktop and

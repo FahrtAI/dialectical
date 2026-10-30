@@ -176,10 +176,9 @@ prepare a draft GitHub release from the tested artifacts. See
 [building and releasing](docs/releases.md) for reproducible builds, tag/version
 checks, and the post-install smoke test.
 
-Behavioral evaluation is separate: see [QA/RUNNING.md](QA/RUNNING.md) for the
-focused release subset, complete smoke fixtures, optional configured-model
-adapter, canonical rubric, and recorded-run comparison. The runner is a
-maintainer utility and is excluded from the plugin.
+Behavioral evaluation is separate and manual: the
+[behavior check](QA/BEHAVIOR_CHECK.md) runs five scenarios in ChatGPT with and
+without `@Dialectical` and compares the transcripts.
 
 The ZIP includes only the manifest, license, skill Markdown files, and referenced
 plugin icons. Repository documentation, tests, and build utilities stay outside it.
@@ -188,8 +187,7 @@ plugin icons. Repository documentation, tests, and build utilities stay outside 
 plugin.json   portable plugin manifest
 skills/       entry skill, focused operations, and supporting references
 assets/       project and plugin artwork
-QA/           release acceptance checklist and the hold-or-update behavioral suite
-evals/        scoring rubric for behavioral runs
+QA/           release acceptance checklist and manual behavior check
 scripts/      static checks and ZIP packaging
 docs/         examples and architecture audit
 CHATGPT.md    installation and device testing
@@ -197,8 +195,8 @@ LICENSE       CC BY-NC-SA 4.0 legal terms
 ```
 
 Package validation runs in CI. Installed-host acceptance follows
-[QA/RELEASE_ACCEPTANCE.md](QA/RELEASE_ACCEPTANCE.md); behavioral runs are
-described in [QA/RUNNING.md](QA/RUNNING.md). See the [architecture audit](docs/architecture-audit.md)
+[QA/RELEASE_ACCEPTANCE.md](QA/RELEASE_ACCEPTANCE.md), and the manual
+[behavior check](QA/BEHAVIOR_CHECK.md) compares Dialectical with plain ChatGPT. See the [architecture audit](docs/architecture-audit.md)
 for the removal of the old service dependency and official specification links.
 
 All 25 bundled skills use release version 0.8.0. Storage schema versions are

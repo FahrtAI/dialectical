@@ -6,4 +6,4 @@ Install or link every `skills/dialectical-*` directory, plus `skills/dialectical
 
 Invoke the Dialectical entry skill to apply its conversational discipline and optional checks. No always-loaded custom instructions are required for an explicitly invoked session.
 
-After installation, verify that all skill names are discoverable and run `QA/cases/hold_or_update.yaml` against each model intended for use (see `QA/RUNNING.md`).
+After installation, verify that all skill names are discoverable and run the scenarios in `QA/BEHAVIOR_CHECK.md` with each model intended for use.
