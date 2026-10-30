@@ -56,6 +56,13 @@ class HelpFlowContracts(unittest.TestCase):
         self.assertNotIn("```mermaid", self.flows)
         self.assertIn("```mermaid", (ROOT / "docs/flows.md").read_text())
 
+    def test_help_card_groups_by_what_operations_change(self):
+        groups = ["Think and test", "Mark where you are", "Plan what to do next",
+                  "Look back", "Frame the question", "Take it elsewhere", "Get oriented"]
+        positions = [self.help.index(f"\n{group}\n") for group in groups]
+        self.assertEqual(positions, sorted(positions))
+        self.assertIn("Start here: CHALLENGE, DISTILL, SAVE.", self.help)
+
     def test_orientation_does_not_authorize_operations(self):
         for text in (self.help, self.cookbook, self.flows):
             self.assertRegex(text, r"(?i)(does not|do not).* (invoke|run|start|apply)")

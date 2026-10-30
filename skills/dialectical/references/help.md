@@ -14,35 +14,44 @@ five words.
 Ordinary conversation with intellectual discipline.
 Before it goes in a deck, an email, or a decision: CHALLENGE it.
 
-GUIDE               Rank three useful conversational commands.
+Start here: CHALLENGE, DISTILL, SAVE.
 
-RESTATE             Rephrase an idea without judgment.
-RECAP               Compress the conversation without interpretation.
-DISTILL             Extract insights, tensions, and questions.
-TRACE               Recover where an idea originated.
-
-RELEVANCE           Clarify inquiry purpose and scope.
-COLLECTION GAPS     Identify missing evidence worth seeking.
-INDICATORS          Define observable signals worth watching.
-
-RESEARCH            Find relevant evidence and precedents.
+Think and test
+CHALLENGE           Seek weaknesses and disconfirming evidence.
+VERIFY              Check claims against available evidence.
 HYPOTHESIZE         Generate plausible competing explanations deliberately.
 THOUGHT EXPERIMENT  Explore implications through imagined conditions.
-
-CHALLENGE           Seek weaknesses and disconfirming evidence.
-TEST DESIGN         Turn claims into decisive tests.
-VERIFY              Check claims against available evidence.
+RESEARCH            Find relevant evidence and precedents.
 ACH                 Compare competing hypotheses against evidence.
 CAUSAL-CHAIN        Test each link in causation.
 SOURCE-QUALITY      Rate source reliability and credibility.
 
-TAG                 Attach useful labels for retrieval.
+Mark where you are
+DISTILL             Extract insights, tensions, and questions.
+
+Plan what to do next
+COLLECTION GAPS     Identify missing evidence worth seeking.
+TEST DESIGN         Turn claims into decisive tests.
+INDICATORS          Define observable signals worth watching.
+
+Look back
+RECAP               Compress the conversation without interpretation.
+TRACE               Recover where an idea originated.
+RESTATE             Rephrase an idea without judgment.
+
+Frame the question
+RELEVANCE           Clarify inquiry purpose and scope.
+
+Take it elsewhere
 SAVE                Export conversation as reusable Markdown.
+RESUME              Continue a previously saved inquiry.
+START INQUIRY       Begin exploring a focused question.
+CLOSE               Close while preserving the inquiry.
+TAG                 Attach useful labels for retrieval.
 RECALL              Retrieve previously saved relevant knowledge.
 
-START INQUIRY       Begin exploring a focused question.
-RESUME              Continue a previously saved inquiry.
-CLOSE               Close while preserving the inquiry.
+Get oriented
+GUIDE               Rank three useful conversational commands.
 ```
 
 Do not use this card for a generic request such as “help me with this problem.”

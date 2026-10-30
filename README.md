@@ -80,15 +80,18 @@ Dialectical-specific help uses a compact, stable [command card](skills/dialectic
 
 ## Operations
 
-| Purpose | Operations | What they help you do |
-|---|---|---|
-| Choose a move | GUIDE | Rank three useful commands for the current conversational state, or show the full catalog |
-| Understand the conversation | RESTATE, RECAP, DISTILL, TRACE | Clarify an idea, compress context, extract what was learned, and recover provenance |
-| Frame an inquiry | RELEVANCE, COLLECTION GAPS, INDICATORS | Clarify purpose, prioritize missing evidence, and define developments worth watching |
-| Explore | RESEARCH, HYPOTHESIZE, THOUGHT EXPERIMENT | Find relevant prior art, generate explanations, and examine implications |
-| Test | CHALLENGE, TEST DESIGN, VERIFY, ACH, CAUSAL-CHAIN, SOURCE-QUALITY | Seek counterarguments, design discriminating tests, adjudicate claims, test causal logic, and assess sources |
-| Preserve and reuse | TAG, SAVE, RECALL | Organize knowledge, export a Markdown handoff, and retrieve accessible records |
-| Continue over time | START INQUIRY, RESUME, CLOSE | Maintain an optional line of inquiry across conversations |
+Start with CHALLENGE, DISTILL, and SAVE. The groups follow the
+[state model](docs/state-model.md): each is defined by what it may change.
+
+| Group | Operations | What they help you do | May change |
+|---|---|---|---|
+| Think and test | CHALLENGE, VERIFY, HYPOTHESIZE, THOUGHT EXPERIMENT, RESEARCH, ACH, CAUSAL-CHAIN, SOURCE-QUALITY | Probe weaknesses, check claims, generate and compare explanations, test causal logic, and assess sources | A claim's status, on evidence only |
+| Mark where you are | DISTILL | Record what the conversation supports now, and what changed since last time | A new milestone |
+| Plan what to do next | COLLECTION GAPS, TEST DESIGN, INDICATORS | Decide what evidence to seek, what to test, and what to watch | Plans only |
+| Look back | RECAP, TRACE, RESTATE | Compress the discussion, show how the thinking developed, restate a claim | Nothing |
+| Frame the question | RELEVANCE | Clarify what the inquiry is for and its scope | The inquiry's frame |
+| Take it elsewhere | SAVE, RESUME, START INQUIRY, CLOSE, TAG, RECALL | Export a handoff or cold read, continue elsewhere, keep optional inquiry records | Exports and records |
+| Get oriented | GUIDE | Rank three useful commands now, or show the full catalog | Nothing |
 
 ACH is Analysis of Competing Hypotheses: it compares rival explanations against the evidence instead of asking only whether a favored explanation fits. CAUSAL-CHAIN exposes the assumptions in each link of a causal argument. SOURCE-QUALITY rates the reliability of a source separately from the credibility of the information it provides.
 

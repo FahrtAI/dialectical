@@ -108,6 +108,7 @@ them testable: an operation writing state outside its category is a defect.
 | **Planning** | decide what to do outside the conversation | claims, latest milestone | plans only; never claim status | COLLECTION GAPS, TEST DESIGN, INDICATORS |
 | **Metadata** | look at the conversation itself | history | nothing | TRACE, RECAP, RESTATE |
 | **Logistics** | move state in or out of the conversation | latest milestone, claims, plans | an export, or imported context | SAVE, RESUME; file-store operations in non-ChatGPT editions |
+| **Framing** | set what the inquiry is for | conversation | the inquiry's purpose and scope | RELEVANCE |
 | **Onboarding** | learn and choose operations | interaction state | interaction state only | GUIDE, HELP, JOIN, cookbook, flows |
 
 **Planning** produces actions to take outside the conversation: evidence to
@@ -150,9 +151,6 @@ recoverable only from visible context.
 
 ## 7. Open questions
 
-- **Where does RELEVANCE belong?** It sets the inquiry's purpose and scope
-  rather than planning future work or moving claims. Options: a seventh
-  category (framing), or a move whose output is the frame rather than a claim.
 - **Should START INQUIRY and CLOSE survive?** Under this model, the start is
   the first turn and the close is the final distillation plus an optional SAVE.
 - **How explicit should status be in ordinary turns?** This model makes status
