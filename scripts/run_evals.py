@@ -28,22 +28,13 @@ def digest(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
-def contained(root: Path, relative: str) -> Path:
-    path = (root / relative).resolve()
-    if not path.is_relative_to(root.resolve()) or not path.is_file():
-        raise ValueError(f"Missing or escaping file: {relative}")
-    return path
-
-
 def fixture(case: dict) -> list[dict]:
     name = case.get("fixture", case.get("environment", {}).get("fixture"))
     if name in INLINE:
         return []
-    registry = json.loads((ROOT / "QA/fixtures/registry.json").read_text())
-    if name not in registry:
-        raise ValueError(f"Undefined fixture: {name}")
-    data = json.loads(contained(ROOT / "QA/fixtures", registry[name]).read_text())
-    return data["messages"]
+    # External fixture files were removed with the unexecuted suites (#35);
+    # cases now carry any prior context inline in `messages`.
+    raise ValueError(f"Undefined fixture: {name}")
 
 
 def messages_valid(messages: list) -> bool:
@@ -311,7 +302,7 @@ def evaluate(case: dict, condition: str, adapter: list[str], grader: list[str] |
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=["validate", "run"])
-    parser.add_argument("--suite", type=Path, default=ROOT / "QA/cases/smoke.yaml")
+    parser.add_argument("--suite", type=Path, default=ROOT / "QA/cases/hold_or_update.yaml")
     parser.add_argument("--condition", choices=["ordinary", "brief", "dialectical"], default="dialectical")
     parser.add_argument("--case", action="append", dest="selected")
     parser.add_argument("--repeat", type=int, default=1)

@@ -13,7 +13,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS = ROOT / "skills"
 ROUTER = SKILLS / "dialectical" / "SKILL.md"
-CASES = ROOT / "evals" / "cases.yaml"
 HELP = SKILLS / "dialectical" / "references" / "help.md"
 FRONTMATTER = re.compile(r"\A---\n(?P<body>.*?)\n---\n", re.DOTALL)
 LINK = re.compile(r"\[[^\]]+\]\((?!https?://|#)([^)]+)\)")
@@ -135,13 +134,10 @@ def main() -> int:
     route = section(ROUTER.read_text(encoding="utf-8"), "Route an invocation") if ROUTER.exists() else ""
     if not route:
         failures.append(f"Missing Route section: {ROUTER.relative_to(ROOT)}")
-    cases = CASES.read_text(encoding="utf-8") if CASES.exists() else ""
     for path in skill_files:
         name = path.parent.name
         if route and name != "dialectical" and f"`{name}`" not in route:
             failures.append(f"Skill missing from router Route section: {name}")
-        if not re.search(rf"(?m)^\s*(?:skill:|-)\s*{re.escape(name)}\s*$", cases):
-            failures.append(f"Skill has no eval case in evals/cases.yaml: {name}")
 
     if HELP.is_file():
         failures.extend(validate_help(HELP.read_text(), {p.parent.name for p in skill_files}))
@@ -156,10 +152,6 @@ def main() -> int:
         archives = re.findall(r"dist/dialectical-(\d+\.\d+\.\d+)\.zip", text)
         if not archives or any(version != release for version in archives):
             failures.append(f"Distribution reference differs from plugin: {relative}")
-    chatgpt_cases = (ROOT / "QA/cases/chatgpt.yaml").read_text()
-    version = re.search(r'(?m)^  version: "([^"]+)"$', chatgpt_cases)
-    if not version or version.group(1) != release:
-        failures.append("ChatGPT QA version differs from plugin")
 
     repository_text = "\n".join(
         path.read_text(encoding="utf-8")

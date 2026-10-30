@@ -1,5 +1,9 @@
 # Skills-only architecture audit — current at 0.8.0
 
+> **Update (#35):** the unexecuted QA case suites, `evals/cases.yaml`, fixtures,
+> and `scripts/validate_qa.py` were removed. References to them below are
+> historical records of this review.
+
 This document records the architectural decision that made Dialectical a
 skills-only ChatGPT plugin and describes the state of the repository at release
 0.8.0. The original audit was performed during the 0.4.0 cleanup. It remains a

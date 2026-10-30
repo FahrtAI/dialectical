@@ -188,16 +188,17 @@ plugin icons. Repository documentation, tests, and build utilities stay outside 
 plugin.json   portable plugin manifest
 skills/       entry skill, focused operations, and supporting references
 assets/       project and plugin artwork
-QA/           acceptance tests and optional host-capability tests
-evals/        methodology cases and scoring
+QA/           release acceptance checklist and the hold-or-update behavioral suite
+evals/        scoring rubric for behavioral runs
 scripts/      static checks and ZIP packaging
 docs/         examples and architecture audit
 CHATGPT.md    installation and device testing
 LICENSE       CC BY-NC-SA 4.0 legal terms
 ```
 
-[QA/TEST_PLAN.md](QA/TEST_PLAN.md) distinguishes structural checks from actual
-installed-host tests. See the [architecture audit](docs/architecture-audit.md)
+Package validation runs in CI. Installed-host acceptance follows
+[QA/RELEASE_ACCEPTANCE.md](QA/RELEASE_ACCEPTANCE.md); behavioral runs are
+described in [QA/RUNNING.md](QA/RUNNING.md). See the [architecture audit](docs/architecture-audit.md)
 for the removal of the old service dependency and official specification links.
 
 All 25 bundled skills use release version 0.8.0. Storage schema versions are
