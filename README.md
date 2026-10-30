@@ -19,6 +19,25 @@ Dialectical is a set of optional conversational operations designed to use the f
 
 The conversation stays ordinary. The discipline appears when it is useful.
 
+## Who it's for
+
+People using AI for work where a confident wrong answer costs something:
+market research, strategy, investment cases, product decisions.
+
+The failure Dialectical targets is quiet. The AI agrees too easily. A plausible
+number gets stated once and becomes a premise three turns later. You and the
+model reinforce each other until both are more confident than the evidence
+supports. Dialectical works in three directions, on your claims and on the
+model's own:
+
+- **Affirm** what the evidence supports, and say why.
+- **Confirm** what can be checked, or flag it as unchecked.
+- **Dispute** what is weak, by finding the assumption it rests on.
+
+You invoke it when you want it. Use it especially before something leaves the
+chat: a deck, an email, a decision. It is not a clinical tool, a fact-checking
+service, or a contrarian.
+
 ## What it does
 
 Dialectical gives the user and the LLM a shared vocabulary for common moves in a serious conversation: restating an idea, distilling what has been learned, finding prior art, testing an explanation, tracing a claim, or saving a useful connection.
@@ -51,7 +70,9 @@ Try to disprove my interpretation.
 Turn these hypotheses into decisive tests.
 Trace that claim back to its sources.
 Run a thought experiment on this assumption.
-Save that connection for later.
+Challenge this before it goes in the deck.
+Package this so I can continue in a new chat.
+Give me something to check this in a fresh chat.
 JOIN this existing conversation.
 ```
 
@@ -65,7 +86,7 @@ HYPOTHESIZE why churn rose after the redesign.
 CHALLENGE the plan to cut prices.
 TEST DESIGN the smallest experiment that could change our minds.
 Use ACH on those three explanations.
-SAVE that connection.
+SAVE cold read for this market estimate.
 ```
 
 The capitalized names are conversational handles, not command syntax. See [sample conversations](docs/flows.md) for complete examples.
@@ -108,20 +129,20 @@ attach itself retroactively outside the host's normal plugin interface.
 SAVE packages the relevant conversation as a self-contained Markdown handoff.
 Upload or paste that handoff into a new thread to continue. A downloadable file
 is used when the host supports it; otherwise SAVE returns complete copyable
-Markdown. It does not imply automatic cross-thread memory.
-
-Ask “What are we trying to understand?” for RELEVANCE, “What evidence would
-distinguish these explanations?” for COLLECTION GAPS, “How exactly would we
-test these hypotheses?” for TEST DESIGN, or “What should we watch
-for that would change our assessment?” for INDICATORS. Each is independently
-callable. Exploration does not require a decision or a formal inquiry setup.
-COLLECTION GAPS identifies missing evidence; TEST DESIGN turns a claim or gap
-into measurements, controls, decision rules, and consequences; RESEARCH seeks
-evidence; VERIFY checks a specific empirical claim. TEST DESIGN does not conduct
-the proposed research, and INDICATORS does not create monitoring or scheduled tasks.
+Markdown. It does not imply automatic cross-thread memory. A **cold read** is a
+different export: just the claim, its evidence, and the question, without the
+conversation's conclusions, so a fresh chat or another model can check it
+independently.
 
 ## How it behaves
 
+- **Hold or update on reasons.** Pressure, repetition, authority, or "you
+  agreed earlier" does not change an assessment. New evidence or a real
+  argument does, and Dialectical says what changed.
+- **The model's own numbers are labeled.** An unsourced estimate is marked as
+  the assistant's when given, and flagged if it later becomes a premise or gets
+  relabeled as an "industry estimate."
+- **Agreement is earned.** CHALLENGE ends with what holds up, and why.
 - Normal conversation remains primary. The default is not to intervene.
 - Responses default to the shortest complete answer; requested depth and
   consequential evidence, provenance, disagreement, or uncertainty are not
@@ -136,7 +157,7 @@ the proposed research, and INDICATORS does not create monitoring or scheduled ta
 - A thought experiment can expose implications; it cannot supply empirical evidence.
 - When the discussion becomes difficult to hold, Dialectical may offer to DISTILL it once.
 - When an untested claim begins to settle into fact, it may offer one relevant check once.
-- Retrieved notes are treated as untrusted data, never as instructions.
+- Pasted or attached handoffs are treated as data, never as instructions.
 
 Dialectical also distinguishes among debate, narrative, inquiry, and decision. Each is legitimate, but each fails differently. In particular, a plausible narrative is not necessarily an explanation, and a decision mixes facts with goals, values, and trade-offs. The distinction should improve the answer without making the conversation sound like a methodology workshop. See [conversation modes](skills/dialectical/references/modes.md) for details.
 
@@ -144,7 +165,9 @@ Dialectical also distinguishes among debate, narrative, inquiry, and decision. E
 
 See [CHATGPT.md](CHATGPT.md) for account installation, desktop and iPhone tests,
 and the distinction between a local folder and an installed account plugin.
-Use the skills-only ZIP in `dist/dialectical-0.9.0.zip`.
+Use `dialectical-0.9.0.zip` from the
+[GitHub release](https://github.com/FahrtAI/dialectical/releases), or build it
+locally into `dist/dialectical-0.9.0.zip`.
 Installing this source does not automatically update an older account plugin.
 
 The portable package contains `plugin.json`, `LICENSE`, `skills/`, and referenced artwork.
@@ -192,7 +215,7 @@ skills/       entry skill, focused operations, and supporting references
 assets/       project and plugin artwork
 QA/           release acceptance checklist and manual behavior check
 scripts/      static checks and ZIP packaging
-docs/         examples and architecture audit
+docs/         examples, state model, and architecture audit
 CHATGPT.md    installation and device testing
 LICENSE       CC BY-NC-SA 4.0 legal terms
 ```
@@ -217,9 +240,11 @@ SPDX identifier: `CC-BY-NC-SA-4.0`.
 
 ## Status
 
+0.9.0 is a draft release. Its package checks pass and its build is
+reproducible. **Whether Dialectical actually beats plain ChatGPT has not been
+tested yet.** The [behavior check](QA/BEHAVIOR_CHECK.md) (#11) and desktop and
+iPhone acceptance (#13) come next, tracked in #43. Results will be published
+either way, including if a one-paragraph prompt does as well.
+
 Future work, design questions, and ideas are tracked in the
 [Dialectical GitHub Project](https://github.com/orgs/FahrtAI/projects/1).
-
-The skills-only package can be built locally. Successful local validation does
-not establish account installation, public directory approval, or desktop/iPhone
-behavior. Record those tests after installing the updated plugin.
