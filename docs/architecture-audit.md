@@ -1,7 +1,8 @@
 # Skills-only architecture audit — current at 0.8.0
 
-> **Update (#35):** the unexecuted QA case suites, `evals/cases.yaml`, fixtures,
-> and `scripts/validate_qa.py` were removed. References to them below are
+> **Update (#35):** the QA case suites, `evals/`, fixtures, the evaluation
+> runner and adapters, and `scripts/validate_qa.py` were removed in favor of a
+> manual behavior check (`QA/BEHAVIOR_CHECK.md`). References to them below are
 > historical records of this review.
 
 This document records the architectural decision that made Dialectical a

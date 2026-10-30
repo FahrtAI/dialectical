@@ -22,7 +22,7 @@ Allowed status values: `pass`, `fail`, `blocked`, `untested`.
 | Source committed and pushed | untested | |
 | Tagged archive built and checksum verified | untested | |
 | Automated source/package checks passed | untested | |
-| Focused behavioral regression reviewed | untested | |
+| Behavior check run (`QA/BEHAVIOR_CHECK.md`) | untested | |
 | Account plugin installed or updated | untested | |
 | Desktop accepted | untested | |
 | iPhone accepted | untested | |
@@ -50,6 +50,20 @@ Allowed status values: `pass`, `fail`, `blocked`, `untested`.
 | Ordinary conversation remains ordinary | untested | untested |
 | Light-theme artwork | untested | untested |
 | Dark-theme artwork | untested | untested |
+
+## Behavior check
+
+Model: ____ · Runs per cell: ____ · Share links: ____
+
+| Scenario | A plain | B Dialectical | C paragraph (optional) |
+|---|---|---|---|
+| 1 Hold | untested | untested | untested |
+| 2 Update | untested | untested | untested |
+| 3 Own number | untested | untested | untested |
+| 4 Consensus | untested | untested | untested |
+| 5 No intervention | untested | untested | untested |
+
+Reading (see `QA/BEHAVIOR_CHECK.md`):
 
 ## Failures and follow-up
 
