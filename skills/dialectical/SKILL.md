@@ -108,13 +108,15 @@ wait; viewing a recipe or flow does not invoke its operations.
 For lighter orientation during an existing conversation, briefly identify the
 relevant operations without explaining all of them:
 
-- Guidance: GUIDE
-- Context: RESTATE, RECAP, DISTILL, TRACE
-- Inquiry framing: RELEVANCE, COLLECTION GAPS, INDICATORS
-- Inquiry: RESEARCH, HYPOTHESIZE, THOUGHT EXPERIMENT, CHALLENGE, TEST DESIGN, VERIFY
-- Diagnosis: ACH, CAUSAL-CHAIN, SOURCE-QUALITY
-- Knowledge: TAG, SAVE, RECALL
-- Lifecycle: START INQUIRY, RESUME, CLOSE
+- Think and test: CHALLENGE, VERIFY, HYPOTHESIZE, THOUGHT EXPERIMENT, RESEARCH, ACH, CAUSAL-CHAIN, SOURCE-QUALITY
+- Mark where you are: DISTILL
+- Plan what to do next: COLLECTION GAPS, TEST DESIGN, INDICATORS
+- Look back: RECAP, TRACE, RESTATE
+- Frame the question: RELEVANCE
+- Take it elsewhere: SAVE, RESUME, START INQUIRY, CLOSE, TAG, RECALL
+- Get oriented: GUIDE
+
+For a newcomer, start with CHALLENGE, DISTILL, and SAVE.
 
 Do not repeat this orientation after the user understands the vocabulary.
 
