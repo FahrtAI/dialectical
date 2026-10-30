@@ -121,7 +121,7 @@ the user will do next.
 not add conclusions or move claims. RESTATE articulates a claim without
 changing it.
 
-**CHECKPOINT is redundant under this model** and is slated for removal. A distillation is the checkpoint. In editions with a
+**CHECKPOINT was removed.** A distillation is the checkpoint. In editions with a
 file store, persisting a checkpoint is DISTILL followed by SAVE to a file.
 
 ## 5. Interaction state

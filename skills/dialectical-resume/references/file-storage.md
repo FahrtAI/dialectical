@@ -12,7 +12,7 @@ Read [`../../dialectical/references/memory.md`](../../dialectical/references/mem
 
 ## Operation
 
-Without an authorized readable file store, use an inquiry or checkpoint
+Without an authorized readable file store, use an inquiry, handoff, or distillation
 visible in the current chat or supplied by the user. Briefly restore its focus
 and uncertainties, then continue. If the prior material is absent, ask the user
 to paste or attach it; do not claim cross-chat recall. Skip file/status writes.

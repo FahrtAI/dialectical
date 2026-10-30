@@ -83,7 +83,7 @@ package cannot enable a feature the account lacks.
    SAVE test. Also repeat the RELEVANCE, COLLECTION GAPS, TEST DESIGN, and
    INDICATORS checks from step 10 of the desktop test.
 5. Keep the Mac and any former localhost server off during this test.
-6. In another new chat, paste a checkpoint and ask Dialectical to RESUME it.
+6. In another new chat, paste a SAVE handoff and ask Dialectical to RESUME it.
    It should use that supplied context without claiming unseen chat access.
 
 Official documentation supports account-available plugins in Chat and Work on

@@ -41,8 +41,7 @@ before applying a move.
 - **Preserve**
   - Start: an inquiry whose state is becoming difficult to hold.
   - Possible moves: RECAP what was discussed; DISTILL what was learned; TRACE
-    important pivots; CHECKPOINT the current state; SAVE a reusable Markdown
-    handoff.
+    important pivots; SAVE a reusable Markdown handoff.
   - Useful ending: a portable record preserving evidence, provenance,
     uncertainty, and open questions.
 - **Random question**

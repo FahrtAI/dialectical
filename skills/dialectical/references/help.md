@@ -41,7 +41,6 @@ SAVE                Export conversation as reusable Markdown.
 RECALL              Retrieve previously saved relevant knowledge.
 
 START INQUIRY       Begin exploring a focused question.
-CHECKPOINT          Capture current state for continuation.
 RESUME              Continue a previously saved inquiry.
 CLOSE               Close while preserving the inquiry.
 ```

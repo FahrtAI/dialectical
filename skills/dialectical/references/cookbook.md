@@ -130,8 +130,7 @@ Agreement and rhetorical strength are not evidence.
 **Opening:** “I'm losing track of what we learned.”
 
 RECAP can compress what was discussed. DISTILL can separate findings, generated
-ideas, and uncertainty. TRACE can reconstruct important pivots. CHECKPOINT can
-capture the current state. SAVE can export the relevant conversation as
+ideas, and uncertainty. TRACE can reconstruct important pivots. SAVE can export the relevant conversation as
 reusable Markdown for saving or importing into a new thread. None of these
 claims cross-thread memory or persistence that did not occur.
 

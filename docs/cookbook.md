@@ -131,8 +131,7 @@ Opening: “I'm losing track of what we learned.”
 [RECAP](../skills/dialectical-recap/SKILL.md) compresses what was discussed;
 [DISTILL](../skills/dialectical-distill/SKILL.md) separates findings, generated
 ideas, and uncertainty; [TRACE](../skills/dialectical-trace/SKILL.md) preserves
-important pivots. [CHECKPOINT](../skills/dialectical-checkpoint/SKILL.md) captures
-the current state. [SAVE](../skills/dialectical-save/SKILL.md) packages the
+important pivots. [SAVE](../skills/dialectical-save/SKILL.md) packages the
 relevant conversation as reusable Markdown that can be downloaded where the
 host supports files, copied elsewhere, or imported into a new thread. No
 cross-chat memory or persistence is assumed merely because the handoff was
