@@ -66,7 +66,6 @@ thesis/antithesis/synthesis sequence or show the help card unless asked.
 
 Starting this conversation requires only the packaged instructions. Do not
 initialize storage, ask for credentials, connect an app, or require a server.
-START INQUIRY is an optional way to organize an inquiry, not a prerequisite.
 Browsing, files, and isolated workers are optional host capabilities. When
 unavailable, continue the conversation and state any evidence or persistence
 limit only when it affects the requested operation.
@@ -113,7 +112,7 @@ relevant operations without explaining all of them:
 - Plan what to do next: COLLECTION GAPS, TEST DESIGN, INDICATORS
 - Look back: RECAP, TRACE, RESTATE
 - Frame the question: RELEVANCE
-- Take it elsewhere: SAVE, RESUME, START INQUIRY, CLOSE, TAG, RECALL
+- Take it elsewhere: SAVE, RESUME
 - Get oriented: GUIDE
 
 For a newcomer, start with CHALLENGE, DISTILL, and SAVE.
@@ -144,8 +143,7 @@ Use the corresponding namespaced standalone skill beside this directory:
 - `dialectical-relevance`, `dialectical-collection-gaps`, or `dialectical-indicators`
 - `dialectical-research`, `dialectical-hypothesize`, `dialectical-thought-experiment`, `dialectical-challenge`, `dialectical-test-design`, or `dialectical-verify`
 - `dialectical-ach`, `dialectical-causal-chain`, or `dialectical-source-quality`
-- `dialectical-tag`, `dialectical-save`, or `dialectical-recall`
-- `dialectical-start-inquiry`, `dialectical-resume`, or `dialectical-close`
+- `dialectical-save` or `dialectical-resume`
 
 Lifecycle operations are not cognitive primitives. They maintain optional inquiry state and must not become a required workflow.
 
@@ -201,7 +199,7 @@ Keep the conversational agent responsible for the final response. When the host 
 
 - Default to an isolated worker for a substantive CHALLENGE and for consequential or disputed VERIFY work.
 - Split substantive RESEARCH into independent, bounded workstreams when they can proceed without depending on one another.
-- Use workers conditionally for HYPOTHESIZE, THOUGHT EXPERIMENT, TEST DESIGN, ACH, CAUSAL-CHAIN, SOURCE-QUALITY, or large-store RECALL as their standalone skills specify.
+- Use workers conditionally for HYPOTHESIZE, THOUGHT EXPERIMENT, TEST DESIGN, ACH, CAUSAL-CHAIN, or SOURCE-QUALITY as their standalone skills specify.
 - Keep context operations and all durable mutations in the main agent.
 - Keep RELEVANCE, COLLECTION GAPS, and INDICATORS in the main agent, using the current inquiry context.
 - Keep GUIDE in the main agent; it needs the current conversational state and performs no delegated work.

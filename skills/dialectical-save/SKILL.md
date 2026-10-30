@@ -50,8 +50,6 @@ If the user explicitly requests a durable workspace copy, use the optional
 [local file procedure](references/file-storage.md). This is secondary to
 producing the portable handoff.
 
-SAVE creates a transferable artifact. With an authorized file store and an
-explicit request, it can also save the current state into an active inquiry, as
-the file procedure describes. RECALL retrieves an existing record; RESUME continues from a supplied or
+SAVE creates a transferable artifact; RESUME continues from a supplied or
 accessible record. Do not silently perform those operations or claim that a
 handoff was stored, retrieved, or activated.

@@ -98,5 +98,5 @@ does not establish that they are blank. Change artwork only for reproduced defec
 
 Keep [issue #13](https://github.com/FahrtAI/dialectical/issues/13) open until both
 device outcomes are recorded, or explicitly document unsupported/unavailable
-surfaces as unresolved. Optional adapters, local evaluations, and file-storage
+surfaces as unresolved. Optional adapters, local evaluations, and file
 checks do not substitute for these tests.

@@ -2,7 +2,7 @@
 
 Install or link every `skills/dialectical-*` directory, plus `skills/dialectical`, into a Codex skill discovery root such as `$CODEX_HOME/skills/`.
 
-Keep the skills as sibling directories so each namespaced operation is independently discoverable. Project-scoped runtime state belongs in `.dialectical/`, not in the installed skill directories.
+Keep the skills as sibling directories so each namespaced operation is independently discoverable.
 
 Invoke the Dialectical entry skill to apply its conversational discipline and optional checks. File persistence is optional and requires authorized filesystem access.
 
