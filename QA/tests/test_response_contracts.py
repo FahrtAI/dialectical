@@ -77,6 +77,16 @@ class ResponseContractTests(unittest.TestCase):
         self.assertIn("do not invent", challenge)
         self.assertIn("Before it goes in a deck, an email, or a decision", card)
 
+    def test_cold_read_exports_claim_without_conversation(self):
+        save = (ROOT / "skills/dialectical-save/SKILL.md").read_text()
+        cold = (ROOT / "skills/dialectical-save/references/cold-read.md").read_text()
+        challenge = (ROOT / "skills/dialectical-challenge/SKILL.md").read_text()
+        self.assertIn("references/cold-read.md", save)
+        for phrase in ("Every claim\n  arrives unverified", "preferred answer",
+                       "not evidence", "Assistant-generated figures"):
+            self.assertRegex(cold, phrase.replace("\n  ", r"\s+"))
+        self.assertIn("Do not imply independence the host did not provide", challenge)
+
     def test_known_calibration_findings_are_fixed(self):
         example = (ROOT / "skills/dialectical-ach/references/example.md").read_text()
         source = (ROOT / "skills/dialectical-source-quality/SKILL.md").read_text()

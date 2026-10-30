@@ -17,7 +17,9 @@ separately asks for it.
 CHALLENGE the claim before it leaves the conversation: what it assumes, where
 the number came from, and what would make it wrong. The challenge ends with what
 holds up, so you know what you can say with confidence and what to soften or
-source. VERIFY can check a specific figure when evidence is available.
+source. VERIFY can check a specific figure when evidence is available. For an
+independent second look, a SAVE cold read exports just the claim and its
+evidence for a fresh chat.
 
 **Minimal move:** CHALLENGE.
 

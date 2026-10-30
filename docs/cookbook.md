@@ -18,7 +18,10 @@ the conversation: what it assumes, where the number came from, and what would
 make it wrong. The challenge ends with what holds up, so you know what to state
 confidently and what to soften or source. Use
 [VERIFY](../skills/dialectical-verify/SKILL.md) for a specific figure when
-evidence is available. Avoid treating a survived challenge as verification.
+evidence is available. For an independent second look, a
+[SAVE](../skills/dialectical-save/SKILL.md) cold read exports just the claim and
+its evidence for a fresh chat or another model. Avoid treating a survived
+challenge as verification.
 Minimal move: CHALLENGE.
 
 ## Explore a new idea
