@@ -2,7 +2,7 @@
 name: dialectical-guide
 description: Rank three useful Dialectical commands for the current conversational state and offer MORE for the complete catalog. Use when the user invokes GUIDE or asks which Dialectical command would help now; do not monitor later turns or perform a recommendation before selection.
 metadata:
-  version: "0.8.0"
+  version: "0.9.0"
 ---
 
 # Guide

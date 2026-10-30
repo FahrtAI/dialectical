@@ -2,7 +2,7 @@
 name: dialectical-recap
 description: Compress the relevant conversation or material into a shorter account of what was discussed. Use for RECAP, summarize requests, and context reduction; do not use to infer what was learned, evaluate claims, or reconstruct detailed provenance.
 metadata:
-  version: "0.8.0"
+  version: "0.9.0"
 ---
 
 # Recap

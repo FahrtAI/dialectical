@@ -2,7 +2,7 @@
 name: dialectical-relevance
 description: Clarify what an inquiry is for and which scope or distinctions matter. Use for RELEVANCE or requests to clarify what we are trying to understand or inform; not merely to restate a claim, collect evidence, or require a decision.
 metadata:
-  version: "0.8.0"
+  version: "0.9.0"
 ---
 
 # Relevance

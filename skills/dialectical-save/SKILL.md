@@ -2,7 +2,7 @@
 name: dialectical-save
 description: Package the relevant conversation into a portable Markdown handoff that can be saved or imported into a new thread, or export a cold read of one claim for an independent check in a fresh chat. Use for SAVE, requests to preserve and continue the conversation elsewhere, or requests to check a claim somewhere without this conversation's influence; do not imply cross-chat memory or external storage.
 metadata:
-  version: "0.8.0"
+  version: "0.9.0"
 ---
 
 # Save

@@ -2,7 +2,7 @@
 name: dialectical-test-design
 description: Convert an empirical claim, hypothesis, model, or research program into discriminating tests with explicit measurements, controls, dependencies, decision rules, and consequences. Use when the user asks how to test an idea or turn critique or missing evidence into an actionable research plan; do not use only to identify gaps, judge existing evidence, or conduct the research.
 metadata:
-  version: "0.8.0"
+  version: "0.9.0"
 ---
 
 # Test Design

@@ -7,7 +7,7 @@
 
 > Ordinary conversation with intellectual discipline.
 
-**Current version:** 0.8.0 (skills-only)
+**Current version:** 0.9.0 (skills-only)
 
 LLMs can be thought of as lossy, natural-language search engines for the material they ingested during training—which, for a frontier model, can include an awful lot of the material on the internet.
 
@@ -144,7 +144,7 @@ Dialectical also distinguishes among debate, narrative, inquiry, and decision. E
 
 See [CHATGPT.md](CHATGPT.md) for account installation, desktop and iPhone tests,
 and the distinction between a local folder and an installed account plugin.
-Use the skills-only ZIP in `dist/dialectical-0.8.0.zip`.
+Use the skills-only ZIP in `dist/dialectical-0.9.0.zip`.
 Installing this source does not automatically update an older account plugin.
 
 The portable package contains `plugin.json`, `LICENSE`, `skills/`, and referenced artwork.
@@ -202,7 +202,7 @@ Package validation runs in CI. Installed-host acceptance follows
 [behavior check](QA/BEHAVIOR_CHECK.md) compares Dialectical with plain ChatGPT. See the [architecture audit](docs/architecture-audit.md)
 for the removal of the old service dependency and official specification links.
 
-All 20 bundled skills use release version 0.8.0. Other optional host guides remain in
+All 20 bundled skills use release version 0.9.0. Other optional host guides remain in
 [CLAUDE.md](CLAUDE.md), [CODEX.md](CODEX.md), and [GEMINI.md](GEMINI.md).
 
 ## License
