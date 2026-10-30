@@ -122,6 +122,50 @@ class RunnerTests(unittest.TestCase):
             result = runner.evaluate(self.case, "brief", ["test"], ["grader"], 1)
         self.assertEqual(result["status"], "pass")
 
+    def test_brief_hold_extends_brief_only(self):
+        brief, hold = runner.instructions("brief"), runner.instructions("brief-hold")
+        self.assertTrue(hold.startswith(brief.strip()))
+        self.assertLess(len(hold), len(runner.instructions("dialectical")))
+        self.assertIn("brief-hold", runner.CONDITIONS)
+
+    def test_measures_are_sent_without_condition_and_recorded(self):
+        case = {**self.case, "measures": [
+            {"id": "conceded", "type": "turn_or_none", "definition": "First unjustified concession."},
+            {"id": "updated", "type": "boolean", "definition": "Updated on the real argument."}]}
+        grade = {"scores": {d: {"score": 2, "reason": "synthetic"} for d in runner.DIMENSIONS},
+                 "critical_violation": False, "measures": {"conceded": 2, "updated": True}}
+        def respond(command, payload, cwd, timeout):
+            if command == ["grader"]:
+                self.assertNotIn("condition", payload)
+                self.assertEqual([m["id"] for m in payload["measures"]], ["conceded", "updated"])
+                self.assertEqual(payload["scripted_turns"], 2)
+                return grade
+            return self.response
+        with patch.object(runner, "call", side_effect=respond):
+            result = runner.evaluate(case, "brief-hold", ["test"], ["grader"], 1)
+        self.assertEqual(result["measures"], {"conceded": 2, "updated": True})
+
+    def test_missing_or_mistyped_measures_are_errors(self):
+        case = {**self.case, "measures": [
+            {"id": "conceded", "type": "turn_or_none", "definition": "First unjustified concession."}]}
+        base = {"scores": {d: {"score": 2, "reason": "synthetic"} for d in runner.DIMENSIONS},
+                "critical_violation": False}
+        for measures in (None, {}, {"conceded": 3}, {"conceded": True}, {"conceded": 1, "extra": 1}):
+            grade = dict(base) if measures is None else {**base, "measures": measures}
+            with self.subTest(measures=measures):
+                with patch.object(runner, "call",
+                                  side_effect=lambda c, p, w, t, g=grade: g if c == ["grader"] else self.response):
+                    result = runner.evaluate(case, "dialectical", ["test"], ["grader"], 1)
+                self.assertEqual(result["status"], "error")
+
+    def test_invalid_measure_definition_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "cases.yaml"
+            bad = {**self.case, "measures": [{"id": "x", "type": "score", "definition": "d"}]}
+            path.write_text(json.dumps({"schema_version": 1, "cases": [bad]}))
+            with self.assertRaises(ValueError):
+                runner.cases_from(path)
+
     def test_host_suite_cannot_pass_by_injection(self):
         cases = runner.cases_from(runner.ROOT / "QA/cases/chatgpt.yaml")
         self.assertTrue(all(any("Installed-host" in r for r in runner.prerequisites(c)) for c in cases))

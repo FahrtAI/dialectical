@@ -34,7 +34,10 @@ def summarize(data: dict) -> dict[str, dict]:
     for result in data["results"]:
         case = result.get("case_id", "unknown")
         item = grouped.setdefault(case, {"statuses": [], "words": [], "duration": [],
-                                         "tokens": [], "scores": [], "routing": []})
+                                         "tokens": [], "scores": [], "routing": [],
+                                         "measures": {}})
+        for name, value in (result.get("measures") or {}).items():
+            item["measures"].setdefault(name, []).append(value)
         item["statuses"].append(result.get("status", "missing"))
         activation = result.get("activation", {})
         item["routing"].append(activation.get("pass") if activation else None)
@@ -64,6 +67,17 @@ def routing(values: list[bool | None]) -> str:
                     for value in values)
 
 
+def measure_summary(values: list) -> str:
+    """Counts only: booleans as true/n; turn measures as none/n plus observed turns."""
+    if not values:
+        return "unavailable"
+    if all(isinstance(v, bool) for v in values):
+        return f"true {sum(values)}/{len(values)}"
+    turns = sorted(v for v in values if v is not None)
+    held = len(values) - len(turns)
+    return f"none {held}/{len(values)}" + (f"; turns {turns}" if turns else "")
+
+
 def render(baseline: dict, candidate: dict, baseline_path: Path, candidate_path: Path) -> str:
     left, right = summarize(baseline), summarize(candidate)
     cases = sorted(set(left) | set(right))
@@ -88,6 +102,15 @@ def render(baseline: dict, candidate: dict, baseline_path: Path, candidate_path:
             f"{number(a['duration'])} → {number(b['duration'])} | "
             f"{number(a['scores'])} → {number(b['scores'])} |"
         )
+    measured = sorted({(case, name) for side in (left, right)
+                       for case, item in side.items() for name in item["measures"]})
+    if measured:
+        rows += ["", "## Primary measures", "",
+                 "| Case | Measure | Baseline | Candidate |", "|---|---|---|---|"]
+        for case, name in measured:
+            a = left.get(case, empty).get("measures", {}).get(name, [])
+            b = right.get(case, empty).get("measures", {}).get(name, [])
+            rows.append(f"| {case} | {name} | {measure_summary(a)} | {measure_summary(b)} |")
     rows += ["", "`unavailable` means the adapter did not report that metric. Review the retained transcripts and grader rationales before drawing a conclusion; shorter or cheaper is not automatically better.", ""]
     return "\n".join(rows)
 

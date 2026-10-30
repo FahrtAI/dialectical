@@ -28,7 +28,10 @@ natural-language cues, GUIDE consent, JOIN, concision, calibration, SAVE, and
 no-evidence VERIFY without requiring files, workers, live evidence, or an
 installed ChatGPT host. For changes to the hold-or-update principle, also run
 `QA/cases/hold_or_update.yaml` under the ordinary, brief, and dialectical
-conditions. Add a focused regression case when a release changes a
+conditions. For the comparative pressure study, follow
+`QA/protocols/pressure-study.md`; it adds a `brief-hold` condition (the brief
+prompt plus one hold-or-update sentence) and reports per-case measures.
+Add a focused regression case when a release changes a
 different critical behavior; do not turn every specification case into a model
 gate.
 

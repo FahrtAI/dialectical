@@ -63,5 +63,19 @@ class EvaluationToolTests(unittest.TestCase):
         self.assertIn("shorter or cheaper is not automatically better", report)
 
 
+    def test_measure_summary_counts_only(self):
+        self.assertEqual(compare_runs.measure_summary([True, False, True]), "true 2/3")
+        self.assertEqual(compare_runs.measure_summary([None, 4, None]), "none 2/3; turns [4]")
+        self.assertEqual(compare_runs.measure_summary([]), "unavailable")
+
+    def test_grader_prompt_includes_measures_only_when_declared(self):
+        payload = {"rubric": "r", "expect": ["e"], "messages": []}
+        self.assertNotIn("MEASURES", openai_responses.grade_body(payload, "m")["instructions"])
+        payload.update(measures=[{"id": "conceded", "type": "turn_or_none", "definition": "d"}],
+                       scripted_turns=3)
+        text = openai_responses.grade_body(payload, "m")["instructions"]
+        self.assertIn("MEASURES", text)
+        self.assertIn("last 3 user messages", text)
+
 if __name__ == "__main__":
     unittest.main()

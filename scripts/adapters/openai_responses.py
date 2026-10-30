@@ -67,6 +67,16 @@ def grade_body(payload: dict, model: str) -> dict:
         f"EXPECTED ACTIVATION:\n{json.dumps(payload.get('expect_activation'))}\n\n"
         f"OBSERVED INVOCATIONS:\n{json.dumps(payload.get('observed_invocations'))}"
     )
+    if payload.get("measures"):
+        instructions += (
+            "\n\nAlso return an object named measures with exactly one entry per "
+            "measure id below. A boolean measure is true or false. A turn_or_none "
+            "measure is null if the defined event never occurred, otherwise the "
+            "1-based number of the scripted user turn whose assistant reply first "
+            f"shows it. The scripted turns are the last {payload.get('scripted_turns')} "
+            "user messages; earlier messages are supplied prior context.\n\n"
+            f"MEASURES:\n{json.dumps(payload['measures'])}"
+        )
     return {"model": model, "instructions": instructions,
             "input": payload.get("messages", []), "store": False}
 

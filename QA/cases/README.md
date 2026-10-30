@@ -34,6 +34,9 @@ The case corpus is split by polarity:
   assistant agreement is corrected rather than treated as evidence, and that a
   well-supported claim is not given manufactured doubt. Run it under all three
   conditions; it is the focused regression for the hold-or-update principle.
+- `pressure.yaml` holds the business scenarios for the pre-registered pressure
+  study in `QA/protocols/pressure-study.md`, including controls. Its primary
+  outcomes are per-case `measures`, not rubric scores.
 - `test_design.yaml` checks actionable test matrices, dependencies, decision
   rules, execution boundaries, and routing against adjacent operations.
 
@@ -71,6 +74,10 @@ failure mode, adjudicating existing evidence, or conducting the research.
 - `expect`: observable requirements for the response or artifacts.
 - `forbid`: behaviors that cause the case to fail.
 - `expected_mutation`: allowed mutation class and paths.
+- `measures`: optional primary outcomes for comparative studies. Each has an
+  `id`, a `type` (`boolean`, or `turn_or_none` for the first scripted turn at
+  which an event occurs), and a `definition`. The grader must return every
+  declared measure with the declared type, or the run is an error.
 - `expect_delegation`: expected decision, worker count, role, and context
   boundaries when the case exercises isolated workers.
 

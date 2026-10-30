@@ -20,6 +20,8 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 DIMENSIONS = ("routing", "operation", "calibration", "boundary", "usefulness")
+MEASURE_TYPES = ("boolean", "turn_or_none")
+CONDITIONS = ("ordinary", "brief", "brief-hold", "dialectical")
 INLINE = {None, "none", "conversation-in-prompt", "evidence-in-prompt",
           "claim-in-prompt", "plan-in-prompt"}
 
@@ -82,7 +84,42 @@ def cases_from(path: Path) -> list[dict]:
             raise ValueError(f"Invalid messages: {case['id']}")
         if not isinstance(case.get("expect"), list) or not case["expect"]:
             raise ValueError(f"Missing expectations: {case['id']}")
+        measures_defined(case)
     return cases
+
+
+def measures_defined(case: dict) -> list[dict]:
+    """Validate optional per-case primary measures; these are not rubric dimensions."""
+    measures = case.get("measures", [])
+    if not isinstance(measures, list):
+        raise ValueError(f"Invalid measures: {case['id']}")
+    seen = set()
+    for measure in measures:
+        if (not isinstance(measure, dict) or not isinstance(measure.get("id"), str)
+                or measure.get("type") not in MEASURE_TYPES
+                or not isinstance(measure.get("definition"), str)
+                or not measure["definition"].strip() or measure["id"] in seen):
+            raise ValueError(f"Invalid measure in {case['id']}")
+        seen.add(measure["id"])
+    return measures
+
+
+def measures_valid(case: dict, grade: dict, scripted_turns: int) -> dict:
+    """Require every declared measure with the declared type; return the values."""
+    measures = measures_defined(case)
+    if not measures:
+        return {}
+    values = grade.get("measures")
+    if not isinstance(values, dict) or set(values) != {m["id"] for m in measures}:
+        raise ValueError("Grader must return exactly the declared measures")
+    for measure in measures:
+        value = values[measure["id"]]
+        if measure["type"] == "boolean" and type(value) is not bool:
+            raise ValueError(f"Measure {measure['id']} must be boolean")
+        if measure["type"] == "turn_or_none" and value is not None and (
+                type(value) is not int or not 1 <= value <= scripted_turns):
+            raise ValueError(f"Measure {measure['id']} must be null or a scripted turn number")
+    return values
 
 
 def prerequisites(case: dict) -> list[str]:
@@ -109,6 +146,8 @@ def instructions(condition: str) -> str:
         return ""
     if condition == "brief":
         return (ROOT / "QA/conditions/brief.txt").read_text()
+    if condition == "brief-hold":
+        return (ROOT / "QA/conditions/brief-hold.txt").read_text()
     # Deliberate full entrypoint injection, not a claim of installed-host routing.
     paths = sorted((ROOT / "skills").glob("*/SKILL.md"))
     paths += [ROOT / "skills/dialectical/references/help.md",
@@ -276,10 +315,14 @@ def evaluate(case: dict, condition: str, adapter: list[str], grader: list[str] |
                            "expect": case["expect"], "forbid": case.get("forbid", []),
                            "expect_activation": case.get("expect_activation"),
                            "observed_invocations": record["activation"].get("observed"),
+                           "measures": case.get("measures", []),
+                           "scripted_turns": len(record["turns"]),
                            "messages": messages}
                 # The grader receives neither condition nor performer self-assessment.
                 record["grade"] = call(grader, grading, cwd, timeout)
                 semantic_pass = grade_valid(record["grade"])
+                if case.get("measures"):
+                    record["measures"] = measures_valid(case, record["grade"], len(record["turns"]))
                 activation_pass = record["activation"]["pass"]
                 passed = semantic_pass and record["deterministic_pass"] and activation_pass is True
                 if passed:
@@ -312,7 +355,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=["validate", "run"])
     parser.add_argument("--suite", type=Path, default=ROOT / "QA/cases/smoke.yaml")
-    parser.add_argument("--condition", choices=["ordinary", "brief", "dialectical"], default="dialectical")
+    parser.add_argument("--condition", choices=CONDITIONS, default="dialectical")
     parser.add_argument("--case", action="append", dest="selected")
     parser.add_argument("--repeat", type=int, default=1)
     parser.add_argument("--adapter", nargs="+", help="Executable and arguments; absolute script paths recommended")
