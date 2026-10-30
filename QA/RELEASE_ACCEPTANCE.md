@@ -87,7 +87,7 @@ reproduce a failure, excluding account secrets and unrelated conversation data.
 | Fresh thread resumes from supplied handoff | untested | untested |
 | Select ranked GUIDE choice; only that command executes | untested | untested |
 | Ignore GUIDE menu; ordinary conversation continues | untested | untested |
-| CHECKPOINT → supplied note → RESUME with no store | untested | untested |
+| SAVE → supplied handoff → RESUME with no store | untested | untested |
 | Composer/listing icon, light theme | untested | untested |
 | Composer/listing icon, dark theme | untested | untested |
 

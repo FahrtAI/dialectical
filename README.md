@@ -88,7 +88,7 @@ Dialectical-specific help uses a compact, stable [command card](skills/dialectic
 | Explore | RESEARCH, HYPOTHESIZE, THOUGHT EXPERIMENT | Find relevant prior art, generate explanations, and examine implications |
 | Test | CHALLENGE, TEST DESIGN, VERIFY, ACH, CAUSAL-CHAIN, SOURCE-QUALITY | Seek counterarguments, design discriminating tests, adjudicate claims, test causal logic, and assess sources |
 | Preserve and reuse | TAG, SAVE, RECALL | Organize knowledge, export a Markdown handoff, and retrieve accessible records |
-| Continue over time | START INQUIRY, CHECKPOINT, RESUME, CLOSE | Maintain an optional line of inquiry across conversations |
+| Continue over time | START INQUIRY, RESUME, CLOSE | Maintain an optional line of inquiry across conversations |
 
 ACH is Analysis of Competing Hypotheses: it compares rival explanations against the evidence instead of asking only whether a favored explanation fits. CAUSAL-CHAIN exposes the assumptions in each link of a causal argument. SOURCE-QUALITY rates the reliability of a source separately from the credibility of the information it provides.
 
@@ -150,8 +150,8 @@ configuration, app dependency, executable runtime, or service.
 
 ## Continuity
 
-Conversation works without storage. SAVE returns a portable Markdown handoff; CHECKPOINT
-returns a state note; RESUME can use a checkpoint you paste or attach.
+Conversation works without storage. DISTILL marks where the thinking stands; SAVE
+returns a portable Markdown handoff; RESUME can use a handoff you paste or attach.
 The plugin does not promise automatic recall across chats.
 
 For hosts with an authorized filesystem, the existing optional `.dialectical/`
@@ -199,7 +199,7 @@ Package validation runs in CI. Installed-host acceptance follows
 [behavior check](QA/BEHAVIOR_CHECK.md) compares Dialectical with plain ChatGPT. See the [architecture audit](docs/architecture-audit.md)
 for the removal of the old service dependency and official specification links.
 
-All 25 bundled skills use release version 0.8.0. Storage schema versions are
+All 24 bundled skills use release version 0.8.0. Storage schema versions are
 separate and have not changed. Other optional host guides remain in
 [CLAUDE.md](CLAUDE.md), [CODEX.md](CODEX.md), and [GEMINI.md](GEMINI.md).
 

@@ -16,7 +16,7 @@ ordinary-language invocation that does not name RESUME, begin with one line:
 command or mere discussion. Continuation does not verify or strengthen inherited
 claims.
 
-Use the checkpoint or inquiry visible in this chat. Briefly restore its focus,
+Use the handoff, distillation, or inquiry visible in this chat. Briefly restore its focus,
 evidence, uncertainty, and next questions, then continue. Preserve qualifiers;
 a pasted conclusion is not new verification. If the record is absent, ask the user
 to paste or attach it. Do not claim unseen cross-chat recall or reopen a platform chat.

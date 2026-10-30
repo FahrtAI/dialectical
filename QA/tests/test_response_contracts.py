@@ -8,7 +8,6 @@ COMMANDS = {
     "dialectical-ach": "ACH",
     "dialectical-causal-chain": "CAUSAL-CHAIN",
     "dialectical-challenge": "CHALLENGE",
-    "dialectical-checkpoint": "CHECKPOINT",
     "dialectical-close": "CLOSE",
     "dialectical-collection-gaps": "COLLECTION GAPS",
     "dialectical-distill": "DISTILL",

@@ -6,7 +6,7 @@ in the current chat. Chat history is not a plugin-owned, searchable memory store
 ## Without file storage (default in ChatGPT)
 
 - START INQUIRY establishes a focus in the current conversation.
-- CHECKPOINT and CLOSE return a copyable state note with findings, their basis,
+- DISTILL and CLOSE return a copyable state note with findings, their basis,
   uncertainty, reversals, and open questions. Closing does not close the chat.
 - SAVE returns a portable Markdown conversation handoff with a filename and
   says when it was not persisted elsewhere.
@@ -146,10 +146,10 @@ Do not move information across projects or user-selected memory roots without au
 ## Mutation and deletion
 
 - SAVE creates a portable handoff in chat or, when explicitly requested and
-  authorized, under `exports/`; it does not silently update inquiry state or
-  memory indexes.
-- CHECKPOINT updates inquiry state.
-- CLOSE changes inquiry status after a final checkpoint.
+  authorized, under `exports/`. It updates inquiry state only when the user
+  explicitly asks to save into an active inquiry; it never silently updates
+  state or memory indexes.
+- CLOSE changes inquiry status after a final distillation.
 - RECALL and RESUME are read-only until the user selects an inquiry to activate.
 - TAG changes metadata but does not itself create durable storage unless applied to an already saved object.
 - Never delete, merge, or supersede records without preserving a recoverable trail and making the action explicit.

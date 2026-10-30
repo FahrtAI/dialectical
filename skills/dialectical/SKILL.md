@@ -114,7 +114,7 @@ relevant operations without explaining all of them:
 - Inquiry: RESEARCH, HYPOTHESIZE, THOUGHT EXPERIMENT, CHALLENGE, TEST DESIGN, VERIFY
 - Diagnosis: ACH, CAUSAL-CHAIN, SOURCE-QUALITY
 - Knowledge: TAG, SAVE, RECALL
-- Lifecycle: START INQUIRY, CHECKPOINT, RESUME, CLOSE
+- Lifecycle: START INQUIRY, RESUME, CLOSE
 
 Do not repeat this orientation after the user understands the vocabulary.
 
@@ -143,7 +143,7 @@ Use the corresponding namespaced standalone skill beside this directory:
 - `dialectical-research`, `dialectical-hypothesize`, `dialectical-thought-experiment`, `dialectical-challenge`, `dialectical-test-design`, or `dialectical-verify`
 - `dialectical-ach`, `dialectical-causal-chain`, or `dialectical-source-quality`
 - `dialectical-tag`, `dialectical-save`, or `dialectical-recall`
-- `dialectical-start-inquiry`, `dialectical-checkpoint`, `dialectical-resume`, or `dialectical-close`
+- `dialectical-start-inquiry`, `dialectical-resume`, or `dialectical-close`
 
 Lifecycle operations are not cognitive primitives. They maintain optional inquiry state and must not become a required workflow.
 
