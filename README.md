@@ -90,7 +90,7 @@ Start with CHALLENGE, DISTILL, and SAVE. The groups follow the
 | Plan what to do next | COLLECTION GAPS, TEST DESIGN, INDICATORS | Decide what evidence to seek, what to test, and what to watch | Plans only |
 | Look back | RECAP, TRACE, RESTATE | Compress the discussion, show how the thinking developed, restate a claim | Nothing |
 | Frame the question | RELEVANCE | Clarify what the inquiry is for and its scope | The inquiry's frame |
-| Take it elsewhere | SAVE, RESUME, START INQUIRY, CLOSE, TAG, RECALL | Export a handoff or cold read, continue elsewhere, keep optional inquiry records | Exports and records |
+| Take it elsewhere | SAVE, RESUME | Export a handoff or cold read, and continue elsewhere | Exports only |
 | Get oriented | GUIDE | Rank three useful commands now, or show the full catalog | Nothing |
 
 ACH is Analysis of Competing Hypotheses: it compares rival explanations against the evidence instead of asking only whether a favored explanation fits. CAUSAL-CHAIN exposes the assumptions in each link of a causal argument. SOURCE-QUALITY rates the reliability of a source separately from the credibility of the information it provides.
@@ -157,9 +157,9 @@ Conversation works without storage. DISTILL marks where the thinking stands; SAV
 returns a portable Markdown handoff; RESUME can use a handoff you paste or attach.
 The plugin does not promise automatic recall across chats.
 
-For hosts with an authorized filesystem, the existing optional `.dialectical/`
-format remains supported. It is private and Git-ignored by default. See the
-[memory reference](skills/dialectical/references/memory.md).
+SAVE can also write the handoff to a local file when the host allows it. The
+earlier file-store inquiry operations (START INQUIRY, CLOSE, TAG, RECALL) are
+parked for redesign; see issue #44.
 RESEARCH and VERIFY use available evidence tools or sources you supply; without
 them they state the limitation instead of inventing citations.
 
@@ -202,8 +202,7 @@ Package validation runs in CI. Installed-host acceptance follows
 [behavior check](QA/BEHAVIOR_CHECK.md) compares Dialectical with plain ChatGPT. See the [architecture audit](docs/architecture-audit.md)
 for the removal of the old service dependency and official specification links.
 
-All 24 bundled skills use release version 0.8.0. Storage schema versions are
-separate and have not changed. Other optional host guides remain in
+All 20 bundled skills use release version 0.8.0. Other optional host guides remain in
 [CLAUDE.md](CLAUDE.md), [CODEX.md](CODEX.md), and [GEMINI.md](GEMINI.md).
 
 ## License

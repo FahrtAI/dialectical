@@ -45,10 +45,6 @@ RELEVANCE           Clarify inquiry purpose and scope.
 Take it elsewhere
 SAVE                Export conversation as reusable Markdown.
 RESUME              Continue a previously saved inquiry.
-START INQUIRY       Begin exploring a focused question.
-CLOSE               Close while preserving the inquiry.
-TAG                 Attach useful labels for retrieval.
-RECALL              Retrieve previously saved relevant knowledge.
 
 Get oriented
 GUIDE               Rank three useful conversational commands.

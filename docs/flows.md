@@ -134,7 +134,7 @@ sequenceDiagram
     participant H as Markdown handoff
     participant B as New thread
     Note over U,A: Thread 1
-    U->>A: START INQUIRY on churn after the redesign
+    U->>A: @Dialectical start a conversation about churn after the redesign
     Note over U,A: Flow 1 happens here
     U->>A: SAVE this conversation for a new thread
     A->>H: package context, evidence, uncertainty, and open questions
@@ -150,7 +150,7 @@ sequenceDiagram
 
 | # | User says | Operation | Result |
 |---|---|---|---|
-| 1 | "START INQUIRY on churn after the redesign." | START INQUIRY | Establishes the focus in the current thread. No storage is required. |
+| 1 | "@Dialectical start a conversation about churn after the redesign." | none | Establishes the focus in the current thread. No storage is required. |
 | | Flow 1 happens. | | The conversation develops evidence, hypotheses, and a qualified assessment. |
 | 2 | "SAVE this conversation so I can continue it in a new thread." | SAVE | Produces `churn-after-redesign-handoff.md` containing the purpose, essential context, inspected evidence and sources, least-inconsistent explanation, unresolved magnitude, alternatives, and next questions. It is not a transcript. |
 | | *Three weeks later, in a new thread* | | The user attaches or pastes the handoff. |

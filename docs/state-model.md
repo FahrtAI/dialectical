@@ -107,7 +107,7 @@ them testable: an operation writing state outside its category is a defect.
 | **Milestone** | mark where the thinking stands | conversation, previous milestone | a new snapshot and its diff | DISTILL |
 | **Planning** | decide what to do outside the conversation | claims, latest milestone | plans only; never claim status | COLLECTION GAPS, TEST DESIGN, INDICATORS |
 | **Metadata** | look at the conversation itself | history | nothing | TRACE, RECAP, RESTATE |
-| **Logistics** | move state in or out of the conversation | latest milestone, claims, plans | an export, or imported context | SAVE, RESUME; file-store operations in non-ChatGPT editions |
+| **Logistics** | move state in or out of the conversation | latest milestone, claims, plans | an export, or imported context | SAVE, RESUME |
 | **Framing** | set what the inquiry is for | conversation | the inquiry's purpose and scope | RELEVANCE |
 | **Onboarding** | learn and choose operations | interaction state | interaction state only | GUIDE, HELP, JOIN, cookbook, flows |
 
@@ -151,8 +151,6 @@ recoverable only from visible context.
 
 ## 7. Open questions
 
-- **Should START INQUIRY and CLOSE survive?** Under this model, the start is
-  the first turn and the close is the final distillation plus an optional SAVE.
 - **How explicit should status be in ordinary turns?** This model makes status
   visible at milestones only. Showing it continuously would make the
   conversation more formal, which the core skill avoids.
