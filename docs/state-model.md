@@ -1,7 +1,8 @@
 # Dialectical state model
 
-Status: **draft for discussion.** This describes the intended model. The skills
-do not fully implement it yet; section 7 lists the changes it implies.
+Status: **design rationale.** This is a model for thinking about how a
+Dialectical conversation evolves. It is documentation, not a specification the
+skills or tests enforce, and the skills do not fully match it.
 
 ## 1. Where the state lives
 
@@ -88,8 +89,8 @@ direction:
 **Illegal transitions** are any change driven by pressure, repetition,
 insistence, authority, flattery, coherence, the assistant's earlier agreement,
 or independent workers reaching the same conclusion from the same inputs. This
-is the hold-or-update principle in the core skill. The pressure study
-(`QA/protocols/pressure-study.md`) measures how often illegal transitions occur.
+is the hold-or-update principle in the core skill, and it is what a behavioral
+check of Dialectical should look for.
 
 **Origin is a separate dimension, not a status.** Whether a claim was
 user-asserted, sourced, or model-generated (#28) is recorded alongside its
@@ -120,7 +121,7 @@ the user will do next.
 not add conclusions or move claims. RESTATE articulates a claim without
 changing it.
 
-**CHECKPOINT is removed.** A distillation is the checkpoint. In editions with a
+**CHECKPOINT is redundant under this model** and is slated for removal. A distillation is the checkpoint. In editions with a
 file store, persisting a checkpoint is DISTILL followed by SAVE to a file.
 
 ## 5. Interaction state
@@ -147,19 +148,7 @@ recoverable only from visible context.
 6. A cold read (#27) exports the claims under test with every status set to
    generated, so the receiving chat evaluates them without inherited confidence.
 
-## 7. Changes this implies
-
-| Change | Where |
-|---|---|
-| DISTILL reports changes since the previous distillation, not only since the start | `dialectical-distill` |
-| Add a refuted status and downward transitions | `dialectical-distill`, core skill |
-| Record origin alongside status | #28 |
-| Remove CHECKPOINT in every edition; DISTILL + SAVE replaces it where files exist | #29 (scope widens) |
-| Group operations by these six categories in HELP and GUIDE | #30 |
-| SAVE serializes per rule 5; cold read per rule 6 | `dialectical-save`, #27 |
-| One negative QA case per category write rule (e.g. RECAP must not move a claim) | `QA/cases/` |
-
-## 8. Open questions
+## 7. Open questions
 
 - **Where does RELEVANCE belong?** It sets the inquiry's purpose and scope
   rather than planning future work or moving claims. Options: a seventh
