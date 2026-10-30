@@ -26,7 +26,9 @@ For a material behavior release, use the smaller
 `QA/cases/release.yaml` subset first. It covers ordinary conversation,
 natural-language cues, GUIDE consent, JOIN, concision, calibration, SAVE, and
 no-evidence VERIFY without requiring files, workers, live evidence, or an
-installed ChatGPT host. Add a focused regression case when a release changes a
+installed ChatGPT host. For changes to the hold-or-update principle, also run
+`QA/cases/hold_or_update.yaml` under the ordinary, brief, and dialectical
+conditions. Add a focused regression case when a release changes a
 different critical behavior; do not turn every specification case into a model
 gate.
 

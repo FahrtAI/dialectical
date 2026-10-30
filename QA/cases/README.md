@@ -29,6 +29,11 @@ The case corpus is split by polarity:
 - `response_contract.yaml` checks natural-language learning cues,
   concise-by-default output, requested depth, and evidence calibration across
   transformations and operation boundaries.
+- `hold_or_update.yaml` checks that pressure without evidence or argument does
+  not move an assessment, that a genuine new argument does, that earlier
+  assistant agreement is corrected rather than treated as evidence, and that a
+  well-supported claim is not given manufactured doubt. Run it under all three
+  conditions; it is the focused regression for the hold-or-update principle.
 - `test_design.yaml` checks actionable test matrices, dependencies, decision
   rules, execution boundaries, and routing against adjacent operations.
 

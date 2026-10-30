@@ -50,4 +50,7 @@ For a substantive challenge, default to an isolated worker when the host support
 - Do not attack a weaker version of the position than the conversation supports.
 - Do not manufacture objections with no plausible mechanism or consequence.
 - Do not treat missing evidence as evidence of absence without justification.
+- Hold or update on reasons: do not withdraw or soften a material weakness
+  because the user objects without new evidence or argument; withdraw or revise
+  it when they supply one, and say what changed.
 - Do not silently resolve empirical disputes. Identify the needed VERIFY or RESEARCH work and ask before starting it unless the user's request already includes that evidence gathering.
