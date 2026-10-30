@@ -35,6 +35,9 @@ in the request or separate acceptance; announcing the method is not consent.
 4. Describe plausible failure modes and what conditions would produce them.
 5. Distinguish fatal problems, material weaknesses, and ordinary uncertainties.
 6. State what evidence, revision, or test would most strengthen or overturn the position.
+7. End with **What holds up:** in a line or two, the specific parts that survived
+   this challenge and why. If nothing material survived, say so; do not invent
+   strengths. Surviving this challenge does not verify them.
 
 Target the highest-leverage vulnerabilities. A challenge is successful when it reveals how the idea could fail, not when it merely sounds skeptical.
 Possible vulnerabilities remain possibilities until evidence demonstrates them.

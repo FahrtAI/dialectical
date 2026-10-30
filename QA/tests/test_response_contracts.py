@@ -71,6 +71,13 @@ class ResponseContractTests(unittest.TestCase):
         self.assertIn("Origin is not reliability", distill)
         self.assertIn("assistant-generated without a source", handoff)
 
+    def test_challenge_ends_with_what_holds_up_and_help_names_pre_share(self):
+        challenge = (ROOT / "skills/dialectical-challenge/SKILL.md").read_text()
+        card = (ROOT / "skills/dialectical/references/help.md").read_text()
+        self.assertIn("**What holds up:**", challenge)
+        self.assertIn("do not invent", challenge)
+        self.assertIn("Before it goes in a deck, an email, or a decision", card)
+
     def test_known_calibration_findings_are_fixed(self):
         example = (ROOT / "skills/dialectical-ach/references/example.md").read_text()
         source = (ROOT / "skills/dialectical-source-quality/SKILL.md").read_text()

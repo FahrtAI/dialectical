@@ -40,7 +40,7 @@
         "defaultPrompt": [
           "Which Dialectical operation would help now?",
           "Find prior art connected to this idea.",
-          "Use ACH to compare these explanations."
+          "Challenge this before it goes in the deck."
         ],
         "brandColor": "#0C274E",
         "composerIcon": "./assets/icon.png",

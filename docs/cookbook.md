@@ -10,6 +10,17 @@ its operations. If unsure which move fits, ask
 [GUIDE](../skills/dialectical-guide/SKILL.md), which ranks useful options and
 waits for your selection.
 
+## Check something before you share it
+
+Opening: “This market estimate is going into the board deck tomorrow.”
+Run [CHALLENGE](../skills/dialectical-challenge/SKILL.md) before the claim leaves
+the conversation: what it assumes, where the number came from, and what would
+make it wrong. The challenge ends with what holds up, so you know what to state
+confidently and what to soften or source. Use
+[VERIFY](../skills/dialectical-verify/SKILL.md) for a specific figure when
+evidence is available. Avoid treating a survived challenge as verification.
+Minimal move: CHALLENGE.
+
 ## Explore a new idea
 
 Opening: “Could small neighborhood rituals make a place feel more like home?”

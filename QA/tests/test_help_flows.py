@@ -10,6 +10,7 @@ from validate_plugin_package import package_files
 
 
 RECIPES = (
+    "Check something before you share it",
     "Explore a new idea",
     "Explain an unexpected outcome",
     "Test a causal claim",
