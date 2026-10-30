@@ -29,6 +29,16 @@ when the stated evidence or analysis justifies it.
    A VERIFY verdict or ACH ranking keeps its original scope and uncertainty.
    Do not promote "least inconsistent among these candidates" into "the cause,"
    or a source's assertion into an independently established fact.
+
+   For consequential claims, also record **origin**, which is separate from status:
+   - **User:** the user introduced it.
+   - **Sourced:** traceable to a named or supplied source; name it.
+   - **Assistant:** first introduced by the assistant without a source.
+   - **Unknown:** the introduction is not visible in the available context. Do not guess.
+
+   Flag any assistant-originated claim that the conversation now treats as a
+   premise. Origin is not reliability: a sourced claim can still be weak, and an
+   assistant estimate can later be tested.
 3. Extract the smallest set of consequential insights, decisions, live uncertainties, and open questions.
 4. Preserve confidence levels and disagreements. Do not manufacture consensus.
 5. Identify what changed relative to the inquiry's starting point when that change is meaningful.
@@ -37,6 +47,7 @@ Use only the sections that contain useful material:
 
 - What is established or tested
 - What we generated but have not tested
+- Premises that began as the assistant's unsourced output
 - What remains uncertain
 - Open questions
 - Consequences or next decisions

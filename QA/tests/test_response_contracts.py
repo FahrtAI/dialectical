@@ -61,6 +61,16 @@ class ResponseContractTests(unittest.TestCase):
                 text = (ROOT / "skills" / directory / "SKILL.md").read_text()
                 self.assertIn("Hold or update on reasons", text)
 
+    def test_claim_origin_is_labeled_in_core_distill_and_save(self):
+        core = (ROOT / "skills/dialectical/SKILL.md").read_text()
+        distill = (ROOT / "skills/dialectical-distill/SKILL.md").read_text()
+        handoff = (ROOT / "skills/dialectical-save/references/handoff-format.md").read_text()
+        self.assertIn("Your own unsourced output is not a source", core)
+        for label in ("**User:**", "**Sourced:**", "**Assistant:**", "**Unknown:**"):
+            self.assertIn(label, distill)
+        self.assertIn("Origin is not reliability", distill)
+        self.assertIn("assistant-generated without a source", handoff)
+
     def test_known_calibration_findings_are_fixed(self):
         example = (ROOT / "skills/dialectical-ach/references/example.md").read_text()
         source = (ROOT / "skills/dialectical-source-quality/SKILL.md").read_text()

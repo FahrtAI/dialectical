@@ -24,7 +24,8 @@ only when the requested scope is materially ambiguous.
 
 Use [the handoff format](references/handoff-format.md). Preserve the original
 scope, provenance, disagreement, and uncertainty of every claim. Separate
-supplied facts and sourced evidence from conversational hypotheses and analysis.
+supplied facts and sourced evidence from conversational hypotheses and analysis,
+and keep assistant-generated figures or claims labeled as such.
 State important context that is missing or unavailable; do not reconstruct it.
 
 When the host supports user-downloadable files, create a descriptively named

@@ -10,8 +10,11 @@ thread. Prefer compact prose and omit empty sections, but retain these meanings:
 - **Current state:** conclusions, decisions, and material developments, each at
   the confidence actually earned.
 - **Evidence and provenance:** what supports the current state, where it came
-  from, and any source or verification limits. Distinguish user-supplied claims,
-  external evidence, and conversational analysis.
+  from, and any source or verification limits. Label the origin of each
+  consequential claim: user-supplied, sourced (name the source), or
+  assistant-generated without a source. Keep any flag that an
+  assistant-generated claim is being used as a premise; the receiving thread
+  must not treat it as sourced.
 - **Live alternatives:** hypotheses, disagreements, or abandoned paths that
   still matter, including why they remain open or were set aside.
 - **Uncertainties and gaps:** unknowns, missing context, and unresolved conflicts.
