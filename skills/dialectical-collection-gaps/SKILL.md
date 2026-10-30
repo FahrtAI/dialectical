@@ -2,7 +2,7 @@
 name: dialectical-collection-gaps
 description: Identify and prioritize missing evidence that could change a judgment or distinguish competing explanations. Use for COLLECTION GAPS or asking what evidence to seek next; proposes collection without conducting RESEARCH, adjudicating a claim with VERIFY, or defining future signals with INDICATORS.
 metadata:
-  version: "0.8.0"
+  version: "0.9.0"
 ---
 
 # Collection gaps
