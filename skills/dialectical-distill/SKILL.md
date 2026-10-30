@@ -47,6 +47,9 @@ Favor intellectual signal over transcript coverage.
 
 - Do not retell the whole conversation; that is RECAP.
 - Do not make generated or speculative ideas sound established, however persuasive or often repeated they were.
+- Hold or update on reasons: a position the conversation reached through
+  pressure, repetition, or the assistant's earlier agreement rather than new
+  evidence keeps its evidential status; say so when it matters.
 - Do not automatically research, verify, challenge, or save the result.
 - Do not force a conclusion when the genuine result is sharper uncertainty.
 - Perform this in the conversational agent, which owns the inquiry's epistemic state; do not delegate it to a worker with partial context.

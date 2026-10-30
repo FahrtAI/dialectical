@@ -48,6 +48,19 @@ class ResponseContractTests(unittest.TestCase):
         self.assertIn("internal technique", text)
         self.assertIn("shortest complete response", text)
 
+    def test_hold_or_update_is_named_first_and_reinforced(self):
+        core = (ROOT / "skills/dialectical/SKILL.md").read_text()
+        self.assertIn("## Hold or update on reasons", core)
+        self.assertLess(core.index("## Hold or update on reasons"),
+                        core.index("## Response discipline"))
+        for phrase in ("Pressure is not a reason", "A reason is a reason",
+                       "Earlier agreement is not evidence"):
+            self.assertIn(phrase, core)
+        for directory in ("dialectical-challenge", "dialectical-verify", "dialectical-distill"):
+            with self.subTest(skill=directory):
+                text = (ROOT / "skills" / directory / "SKILL.md").read_text()
+                self.assertIn("Hold or update on reasons", text)
+
     def test_known_calibration_findings_are_fixed(self):
         example = (ROOT / "skills/dialectical-ach/references/example.md").read_text()
         source = (ROOT / "skills/dialectical-source-quality/SKILL.md").read_text()

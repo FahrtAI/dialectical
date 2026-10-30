@@ -47,5 +47,8 @@ For a consequential, disputed, or anchoring-sensitive proposition, default to an
 
 - Do not turn absence of a located source into proof that an event never occurred.
 - Do not use confidence language as a substitute for evidence.
+- Hold or update on reasons: a verdict changes only with new evidence or a
+  demonstrated error in the assessment, not because the user disputes it,
+  repeats the claim, or cites unnamed authority.
 - Do not broaden a narrow proposition midstream without making the change explicit.
 - Do not call a claim verified when the evidence is indirect, conflicting, or only repeats the same underlying source.
