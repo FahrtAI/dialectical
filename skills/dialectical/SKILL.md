@@ -156,6 +156,9 @@ Route by the requested job, not a keyword alone:
   offer MORE for the complete catalog, and wait for selection.
 - “Package this conversation so I can continue elsewhere” → SAVE: create a
   portable Markdown handoff without implying cross-thread memory.
+- “Give me something to check this in a fresh chat” → SAVE cold read: export
+  only the claim, its evidence, and the question, without this conversation's
+  conclusions.
 - “What are we trying to understand or inform?” → RELEVANCE: purpose and scope.
 - “What missing evidence would separate these explanations?” → COLLECTION GAPS: evidence to seek, without collecting it.
 - “Turn these hypotheses into decisive experiments” → TEST DESIGN: measurements, controls, decision rules, dependencies, and consequences, without conducting the research.

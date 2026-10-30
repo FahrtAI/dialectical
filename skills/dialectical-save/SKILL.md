@@ -1,6 +1,6 @@
 ---
 name: dialectical-save
-description: Package the relevant conversation into a portable Markdown handoff that can be saved or imported into a new thread. Use for SAVE or requests to preserve and continue the conversation elsewhere; do not imply cross-chat memory or external storage.
+description: Package the relevant conversation into a portable Markdown handoff that can be saved or imported into a new thread, or export a cold read of one claim for an independent check in a fresh chat. Use for SAVE, requests to preserve and continue the conversation elsewhere, or requests to check a claim somewhere without this conversation's influence; do not imply cross-chat memory or external storage.
 metadata:
   version: "0.8.0"
 ---
@@ -27,6 +27,16 @@ scope, provenance, disagreement, and uncertainty of every claim. Separate
 supplied facts and sourced evidence from conversational hypotheses and analysis,
 and keep assistant-generated figures or claims labeled as such.
 State important context that is missing or unavailable; do not reconstruct it.
+
+## Cold read
+
+When the user wants a claim checked independently, for example "SAVE cold
+read," "give me something to check this in a fresh chat," or "let another model
+look at this," export a cold read instead of a handoff, using
+[the cold-read format](references/cold-read.md). A handoff carries the
+conversation forward; a cold read deliberately leaves it behind. Every claim
+arrives unverified, and the conversation's conclusions, trajectory, and the
+user's preferred answer are left out.
 
 When the host supports user-downloadable files, create a descriptively named
 `.md` file and provide it. Otherwise, provide a filename and the complete,

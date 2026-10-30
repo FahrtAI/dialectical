@@ -48,6 +48,11 @@ it only means this challenge did not establish a material failure.
 
 For a substantive challenge, default to an isolated worker when the host supports one. Supply the strongest formulation, relevant evidence, user goal, and material constraints, while omitting unrelated social or rhetorical context that could anchor the critique. Ask for vulnerabilities, mechanisms, failure conditions, and disconfirming evidence—not a polished response to the user. The conversational agent checks that the worker attacked the real position, removes performative objections, and owns the final answer. Challenge a short or context-dependent claim directly when delegation would add no useful independence.
 
+When no isolated worker is available, the challenge comes from the same context
+that built the position. Say so briefly for a consequential claim, and offer a
+SAVE cold read once so the user can get an independent check in a fresh chat or
+another model. Do not imply independence the host did not provide.
+
 ## Boundaries
 
 - Do not attack a weaker version of the position than the conversation supports.
