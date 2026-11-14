@@ -4,6 +4,20 @@ Dialectical 0.9.0 is a skills-only plugin. Its entry point is
 `skills/dialectical/SKILL.md`, and its display name is **Dialectical**.
 The package requires no server, OAuth, API key, developer mode, or app connection.
 
+## Build the plugin ZIP
+
+While the 0.9.0 release is a draft, build the installable ZIP from the
+`v0.9.0` tag with Git and Python 3.12.
+
+```sh
+git clone --branch v0.9.0 https://github.com/FahrtAI/dialectical.git
+cd dialectical
+python3 scripts/package_plugin.py
+```
+
+Use the resulting `dist/dialectical-0.9.0.zip` for the account installation
+below.
+
 ## Install or update the account plugin
 
 Use an account installation for both desktop and iPhone. A ZIP on your Mac,

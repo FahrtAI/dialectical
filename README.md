@@ -163,12 +163,10 @@ Dialectical also distinguishes among debate, narrative, inquiry, and decision. E
 
 ## Install in ChatGPT
 
-See [CHATGPT.md](CHATGPT.md) for account installation, desktop and iPhone tests,
-and the distinction between a local folder and an installed account plugin.
-Use `dialectical-0.9.0.zip` from the
-[GitHub release](https://github.com/FahrtAI/dialectical/releases), or build it
-locally into `dist/dialectical-0.9.0.zip`.
-Installing this source does not automatically update an older account plugin.
+[Build `dist/dialectical-0.9.0.zip` from source](CHATGPT.md#build-the-plugin-zip)
+while the GitHub release is a draft. Attach the resulting ZIP when you
+[install or update Dialectical in ChatGPT](CHATGPT.md#install-or-update-the-account-plugin).
+See [CHATGPT.md](CHATGPT.md) for desktop and iPhone acceptance tests.
 
 The portable package contains `plugin.json`, `LICENSE`, `skills/`, and referenced artwork.
 Its OpenAI display name is **Dialectical**. The plugin includes no MCP
