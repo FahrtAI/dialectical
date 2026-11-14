@@ -64,16 +64,15 @@ the checksum from the intended repository release or CI run.
    downloads those exact tested artifacts and creates a **draft GitHub release**.
    Normal branch/PR builds cannot create a release. Only the release job has
    repository write permission; no extra credentials or runtime server are needed.
-5. For a release that changes skill behavior, run the manual
-   [behavior check](../QA/BEHAVIOR_CHECK.md) with the installed candidate and
-   record the results and share links in the release record. It compares
-   Dialectical with plain ChatGPT; it does not establish installed-host acceptance.
-6. Review the draft's version, commit, assets, and notes. Install the ZIP using
+5. Review the draft's version, commit, assets, and notes. Install the ZIP using
    [CHATGPT.md](../CHATGPT.md), perform the short smoke test in
    [QA/RELEASE_ACCEPTANCE.md](../QA/RELEASE_ACCEPTANCE.md), and record desktop and
-   iPhone separately using
-   [the reusable record](../QA/releases/TEMPLATE.md). Publish the draft when
-   ready; state any failed, blocked, or untested surfaces.
+   iPhone separately using [the release record](../QA/releases/TEMPLATE.md).
+6. For a release that changes skill behavior, run the manual
+   [behavior check](../QA/BEHAVIOR_CHECK.md) with the installed candidate, plain
+   ChatGPT, and a short discipline prompt. Record the results and transcript
+   references in the release record. Publish the draft when ready and state any
+   failed, blocked, or untested surfaces.
 
 An existing release is never overwritten by the workflow. If a rerun encounters
 an existing draft, inspect it and its assets before deciding whether any repair
