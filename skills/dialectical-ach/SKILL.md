@@ -50,6 +50,11 @@ confidence only when the stated evidence or analysis justifies it.
    - `-` inconsistent
    - `--` strongly inconsistent
    - `?` insufficient information
+
+   Rate each item against the hypothesis as stated. If evidence rules out only
+   one version of an explanation, name that version and keep the broader
+   hypothesis open.
+
 8. Weight diagnostic evidence, which fits some hypotheses and not others, above evidence compatible with all of them. Focus on contradictions rather than counting supporting marks. One reliable contradiction may matter more than many weak consistencies.
 9. Seek plausible evidence that would disconfirm the leading hypothesis. Reassess after adding it.
 10. Run a sensitivity check: identify which uncertain evidence or weighting could change the result.
