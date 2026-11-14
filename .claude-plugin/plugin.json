@@ -11,8 +11,123 @@
   "homepage": "https://github.com/FahrtAI/dialectical",
   "repository": "https://github.com/FahrtAI/dialectical",
   "license": "CC-BY-NC-SA-4.0",
-  "keywords": ["inquiry", "research", "reasoning", "critical-thinking"],
+  "keywords": [
+    "inquiry",
+    "research",
+    "reasoning",
+    "critical-thinking"
+  ],
   "icon": "./assets/icon.png",
   "documentationUrl": "https://github.com/FahrtAI/dialectical#readme",
-  "supportUrl": "https://github.com/FahrtAI/dialectical/issues"
+  "supportUrl": "https://github.com/FahrtAI/dialectical/issues",
+  "commands": {
+    "start": {
+      "description": "Start a Dialectical conversation in this chat",
+      "argumentHint": "[topic]",
+      "content": "Start a Dialectical conversation in this chat. Use the dialectical skill and treat this as the user starting a conversation with Dialectical. Topic, if given: $ARGUMENTS"
+    },
+    "help": {
+      "description": "Show the Dialectical help card",
+      "content": "Use the dialectical skill to show HELP."
+    },
+    "join": {
+      "description": "Bring Dialectical into this existing conversation",
+      "content": "Use the dialectical skill to run JOIN on this existing conversation."
+    },
+    "ach": {
+      "description": "Compare competing hypotheses against evidence",
+      "argumentHint": "[claim or topic]",
+      "content": "Run the Dialectical ACH operation using the dialectical-ach skill. Apply it to: $ARGUMENTS\n\nIf nothing follows \"Apply it to\", apply it to the claim, position, or conversation currently under discussion."
+    },
+    "causal-chain": {
+      "description": "Test each link in causation",
+      "argumentHint": "[claim or topic]",
+      "content": "Run the Dialectical CAUSAL-CHAIN operation using the dialectical-causal-chain skill. Apply it to: $ARGUMENTS\n\nIf nothing follows \"Apply it to\", apply it to the claim, position, or conversation currently under discussion."
+    },
+    "challenge": {
+      "description": "Seek weaknesses and disconfirming evidence",
+      "argumentHint": "[claim or topic]",
+      "content": "Run the Dialectical CHALLENGE operation using the dialectical-challenge skill. Apply it to: $ARGUMENTS\n\nIf nothing follows \"Apply it to\", apply it to the claim, position, or conversation currently under discussion."
+    },
+    "collection-gaps": {
+      "description": "Identify missing evidence worth seeking",
+      "argumentHint": "[claim or topic]",
+      "content": "Run the Dialectical COLLECTION GAPS operation using the dialectical-collection-gaps skill. Apply it to: $ARGUMENTS\n\nIf nothing follows \"Apply it to\", apply it to the claim, position, or conversation currently under discussion."
+    },
+    "distill": {
+      "description": "Extract insights, tensions, and questions",
+      "argumentHint": "[claim or topic]",
+      "content": "Run the Dialectical DISTILL operation using the dialectical-distill skill. Apply it to: $ARGUMENTS\n\nIf nothing follows \"Apply it to\", apply it to the claim, position, or conversation currently under discussion."
+    },
+    "guide": {
+      "description": "Rank three useful conversational commands",
+      "argumentHint": "[claim or topic]",
+      "content": "Run the Dialectical GUIDE operation using the dialectical-guide skill. Apply it to: $ARGUMENTS\n\nIf nothing follows \"Apply it to\", apply it to the claim, position, or conversation currently under discussion."
+    },
+    "hypothesize": {
+      "description": "Generate plausible competing explanations deliberately",
+      "argumentHint": "[claim or topic]",
+      "content": "Run the Dialectical HYPOTHESIZE operation using the dialectical-hypothesize skill. Apply it to: $ARGUMENTS\n\nIf nothing follows \"Apply it to\", apply it to the claim, position, or conversation currently under discussion."
+    },
+    "indicators": {
+      "description": "Define observable signals worth watching",
+      "argumentHint": "[claim or topic]",
+      "content": "Run the Dialectical INDICATORS operation using the dialectical-indicators skill. Apply it to: $ARGUMENTS\n\nIf nothing follows \"Apply it to\", apply it to the claim, position, or conversation currently under discussion."
+    },
+    "recap": {
+      "description": "Compress the conversation without interpretation",
+      "argumentHint": "[claim or topic]",
+      "content": "Run the Dialectical RECAP operation using the dialectical-recap skill. Apply it to: $ARGUMENTS\n\nIf nothing follows \"Apply it to\", apply it to the claim, position, or conversation currently under discussion."
+    },
+    "relevance": {
+      "description": "Clarify inquiry purpose and scope",
+      "argumentHint": "[claim or topic]",
+      "content": "Run the Dialectical RELEVANCE operation using the dialectical-relevance skill. Apply it to: $ARGUMENTS\n\nIf nothing follows \"Apply it to\", apply it to the claim, position, or conversation currently under discussion."
+    },
+    "research": {
+      "description": "Find relevant evidence and precedents",
+      "argumentHint": "[claim or topic]",
+      "content": "Run the Dialectical RESEARCH operation using the dialectical-research skill. Apply it to: $ARGUMENTS\n\nIf nothing follows \"Apply it to\", apply it to the claim, position, or conversation currently under discussion."
+    },
+    "restate": {
+      "description": "Rephrase an idea without judgment",
+      "argumentHint": "[claim or topic]",
+      "content": "Run the Dialectical RESTATE operation using the dialectical-restate skill. Apply it to: $ARGUMENTS\n\nIf nothing follows \"Apply it to\", apply it to the claim, position, or conversation currently under discussion."
+    },
+    "resume": {
+      "description": "Continue a previously saved inquiry",
+      "argumentHint": "[claim or topic]",
+      "content": "Run the Dialectical RESUME operation using the dialectical-resume skill. Apply it to: $ARGUMENTS\n\nIf nothing follows \"Apply it to\", apply it to the claim, position, or conversation currently under discussion."
+    },
+    "save": {
+      "description": "Export conversation as reusable Markdown",
+      "argumentHint": "[claim or topic]",
+      "content": "Run the Dialectical SAVE operation using the dialectical-save skill. Apply it to: $ARGUMENTS\n\nIf nothing follows \"Apply it to\", apply it to the claim, position, or conversation currently under discussion."
+    },
+    "source-quality": {
+      "description": "Rate source reliability and credibility",
+      "argumentHint": "[claim or topic]",
+      "content": "Run the Dialectical SOURCE-QUALITY operation using the dialectical-source-quality skill. Apply it to: $ARGUMENTS\n\nIf nothing follows \"Apply it to\", apply it to the claim, position, or conversation currently under discussion."
+    },
+    "test-design": {
+      "description": "Turn claims into decisive tests",
+      "argumentHint": "[claim or topic]",
+      "content": "Run the Dialectical TEST DESIGN operation using the dialectical-test-design skill. Apply it to: $ARGUMENTS\n\nIf nothing follows \"Apply it to\", apply it to the claim, position, or conversation currently under discussion."
+    },
+    "thought-experiment": {
+      "description": "Explore implications through imagined conditions",
+      "argumentHint": "[claim or topic]",
+      "content": "Run the Dialectical THOUGHT EXPERIMENT operation using the dialectical-thought-experiment skill. Apply it to: $ARGUMENTS\n\nIf nothing follows \"Apply it to\", apply it to the claim, position, or conversation currently under discussion."
+    },
+    "trace": {
+      "description": "Recover where an idea originated",
+      "argumentHint": "[claim or topic]",
+      "content": "Run the Dialectical TRACE operation using the dialectical-trace skill. Apply it to: $ARGUMENTS\n\nIf nothing follows \"Apply it to\", apply it to the claim, position, or conversation currently under discussion."
+    },
+    "verify": {
+      "description": "Check claims against available evidence",
+      "argumentHint": "[claim or topic]",
+      "content": "Run the Dialectical VERIFY operation using the dialectical-verify skill. Apply it to: $ARGUMENTS\n\nIf nothing follows \"Apply it to\", apply it to the claim, position, or conversation currently under discussion."
+    }
+  }
 }

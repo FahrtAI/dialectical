@@ -184,9 +184,11 @@ claude plugin install dialectical@fahrtai
 ```
 
 To start, ask Claude to use Dialectical, for example *"Use Dialectical to
-challenge this before it goes in the deck"*, or run `/dialectical:dialectical`.
-Each operation is also available directly, such as
-`/dialectical:dialectical-challenge`. Installing adds about 2,000 tokens of skill
+challenge this before it goes in the deck"*, or run `/dialectical:start`. Every
+operation has a short command: `/dialectical:challenge`, `/dialectical:distill`,
+`/dialectical:save`, and so on, with `/dialectical:help` for the full list.
+Anything after the command is what it works on, for example
+`/dialectical:challenge our TAM is $4B`. Installing adds about 2,000 tokens of skill
 descriptions to every session, so Claude knows the operations exist.
 
 See [CLAUDE-INSTALL.md](CLAUDE-INSTALL.md) for updating, uninstalling, and checking the install.
