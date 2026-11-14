@@ -45,6 +45,9 @@ Allowed status values: `pass`, `fail`, `blocked`, `untested`.
 | Natural-language cue and operation | untested | untested |
 | GUIDE → selection and GUIDE → MORE | untested | untested |
 | JOIN menu and selection boundary | untested | untested |
+| Ignored GUIDE and JOIN menus expire | untested | untested |
+| GUIDE → JOIN routes a number to JOIN only | untested | untested |
+| GUIDE → MORE requires a named command | untested | untested |
 | Portable SAVE | untested | untested |
 | Fresh-thread RESUME from supplied handoff | untested | untested |
 | Ordinary conversation remains ordinary | untested | untested |

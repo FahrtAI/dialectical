@@ -32,13 +32,15 @@ GUIDE, mere discussion, or orientation material.
    competing description or catalog.
 4. Present the three choices and `[MORE] Show all commands`. Do not perform any
    selected operation in this response.
-5. On the user's next turn:
-   - a choice of `1`, `2`, or `3` authorizes only the command at that position
-     in the most recent GUIDE menu;
+5. On the user's next turn, if the immediately preceding assistant reply
+   presented this live GUIDE menu:
+   - a bare `1`, `2`, or `3` authorizes only the command at that position;
    - a named command authorizes only that command;
    - `MORE` returns the complete canonical command catalog from the help
-     reference without running anything; after that, wait for a named command;
-   - ignoring the menu and continuing the discussion authorizes nothing.
+     reference without running anything. After MORE, require a named command
+     to choose an operation.
+   Any intervening user turn or newer menu closes this menu. Later numbers
+   cannot select from it.
 6. If the available context is too thin to rank commands responsibly, ask one
    brief question about what the user wants from the conversation. After the
    answer, provide the ranked three rather than another intake sequence.
