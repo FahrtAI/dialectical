@@ -161,10 +161,40 @@ independently.
 
 Dialectical also distinguishes among debate, narrative, inquiry, and decision. Each is legitimate, but each fails differently. In particular, a plausible narrative is not necessarily an explanation, and a decision mixes facts with goals, values, and trade-offs. The distinction should improve the answer without making the conversation sound like a methodology workshop. See [conversation modes](skills/dialectical/references/modes.md) for details.
 
+## Install in Claude
+
+This repository is its own Claude plugin marketplace. Install once and the
+plugin updates when a new version is released.
+
+**Claude (web, desktop, Cowork):** open **Customize → Plugins**, choose
+**Add → Add marketplace → Add from a repository**, enter `FahrtAI/dialectical`,
+then add **Dialectical** from that marketplace. Plugins need a paid plan.
+
+**Claude Code:** in a session, run
+
+```text
+/plugin install dialectical --marketplace FahrtAI/dialectical
+```
+
+or, from your shell, on any version:
+
+```sh
+claude plugin marketplace add FahrtAI/dialectical
+claude plugin install dialectical@fahrtai
+```
+
+To start, ask Claude to use Dialectical, for example *"Use Dialectical to
+challenge this before it goes in the deck"*, or run `/dialectical:dialectical`.
+Each operation is also available directly, such as
+`/dialectical:dialectical-challenge`. Installing adds about 2,000 tokens of skill
+descriptions to every session, so Claude knows the operations exist.
+
+See [CLAUDE-INSTALL.md](CLAUDE-INSTALL.md) for updating, uninstalling, and checking the install.
+
 ## Install in ChatGPT
 
 [Build `dist/dialectical-0.9.1.zip` from source](CHATGPT.md#build-the-plugin-zip)
-or download that ZIP from the [GitHub release](https://github.com/FahrtAI/dialectical/releases/tag/v0.9.1) once published. Attach the ZIP when you
+or download that ZIP from the [GitHub release](https://github.com/FahrtAI/dialectical/releases/tag/v0.9.1). Attach the ZIP when you
 [install or update Dialectical in ChatGPT](CHATGPT.md#install-or-update-the-account-plugin).
 See [CHATGPT.md](CHATGPT.md) for desktop and iPhone acceptance tests.
 
@@ -227,7 +257,7 @@ Package validation runs in CI. Installed-host acceptance follows
 service dependency and official specification links.
 
 All 20 bundled skills use release version 0.9.1. Other optional host guides remain in
-[CLAUDE.md](CLAUDE.md), [CODEX.md](CODEX.md), and [GEMINI.md](GEMINI.md).
+[CODEX.md](CODEX.md) and [GEMINI.md](GEMINI.md).
 
 ## License
 

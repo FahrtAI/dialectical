@@ -146,5 +146,20 @@ class ReleaseGateTests(unittest.TestCase):
             self.check()
 
 
+class ClaudePluginTest(unittest.TestCase):
+    def test_claude_manifests_match_plugin_json(self):
+        import importlib.util, json
+        root = Path(__file__).resolve().parents[2]
+        spec = importlib.util.spec_from_file_location(
+            "vpp", root / "scripts/validate_plugin_package.py")
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        manifest = json.loads((root / "plugin.json").read_text())
+        self.assertEqual(module.claude_failures(manifest), [])
+        drifted = dict(manifest, version="0.0.0")
+        self.assertIn("Claude plugin.json version differs from plugin.json",
+                      module.claude_failures(drifted))
+
+
 if __name__ == "__main__":
     unittest.main()

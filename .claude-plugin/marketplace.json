@@ -1,0 +1,16 @@
+{
+  "name": "fahrtai",
+  "description": "Plugins from FahrtAI",
+  "owner": {
+    "name": "FahrtAI",
+    "url": "https://github.com/FahrtAI"
+  },
+  "plugins": [
+    {
+      "name": "dialectical",
+      "source": "./",
+      "description": "Ordinary conversation with intellectual discipline: affirm, confirm, and dispute claims, including the model's own.",
+      "category": "productivity"
+    }
+  ]
+}

@@ -29,6 +29,32 @@ def package_files() -> list[Path]:
     return sorted(set(files))
 
 
+def claude_failures(manifest: dict) -> list[str]:
+    """The Claude plugin and marketplace manifests must agree with plugin.json."""
+    failures = []
+    try:
+        claude = json.loads((ROOT / ".claude-plugin/plugin.json").read_text())
+        market = json.loads((ROOT / ".claude-plugin/marketplace.json").read_text())
+    except (OSError, ValueError) as error:
+        return [f"Cannot read Claude plugin manifests: {error}"]
+    for key in ("name", "version", "license", "homepage"):
+        if claude.get(key) != manifest.get(key):
+            failures.append(f"Claude plugin.json {key} differs from plugin.json")
+    if not (ROOT / str(claude.get("icon", "")).removeprefix("./")).is_file():
+        failures.append("Claude plugin.json icon is missing")
+    entries = market.get("plugins") if isinstance(market, dict) else None
+    if not isinstance(entries, list) or len(entries) != 1:
+        return failures + ["marketplace.json must list exactly one plugin"]
+    entry = entries[0]
+    if entry.get("name") != manifest.get("name") or entry.get("source") != "./":
+        failures.append("marketplace.json entry must name this plugin with source ./")
+    if "version" in entry:
+        failures.append("marketplace.json entry must not set version; plugin.json owns it")
+    if (ROOT / "bin").exists():
+        failures.append("A top-level bin/ directory blocks installation in Claude")
+    return failures
+
+
 def validate() -> list[str]:
     failures = []
     try:
@@ -65,6 +91,7 @@ def validate() -> list[str]:
                  ".codex-plugin/plugin.json"):
         if (ROOT / path).exists():
             failures.append(f"Unnecessary infrastructure remains: {path}")
+    failures.extend(claude_failures(manifest))
     extension = manifest.get("extensions", {}).get("com.openai", {})
     if not isinstance(extension, dict) or set(extension) - {"interface"}:
         return failures + ["This package needs only the OpenAI interface extension"]

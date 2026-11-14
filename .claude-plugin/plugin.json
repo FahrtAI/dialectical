@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "dialectical",
+  "displayName": "Dialectical",
+  "version": "0.9.1",
+  "description": "Ordinary conversation with intellectual discipline. Affirm what the evidence supports, confirm what can be checked, and dispute what is weak, on your claims and the model's own.",
+  "author": {
+    "name": "FahrtAI",
+    "url": "https://github.com/FahrtAI"
+  },
+  "homepage": "https://github.com/FahrtAI/dialectical",
+  "repository": "https://github.com/FahrtAI/dialectical",
+  "license": "CC-BY-NC-SA-4.0",
+  "keywords": ["inquiry", "research", "reasoning", "critical-thinking"],
+  "icon": "./assets/icon.png",
+  "documentationUrl": "https://github.com/FahrtAI/dialectical#readme",
+  "supportUrl": "https://github.com/FahrtAI/dialectical/issues"
+}
