@@ -142,7 +142,7 @@ procedure breaks. Accept a tie among hypotheses if the analyst shows why the
 evidence fails to distinguish them.
 
 **Assumption visibility across analytical cases.** Score this separately in
-cases 1–4 and 6. Check whether the answer states its load-bearing assumptions
+cases 1–4 and 6. Check whether the answer states its assumptions
 at the point of use and distinguishes them from supplied or sourced evidence.
 Mark the check missed if a consequential premise stays implicit or is presented
 as observed. For example, the buyer count and contract value in case 2 must
