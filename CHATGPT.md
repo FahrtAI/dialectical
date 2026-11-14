@@ -1,22 +1,23 @@
 # Install and test Dialectical in ChatGPT
 
-Dialectical 0.9.0 is a skills-only plugin. Its entry point is
+Dialectical 0.9.1 is a skills-only plugin. Its entry point is
 `skills/dialectical/SKILL.md`, and its display name is **Dialectical**.
 The package requires no server, OAuth, API key, developer mode, or app connection.
 
 ## Build the plugin ZIP
 
-While the 0.9.0 release is a draft, build the installable ZIP from the
-`v0.9.0` tag with Git and Python 3.12.
+Download `dialectical-0.9.1.zip` from the
+[GitHub release](https://github.com/FahrtAI/dialectical/releases/tag/v0.9.1) once
+published, or build it from the `v0.9.1` tag with Git and Python 3.12.
 
 ```sh
-git clone --branch v0.9.0 https://github.com/FahrtAI/dialectical.git
+git clone --branch v0.9.1 https://github.com/FahrtAI/dialectical.git
 cd dialectical
 python3 scripts/package_plugin.py
 ```
 
-Use the resulting `dist/dialectical-0.9.0.zip` for the account installation
-below.
+Use `dialectical-0.9.1.zip` for the account installation below. If you built it
+locally, the archive is at `dist/dialectical-0.9.1.zip`.
 
 ## Install or update the account plugin
 
@@ -27,9 +28,9 @@ availability on your phone.
 1. Open ChatGPT on the web in the intended account/workspace.
 2. Open **Plugins** and find the existing **Dialectical** plugin under
    **Personal / Created by me** (or the workspace where it was created).
-3. Select **Edit Plugin**. Attach `dist/dialectical-0.9.0.zip` and send:
+3. Select **Edit Plugin**. Attach `dialectical-0.9.1.zip` and send:
 
-   > Replace Dialectical's package with this skills-only version 0.9.0.
+   > Replace Dialectical's package with this skills-only version 0.9.1.
    > Preserve its name and ownership. Remove the old MCP/app dependency.
    > Use the supplied skill and reference files, including the startup
    > instructions for “@Dialectical start a conversation.”

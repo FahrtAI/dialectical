@@ -7,7 +7,7 @@
 
 > Ordinary conversation with intellectual discipline.
 
-**Current version:** 0.9.0 (skills-only)
+**Current version:** 0.9.1 (skills-only)
 
 LLMs can be thought of as lossy, natural-language search engines for the material they ingested during training—which, for a frontier model, can include an awful lot of the material on the internet.
 
@@ -163,8 +163,8 @@ Dialectical also distinguishes among debate, narrative, inquiry, and decision. E
 
 ## Install in ChatGPT
 
-[Build `dist/dialectical-0.9.0.zip` from source](CHATGPT.md#build-the-plugin-zip)
-while the GitHub release is a draft. Attach the resulting ZIP when you
+[Build `dist/dialectical-0.9.1.zip` from source](CHATGPT.md#build-the-plugin-zip)
+or download that ZIP from the [GitHub release](https://github.com/FahrtAI/dialectical/releases/tag/v0.9.1) once published. Attach the ZIP when you
 [install or update Dialectical in ChatGPT](CHATGPT.md#install-or-update-the-account-plugin).
 See [CHATGPT.md](CHATGPT.md) for desktop and iPhone acceptance tests.
 
@@ -206,8 +206,8 @@ Behavioral evaluation is separate and manual: the
 plain ChatGPT and a short discipline prompt across ordinary conversation and
 a competing-explanations task.
 
-The ZIP includes only the manifest, license, skill Markdown files, and referenced
-plugin icons. Repository documentation, tests, and build utilities stay outside it.
+The ZIP includes the manifest, license and commercial use permission, skill
+Markdown files, and referenced plugin icons. Repository documentation, tests, and build utilities stay outside it.
 
 ```text
 plugin.json   portable plugin manifest
@@ -218,6 +218,7 @@ scripts/      static checks and ZIP packaging
 docs/         examples, state model, and architecture audit
 CHATGPT.md    installation and device testing
 LICENSE       CC BY-NC-SA 4.0 legal terms
+COMMERCIAL-USE.md  additional permission for commercial use
 ```
 
 Package validation runs in CI. Installed-host acceptance follows
@@ -225,7 +226,7 @@ Package validation runs in CI. Installed-host acceptance follows
 [architecture audit](docs/architecture-audit.md) for the removal of the old
 service dependency and official specification links.
 
-All 20 bundled skills use release version 0.9.0. Other optional host guides remain in
+All 20 bundled skills use release version 0.9.1. Other optional host guides remain in
 [CLAUDE.md](CLAUDE.md), [CODEX.md](CODEX.md), and [GEMINI.md](GEMINI.md).
 
 ## License
@@ -244,11 +245,11 @@ SPDX identifier: `CC-BY-NC-SA-4.0`.
 
 ## Status
 
-0.9.0 is a draft release. Its package checks pass and its build is
-reproducible. **Whether Dialectical actually beats plain ChatGPT has not been
-tested yet.** The [behavior check](QA/BEHAVIOR_CHECK.md) (#11) and desktop and
-iPhone acceptance (#13) come next, tracked in #43. Results will be published
-either way, including if a one-paragraph prompt does as well.
+0.9.1 updates GUIDE and JOIN selection rules, corrects the ACH example and
+evidence scoring, and adds commercial use permission for the official
+ChatGPT plugin. Desktop and iPhone acceptance and the installed behavior
+comparison are pending. See the [release checklist](QA/RELEASE_ACCEPTANCE.md)
+and [behavior protocol](QA/BEHAVIOR_CHECK.md).
 
 Future work, design questions, and ideas are tracked in the
 [Dialectical GitHub Project](https://github.com/orgs/FahrtAI/projects/1).
