@@ -25,8 +25,11 @@ Do not perform RECAP, DISTILL, or TRACE in the JOIN response. Do not add GUIDE,
 MORE, an automatic recommendation, a workflow, or another choice. The choices
 are alternatives, not a sequence.
 
-Accept the number or command name as the selection. Accept SUMMARIZE as an
-alias for RECAP, but use RECAP in the menu and response. Run only the selected
+A bare `1`, `2`, `3`, or `4` selects from this JOIN menu only on the next user
+turn, when the immediately preceding assistant reply presented this live menu.
+Any intervening user turn or newer menu closes this menu. Later numbers cannot
+select from it. Accept a command name as the selection, including SUMMARIZE as
+an alias for RECAP. Use RECAP in the menu and response. Run only the selected
 operation:
 
 - RECAP compresses what was discussed without adding conclusions.

@@ -39,10 +39,23 @@ Use a fresh chat on each device and record the actual responses.
    and ask `@Dialectical RESUME from this handoff`. Confirm that it reconstructs
    only the supplied qualified state, does not claim access to the original
    thread, and can continue from a new user update.
+8. Run the menu selection checks below in a conversation with enough prior
+   context for both menus. Record the prompts, displayed choices, and responses.
 
 Record pass/fail/untested and version-confirmation limitations below. This short
 test does not replace the GUIDE/continuity or light/dark checks in the full matrix.
 Copy this template into a separate candidate record; leave this template reusable.
+
+### Menu selection checks
+
+- Show GUIDE, then ignore it and say `Ask me how many interviews we ran.` Reply
+  `2` after the assistant asks. Expect it to treat `2` as an interview count.
+  Repeat with JOIN. No command from either ignored menu should run.
+- Show GUIDE, invoke JOIN as the next turn, then reply with a number from `1`
+  to `3` whose GUIDE and JOIN labels differ. Expect only that numbered JOIN
+  operation to run.
+- Show GUIDE, choose `MORE`, then reply `2`. Expect no operation to run until
+  you name a command.
 
 ## Candidate record
 
@@ -86,7 +99,9 @@ reproduce a failure, excluding account secrets and unrelated conversation data.
 | SAVE produces a portable Markdown handoff | untested | untested |
 | Fresh thread resumes from supplied handoff | untested | untested |
 | Select ranked GUIDE choice; only that command executes | untested | untested |
-| Ignore GUIDE menu; ordinary conversation continues | untested | untested |
+| Ignored GUIDE and JOIN menus expire | untested | untested |
+| GUIDE → JOIN routes a number to JOIN only | untested | untested |
+| GUIDE → MORE requires a named command | untested | untested |
 | SAVE → supplied handoff → RESUME with no store | untested | untested |
 | Composer/listing icon, light theme | untested | untested |
 | Composer/listing icon, dark theme | untested | untested |

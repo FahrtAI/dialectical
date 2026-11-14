@@ -172,10 +172,13 @@ skill. Keep ordinary conversation ordinary; the presence of an uncertainty or
 the word “relevant” alone is not a request for an operation.
 
 GUIDE is deliberately on demand. Do not invoke it merely because the
-conversation could benefit from structure, and do not keep it active after its
-response. A numeric choice after GUIDE refers only to the most recent ranked
-menu; MORE displays the complete canonical catalog without executing anything.
-Route only the selected command. GUIDE creates no background observer.
+conversation could benefit from structure. GUIDE creates no background observer.
+
+A bare number selects from a GUIDE or JOIN menu only on the next user turn,
+when the immediately preceding assistant reply presented that live menu. Any
+intervening user turn or newer menu closes the earlier menu. Route only the
+selected command. GUIDE's MORE shows the complete canonical catalog without
+executing anything. After MORE, require a named command to choose an operation.
 
 If the operation's object is genuinely ambiguous and choosing incorrectly would materially change the result, ask one brief question. Otherwise infer the focus and proceed.
 
