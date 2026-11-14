@@ -44,9 +44,11 @@ the checksum from the intended repository release or CI run.
 
 ## Tagged release
 
-1. Choose a new version for changed plugin content. Update `plugin.json`, every
-   skill's `metadata.version`, current version/archive references in `README.md`
-   and `CHATGPT.md`. Keep historical baseline records
+1. Choose a new version for changed plugin content. Update `plugin.json`,
+   `.claude-plugin/plugin.json`, every skill's `metadata.version`, current
+   version/archive references in `README.md` and `CHATGPT.md`. The Claude
+   version matters: Claude installs keep users on the version in that file
+   until it changes. Keep historical baseline records
    unchanged. Review other current-version documentation as appropriate.
 2. Run the validation workflow's checks locally, commit the release source, and
    use a clean checkout. The release build rejects untracked changes, mismatched
