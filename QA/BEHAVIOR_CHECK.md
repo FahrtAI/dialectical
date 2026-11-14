@@ -74,41 +74,81 @@ operation suggestion, method vocabulary, or evidence caveat.
 
 1. "Quick one: what's a good structure for a one-page summary of a customer interview?"
 
-**6. Compare competing explanations (ACH).** The test asks all three
-conditions for the same analysis. Score the evidence and reasoning, including
-whether the update changes the ranking. Command names and tables earn no
-credit on their own.
+**6. Execute Analysis of Competing Hypotheses (ACH).** Assess fidelity to
+Richards J. Heuer Jr.'s eight-step method in
+[*Psychology of Intelligence Analysis*, chapter 8](https://www.cia.gov/resources/csi/static/Pyschology-of-Intelligence-Analysis.pdf).
+A plausible conclusion earns no ACH credit on its own. Give all conditions
+the same evidence and explicit request for ACH. Only B invokes the plugin.
 
-1. Use the condition-specific lead-in, followed by the common case below.
-   - **A and C:** "Compare these competing explanations against the evidence."
-   - **B:** `@Dialectical ACH` followed by "Compare these competing explanations against the evidence."
-2. "New audit finding: The support log used the wrong time zone. With timestamps corrected, the additional abandonments happened after users saw the new screen. How does this change your assessment, and what would distinguish the explanations now?"
+1. For A and C, begin with "Run Analysis of Competing Hypotheses (ACH) on
+   the following case." For B, select the plugin and begin with
+   `@Dialectical ACH` followed by the same sentence. Append the evidence packet.
+2. After the first response, supply the correction below and ask the analyst
+   to update the matrix and relative assessments. Preserve the original answer.
 
-Common case for turn 1:
+**Evidence packet**
 
-> Self-serve activation fell from 60% to 48% after we released a new setup
-> screen. The screen may cause users to abandon setup, a new paid campaign
-> may have attracted visitors less likely to activate, or a tracking change
-> may have missed completions. The chart and the analytics team's daily email
-> both show the decline, using the same analytics events. The campaign started
-> that week, but the decline was similar in paid and organic cohorts. A
-> support-log audit across both cohorts reported that the additional
-> abandonments happened before users saw the new screen. Using only this
-> evidence, say what favors or weakens each explanation, give your provisional
-> assessment, and identify the next piece of evidence that would best
-> distinguish them.
+> A regional ferry operator suspended six early departures over two weeks.
+> Management publicly attributes the cancellations to routine vessel
+> maintenance. An internal team suspects a crew shortage or temporary port
+> restrictions. Assess which mechanism most likely drove the suspensions
+> using only the following records. Causes may coexist.
+>
+> - The operator's bulletin cites scheduled maintenance. Two news stories
+>   quote that bulletin and supply no additional reporting.
+> - A maintenance export lists open work orders for both assigned vessels.
+>   Neither order is marked as preventing service, and both vessels ran
+>   afternoon departures on four of the six dates.
+> - The dispatch roster shows no qualified relief captain on five of the six
+>   cancelled morning shifts. The export was generated after the cancellations.
+> - A harbor notice restricted one berth for two mornings. Both dates coincide
+>   with cancellations. Three other cancellations occurred when the published
+>   notice showed no berth restriction, and the status on one date is unknown.
+> - Passenger complaints increased after the cancellations.
+>
+> Show an ACH matrix and give your assessment. State what future observation
+> would make you reconsider each viable explanation.
 
-*Pass* = treats the chart and email as one evidence stream, explains how
-the timing initially weakens the screen explanation and how the similar
-cohort declines weaken the campaign explanation, and states a provisional
-assessment without claiming the cause is established. After the update, it
-withdraws the timing objection without treating later abandonment as proof
-that the screen caused it. It proposes a check that distinguishes actual
-abandonment from lost events (such as comparing independent completion records
-with analytics), or isolates the screen's effect (such as a controlled old/new
-screen comparison using an independent completion measure). Score the initial
-assessment and the update separately. Record a pass for the whole run only if
-both turns pass.
+**Correction**
+
+> An audit found the dispatch export removed crew assignments after a
+> cancellation. Original roster snapshots show a qualified captain assigned
+> on five of the six dates. They do not establish whether those captains
+> reported for duty. Which matrix entries and relative assessments change?
+> What observations would now be most useful?
+
+**ACH scoring.** Score each item independently as met, missed, or untested.
+Record which items the answer made auditable.
+
+1. Frames the question and tests plausible rivals, including whether several
+   causes could explain different dates or one accounts for most of the pattern.
+2. Maps material evidence against every viable hypothesis in a usable matrix.
+   Marks unknowns and counts the bulletin and derivative coverage as one source.
+3. Explains what makes evidence diagnostic across hypotheses. Sets aside the
+   increase in complaints as compatible with all proposed causes.
+4. Looks for contradictions against each hypothesis, including the initial leader.
+   Distinguishes an actual contradiction from missing evidence or weak support.
+5. Identifies evidence that could change the ranking and examines at least one
+   plausible failure or alternate reading of it before the correction.
+6. Reports a provisional relative assessment of all viable explanations and
+   identifies specific future observations that would favor or weaken them.
+7. Revises the affected cells and assessments after the correction. Removes the
+   apparent roster gap as evidence of a shortage while distinguishing assigned
+   crew from actual attendance. Explains whether the revised evidence separates
+   the remaining hypotheses.
+
+A polished table alone earns no credit. Use the rubric to identify where the
+procedure breaks. Accept a tie among hypotheses if the analyst shows why the
+evidence fails to distinguish them.
+
+**Assumption visibility across analytical cases.** Score this separately in
+cases 1–4 and 6. Check whether the answer states its assumptions
+at the point of use and distinguishes them from supplied or sourced evidence.
+Mark the check missed if a consequential premise stays implicit or is presented
+as observed. For example, the buyer count and contract value in case 2 must
+represent the stated market. A case 3 estimate should identify its clinic
+count, pricing unit, price, and adoption assumption. For case 6, look for
+assumptions about what each source actually measures, alongside the ACH score.
 
 ## Recording
 
@@ -117,7 +157,7 @@ transcript link or reference, scoring rationale, any failure turn, and any
 deviation from the protocol. Record per-run status (`pass`, `fail`, `blocked`,
 or `untested`) and count assistant words for the whole transcript using the
 same whitespace-separated count across conditions. Score against the criteria
-above. Withhold condition labels during scoring where feasible and note when
+above. Record assumption visibility and each ACH rubric item separately. Withhold condition labels during scoring where feasible and note when
 an answer reveals its condition. Aggregate the pass and fail counts, excluded
 runs and reasons, and median assistant word count per scenario and condition.
 
