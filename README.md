@@ -168,7 +168,8 @@ while the GitHub release is a draft. Attach the resulting ZIP when you
 [install or update Dialectical in ChatGPT](CHATGPT.md#install-or-update-the-account-plugin).
 See [CHATGPT.md](CHATGPT.md) for desktop and iPhone acceptance tests.
 
-The portable package contains `plugin.json`, `LICENSE`, `skills/`, and referenced artwork.
+The portable package contains `plugin.json`, `LICENSE`,
+`COMMERCIAL-USE.md`, `skills/`, and referenced artwork.
 Its OpenAI display name is **Dialectical**. The plugin includes no MCP
 configuration, app dependency, executable runtime, or service.
 
@@ -232,8 +233,12 @@ All 20 bundled skills use release version 0.9.0. Other optional host guides rema
 Dialectical—including its methodology, skills, documentation, assets, and
 utility code—is licensed by FahrtAI under the
 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
-License](LICENSE), unless a file states otherwise. Reuse requires attribution,
-is limited to noncommercial purposes, and adaptations must use the same license.
+License](LICENSE), unless a file states otherwise.
+
+FahrtAI’s [additional commercial use permission](COMMERCIAL-USE.md) allows
+internal business work and paid client work through the official ChatGPT
+plugin. Commercial private deployment or integration, paid bundling, and
+commercial hosted access require prior written permission from FahrtAI.
 
 SPDX identifier: `CC-BY-NC-SA-4.0`.
 

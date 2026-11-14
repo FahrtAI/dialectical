@@ -21,7 +21,7 @@ SCHEMA = "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
 def package_files() -> list[Path]:
     manifest = json.loads((ROOT / "plugin.json").read_text())
     interface = manifest["extensions"]["com.openai"]["interface"]
-    files = [ROOT / "plugin.json", ROOT / "LICENSE"]
+    files = [ROOT / "plugin.json", ROOT / "LICENSE", ROOT / "COMMERCIAL-USE.md"]
     files.extend(sorted((ROOT / "skills").rglob("*.md")))
     for key in ("logo", "logoDark", "composerIcon", "composerIconDark"):
         if key in interface:
@@ -54,6 +54,8 @@ def validate() -> list[str]:
         license_text = license_path.read_text(encoding="utf-8")
         if "Attribution-NonCommercial-ShareAlike 4.0 International" not in license_text:
             failures.append("LICENSE does not contain the selected CC legal text")
+    if not (ROOT / "COMMERCIAL-USE.md").is_file():
+        failures.append("Missing COMMERCIAL-USE.md permission file")
     if not re.fullmatch(r"(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)",
                         str(manifest.get("version", ""))):
         failures.append("Release version must be semver")
