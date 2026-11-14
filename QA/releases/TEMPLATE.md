@@ -56,17 +56,24 @@ Allowed status values: `pass`, `fail`, `blocked`, `untested`.
 
 ## Behavior check
 
-Model: ____ · Runs per cell: ____ · Share links: ____
+- Model and surface ____
+- Runs per scenario and condition ____
+- Protocol revision and environment differences ____
+- Transcripts and per-run scoring record ____
 
-| Scenario | A plain | B Dialectical | C paragraph (optional) |
-|---|---|---|---|
-| 1 Hold | untested | untested | untested |
-| 2 Update | untested | untested | untested |
-| 3 Own number | untested | untested | untested |
-| 4 Consensus | untested | untested | untested |
-| 5 No intervention | untested | untested | untested |
+Each cell records pass/fail counts, excluded runs with reasons, and median
+assistant words. The candidate ZIP and installation evidence are recorded above.
 
-Reading (see `QA/BEHAVIOR_CHECK.md`):
+| Scenario | A plain | B Dialectical | C short prompt | Differences, ties, or failures |
+|---|---|---|---|---|
+| 1 Hold | untested | untested | untested | |
+| 2 Update | untested | untested | untested | |
+| 3 Own number | untested | untested | untested | |
+| 4 Consensus | untested | untested | untested | |
+| 5 No intervention | untested | untested | untested | |
+| 6 Competing explanations (ACH) | untested | untested | untested | |
+
+Interpretation and limits (see [behavior check](../BEHAVIOR_CHECK.md)) ____
 
 ## Failures and follow-up
 

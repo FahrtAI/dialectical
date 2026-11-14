@@ -201,8 +201,9 @@ prepare a draft GitHub release from the tested artifacts. See
 checks, and the post-install smoke test.
 
 Behavioral evaluation is separate and manual: the
-[behavior check](QA/BEHAVIOR_CHECK.md) runs five scenarios in ChatGPT with and
-without `@Dialectical` and compares the transcripts.
+[behavior check](QA/BEHAVIOR_CHECK.md) compares the installed candidate with
+plain ChatGPT and a short discipline prompt across ordinary conversation and
+a competing-explanations task.
 
 The ZIP includes only the manifest, license, skill Markdown files, and referenced
 plugin icons. Repository documentation, tests, and build utilities stay outside it.
@@ -219,9 +220,9 @@ LICENSE       CC BY-NC-SA 4.0 legal terms
 ```
 
 Package validation runs in CI. Installed-host acceptance follows
-[QA/RELEASE_ACCEPTANCE.md](QA/RELEASE_ACCEPTANCE.md), and the manual
-[behavior check](QA/BEHAVIOR_CHECK.md) compares Dialectical with plain ChatGPT. See the [architecture audit](docs/architecture-audit.md)
-for the removal of the old service dependency and official specification links.
+[QA/RELEASE_ACCEPTANCE.md](QA/RELEASE_ACCEPTANCE.md). See the
+[architecture audit](docs/architecture-audit.md) for the removal of the old
+service dependency and official specification links.
 
 All 20 bundled skills use release version 0.9.0. Other optional host guides remain in
 [CLAUDE.md](CLAUDE.md), [CODEX.md](CODEX.md), and [GEMINI.md](GEMINI.md).
