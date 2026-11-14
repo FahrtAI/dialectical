@@ -52,6 +52,33 @@ def claude_failures(manifest: dict) -> list[str]:
         failures.append("marketplace.json entry must not set version; plugin.json owns it")
     if (ROOT / "bin").exists():
         failures.append("A top-level bin/ directory blocks installation in Claude")
+    failures.extend(claude_command_failures(claude))
+    return failures
+
+
+CLAUDE_ENTRY_COMMANDS = {"start", "help", "join"}
+
+
+def claude_command_failures(claude: dict) -> list[str]:
+    """Every operation skill needs a short Claude command that names it, and only those."""
+    commands = claude.get("commands")
+    if not isinstance(commands, dict):
+        return ["Claude plugin.json must define short commands"]
+    failures = []
+    operations = {p.name.removeprefix("dialectical-"): p.name
+                  for p in (ROOT / "skills").iterdir() if p.name.startswith("dialectical-")}
+    expected = set(operations) | CLAUDE_ENTRY_COMMANDS
+    for name in sorted(expected - set(commands)):
+        failures.append(f"Missing Claude command: {name}")
+    for name in sorted(set(commands) - expected):
+        failures.append(f"Claude command has no matching skill: {name}")
+    for name, folder in operations.items():
+        content = commands.get(name, {}).get("content", "")
+        if name in commands and f"{folder} skill" not in content:
+            failures.append(f"Claude command {name} does not run {folder}")
+    for name in CLAUDE_ENTRY_COMMANDS & set(commands):
+        if "dialectical skill" not in commands[name].get("content", ""):
+            failures.append(f"Claude command {name} does not run the entry skill")
     return failures
 
 

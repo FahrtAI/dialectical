@@ -160,6 +160,22 @@ class ClaudePluginTest(unittest.TestCase):
         self.assertIn("Claude plugin.json version differs from plugin.json",
                       module.claude_failures(drifted))
 
+    def test_claude_commands_cover_every_operation(self):
+        import importlib.util, json
+        root = Path(__file__).resolve().parents[2]
+        spec = importlib.util.spec_from_file_location(
+            "vpp", root / "scripts/validate_plugin_package.py")
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        claude = json.loads((root / ".claude-plugin/plugin.json").read_text())
+        self.assertEqual(module.claude_command_failures(claude), [])
+        commands = dict(claude["commands"])
+        commands.pop("challenge")
+        commands["chalenge"] = {"content": "typo"}
+        failures = module.claude_command_failures(dict(claude, commands=commands))
+        self.assertIn("Missing Claude command: challenge", failures)
+        self.assertIn("Claude command has no matching skill: chalenge", failures)
+
 
 if __name__ == "__main__":
     unittest.main()

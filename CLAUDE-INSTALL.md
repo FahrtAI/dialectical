@@ -28,7 +28,21 @@ claude plugin details dialectical
 
 The component inventory should list 20 skills, starting with `dialectical`, and
 the version should match the latest release. In a session, ask Claude to use
-Dialectical or run `/dialectical:dialectical`.
+Dialectical or run `/dialectical:start`.
+
+## Commands
+
+Each operation has a short command, defined in `.claude-plugin/plugin.json`:
+`/dialectical:challenge`, `/dialectical:verify`, `/dialectical:distill`,
+`/dialectical:save`, `/dialectical:guide`, and the rest of the help card in
+lowercase with hyphens (`/dialectical:thought-experiment`). Text after the command
+is what it applies to; with none, it applies to the current discussion.
+`/dialectical:start`, `/dialectical:help`, and `/dialectical:join` open
+Dialectical, show the help card, or join an existing conversation. The longer
+skill names (`/dialectical:dialectical-challenge`) still work.
+
+These commands exist only in the Claude plugin. They don't change the skills,
+so the ChatGPT and Codex installs are unaffected.
 
 ## Update and remove
 
