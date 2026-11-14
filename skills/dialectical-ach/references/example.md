@@ -27,35 +27,47 @@ appropriate uncertainty estimate.
 |---|---|---|---|---|---|---|
 | E1 | Before the webinar, attendees had 2.5× the demo requests of non-attendees (CRM) | - | ++ | 0 | + | ? |
 | E2 | Attendees received about twice the follow-up touches in the next 30 days (activity logs) | 0 | 0 | + | 0 | ? |
-| E3 | Among prospects matched on pre-webinar engagement, the gap falls to 1.3× (CRM) | -- | ++ | - | + | ? |
+| E3 | Among prospects matched on pre-webinar engagement, the gap falls to 1.3× (CRM) | - | ++ | ? | + | ? |
 | E4 | About 40% of non-attendees were never on an invitation list | 0 | 0 | 0 | + | ? |
 | E5 | Attendees rate the webinars 4.6/5 | + | + | + | + | ? |
 | E6 | Among invited prospects only, the gap is still 2.8× | + | + | + | -- | ? |
 
 ## Notes
 
-- **Diagnosticity:** E5 fits every hypothesis, so it does not help choose. E3 and E6 are the most diagnostic items.
+- **Diagnosticity:** E5 does not distinguish among H1–H4 and supplies no information about H5. E3 and E6 are the most diagnostic items.
 - **Source dependence:** E1 and E3 both come from CRM engagement records. If that tracking is incomplete, both weaken together; they are not independent support.
 - **Overlap:** the causes can combine. The question is which accounts for most of the gap, not which is the only cause.
 
 ## Assessment
 
-H2 (selection) is the least inconsistent of the mechanism explanations. H1 as
-the main source faces a strong contradiction in E3: once prior engagement is
-matched, most of the gap disappears. H4 faces one in E6: removing uninvited
-leads barely changes the gap. E2 shows that attendees received more follow-up,
-but not that follow-up caused conversion, so H3 may contribute but remains
-untested as a causal explanation. H5 cannot be assessed from the supplied
-aggregates; its all-`?` row is unresolved, not evidence that chance is likely.
+H2 (selection) is the least inconsistent of the mechanism explanations. E3 weakens the case
+that webinar persuasion accounts for most of the observed gap: the gap is
+smaller among prospects matched on prior engagement. That comparison does
+not establish how much of the original gap selection caused. E6 weakens H4
+because the gap changes little among invited prospects. E2 establishes that
+attendees received more follow-up, but the effect on conversion remains
+untested. H5 remains unresolved because the available aggregates cannot
+establish how much of the gap sampling variation could explain.
 
 ## Sensitivity and residual uncertainty
 
 - H2's lead rests mainly on E1 and E3, which share a source. If the CRM undercounts engagement, the matching in E3 is weaker than it looks and H1 recovers.
-- The H3 rating on E3 assumes matched attendees still received more follow-up. That has not been checked.
-- The remaining 1.3× is unexplained; persuasion, follow-up, or both could account for it.
+- E3 does not report follow-up in the matched groups. Attendance may trigger
+  follow-up, and sales may prioritize prospects already likely to buy.
+  Matching on later touches alone cannot separate persuasion from follow-up.
+- The remaining 1.3× is unexplained. Persuasion, follow-up, and differences
+  in buying intent that the engagement measures missed could all contribute.
 - The missing group sizes and conversion counts prevent an assessment of how
   much sampling variation could explain.
 
 ## Next test
 
-Audit CRM engagement coverage for a sample of prospects. It is cheap, and it tests the evidence the result depends on most. If coverage holds, split the remaining 1.3× by also matching on follow-up touches, which separates H1 from H3.
+Audit CRM engagement coverage first, since E1 and E3 both depend on it. To
+test H3, randomly assign eligible attendees to standard or enhanced
+follow-up and compare conversion by assigned policy over the same time
+window. This estimates the effect of changing follow-up policy for those
+attendees. Testing H1 calls for a separate design. For example, randomly
+offer webinar access while keeping the follow-up policy the same. Comparing
+conversion by assignment estimates the effect of the offer. Inferring the
+effect of attendance itself requires additional assumptions, including that
+the offer affects conversion only through attendance.
